@@ -1,0 +1,8 @@
+<ng-container *ngFor="let opcao of opcoes">
+<label class="radio-inline" for="{{opcao.texto}}-{{opcao.valor}}">
+    <fieldset #group>
+        <input type="radio" name="{{nome}}" id="{{opcao.texto}}-{{opcao.valor}}" 
+        [value]="opcao.valor" (click)="emitirValor(opcao.valor)" [checked]="opcao.selecionado"/> {{opcao.texto}}
+    </fieldset>
+</label>
+</ng-container>

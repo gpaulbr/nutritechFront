@@ -3,14 +3,32 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AppRoutingModule } from './/app-routing.module';
+import { HttpModule } from '@angular/http';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
+import { FormsModule } from '@angular/forms';
+import { RadioButtonComponent } from './shared/components/radio-button/radio-button.component';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UsuarioManutencaoComponent,
+    HeaderComponent,
+    RadioButtonComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
