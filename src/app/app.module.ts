@@ -11,7 +11,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonComponent } from './shared/components/radio-button/radio-button.component';
 
 
@@ -28,6 +28,7 @@ import { RadioButtonComponent } from './shared/components/radio-button/radio-but
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule
   ],
   providers: [],

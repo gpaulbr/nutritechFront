@@ -1,18 +1,13 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Usuario } from '../usuario';
 import { TipoUsuario } from '../tipo-usuario.enum';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { RadioButton, RadioButtonElemento } from '../../shared/entities/radio-button';
 import { UsuarioService } from '../usuario.service';
 import { Http, Response } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 
 
-@NgModule({
-  imports: [
-    FormsModule,
-  ]
-})
 
 @Component({
   selector: 'app-usuario-manutencao',
@@ -24,6 +19,7 @@ export class UsuarioManutencaoComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
   senhaConfirmacao: string = '';
+  usuarioForm: FormGroup;
 
   tiposUsuarios = [{
     valor: 1,
@@ -46,25 +42,34 @@ export class UsuarioManutencaoComponent implements OnInit {
     selecionado: false
   }];
 
-  constructor(private usuarioService: UsuarioService) { }
-  
+  constructor(
+    private usuarioService: UsuarioService,
+    fb: FormBuilder) { 
+      this.usuarioForm = fb.group({
+        nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+        email: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
+        matricula: [null, Validators.compose([Validators.required])],
+        senha: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
+        cpf: [null, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
+        tipoUsuario: [1, Validators.required],
+        ativo: [true, Validators.required]
+      })
+    }
+
   ngOnInit() {
-    console.log(this.usuarioService.buscarUsuarios())
+    this.usuarioService.buscarUsuarios();
   }
 
-  mostrarDados(){
-    console.log(this.usuario);
-    console.log(this.usuarioService.salvarUsuario(this.usuario));
+  cadastrarUsuario(usuario: any){
+    this.usuarioService.salvarUsuario(this.usuario);
   }
 
   definirTipoUsuario(valor: number){
-    this.usuario.tipoUsuario = valor;
+    this.usuarioForm.controls.tipoUsuario.setValue(valor);
   }
 
   definirTipoStatus(valor: boolean){
-    this.usuario.ativo = valor;
+    this.usuarioForm.controls.ativo.setValue(valor);
   }
 
-
-  
 }
