@@ -1,6 +1,6 @@
 <div class="container">
 	<fieldset>
-	<form [formGroup]="usuarioForm" class="form-horizontal form-container" (ngSubmit)="cadastrarUsuario(usuarioForm.value)" id="formulario">
+	<form [formGroup]="usuarioForm" class="form-horizontal form-container" (ngSubmit)="cadastrarUsuario()" id="formulario">
 		<h2>Cadastro de Usuário</h2>
 		<div class="divisor">
 			<span></span>
@@ -63,7 +63,7 @@
 		</div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label">Tipo</label>
+            <label class="col-md-4 control-label">Tipo Usuário</label>
             <div class="col-md-5">
 				<app-radio-button [opcoes]="tiposUsuarios" [nome]="'tipoUsuario'" (emissaoValor)="definirTipoUsuario($event)"></app-radio-button>
             </div>
@@ -80,7 +80,7 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label" for="confirmar"></label>
 			<div class="col-md-8">
-				<button id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!usuarioForm.valid">Confirmar</button>
+				<button type="submit" id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!usuarioForm.valid">Confirmar</button>
 				<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
 				<button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
 			</div>

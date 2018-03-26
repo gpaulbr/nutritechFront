@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonComponent } from './shared/components/radio-button/radio-button.component';
+import { IngredienteManutencaoComponent } from './ingrediente/ingrediente-manutencao/ingrediente-manutencao.component';
 
 
 
@@ -21,7 +22,8 @@ import { RadioButtonComponent } from './shared/components/radio-button/radio-but
     AppComponent,
     UsuarioManutencaoComponent,
     HeaderComponent,
-    RadioButtonComponent
+    RadioButtonComponent,
+    IngredienteManutencaoComponent
   ],
   imports: [
     BrowserModule,

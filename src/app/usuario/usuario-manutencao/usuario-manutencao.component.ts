@@ -60,8 +60,8 @@ export class UsuarioManutencaoComponent implements OnInit {
     this.usuarioService.buscarUsuarios();
   }
 
-  cadastrarUsuario(usuario: any){
-    this.usuarioService.salvarUsuario(this.usuario);
+  cadastrarUsuario(){
+    this.usuarioService.salvarUsuario(this.usuarioForm.value);
   }
 
   definirTipoUsuario(valor: number){
