@@ -1,0 +1,68 @@
+<!--<p>
+  grupo-manutencao works!
+</p>
+-->
+<div class="container">
+  <fieldset>
+      <form class="form-horizontal form-container" id="formulario">
+          <h2>Cadastro de Grupo de Receita</h2>
+          <div class="divisor">
+              <span></span>
+          </div>
+          <div class="alert alert-danger mar-top-10" role="alert"
+               style="display: none;">
+              <span id="textoErro"><strong>Erro!</strong></span>
+          </div>
+          <div class="form-group mar-top-20">
+              <label class="col-md-6 control-label" for="nome">Nome</label>
+              <div class="col-md-4">
+                  <input id="nome" name="nome" type="text"
+                         placeholder="Nome do Grupo" class="form-control input-md"
+                         required="">
+
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-md-6 control-label" for="custo">Valor da
+                  Porcao: (valor em gramas)</label>
+              <div class="col-md-4">
+                  <input id="custo" name="custo" class="form-control"
+                         placeholder="10" type="text">
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-md-6 control-label" for="confirmar"></label>
+              <div class="col-md-6">
+                  <button id="confirmar" name="confirmar" class="btn btn-success">Confirmar</button>
+                  <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
+                  <button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
+              </div>
+          </div>
+        </form>
+  </fieldset>
+</div>
+<br>
+<div class="alert alert-success" role="alert"
+   style="display: none; width: 25%; margin-left: 37%; text-align: center;">
+</div>
+<div class="container">
+  <div class="panel panel-default panel-container">
+      <div class="panel-heading ">
+          <h3 class="titulo_lista">Lista de Grupos</h3>
+      </div>
+      <div class="panel-body">
+          <table class="table table-horvered table-striped" id="listaItens">
+              <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Nome</th>
+                  <th>Valor da Porção (em gramas)</th>
+                  <th>Ações</th>
+              </tr>
+              </thead>
+          </table>
+      </div>
+  </div>
+</div>
