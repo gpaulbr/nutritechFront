@@ -20,6 +20,8 @@ export class UsuarioManutencaoComponent implements OnInit {
   usuario: Usuario = new Usuario();
   senhaConfirmacao: string = '';
   usuarioForm: FormGroup;
+  mensagemErroSenha = "As senhas digitadas estão diferentes";
+  senhaValida = true;
 
   tiposUsuarios = [{
     valor: 1,
@@ -65,11 +67,17 @@ export class UsuarioManutencaoComponent implements OnInit {
   }
 
   definirTipoUsuario(valor: number){
+    console.log(this.usuarioForm);
     this.usuarioForm.controls.tipoUsuario.setValue(valor);
   }
 
   definirTipoStatus(valor: boolean){
     this.usuarioForm.controls.ativo.setValue(valor);
+  }
+
+  validarSenha()
+  { 
+    this.senhaValida = this.usuarioForm.controls['senha'].value == this.senhaConfirmacao;
   }
 
 }

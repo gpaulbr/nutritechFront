@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonComponent } from './shared/components/radio-button/radio-button.component';
 import { IngredienteManutencaoComponent } from './ingrediente/ingrediente-manutencao/ingrediente-manutencao.component';
 import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manutencao.component';
+import { MensagemErroComponent } from './shared/components/mensagem-erro/mensagem-erro.component';
 
 
 
@@ -25,7 +26,7 @@ import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manuten
     HeaderComponent,
     RadioButtonComponent,
     IngredienteManutencaoComponent,
-    GrupoManutencaoComponent
+    MensagemErroComponent
   ],
   imports: [
     BrowserModule,

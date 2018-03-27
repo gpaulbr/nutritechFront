@@ -1,0 +1,4 @@
+.campo-obrigatorio:after {
+    content:"*";
+    color:red;
+  }

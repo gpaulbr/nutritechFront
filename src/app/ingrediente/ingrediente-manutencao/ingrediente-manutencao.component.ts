@@ -44,5 +44,7 @@ export class IngredienteManutencaoComponent implements OnInit {
   definirTipoIngrediente(valor: number){
     this.ingredienteForm.controls.tipoIngrediente.setValue(valor);
   }
+
+  
   
 }
