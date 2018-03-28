@@ -9,6 +9,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { CpfCnpjModule } from 'ng2-cpf-cnpj';
+
 import { HeaderComponent } from './header/header.component';
 import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,8 +26,9 @@ import { MensagemErroComponent } from './shared/components/mensagem-erro/mensage
     AppComponent,
     UsuarioManutencaoComponent,
     HeaderComponent,
-    RadioButtonComponent,
     IngredienteManutencaoComponent,
+    GrupoManutencaoComponent,
+    RadioButtonComponent,
     MensagemErroComponent
   ],
   imports: [
@@ -34,7 +37,8 @@ import { MensagemErroComponent } from './shared/components/mensagem-erro/mensage
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    CpfCnpjModule
   ],
   providers: [],
   bootstrap: [AppComponent]
