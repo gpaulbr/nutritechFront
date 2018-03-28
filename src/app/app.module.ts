@@ -10,6 +10,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { CpfCnpjModule } from 'ng2-cpf-cnpj';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { HeaderComponent } from './header/header.component';
 import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
@@ -38,7 +39,8 @@ import { MensagemErroComponent } from './shared/components/mensagem-erro/mensage
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    CpfCnpjModule
+    CpfCnpjModule,
+    TextMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]

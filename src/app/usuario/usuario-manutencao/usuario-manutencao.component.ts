@@ -22,6 +22,7 @@ export class UsuarioManutencaoComponent implements OnInit {
   usuarioForm: FormGroup;
   mensagemErroSenha = "As senhas digitadas estão diferentes";
   senhaValida = true;
+  public mascaraCPF = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
   tiposUsuarios = [{
     valor: 1,
@@ -52,7 +53,7 @@ export class UsuarioManutencaoComponent implements OnInit {
         email: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
         matricula: [null, Validators.compose([Validators.required])],
         senha: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
-        cpf: [null, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
+        cpf: [null, Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(14)])],
         tipoUsuario: [1, Validators.required],
         ativo: [true, Validators.required]
       })
