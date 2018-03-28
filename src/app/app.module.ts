@@ -26,6 +26,7 @@ import { MensagemErroComponent } from './shared/components/mensagem-erro/mensage
     HeaderComponent,
     RadioButtonComponent,
     IngredienteManutencaoComponent,
+    GrupoManutencaoComponent,
     MensagemErroComponent
   ],
   imports: [

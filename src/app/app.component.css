@@ -1,0 +1,35 @@
+body{
+        padding-top: 54px;
+        background: url(/assets/background.jpg) no-repeat center center fixed;
+        background-size: cover; /*Css padrão*/
+			  -webkit-background-size: cover; /*Css safari e chrome*/
+			  -moz-background-size: cover; /*Css firefox*/
+			  -ms-background-size: cover; /*Css IE não use mer#^@%#*/
+			  -o-background-size: cover; /*Css Opera*/
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+      p{
+      	text-align: center;
+        color: white;
+      }
+      .btn{
+        background-color:#007370;
+        padding: 12px 24px;
+      }
+      .form_p{
+        text-align: left;      }
+      .label-login{
+        color: white;
+      }  
+      hr{
+        color:black;
+        border-width: 5px;
+        border-style: solid;
+        margin-left: auto;
+        margin-right: auto;
+    }
+      
