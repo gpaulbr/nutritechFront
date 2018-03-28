@@ -66,7 +66,8 @@
 		<div class="form-group">
 			<label class="col-md-4 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
-				<input id="cpf" name="cpf" [formControl]="usuarioForm.controls['cpf']" type="text" placeholder="030.225.410.12" class="form-control input-md">
+				<input id="cpf" name="cpf" [formControl]="usuarioForm.controls['cpf']" [(ngModel)]="cpf" [cpf]="cpf" type="text" placeholder="030.225.410.12" class="form-control input-md">
+				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
 
