@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
 import { IngredienteManutencaoComponent } from './ingrediente/ingrediente-manutencao/ingrediente-manutencao.component';
 import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manutencao.component';
+import { IngredienteCadastroComponent } from './ingrediente/ingrediente-cadastro/ingrediente-cadastro.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
   { path: 'ingrediente', component: IngredienteManutencaoComponent },
-  { path: 'grupo', component: GrupoManutencaoComponent }
+  { path: 'grupo', component: GrupoManutencaoComponent },
+  { path: 'cadastroIngrediente', component: IngredienteCadastroComponent }
 ]
 
 @NgModule({

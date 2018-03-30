@@ -19,6 +19,9 @@ import { RadioButtonComponent } from './shared/components/radio-button/radio-but
 import { IngredienteManutencaoComponent } from './ingrediente/ingrediente-manutencao/ingrediente-manutencao.component';
 import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manutencao.component';
 import { MensagemErroComponent } from './shared/components/mensagem-erro/mensagem-erro.component';
+import { IngredienteCadastroComponent } from './ingrediente/ingrediente-cadastro/ingrediente-cadastro.component';
+import { AtributoService } from './atributo/atributo.service';
+import { IngredienteService } from './ingrediente/ingrediente.service';
 
 
 
@@ -30,7 +33,8 @@ import { MensagemErroComponent } from './shared/components/mensagem-erro/mensage
     IngredienteManutencaoComponent,
     GrupoManutencaoComponent,
     RadioButtonComponent,
-    MensagemErroComponent
+    MensagemErroComponent,
+    IngredienteCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ import { MensagemErroComponent } from './shared/components/mensagem-erro/mensage
     CpfCnpjModule,
     TextMaskModule
   ],
-  providers: [],
+  providers: [AtributoService, IngredienteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

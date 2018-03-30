@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Ingrediente } from './ingrediente';
 import { Observable } from 'rxjs/Observable';
-import { Usuario } from '../usuario/usuario';
 
 @Injectable()
 export class IngredienteService {
