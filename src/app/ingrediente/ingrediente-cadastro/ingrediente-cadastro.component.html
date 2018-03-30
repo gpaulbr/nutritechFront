@@ -35,12 +35,12 @@
     <app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)"></app-radio-button>
 		
 		<!-- Atributos -->
-		<div *ngFor="let atributo of atributos">
+		<div *ngFor="let ingAtributo of atributos">
 			<div class="form-group mar-top-20">
-				<label class="col-md-4 control-label campo-obrigatorio">{{ atributo.nome }}</label>
+				<label class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
 				<div class="col-md-4">
-					<input type="text"
-						placeholder="{{ atributo.unidade }}" class="form-control input-md">
+					<input type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
+						placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md">
 				</div>
 			</div>
 		</div>

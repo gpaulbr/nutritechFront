@@ -2,20 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Ingrediente } from './ingrediente';
 import { Observable } from 'rxjs/Observable';
+import { NUTRITECH_API } from '../app.api'
 
 @Injectable()
 export class IngredienteService {
 
-  private url = "http://localhost:8080/api/ingredientes";
-
   constructor(private http: HttpClient) { }
 
-  salvarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente>{
-    return this.http.post<Ingrediente>(this.url, ingrediente);
+  cadastrarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente>{
+    return this.http.post<Ingrediente>(NUTRITECH_API + '/ingredientes', ingrediente);
   }
 
   buscarIngredientes(): Observable<Ingrediente[]>{
-    return this.http.get<Ingrediente[]>(this.url);
+    return this.http.get<Ingrediente[]>(NUTRITECH_API + '/ingredientes');
   }
-
 }
