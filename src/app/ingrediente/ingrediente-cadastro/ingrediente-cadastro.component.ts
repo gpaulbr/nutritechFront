@@ -77,7 +77,7 @@ export class IngredienteCadastroComponent implements OnInit {
     criador.email = "admin@admin.com.br";
     criador.matricula = "101010";
     criador.nome = "Admin";
-    criador.tipo = "ADMIN";
+    //criador.tipo = "ADMIN";
     criador.status = true;
 
     ingrediente.criador = criador;
@@ -86,7 +86,7 @@ export class IngredienteCadastroComponent implements OnInit {
 
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
-        alert(resp.message);
+        //alert(resp.message);
       }, erro =>{
         console.log(erro);
       })

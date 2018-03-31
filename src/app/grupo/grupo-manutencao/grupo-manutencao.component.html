@@ -1,50 +1,51 @@
-<!--<p>
-  grupo-manutencao works!
-</p>
--->
 <div class="container">
-  <fieldset>
-      <form class="form-horizontal form-container" id="formulario">
-          <h2>Cadastro de Grupo de Receita</h2>
-          <div class="divisor">
-              <span></span>
-          </div>
-          <div class="alert alert-danger mar-top-10" role="alert"
-               style="display: none;">
-              <span id="textoErro"><strong>Erro!</strong></span>
-          </div>
-          <div class="form-group mar-top-20">
-              <label class="col-md-6 control-label" for="nome">Nome</label>
-              <div class="col-md-4">
-                  <input id="nome" name="nome" type="text"
-                         placeholder="Nome do Grupo" class="form-control input-md"
-                         required="">
+    <fieldset>
+        <form [formGroup]="grupoForm" class="form-horizontal form-container" (ngSubmit)="cadastrar()" id="formulario" novalidate> 
+            
+            <h2>Cadastro de Grupo de Receita</h2>
+            
+            <div class="divisor">
+                <span></span>
+            </div>
+                
+            <div class="alert alert-danger mar-top-10" role="alert"
+                style="display: none;">
+                <span id="textoErro"><strong>Erro!</strong></span>
+            </div>
 
-              </div>
-          </div>
+            <div class="form-group mar-top-20">
+                <label class="col-md-6 control-label" for="nome">Nome</label>
+                <div class="col-md-4">
+                        <input formControlName="nome" type="text"
+                        placeholder="Nome do Grupo de Receita"  class="form-control input-md">
+                        <app-mensagem-erro [contemErro]="!this.grupoForm.controls['nome'].valid && this.grupoForm.controls['nome'].dirty"></app-mensagem-erro>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <label class="col-md-6 control-label" for="custo">Valor da
-                  Porcao: (valor em gramas)</label>
-              <div class="col-md-4">
-                  <input id="custo" name="custo" class="form-control"
-                         placeholder="10" type="text">
-              </div>
-          </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label" for="custo">Valor da Porcao (em gramas)</label>
+                <div class="col-md-4">
+                    <input formControlName="valor" type="number"
+                    placeholder="5" class = "form-control input-md">
+                    <app-mensagem-erro [contemErro]="!this.grupoForm.controls['valor'].valid && this.grupoForm.controls['valor'].dirty"></app-mensagem-erro>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <label class="col-md-6 control-label" for="confirmar"></label>
-              <div class="col-md-6">
-                  <button id="confirmar" name="confirmar" class="btn btn-success">Confirmar</button>
-                  <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
-                  <button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
-              </div>
-          </div>
+            <div class="form-group">
+                <label class="col-md-6 control-label" for="confirmar"></label>
+                <div class="col-md-6">
+                    <button id="confirmar" name="confirmar" class="btn btn-success" [disabled]="grupoForm.invalid">Confirmar</button>
+                    <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
+                    <button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
+                </div>
+            </div>
         </form>
-  </fieldset>
+    </fieldset>
 </div>
 <br>
-<div class="alert alert-success" role="alert"
+<!-- Visualização dos Grupos de Receita --> 
+<!--
+    <div class="alert alert-success" role="alert"
    style="display: none; width: 25%; margin-left: 37%; text-align: center;">
 </div>
 <div class="container">
@@ -66,3 +67,4 @@
       </div>
   </div>
 </div>
+-->

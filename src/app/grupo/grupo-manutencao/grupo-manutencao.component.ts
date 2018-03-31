@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms/src/model';
-import { Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { GrupoReceita } from '../../ingrediente/grupo-receita';
 
 @Component({
   selector: 'app-grupo-manutencao',
@@ -10,9 +10,11 @@ import { Validators, FormBuilder } from '@angular/forms';
 export class GrupoManutencaoComponent implements OnInit {
 
   grupoForm: FormGroup;
+  fb: FormBuilder
 
-  constructor(fb: FormBuilder) {
-    this.grupoForm = fb.group({
+  constructor() {
+    this.fb = new FormBuilder();
+    this.grupoForm = this.fb.group({
       nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
       valor: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])]      
     })
@@ -21,4 +23,7 @@ export class GrupoManutencaoComponent implements OnInit {
   ngOnInit() {
   }
 
+  cadastrar () {
+    console.log("[To do] Novo Grupo: " + this.grupoForm.get('nome').value + " (" + this.grupoForm.get('valor').value + "g)");
+  }
 }
