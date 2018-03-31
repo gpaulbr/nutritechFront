@@ -38,7 +38,7 @@ export class IngredienteManutencaoComponent implements OnInit {
   }
 
   cadastrarIngrediente(){
-    this.ingredienteService.salvarIngrediente(this.ingredienteForm.value);
+    this.ingredienteService.cadastrarIngrediente(this.ingredienteForm.value);
   }
 
   definirTipoIngrediente(valor: number){
