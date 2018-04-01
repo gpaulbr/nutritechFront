@@ -5,12 +5,14 @@ import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario
 import { IngredienteManutencaoComponent } from './ingrediente/ingrediente-manutencao/ingrediente-manutencao.component';
 import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manutencao.component';
 import { IngredienteCadastroComponent } from './ingrediente/ingrediente-cadastro/ingrediente-cadastro.component';
+import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-listagem.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
   { path: 'ingrediente', component: IngredienteManutencaoComponent },
   { path: 'grupo', component: GrupoManutencaoComponent },
-  { path: 'cadastroIngrediente', component: IngredienteCadastroComponent }
+  { path: 'cadastroIngrediente', component: IngredienteCadastroComponent },
+  { path: 'usuario-listagem', component: UsuarioListagemComponent }
 ]
 
 @NgModule({
