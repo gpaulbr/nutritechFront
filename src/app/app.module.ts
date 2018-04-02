@@ -11,7 +11,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { CpfCnpjModule } from 'ng2-cpf-cnpj';
 import { TextMaskModule } from 'angular2-text-mask';
-
 import { HeaderComponent } from './header/header.component';
 import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

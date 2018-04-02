@@ -5,7 +5,6 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { RadioButton, RadioButtonElemento } from '../../shared/entities/radio-button';
 import { UsuarioService } from '../usuario.service';
 import { Http, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
 
 
 
