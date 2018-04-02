@@ -16,7 +16,7 @@ export class GrupoManutencaoComponent implements OnInit {
     this.fb = new FormBuilder();
     this.grupoForm = this.fb.group({
       nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
-      valor: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])]      
+      valor: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])]      
     })
    }
 

@@ -1,2 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+    background: url("app/img/background.jpg");
+    background-position-y: top;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+}
+
+.container{
+    background: rgba(255, 255, 255, 0.6);
+    min-width: 100%;
+    min-height: 100%;
+}
+
+
+.btn {
+    background-color: #007370;
+    border-width: 0px;
+}
+
+.btn:hover {
+    background-color: #00736f5b;
+}
