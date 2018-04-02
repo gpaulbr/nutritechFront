@@ -54,26 +54,32 @@ export class UsuarioManutencaoComponent implements OnInit {
         matricula: [null, Validators.compose([Validators.required])],
         senha: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
         cpf: [null, Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(14)])],
-        tipoUsuario: [1, Validators.required],
-        ativo: [true, Validators.required]
+        tipo: [1, Validators.required],
+        status: [true, Validators.required]
       })
     }
 
   ngOnInit() {
-    this.usuarioService.buscarUsuarios();
+    this.usuarioService.buscarUsuarios().subscribe(response => { console.log(response)});
   }
 
   cadastrarUsuario(){
-    this.usuarioService.salvarUsuario(this.usuarioForm.value);
+    this.usuarioService.salvarUsuario(this.usuarioForm.value).subscribe(
+      response => {
+        alert("Usuario cadastrado com sucesso");
+      },
+      error => {
+        alert("Erro no cadastro");
+      });
   }
 
-  definirTipoUsuario(valor: number){
+  definirtipo(valor: number){
     console.log(this.usuarioForm);
-    this.usuarioForm.controls.tipoUsuario.setValue(valor);
+    this.usuarioForm.controls.tipo.setValue(valor);
   }
 
   definirTipoStatus(valor: boolean){
-    this.usuarioForm.controls.ativo.setValue(valor);
+    this.usuarioForm.controls.status.setValue(valor);
   }
 
   validarSenha()

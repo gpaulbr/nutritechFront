@@ -9,7 +9,5 @@ export class Usuario {
     public senha: string;
     public cpf: string;
     public status: boolean;
-    public tipoUsuario: TipoUsuario;
-    public ativo: boolean;
-    
+    public tipo: TipoUsuario;    
 }
