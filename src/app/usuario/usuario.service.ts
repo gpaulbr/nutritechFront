@@ -2,6 +2,7 @@ import { Injectable, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from './usuario';
 import { Observable } from 'rxjs/Observable';
+import { NUTRITECH_API } from '../app.api'
 
 @Component({
   selector: 'app-usuario-manutencao',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class UsuarioService {
 
-  private url = "http://localhost:8080/api/usuarios";
+  private url = NUTRITECH_API + "/usuarios";
 
   constructor(private http: HttpClient) { }
 
