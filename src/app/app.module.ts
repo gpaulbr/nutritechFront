@@ -22,6 +22,7 @@ import { IngredienteCadastroComponent } from './ingrediente/ingrediente-cadastro
 import { AtributoService } from './atributo/atributo.service';
 import { IngredienteService } from './ingrediente/ingrediente.service';
 import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-listagem.component';
+import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
 
 
 
@@ -35,7 +36,8 @@ import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-lis
     RadioButtonComponent,
     MensagemErroComponent,
     IngredienteCadastroComponent,
-    UsuarioListagemComponent
+    UsuarioListagemComponent,
+    IngredienteListagemComponent
   ],
   imports: [
     BrowserModule,

@@ -3,14 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Ingrediente } from './ingrediente';
 import { Observable } from 'rxjs/Observable';
 import { NUTRITECH_API } from '../app.api'
+import { IngredienteDto } from './ingrediente-dto';
 
 @Injectable()
 export class IngredienteService {
 
   constructor(private http: HttpClient) { }
 
-  cadastrarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente>{
-    return this.http.post<Ingrediente>(NUTRITECH_API + '/ingredientes', ingrediente);
+  cadastrarIngrediente(ingrediente: IngredienteDto): Observable<IngredienteDto>{
+    return this.http.post<IngredienteDto>(NUTRITECH_API + '/ingredientes', ingrediente);
   }
 
   buscarIngredientes(): Observable<Ingrediente[]>{

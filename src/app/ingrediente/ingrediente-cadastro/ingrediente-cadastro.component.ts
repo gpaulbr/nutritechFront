@@ -8,6 +8,7 @@ import { IngredienteAtributo } from '../ingrediente-atributo';
 import { Usuario } from '../../usuario/usuario';
 import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { IngredienteService } from '../ingrediente.service';
+import { IngredienteDto } from '../ingrediente-dto';
 
 @Component({
   selector: 'app-ingrediente-cadastro',
@@ -67,20 +68,9 @@ export class IngredienteCadastroComponent implements OnInit {
     this.ingredienteForm.controls.tipo.setValue(tipoIng);
   }
 
-  cadastrarIngrediente(ingrediente: Ingrediente) {
-    ingrediente.ingredienteAtributo = this.atributos;
+  cadastrarIngrediente(ingrediente: IngredienteDto) {
     ingrediente.status = true;
-
-    // Mudar para usuário logado
-    let criador = new Usuario();
-    criador.id = 1;
-    criador.email = "admin@admin.com.br";
-    criador.matricula = "101010";
-    criador.nome = "Admin";
-    //criador.tipo = "ADMIN";
-    criador.status = true;
-
-    ingrediente.criador = criador;
+    ingrediente.idCriador = 1;
 
     // console.log(ingrediente);
 

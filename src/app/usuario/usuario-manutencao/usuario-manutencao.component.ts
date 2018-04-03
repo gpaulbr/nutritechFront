@@ -59,7 +59,7 @@ export class UsuarioManutencaoComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.usuarioService.buscarUsuarios().subscribe(response => { console.log(response)});
+   
   }
 
   cadastrarUsuario(){

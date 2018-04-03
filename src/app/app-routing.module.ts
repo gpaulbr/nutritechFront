@@ -6,13 +6,15 @@ import { IngredienteManutencaoComponent } from './ingrediente/ingrediente-manute
 import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manutencao.component';
 import { IngredienteCadastroComponent } from './ingrediente/ingrediente-cadastro/ingrediente-cadastro.component';
 import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-listagem.component';
+import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
   { path: 'ingrediente', component: IngredienteManutencaoComponent },
   { path: 'grupo', component: GrupoManutencaoComponent },
   { path: 'cadastroIngrediente', component: IngredienteCadastroComponent },
-  { path: 'usuario-listagem', component: UsuarioListagemComponent }
+  { path: 'usuario-listagem', component: UsuarioListagemComponent },
+  { path: 'ingrediente-listagem', component: IngredienteListagemComponent }
 ]
 
 @NgModule({
