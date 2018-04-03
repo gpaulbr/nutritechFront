@@ -16,6 +16,25 @@
                   <th>Ações</th>
               </tr>
               </thead>
+              <ng-container *ngFor="let ingrediente of ingredientes">
+                  <tr>
+                      <td>
+                          {{ingrediente.id}}
+                      </td>
+                      <td>
+                        {{ingrediente.nome}}
+                    </td>
+                    <td>
+                        {{ingrediente.origem}}
+                    </td>
+                    <td>
+                        {{ingrediente.criador.nome}}
+                    </td>
+                    <td>
+                        {{ingrediente.tipo}}
+                    </td>
+                  </tr>
+              </ng-container>
           </table>
       </div>
   </div>

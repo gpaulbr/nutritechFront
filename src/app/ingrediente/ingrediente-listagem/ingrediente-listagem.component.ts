@@ -17,7 +17,10 @@ export class IngredienteListagemComponent implements OnInit {
 
   ngOnInit() {
     this.ingredienteService.buscarIngredientes().subscribe(
-      response => { console.log(response)});
+      response => { 
+        this.ingredientes = response.Ingredientes;
+        console.log(this.ingredientes);
+      });
   }
 
 }
