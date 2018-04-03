@@ -10,6 +10,8 @@ body{
     background-color:#f7f6f6;
     border: solid 0.0625em #000000;
     border-radius: 10px 10px;
+    width: 80%;
+    margin-left:9.5%;
   }
   .camposForm{
     margin-top:5%;
@@ -22,4 +24,55 @@ body{
 
   h2{
     border-bottom: solid #000000 0.0400em;
+    font-size: 30px;
+    padding-left: 10%;
+  }
+  
+  .col-md-4 input{
+    float: right; 
+    margin-right: -15em;
+    margin-top: -2.3em;
+    width: 21.875em;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .input-md, .form-control{
+      max-width: 50%;
+    }
+
+    .control-label{
+      margin-left:-2em;
+    }
+    .col-md-4 input{
+      float: right; 
+      margin-right: 0.5em;
+      margin-top: -2.3em;
+    }
+    form{
+      width: 100%;
+      margin-left:0%;
+    }
+  }
+
+    @media only screen and (max-height: 600px) {
+    .col-md-4 input{
+      float: right; 
+      margin-right: 0.5em;
+      margin-left: 5sem;
+      margin-top: -2.3em;
+    }
+
+    .col-md-8 button{
+      float: left;
+      margin-top: -2em;
+      margin-right:0.2em;
+    }
+
+    .col-md-8 .btn-success{
+      float: left;
+      margin-left: -2em;
+    }
+    h2{
+      font-size:1.5em;
+    }
   }
