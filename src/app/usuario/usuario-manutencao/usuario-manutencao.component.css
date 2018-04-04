@@ -21,6 +21,10 @@ body{
     background-color:#f7f6f6;
   }
 
+  .control-label{
+    margin-left: 0.5%;
+    margin-right:10%;
+  }
 
   h2{
     border-bottom: solid #000000 0.0400em;
@@ -28,12 +32,19 @@ body{
     padding-left: 10%;
   }
   
-  .col-md-4 input{
+  .col-md-4 input, .form-control{
     float: right; 
     margin-right: -15em;
     margin-top: -2.3em;
-    width: 21.875em;
+    width: 21.875em; 
+    /*background-color: red;*/
   }
+
+  .input-md, .form-control{
+    max-width: 100%;
+  } 
+  
+  /* ------------------------- @media a partir daqui ------------- */
 
   @media only screen and (max-width: 600px) {
     .input-md, .form-control{
@@ -52,13 +63,19 @@ body{
       width: 100%;
       margin-left:0%;
     }
+
+    .input-md, .form-control{
+      max-width: 50%;
+    }  
+  }
+  @media only screen and (max-height: 780px) {
   }
 
-    @media only screen and (max-height: 600px) {
+    @media only screen and (max-height: 400px) {
     .col-md-4 input{
       float: right; 
       margin-right: 0.5em;
-      margin-left: 5sem;
+      margin-left: -5em;
       margin-top: -2.3em;
     }
 
@@ -66,6 +83,10 @@ body{
       float: left;
       margin-top: -2em;
       margin-right:0.2em;
+    }
+
+    .input-md, .form-control{
+      max-width: 50%;
     }
 
     .col-md-8 .btn-success{
