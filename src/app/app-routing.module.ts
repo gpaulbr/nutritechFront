@@ -7,6 +7,7 @@ import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manuten
 import { IngredienteCadastroComponent } from './ingrediente/ingrediente-cadastro/ingrediente-cadastro.component';
 import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-listagem.component';
 import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
+import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'grupo', component: GrupoManutencaoComponent },
   { path: 'cadastroIngrediente', component: IngredienteCadastroComponent },
   { path: 'usuario-listagem', component: UsuarioListagemComponent },
-  { path: 'ingrediente-listagem', component: IngredienteListagemComponent }
+  { path: 'ingrediente-listagem', component: IngredienteListagemComponent },
+	{ path: 'ftp-cadastro', component: FTPCadastroComponent }
 ]
 
 @NgModule({
@@ -22,10 +24,10 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [ 
+  exports: [
     RouterModule
   ]
 })
-export class AppRoutingModule {   
+export class AppRoutingModule {
 
 }

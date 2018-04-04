@@ -23,6 +23,7 @@ import { AtributoService } from './atributo/atributo.service';
 import { IngredienteService } from './ingrediente/ingrediente.service';
 import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-listagem.component';
 import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
+import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
 
 
 
@@ -37,7 +38,8 @@ import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem
     MensagemErroComponent,
     IngredienteCadastroComponent,
     UsuarioListagemComponent,
-    IngredienteListagemComponent
+    IngredienteListagemComponent,
+		FTPCadastroComponent
   ],
   imports: [
     BrowserModule,

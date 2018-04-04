@@ -1,0 +1,93 @@
+#first-third label {
+	display: block;
+}
+
+label {
+	margin-bottom: 0px;
+}
+
+hr {
+	border-width: 3px;
+	margin-top: 10px;
+}
+
+.divisor-integrantes {
+	margin-top: 0px;
+}
+
+.integrante {
+	margin: 0px;
+}
+
+form {
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+button {
+	float: right;
+	clear: both;
+	display: block;
+	border-radius: 5px;
+	border: none;
+	-webkit-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+button:hover {
+	background-color: gray;
+	color: white;
+}
+
+@media only screen and (max-width: 768px) {
+	.imagem {
+		width: auto;
+		margin: 10%;
+		height: 100%;
+	}
+
+	hr {
+		margin-top: 50px;
+	}
+
+	button {
+		margin: auto;
+		float: none;
+	}
+}
+
+.imagem {
+	min-width: 80%;
+	min-height: 60%;
+	background-color: gray;
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+h2 {
+	margin-bottom: 5%;
+}
+
+input[type="radio"] {
+	margin-left: 10px;
+}
+
+.last > *{
+	margin: 40px 0px 15px;
+}
+
+textarea {
+	width: 100%;
+	border-radius: 5px;
+	border: 0px;
+	padding: 5px;
+}
+
+#add-novo-passo {
+	margin-top: 10px;
+}
+
+#form-novo-passo {
+	padding: 0px;
+}

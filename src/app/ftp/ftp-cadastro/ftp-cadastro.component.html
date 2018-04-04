@@ -1,0 +1,144 @@
+<div class="page container">
+	<br/>
+	<fieldset>
+		<form [formGroup]="grupoForm" class="form-horizontal form-container" (ngSubmit)="cadastrar()" id="formulario" novalidate>
+			<div>
+				<h2>Ficha Técnica de Produto</h2>
+				<div class="row justify-content-center" id="first-third">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Nome do Produto</label>
+							<input type="text" class="form-control" placeholder="Nome do Produto">
+						</div>
+						<div>
+							<label>Disciplina</label>
+							<select class="form-control">
+								<option value="" disabled selected hidden>Selecione a Disciplina</option>
+								<option value="2">Disciplina1</option>
+								<option value="3">Disciplina2</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>Grupo Alimentar</label>
+							<select class="form-control">
+								<option value="" disabled selected hidden>Selecione o grupo</option>
+								<option value="2">GrupoAlimentar1</option>
+								<option value="3">GrupoAlimentar2</option>
+							</select>
+						</div>
+						<div>
+							<label>Integrantes:</label>
+							<p class="integrante">Gabriel</p>
+							<hr class="divisor-integrantes">
+							<p class="integrante">Bianca</p>
+							<hr class="divisor-integrantes">
+						</div>
+						<select class="form-control">
+							<option value="" disabled selected hidden>Selecione um novo participante</option>
+							<option value="2">Participante1</option>
+							<option value="3">Participante2</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<div class="imagem">imagem</div>
+						<button>Anexar imagem</button>
+					</div>
+				</div>
+				<hr>
+
+				<div>
+					<div>
+						<label>Adicionar Ingrediente</label>
+						<select>
+							<option value="" disabled selected hidden>Selecione um ingrediente</option>
+							<option value="2">GrupoAlimentar1</option>
+							<option value="3">GrupoAlimentar2</option>
+						</select>
+					</div>
+					<div>
+						<label>Custo</label>
+						<p>R$ 5,00</p>
+					</div>
+					<div>
+						<label>Rendimento</label>
+						<p>95%</p>
+					</div>
+					<div>
+						<label>Peso (g)</label>
+						<input type="text">
+					</div>
+				</div>
+				<div>TABELA</div>
+
+				<button>Criar Novo Ingrediente</button>
+				<br>
+
+				<hr>
+
+				<div id="third-third">
+					<label>Dificuldade</label>
+					<div>
+						<input type="radio" name="dificuldade" value="facil">
+						<label>Fácil</label>
+
+						<input type="radio" name="dificuldade" value="medio">
+						<label>Médio</label>
+
+						<input type="radio" name="dificuldade" value="dificil">
+						<label>Difícil</label>
+					</div>
+					<br>
+					<div>
+						<label>Modo de Preparo:</label>
+						<p class="integrante">Passo 1: Bata os tomates e as azeitonas no liquidificador.</p>
+						<hr class="divisor-integrantes">
+						<p class="integrante">Passo 2: Esprema os limões para obter o suco.</p>
+						<hr class="divisor-integrantes">
+						<form id=form-novo-passo>
+							<div class="row justify-content-between">
+								<div class="col-sm-9">
+									<textarea rows="1" form="form-novo-passo" placeholder="Adicione um novo passo"></textarea>
+								</div>
+								<div class="col-sm-3">
+									<button id="add-novo-passo">Adicionar</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-2">
+							<div>
+								<label>Custo</label>
+								<p>R$ 24,00</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<label>Rendimento</label>
+							<input type="text" class="form-control" placeholder="Uma porção">
+						</div>
+						<div class="col-md-3">
+							<label>Peso (g)</label>
+							<input type="text" class="form-control" placeholder="600g">
+						</div>
+
+					</div>
+
+					<div class="last row">
+						<div class="col-md-6">
+							<input type="checkbox">
+							<label>Tornar minha ficha técnica privada</label>
+						</div>
+						<div class="col-sm-3">
+							<button>Salvar</button>
+						</div>
+						<div class="col-sm-3">
+							<button>Publicar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</fieldset>
+</div>
+<br>

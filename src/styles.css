@@ -2,7 +2,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 body {
-    background: url("app/img/background.jpg");
+		background:linear-gradient(0deg,rgba(255,255,255,0.7),rgba(255,255,255,0.7)),url("app/img/background.jpg");
     background-position-y: top;
     background-position-x: right;
     background-repeat: no-repeat;
@@ -14,7 +14,6 @@ body {
 }
 
 .container{
-    background: rgba(255, 255, 255, 0.6);
     min-width: 100%;
     min-height: 100%;
 }
