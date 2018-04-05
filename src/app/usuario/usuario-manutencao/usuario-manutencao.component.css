@@ -1,105 +1,32 @@
 .campo-obrigatorio:after {
   content:"*";
   color:red;
+  }
+
+.erro{
+  font-size:0.7em;
 }
 
-input[type="reset"]{
-  background-color:#EFA638!important;
+h2 {
+  padding: 1px;
+  text-align:center;
 }
 
 form{
-  display: block;
-  margin: 2% auto;
   width: 50%;
-  box-shadow: rgba(255,255,255,0.6) 5px 5px 5px 5px;
-  background:linear-gradient(0deg,rgba(255,255,255,0.6),rgba(255,255,255,0.6));
 }
-
-h2{
-  font-size: 1.875em;
-  padding-left: 30%;
-}
-
-.control-radio{
-  font-weight: bold;
-  margin-left: 12em;
-}
-
-#radioUusu{
-  margin-top:-1.875em;
-}
-
-.col-md-4 input, .form-control{ /*movimenta os inputs*/
-  float: right; 
-  margin-right: -20em;
-  margin-left: -25em;
-  margin-top: -2.3em;
-  width: 300px;
-} 
 
 .control-label{
-  margin-left: 0.5%;
-  margin-right:10%;
-  font-weight: bold;
+  margin-left:10%;
 }
-
-.col-md-8{ /*movimenta os botões*/
-  margin-left:23%;
-}
-
-.camposForm{
-  padding-top:5%;
-  padding-left:10%;
-}
-
-  /* ------------------------- @media a partir daqui ------------- */
 
 @media only screen and (max-width: 1032px) {
-  .container{
-    margin-right:-15%!important;
-    margin-left: -10%;
-    overflow-x: hidden;
-  }
-
-  .camposForm{
-    padding-top:5%;
-    padding-left:0%;
-  }
-
-  h2{
+   h2{
     font-size:1.5em;
-    padding-left: 15%;
   }
-  .col-md-4 input, .form-control{ /*movimenta os inputs*/
-    float: right; 
-    margin-right: 0em;
-    margin-left: 0em;
-    margin-top: 0em;
-    width: 100%; 
-  } 
-
+ 
   form{
-    width: 500px;
-    float: left;
-    margin: 2% auto;
-    margin-left: 15%;
-  }
-
-  .control-radio{
-    margin-left: 8em;
-  }
-
-  .col-md-8{
-    margin-left:10%;
-  } 
-}
-
-@media only screen and (max-width: 320px) {
-  .control-radio{
-    margin-left: 0em;
-  }
-  
-  #radioUusu{
-    margin-top:0em;
+    width: 100%;
+    margin-left:-2%;
   }
 }
