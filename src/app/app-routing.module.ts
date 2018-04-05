@@ -9,12 +9,14 @@ import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-lis
 import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
 import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
 import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.component';
+import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atributo-manutencao.component';
 
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
   { path: 'ingrediente', component: IngredienteManutencaoComponent },
   { path: 'grupo', component: GrupoManutencaoComponent },
+  { path: 'atributo', component: AtributoManutencaoComponent},
   { path: 'cadastroIngrediente', component: IngredienteCadastroComponent },
   { path: 'usuario-listagem', component: UsuarioListagemComponent },
   { path: 'ingrediente-listagem', component: IngredienteListagemComponent },

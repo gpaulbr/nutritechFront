@@ -11,7 +11,9 @@ export class AtributoService {
   constructor(private http: HttpClient) { }
 
   salvarAtributo(atributo: Atributo): Observable<Atributo>{
-    return this.http.post<Atributo>(NUTRITECH_API + '/atributos', atributo);
+    console.log(atributo)
+    return null;
+    // return this.http.post<Atributo>(NUTRITECH_API + '/atributos', atributo);
   }
 
   buscarAtributos(): Observable<Atributo[]>{

@@ -1,6 +1,6 @@
 <div class="container">
 	<fieldset>
-		<form class="form-horizontal form-container" id="formulario">
+		<form [formGroup]="atributoForm" (ngSubmit)="cadastrar()" class="form-horizontal form-container" id="formulario">
 			<h2>Cadastro de Atributo</h2>
 			<div class="divisor">
 				<span></span>
@@ -12,24 +12,24 @@
 			<div class="form-group mar-top-20">
 				<label class="col-md-4 control-label" for="nome">Nome</label>
 				<div class="col-md-4">
-					<input id="nome" name="nome" class="form-control" type="text" placeholder="Proteina"
-						required="">
+					<input formControlName="nome" id="nome" name="nome" class="form-control" type="text" placeholder="Proteina"
+						required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="ordem">Ordem</label>
 				<div class="col-md-4">
-					<input id="ordem" name="ordem" class="form-control"
-						   placeholder="1" type="number" required="">
+					<input formControlName="ordem" id="ordem" name="ordem" class="form-control"
+						   placeholder="1" type="number" required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="multiplicador">Multiplicador</label>
 				<div class="col-md-4">
-					<input id="multiplicador" name="multiplicador" class="form-control"
-						placeholder="2" type="number" required="">
+					<input formControlName="multiplicador" id="multiplicador" name="multiplicador" class="form-control"
+						placeholder="2" type="number" required>
 				</div>
 			</div>
 
@@ -37,32 +37,23 @@
 				<label class="col-md-4 control-label" for="unidade">Unidade
 					de Medida</label>
 				<div class="col-md-4">
-					<input id="unidade" name="unidade" class="form-control"
-						placeholder="g" type="text" required="">
+					<input formControlName="unidade" id="unidade" name="unidade" class="form-control"
+						placeholder="g" type="text" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-md-4 control-label" for="obrigatorio-1">Obrigatorio</label>
-				<div class="col-md-4">
-					<label class="radio-inline" for="obrigatorio-1"> <input
-						type="radio" name="obrigatorio" id="obrigatorio-1" value="1"
-						checked> Sim
-					</label> <label class="radio-inline" for="obrigatorio-0"> <input
-						type="radio" name="obrigatorio" id="obrigatorio-0" value="0">
-						Nao
-					</label>
-				</div>
+				<label class="col-md-4 control-label">Obrigatorio</label>
+				<app-radio-button [opcoes]="obrigatorio" [nome]="'obrigatorio'" (emissaoValor)="definirObrigatorio($event)" class="control-radio"></app-radio-button>
 			</div>
-
+			
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="confirmar"></label>
 				<div class="col-md-8">
-					<button id="confirmar" name="confirmar" class="btn btn-success">Confirmar</button>
+					<button type="submit" id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!atributoForm.valid">Confirmar</button>
 					<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
-					<button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
 				</div>
-      </div>
+		</div>
     </form>
   </fieldset>
 </div>

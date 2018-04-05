@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AtributoService } from '../atributo.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-atributo-manutencao',
@@ -7,9 +9,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AtributoManutencaoComponent implements OnInit {
 
-  constructor() { }
+  atributoForm: FormGroup;
+
+  obrigatorio = [{
+    valor: true,
+    texto: "Sim",
+    selecionado: true
+  },
+  {
+    valor: false,
+    texto: "Não",
+    selecionado: false
+  }];
+
+  constructor(
+    private atributoService: AtributoService,
+    fb: FormBuilder) { 
+      this.atributoForm = fb.group({
+        nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+        ordem: [null, Validators.compose([Validators.required, Validators.maxLength(50)])],
+        multiplicador: [null, Validators.compose([Validators.required])],
+        unidade: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
+        obrigatorio: [true, Validators.compose([Validators.required])],
+      })
+    }
 
   ngOnInit() {
+  }
+
+  definirObrigatorio(valor: number){
+    console.log(this.atributoForm);
+    this.atributoForm.controls.obrigatorio.setValue(valor);
+  }
+
+  cadastrar(){
+    this.atributoService.salvarAtributo(this.atributoForm.value);
   }
 
 }
