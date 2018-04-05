@@ -44,11 +44,9 @@ export class AtributoManutencaoComponent implements OnInit {
   cadastrar(){
     this.atributoService.salvarAtributo(this.atributoForm.value).subscribe(
       response => {
-        console.log(response);
         alert("Atributo cadastrado com sucesso");
       },
       error => {
-        console.log(error);
         alert("Erro no cadastro");
       });
   }
