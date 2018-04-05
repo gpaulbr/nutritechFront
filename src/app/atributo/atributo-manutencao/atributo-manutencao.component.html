@@ -1,0 +1,95 @@
+<div class="container">
+	<fieldset>
+		<form class="form-horizontal form-container" id="formulario">
+			<h2>Cadastro de Atributo</h2>
+			<div class="divisor">
+				<span></span>
+			</div>
+			<div class="alert alert-danger mar-top-10" role="alert"
+				style="display: none;">
+				<span id="textoErro"><strong>Erro!</strong></span>
+			</div>
+			<div class="form-group mar-top-20">
+				<label class="col-md-4 control-label" for="nome">Nome</label>
+				<div class="col-md-4">
+					<input id="nome" name="nome" class="form-control" type="text" placeholder="Proteina"
+						required="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="ordem">Ordem</label>
+				<div class="col-md-4">
+					<input id="ordem" name="ordem" class="form-control"
+						   placeholder="1" type="number" required="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="multiplicador">Multiplicador</label>
+				<div class="col-md-4">
+					<input id="multiplicador" name="multiplicador" class="form-control"
+						placeholder="2" type="number" required="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="unidade">Unidade
+					de Medida</label>
+				<div class="col-md-4">
+					<input id="unidade" name="unidade" class="form-control"
+						placeholder="g" type="text" required="">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="obrigatorio-1">Obrigatorio</label>
+				<div class="col-md-4">
+					<label class="radio-inline" for="obrigatorio-1"> <input
+						type="radio" name="obrigatorio" id="obrigatorio-1" value="1"
+						checked> Sim
+					</label> <label class="radio-inline" for="obrigatorio-0"> <input
+						type="radio" name="obrigatorio" id="obrigatorio-0" value="0">
+						Nao
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="confirmar"></label>
+				<div class="col-md-8">
+					<button id="confirmar" name="confirmar" class="btn btn-success">Confirmar</button>
+					<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
+					<button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
+				</div>
+      </div>
+    </form>
+  </fieldset>
+</div>
+    
+<br>
+<div class="alert alert-success" role="alert"
+	style="display: none; width: 25%; margin-left: 37%; text-align: center;">
+</div>
+<div class="container">
+	<div class="panel panel-default panel-container">
+		<div class="panel-heading">
+			<h3 class="titulo_lista">Lista de Atributos</h3>
+		</div>
+		<div class="panel-body">
+			<table class="table table-horvered table-striped" id="listaItens">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Ordem</th>
+						<th>Nome do Atributo</th>
+						<th>Unidade de Medida</th>
+						<th>Multiplicador</th>
+						<th>Obrigatório</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
