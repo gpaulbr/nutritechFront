@@ -2,7 +2,8 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 body {
-		background:linear-gradient(0deg,rgba(255,255,255,0.7),rgba(255,255,255,0.7)),url("app/img/background.jpg");
+    /*linear-gradient(0deg,rgba(255,255,255,0.7),rgba(255,255,255,0.7)),*/
+	background:url("app/img/background.jpg");
     background-position-y: top;
     background-position-x: right;
     background-repeat: no-repeat;
@@ -20,10 +21,23 @@ body {
 
 
 .btn {
-    background-color: #007370;
     border-width: 0px;
+    width: 94.27px;
+    height: 36px;
 }
 
-.btn:hover {
-    background-color: #00736f5b;
+button[type="reset"]{
+    background-color:#EFA638;
+}
+
+button[type="submit"]{
+    background-color:#006E8C!important;
+}
+
+button[type="submit"]:hover{
+    background-color:rgb(71, 184, 216);
+}
+
+button[type="reset"]:hover{
+    background-color:rgb(228, 183, 117);
 }

@@ -1,99 +1,105 @@
-body{
-  background-color: #ffffff;
-}
 .campo-obrigatorio:after {
-    content:"*";
-    color:red;
+  content:"*";
+  color:red;
+}
+
+input[type="reset"]{
+  background-color:#EFA638!important;
+}
+
+form{
+  display: block;
+  margin: 2% auto;
+  width: 50%;
+  box-shadow: rgba(255,255,255,0.6) 5px 5px 5px 5px;
+  background:linear-gradient(0deg,rgba(255,255,255,0.6),rgba(255,255,255,0.6));
+}
+
+h2{
+  font-size: 1.875em;
+  padding-left: 30%;
+}
+
+.control-radio{
+  font-weight: bold;
+  margin-left: 12em;
+}
+
+#radioUusu{
+  margin-top:-1.875em;
+}
+
+.col-md-4 input, .form-control{ /*movimenta os inputs*/
+  float: right; 
+  margin-right: -20em;
+  margin-left: -25em;
+  margin-top: -2.3em;
+  width: 300px;
+} 
+
+.control-label{
+  margin-left: 0.5%;
+  margin-right:10%;
+  font-weight: bold;
+}
+
+.col-md-8{ /*movimenta os botões*/
+  margin-left:23%;
+}
+
+.camposForm{
+  padding-top:5%;
+  padding-left:10%;
+}
+
+  /* ------------------------- @media a partir daqui ------------- */
+
+@media only screen and (max-width: 1032px) {
+  .container{
+    margin-right:-15%!important;
+    margin-left: -10%;
+    overflow-x: hidden;
   }
 
-  form{
-    background-color:#f7f6f6;
-    border: solid 0.0625em #000000;
-    border-radius: 10px 10px;
-    width: 80%;
-    margin-left:9.5%;
-  }
   .camposForm{
-    margin-top:5%;
-  }
-  .form-group{
-    margin-left:10%;
-    background-color:#f7f6f6;
-  }
-
-  .control-label{
-    margin-left: 0.5%;
-    margin-right:10%;
+    padding-top:5%;
+    padding-left:0%;
   }
 
   h2{
-    border-bottom: solid #000000 0.0400em;
-    font-size: 30px;
-    padding-left: 10%;
+    font-size:1.5em;
+    padding-left: 15%;
   }
-  
-  .col-md-4 input, .form-control{
+  .col-md-4 input, .form-control{ /*movimenta os inputs*/
     float: right; 
-    margin-right: -15em;
-    margin-top: -2.3em;
-    width: 21.875em; 
-    /*background-color: red;*/
-  }
-
-  .input-md, .form-control{
-    max-width: 100%;
+    margin-right: 0em;
+    margin-left: 0em;
+    margin-top: 0em;
+    width: 100%; 
   } 
+
+  form{
+    width: 500px;
+    float: left;
+    margin: 2% auto;
+    margin-left: 15%;
+  }
+
+  .control-radio{
+    margin-left: 8em;
+  }
+
+  .col-md-8{
+    margin-left:10%;
+  } 
+}
+
+@media only screen and (max-width: 320px) {
+  .control-radio{
+    margin-left: 0em;
+  }
   
-  /* ------------------------- @media a partir daqui ------------- */
-
-  @media only screen and (max-width: 600px) {
-    .input-md, .form-control{
-      max-width: 50%;
-    }
-
-    .control-label{
-      margin-left:-2em;
-    }
-    .col-md-4 input{
-      float: right; 
-      margin-right: 0.5em;
-      margin-top: -2.3em;
-    }
-    form{
-      width: 100%;
-      margin-left:0%;
-    }
-
-    .input-md, .form-control{
-      max-width: 50%;
-    }  
+  #radioUusu{
+    margin-top:0em;
   }
-  @media only screen and (max-height: 780px) {
-  }
-
-    @media only screen and (max-height: 400px) {
-    .col-md-4 input{
-      float: right; 
-      margin-right: 0.5em;
-      margin-left: -5em;
-      margin-top: -2.3em;
-    }
-
-    .col-md-8 button{
-      float: left;
-      margin-top: -2em;
-      margin-right:0.2em;
-    }
-
-    .input-md, .form-control{
-      max-width: 50%;
-    }
-
-    .col-md-8 .btn-success{
-      float: left;
-      margin-left: -2em;
-    }
-    h2{
-      font-size:1.5em;
-    }
-  }
+}
