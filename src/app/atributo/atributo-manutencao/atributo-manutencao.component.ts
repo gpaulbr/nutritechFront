@@ -38,12 +38,19 @@ export class AtributoManutencaoComponent implements OnInit {
   }
 
   definirObrigatorio(valor: number){
-    console.log(this.atributoForm);
     this.atributoForm.controls.obrigatorio.setValue(valor);
   }
 
   cadastrar(){
-    this.atributoService.salvarAtributo(this.atributoForm.value);
+    this.atributoService.salvarAtributo(this.atributoForm.value).subscribe(
+      response => {
+        console.log(response);
+        alert("Atributo cadastrado com sucesso");
+      },
+      error => {
+        console.log(error);
+        alert("Erro no cadastro");
+      });
   }
 
 }
