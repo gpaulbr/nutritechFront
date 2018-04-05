@@ -1,7 +1,4 @@
-.campo-obrigatorio:after {
-  content:"*";
-  color:red;
-}
+
 
 input[type="reset"]{
   background-color:#EFA638!important;

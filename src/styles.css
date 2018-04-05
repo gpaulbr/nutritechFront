@@ -21,6 +21,10 @@ body {
   min-height: 100%;
 }
 
+.campo-obrigatorio:after {
+  content:"*";
+  color:red;
+}
 
 .btn {
   background-color: #007370;
