@@ -24,6 +24,7 @@ label {
 
 form {
 	padding: 5%;
+	width: 80%;
 }
 
 
@@ -65,6 +66,9 @@ form {
 
 h2 {
 	margin-bottom: 5%;
+	text-align: center;
+	padding: 1px;
+	font-size: 30px;
 }
 
 h4 {
@@ -85,7 +89,7 @@ i {
 	margin-top: 5px;
 }
 
-.last > *{
+.last.row > *{
 	margin: 40px 0px 15px;
 }
 
@@ -102,4 +106,8 @@ textarea {
 
 #tempo-preparo {
 	margin-top: 7px;
+}
+
+#ficha-privada {
+	display: inline;
 }
