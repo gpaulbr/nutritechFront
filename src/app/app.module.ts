@@ -25,7 +25,7 @@ import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-lis
 import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
 import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
 import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atributo-manutencao.component';
-
+import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.component';
 
 
 @NgModule({
@@ -41,7 +41,8 @@ import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atri
     UsuarioListagemComponent,
     IngredienteListagemComponent,
 		FTPCadastroComponent,
-		AtributoManutencaoComponent
+    AtributoManutencaoComponent,
+    GrupoListagemComponent
   ],
   imports: [
     BrowserModule,
