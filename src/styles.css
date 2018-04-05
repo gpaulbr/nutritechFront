@@ -35,6 +35,7 @@ h2 {
 	padding-left: 10%;
 }
 
+
 form, .content{
   display: block;
   margin: 2% auto;
@@ -43,5 +44,9 @@ form, .content{
 }
 
 footer {
-	color: white;
+  color:white;
+  text-align: center;
+  margin-top: -7rem;
 }
+
+
