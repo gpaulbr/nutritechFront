@@ -26,6 +26,9 @@ import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem
 import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
 import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atributo-manutencao.component';
 import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.component';
+import { LoginComponent } from './login/login.component';
+import { GrupoService } from './grupo/grupo.service';
+import { UsuarioService } from './usuario/usuario.service';
 
 
 @NgModule({
@@ -42,7 +45,8 @@ import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.co
     IngredienteListagemComponent,
 		FTPCadastroComponent,
     AtributoManutencaoComponent,
-    GrupoListagemComponent
+    GrupoListagemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.co
     CpfCnpjModule,
     TextMaskModule
   ],
-  providers: [AtributoService, IngredienteService],
+  providers: [AtributoService, IngredienteService, GrupoService, UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

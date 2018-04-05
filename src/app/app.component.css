@@ -17,6 +17,21 @@
     margin:2%;
   }
 }
+
+.container{
+  size: inherit;
+}
+
+.img-fluid{
+  align-content: center;
+  position: absolute;
+  margin-top: -90px;
+}
+
+.ng-pristine{
+
+  margin-top: 13rem;
+}
       p{
       	text-align: center;
         color: white;
@@ -26,15 +41,23 @@
         padding: 12px 24px;
       }
       .form_p{
-        text-align: left;      }
-      .label-login{
-        color: white;
-      }  
-      hr{
+
+        text-align: left;  
+      }
+
+        .label-login{
+          color: white;
+        }  
+
+      .hr{
         color:black;
         border-width: 5px;
         border-style: solid;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: auto;        
     }
+
+    
+
+  
       
