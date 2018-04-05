@@ -1,18 +1,8 @@
-body{
-  background-color: #ffffff;
-}
 .campo-obrigatorio:after {
     content:"*";
     color:red;
   }
 
-  form{
-    background-color:#f7f6f6;
-    border: solid 0.0625em #000000;
-    border-radius: 10px 10px;
-    width: 80%;
-    margin-left:9.5%;
-  }
   .camposForm{
     margin-top:5%;
   }
@@ -26,24 +16,18 @@ body{
     margin-right:10%;
   }
 
-  h2{
-    border-bottom: solid #000000 0.0400em;
-    font-size: 30px;
-    padding-left: 10%;
-  }
-  
   .col-md-4 input, .form-control{
-    float: right; 
+    float: right;
     margin-right: -15em;
     margin-top: -2.3em;
-    width: 21.875em; 
+    width: 21.875em;
     /*background-color: red;*/
   }
 
   .input-md, .form-control{
     max-width: 100%;
-  } 
-  
+  }
+
   /* ------------------------- @media a partir daqui ------------- */
 
   @media only screen and (max-width: 600px) {
@@ -55,7 +39,7 @@ body{
       margin-left:-2em;
     }
     .col-md-4 input{
-      float: right; 
+      float: right;
       margin-right: 0.5em;
       margin-top: -2.3em;
     }
@@ -66,14 +50,14 @@ body{
 
     .input-md, .form-control{
       max-width: 50%;
-    }  
+    }
   }
   @media only screen and (max-height: 780px) {
   }
 
     @media only screen and (max-height: 400px) {
     .col-md-4 input{
-      float: right; 
+      float: right;
       margin-right: 0.5em;
       margin-left: -5em;
       margin-top: -2.3em;
