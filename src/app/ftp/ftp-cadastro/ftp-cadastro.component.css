@@ -24,6 +24,8 @@ label {
 
 form {
 	padding: 5%;
+	padding-top: 1%;
+	padding-bottom: 2%;
 	width: 80%;
 }
 
@@ -36,10 +38,6 @@ form {
 		height: 100%;
 	}
 
-	hr {
-		margin-top: 50px;
-	}
-
 	button {
 		margin-top: 5px;
 	}
@@ -49,6 +47,7 @@ form {
 	float: right;
 	color: white;
 	background-color: gray;
+	border: solid gray 1px;
 }
 
 .anexar:hover {
@@ -73,7 +72,7 @@ h2 {
 
 h4 {
 	font-size: 1rem;
-	font-weight: 600;
+	font-weight: bold;
 	margin-top: 5px;
 }
 
