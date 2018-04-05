@@ -1,15 +1,18 @@
 <!-- Page Content -->
-<div> 
+
+<!--<div> 
     <app-header></app-header>
     <router-outlet></router-outlet>  
-</div>
+</div>-->
   
-<!-- <div class="container">      
+<div class="container">      
     <div class="row">
         <div class="col-lg-6 text-left">
                 <img src="/assets/logo.png" class="img-fluid" />
                 <br>
-            <form>
+
+               
+            <form (ngSubmit)="logar()">
                 <div class="form-group">
                     <label class="label-login" for="exampleInputEmail1">Email</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">

@@ -8,6 +8,8 @@ import { IngredienteCadastroComponent } from './ingrediente/ingrediente-cadastro
 import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-listagem.component';
 import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
 import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
+import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.component';
+
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
@@ -16,6 +18,7 @@ const routes: Routes = [
   { path: 'cadastroIngrediente', component: IngredienteCadastroComponent },
   { path: 'usuario-listagem', component: UsuarioListagemComponent },
   { path: 'ingrediente-listagem', component: IngredienteListagemComponent },
+  { path: 'grupo-listagem', component: GrupoListagemComponent },
 	{ path: 'ftp-cadastro', component: FTPCadastroComponent }
 ]
 
