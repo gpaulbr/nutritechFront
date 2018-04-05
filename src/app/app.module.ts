@@ -26,6 +26,7 @@ import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem
 import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
 import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atributo-manutencao.component';
 import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.co
     IngredienteListagemComponent,
 		FTPCadastroComponent,
     AtributoManutencaoComponent,
-    GrupoListagemComponent
+    GrupoListagemComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

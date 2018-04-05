@@ -10,16 +10,7 @@ import { Usuario } from './usuario/usuario';
 export class AppComponent {
   title = 'app gastronomia';
 
-  
-
- 
-
   ngOnInit() {
     
-   }
-logar(){
-alert("Logado!");
- // window.location.href = 'usuario';
-}
- 
+   } 
 }

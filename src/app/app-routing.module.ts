@@ -10,7 +10,7 @@ import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem
 import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
 import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.component';
 import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atributo-manutencao.component';
-
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'usuario-listagem', component: UsuarioListagemComponent },
   { path: 'ingrediente-listagem', component: IngredienteListagemComponent },
   { path: 'grupo-listagem', component: GrupoListagemComponent },
-	{ path: 'ftp-cadastro', component: FTPCadastroComponent }
+  { path: 'ftp-cadastro', component: FTPCadastroComponent },
+  { path: '', component: LoginComponent },
 ]
 
 @NgModule({
