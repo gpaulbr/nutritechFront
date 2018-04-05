@@ -1,7 +1,7 @@
 <div class="container">
-	<fieldset>
-	<h2>Cadastro de Usuário</h2>	
+	<fieldset>	
 	<form [formGroup]="usuarioForm" class="form-horizontal form-container" (ngSubmit)="cadastrarUsuario()" id="formulario">
+		<h2>Cadastro de Usuário</h2>	
 		<div class="divisor">
 			<span></span>
 		</div>
@@ -71,16 +71,16 @@
 
         <div class="form-group">
             <label class="col-md-4 control-label">Tipo Usuário</label>
-            <div class="col-md-5">
-				<app-radio-button [opcoes]="tiposUsuarios" [nome]="'tipo'" (emissaoValor)="definirTipoUsuario($event)"></app-radio-button>
+            <div id="radioUusu" class="col-md-5">
+				<app-radio-button [opcoes]="tiposUsuarios" [nome]="'tipo'" (emissaoValor)="definirTipoUsuario($event)" class="control-radio"></app-radio-button>
             </div>
         </div>
 
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="status-1">Status</label>
-            <div class="col-md-4">
-                <app-radio-button [opcoes]="tiposStatus" [nome]="'tipoStatus'" (emissaoValor)="definirTipoStatus($event)"></app-radio-button>
+            <div id="radioUusu" class="col-md-4">
+                <app-radio-button [opcoes]="tiposStatus" [nome]="'tipoStatus'" (emissaoValor)="definirTipoStatus($event)" class="control-radio"></app-radio-button>
             </div>
         </div>
 
@@ -89,7 +89,6 @@
 			<div class="col-md-8">
 				<button type="submit" id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!usuarioForm.valid">Confirmar</button>
 				<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
-				<button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
 			</div>
 		</div>
 	</div>

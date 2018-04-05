@@ -1,14 +1,10 @@
-#first-third label {
-	display: block;
-}
-
-label {
-	margin-bottom: 0px;
-}
-
 hr {
 	border-width: 3px;
 	margin-top: 10px;
+}
+
+label {
+	margin-top: 5px;
 }
 
 .divisor-integrantes {
@@ -17,28 +13,21 @@ hr {
 
 .integrante {
 	margin: 0px;
+	margin-top: 3px;
+	display: inline-block;
+}
+
+.delete {
+	display: inline-block;
+	float: right;
 }
 
 form {
-	padding-left: 5%;
-	padding-right: 5%;
+	padding: 5%;
+	width: 80%;
 }
 
-button {
-	float: right;
-	clear: both;
-	display: block;
-	border-radius: 5px;
-	border: none;
-	-webkit-transition-duration: 0.2s;
-	transition-duration: 0.2s;
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
 
-button:hover {
-	background-color: gray;
-	color: white;
-}
 
 @media only screen and (max-width: 768px) {
 	.imagem {
@@ -52,14 +41,24 @@ button:hover {
 	}
 
 	button {
-		margin: auto;
-		float: none;
+		margin-top: 5px;
 	}
 }
 
+.anexar {
+	float: right;
+	color: white;
+	background-color: gray;
+}
+
+.anexar:hover {
+	color: gray;
+	background-color: white;
+	border: solid black 1px;
+}
+
 .imagem {
-	min-width: 80%;
-	min-height: 60%;
+	padding-top: 56.25%;
 	background-color: gray;
 	margin-bottom: 5px;
 	margin-top: 10px;
@@ -67,13 +66,30 @@ button:hover {
 
 h2 {
 	margin-bottom: 5%;
+	text-align: center;
+	padding: 1px;
+	font-size: 30px;
 }
 
-input[type="radio"] {
-	margin-left: 10px;
+h4 {
+	font-size: 1rem;
+	font-weight: 600;
+	margin-top: 5px;
 }
 
-.last > *{
+#dificuldade {
+	margin-right: 3px;
+}
+
+i {
+	margin-top: 6px;
+}
+
+.no-gutters {
+	margin-top: 5px;
+}
+
+.last.row > *{
 	margin: 40px 0px 15px;
 }
 
@@ -84,10 +100,14 @@ textarea {
 	padding: 5px;
 }
 
-#add-novo-passo {
-	margin-top: 10px;
+.checked {
+  color: orange;
 }
 
-#form-novo-passo {
-	padding: 0px;
+#tempo-preparo {
+	margin-top: 7px;
+}
+
+#ficha-privada {
+	display: inline;
 }
