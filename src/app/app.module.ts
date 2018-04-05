@@ -24,6 +24,7 @@ import { IngredienteService } from './ingrediente/ingrediente.service';
 import { UsuarioListagemComponent } from './usuario/usuario-listagem/usuario-listagem.component';
 import { IngredienteListagemComponent } from './ingrediente/ingrediente-listagem/ingrediente-listagem.component';
 import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component';
+import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atributo-manutencao.component';
 
 
 
@@ -39,7 +40,8 @@ import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component'
     IngredienteCadastroComponent,
     UsuarioListagemComponent,
     IngredienteListagemComponent,
-		FTPCadastroComponent
+		FTPCadastroComponent,
+		AtributoManutencaoComponent
   ],
   imports: [
     BrowserModule,
