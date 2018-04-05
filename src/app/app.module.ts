@@ -39,7 +39,7 @@ import { FTPCadastroComponent } from './ftp/ftp-cadastro/ftp-cadastro.component'
     IngredienteCadastroComponent,
     UsuarioListagemComponent,
     IngredienteListagemComponent,
-		FTPCadastroComponent
+    FTPCadastroComponent
   ],
   imports: [
     BrowserModule,
