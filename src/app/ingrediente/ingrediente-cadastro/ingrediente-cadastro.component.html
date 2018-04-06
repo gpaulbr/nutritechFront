@@ -2,19 +2,17 @@
 	<fieldset>
 	<form [formGroup]="ingredienteForm" class="form-horizontal form-container" (ngSubmit)="cadastrarIngrediente(ingredienteForm.value)" id="formulario" novalidate>
 		
-    
-    <div class="divisor">
-			<span></span>
-    </div>
-    
     <div class="alert alert-danger mar-top-10" role="alert" style="display: none;">
 			<span id="textoErro"><strong>Erro!</strong></span>
 		</div>
 		
 		<!-- Nome -->
-		<h2 class="form-group row justify-content-center">Cadastro de Ingrediente</h2>
-    <div class="form-group row justify-content-center">
-			<label class="col-auto control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
+		<div class="hCad">
+			<h2 class="titulo">Cadastro de Ingrediente</h2>
+		</div>
+		<div class="testI">	
+		<div class="form-group row justify-content-center">
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
 			<div class="col-md-6">
 				<input formControlName="nome" type="text"
 				  placeholder="Nome do ingrediente..."  class="form-control input-md">
@@ -24,36 +22,74 @@
 		
 		<!-- Origem -->
     <div class="form-group row justify-content-center">
-			<label class="col-auto control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
 			<div class="col-md-6">
 				<input formControlName="origem" type="text"
-				  placeholder="Ex: Taco" class="form-control input">
+				  placeholder="Ex: Taco" class="form-control input-md">
 				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
 
 		<!-- Tipo -->
-    <app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)" class="form-group row justify-content-center"></app-radio-button>
+		<div class="form-group row justify-content-center">
+			<label class="col-md-10 control-label campo-obrigatorio" ng-show="" for="origem">Tipo</label></div>
+				<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)" class="row form-group justify-content-center inputRadio"></app-radio-button>
 		
+	<div class="tab-atrib">		
 		<!-- Atributos -->
-		<div *ngFor="let ingAtributo of atributos">
-			<div class="form-group mar-top-20">
-				<label class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
-				<div class="col-md-4">
-					<input type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
-						placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md">
-				</div>
+		<div class="row form-group">
+			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" for="origem">Valor Energético (kcal)</label>
+			<div class="col-md-5">
+				<input formControlName="origem" type="number"
+				  placeholder=" Kcal" class="atributo form-control input-md" min="0">
+				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
 
+		<div class="row form-group">
+			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" for="origem">Carboidratos (g)</label>
+			<div class="col-md-5">
+				<input formControlName="origem" type="number"
+				  placeholder="g" class="atributo form-control input-md" min="0">
+				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
+			</div>
+		</div>
+
+		<div class="row form-group">
+			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" for="origem">Porteinas (g)</label>
+			<div class="col-md-5">
+				<input formControlName="origem" type="number"
+				  placeholder="g" class="atributo form-control input-md" min="0">
+				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
+			</div>
+		</div>
+
+		<div class="row form-group">
+			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" for="origem">Gosturas Totais(g)</label>
+			<div class="col-md-5">
+				<input formControlName="origem" type="number"
+				  placeholder="g" class="atributo form-control input-md" min="0">
+				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
+			</div>
+		</div>
+
+<!-- 		<div class="row form-group">
+				<label class="col-md-7 control-label campo-obrigatorio" ng-show="" for="origem">Gosturas Saturada(g)</label>
+				<div class="col-md-">
+					<input formControlName="origem" type="number"
+						placeholder="g" class="atributo form-control input-md" min="0">
+					<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
+				</div>
+			</div> -->
+		</div>
 		
-    <div class="form-group row justify-content-center">
-			<label class="col-md-4 control-label"></label>
-			<div class="col-md-8">				
+    <div class="but-t form-group">
+		<div>			
         <button type="reset" class="btn btn-danger">Limpar</button>
         <button type="submit" class="btn btn-success" [disabled]="ingredienteForm.invalid">Confirmar</button>
 			</div>
 		</div>
+	</div>
 
     </form>
   </fieldset>

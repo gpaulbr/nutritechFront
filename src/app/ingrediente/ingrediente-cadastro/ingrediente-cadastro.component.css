@@ -1,3 +1,91 @@
-.container-ingrediente{
-    min-width: 10%;
-}
+
+.campo-obrigatorio:after {
+    content:"*";
+    color:red;
+    }
+  
+  .erro{
+    font-size:0.7em;
+  }
+  
+  /* h2 {
+    padding: 1px;
+    margin-right: 6%;
+    padding-bottom:1em;
+    background-repeat:no-repeat;
+    background-position:20% 5%;
+    background-size:1.2em;
+  } */
+
+  .atributo{
+      width: 60%!important;
+  }
+  
+   .control-label{
+    margin-left: -6%;
+   }
+   .container-ingrediente, form{
+      width: 35%;
+   } 
+  
+   .input-md{
+    width: 90%;
+  } 
+
+  .inputRadio{
+    margin-top:-2.8em;
+  }
+
+  .testI{
+    margin-left: 12% !important;
+  }
+
+  
+  .hCad{
+    margin-left: -7% !important;
+  }
+  .tab-atrib{
+    margin-left: 18%;
+    margin-right: 9%;
+  } 
+  .ing-atributo{
+    margin-left: 9.5%;
+  }
+  .but-t{
+    margin-left: 23%;
+  }
+
+  @media only screen and (max-width: 1032px) {
+    h2{   
+     font-size:1.5em;
+     padding-left: 7%;
+     background-position:0% 2.5%;
+     background-size:1.2em;
+   }
+  
+   form{   
+     width: 100%;
+     margin-left: 0%;
+   }
+ 
+/*    .input-md{
+     margin-left:2%;
+     width: 80%;
+   }  */
+ 
+   .control-label{
+    width: 80%;
+   }
+ }
+ 
+ @media only screen and (max-width: 330px) {
+  .input-md{
+    widows: 90%;
+    
+  }
+ }
+
+ .titulo {
+    margin-bottom: 5%;
+    text-align: center
+ }
