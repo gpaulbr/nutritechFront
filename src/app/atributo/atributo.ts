@@ -4,6 +4,6 @@ export class Atributo {
     public nome: string;
     public obrigatorio: boolean;
     public ordem: number;
-    public status: boolean;
+    public status: boolean = true;
     public unidade: string;
 }

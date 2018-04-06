@@ -1,7 +1,7 @@
 <div class="container">
-	<br/>
+	<br>
 	<fieldset>
-		<form>
+		<form class="content">
 			<div>
 				<h2>Ficha Técnica de Produto</h2>
 				<div class="form-group row justify-content-start">
@@ -59,32 +59,58 @@
 				</div>
 
 				<hr>
-
-				<div>
-					<div>
-						<label>Adicionar Ingrediente</label>
-						<select>
+				<h3>Adicionar Ingredientes</h3>
+				<div class="row">
+					<div class="col-md-6">
+						<select class="form-control">
 							<option value="" disabled selected hidden>Selecione um ingrediente</option>
-							<option value="2">GrupoAlimentar1</option>
-							<option value="3">GrupoAlimentar2</option>
+							<option value="2">/ingrediente1</option>
+							<option value="3">Ingrediente2</option>
 						</select>
 					</div>
-					<div>
-						<label>Custo</label>
-						<p>R$ 5,00</p>
+					<div class="col-md-2">
+						<h4>Valor por Kg:</h4>
+						<p>R$ 0,00</p>
 					</div>
-					<div>
-						<label>Rendimento</label>
+					<div class="col-md-2">
+						<label>Fator de correção:</label>
 						<p>95%</p>
 					</div>
-					<div>
+					<div class="col-md-2">
 						<label>Peso (g)</label>
-						<input type="text">
+						<input type="text" class="form-control">
+					</div>
+					<div class="col-md-2">
+						<button class="btn btn-success">Adicionar Ingrediente</button>
 					</div>
 				</div>
-				<div>TABELA</div>
+				<div>
+					<table>
+						<tr>
+							<th>Ingrediente</th>
+							<th>Custo</th>
+							<th>Fator de correção</th>
+							<th>Peso</th>
+							<th></th>
+						</tr>
+						<tr>
+							<th>Tomates</th>
+							<th>R$ 2,00</th>
+							<th>95%</th>
+							<th>0.3Kg</th>
+							<th><i class="material-icons delete">delete</i></th>
+						</tr>
+						<tr>
+							<th>Azeitonas</th>
+							<th>R$ 5,00</th>
+							<th>94%</th>
+							<th>0.25Kg</th>
+							<th><i class="material-icons delete">delete</i></th>
+						</tr>
+					</table>
+				</div>
 
-				<button>Criar Novo Ingrediente</button>
+				<button class="btn btn-success">Criar Novo Ingrediente</button>
 				<br>
 
 				<hr>
@@ -96,7 +122,7 @@
 							<div class="col-md-3 col-lg-2">
 								<label>Passo 1:</label>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-9">
 								<input type="text" class="form-control" value="Bata os tomates e as azeitonas no liquidificador.">
 							</div>
 						</div>
@@ -104,7 +130,7 @@
 							<div class="col-md-3 col-lg-2">
 								<label>Passo 2:</label>
 							</div>
-							<div class="col-md-7">
+							<div class="col-md-9">
 								<input type="text" class="form-control" value="Esprema os limões para obter o suco.">
 							</div>
 						</div>
@@ -112,7 +138,7 @@
 							<div class="col-md-9">
 								<input type="text" class="form-control" placeholder="Adicione um novo passo">
 							</div>
-							<div class="col-md-1">
+							<div class="col-md-3">
 								<button class="btn btn-success" id="add-novo-passo">Adicionar</button>
 							</div>
 						</div>

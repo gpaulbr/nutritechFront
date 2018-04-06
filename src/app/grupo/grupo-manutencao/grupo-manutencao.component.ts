@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GrupoReceita } from '../../ingrediente/grupo-receita';
+import { GrupoService } from '../grupo.service';
 
 @Component({
   selector: 'app-grupo-manutencao',
@@ -10,20 +11,28 @@ import { GrupoReceita } from '../../ingrediente/grupo-receita';
 export class GrupoManutencaoComponent implements OnInit {
 
   grupoForm: FormGroup;
-  fb: FormBuilder
+  fb: FormBuilder;
 
-  constructor() {
+  constructor(private grupoService: GrupoService,
+    fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.grupoForm = this.fb.group({
       nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
-      valor: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])]      
+      custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])]      
     })
    }
 
   ngOnInit() {
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   cadastrar () {
-    console.log("[To do] Novo Grupo: " + this.grupoForm.get('nome').value + " (" + this.grupoForm.get('valor').value + "g)");
+    this.grupoService.salvarGrupo(this.grupoForm.value).subscribe(
+      response => {
+        alert("Grupo cadastrado com sucesso");
+      },
+      error => {
+        alert("Erro no cadastro");
+      });
   }
 }

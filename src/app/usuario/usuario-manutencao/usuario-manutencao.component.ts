@@ -11,7 +11,6 @@ import { Http, Response } from '@angular/http';
 @Component({
   selector: 'app-usuario-manutencao',
   templateUrl: './usuario-manutencao.component.html',
-  providers: [UsuarioService],
   styleUrls: ['./usuario-manutencao.component.css']
 })
 export class UsuarioManutencaoComponent implements OnInit {
@@ -59,7 +58,6 @@ export class UsuarioManutencaoComponent implements OnInit {
     }
 
   ngOnInit() {
-   
   }
 
   cadastrarUsuario(){

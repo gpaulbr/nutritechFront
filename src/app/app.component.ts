@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UsuarioService } from './usuario/usuario.service';
+import { Usuario } from './usuario/usuario';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app gastronomia';
+
+  ngOnInit() {
+    
+   } 
 }
