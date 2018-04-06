@@ -84,9 +84,9 @@ export class IngredienteCadastroComponent implements OnInit {
 
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
-        //alert(resp.message);
+        alert("Ingrediente cadastrado com sucesso!");
       }, erro =>{
-        console.log(erro);
+        alert("Erro no cadastro!");
       })
   }
 
