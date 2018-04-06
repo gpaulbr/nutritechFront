@@ -58,7 +58,6 @@ export class UsuarioManutencaoComponent implements OnInit {
     }
 
   ngOnInit() {
-   
   }
 
   cadastrarUsuario(){

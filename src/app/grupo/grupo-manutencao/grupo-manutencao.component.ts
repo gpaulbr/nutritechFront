@@ -11,7 +11,7 @@ import { GrupoService } from '../grupo.service';
 export class GrupoManutencaoComponent implements OnInit {
 
   grupoForm: FormGroup;
-  fb: FormBuilder
+  fb: FormBuilder;
 
   constructor(private grupoService: GrupoService,
     fb: FormBuilder) {
@@ -23,6 +23,7 @@ export class GrupoManutencaoComponent implements OnInit {
    }
 
   ngOnInit() {
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   cadastrar () {
