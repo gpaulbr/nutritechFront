@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuario-listagem',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioListagemComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado == null) {
+      this.router.navigate(['./']);
+    }
   }
 
 }
