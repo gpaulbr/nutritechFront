@@ -28,6 +28,10 @@ body {
   background-color:#006E8C!important;
 }
 
+.btn-primary {
+  background-color:#007370!important;
+}
+
 .btn-danger{
   background-color:#EFA638;
 }
@@ -41,9 +45,7 @@ h2 {
 }
 form, .content{
   display: block;
-  margin: 2% auto;
-  box-shadow: rgba(255,255,255,0.6) 5px 5px 5px 5px;
-  background:linear-gradient(0deg,rgba(255,255,255,0.6),rgba(255,255,255,0.6));
+
 }
 
 footer {
