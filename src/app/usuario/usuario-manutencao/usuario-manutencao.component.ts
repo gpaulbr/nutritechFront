@@ -69,9 +69,11 @@ export class UsuarioManutencaoComponent implements OnInit {
   cadastrarUsuario(){
     this.usuarioService.salvarUsuario(this.usuarioForm.value).subscribe(
       response => {
+        console.log(response)
         alert("Usuario cadastrado com sucesso");
       },
       error => {
+        console.log(error)
         alert("Erro no cadastro");
       });
   }
