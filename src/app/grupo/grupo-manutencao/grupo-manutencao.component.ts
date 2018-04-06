@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GrupoReceita } from '../../ingrediente/grupo-receita';
 import { GrupoService } from '../grupo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-grupo-manutencao',
@@ -14,6 +15,7 @@ export class GrupoManutencaoComponent implements OnInit {
   fb: FormBuilder;
 
   constructor(private grupoService: GrupoService,
+    private router: Router,
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.grupoForm = this.fb.group({
@@ -23,7 +25,10 @@ export class GrupoManutencaoComponent implements OnInit {
    }
 
   ngOnInit() {
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado == null) {  
+      // this.router.navigate(['./']);
+    }
   }
 
   cadastrar () {

@@ -29,6 +29,7 @@ import { LoginComponent } from './login/login.component';
 import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { LoginService } from './login/login.service';
+import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { LoginService } from './login/login.service';
 		FTPCadastroComponent,
     AtributoManutencaoComponent,
     GrupoListagemComponent,
+    AtributoListagemComponent,
     LoginComponent
   ],
   imports: [
