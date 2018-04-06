@@ -9,7 +9,12 @@
 
 h2 {
   padding: 1px;
+  padding-bottom:1em;
   text-align:center;
+  background-image:url(../../img/user.png); 
+  background-repeat:no-repeat;
+  background-position:20% 5%;
+  background-size:1.2em;
 }
 
 form{
@@ -20,13 +25,40 @@ form{
   margin-left:10%;
 }
 
+.input-md, #email{
+  width: 20em;
+}
+
+/**** @media inicia aqui ****/
+
 @media only screen and (max-width: 1032px) {
    h2{
     font-size:1.5em;
+    padding-left: 7%;
+    background-position:0% 2.5%;
+    background-size:1.2em;
   }
  
   form{
     width: 100%;
     margin-left:-2%;
   }
+
+  .input-md, #email{
+    margin-left:2%;
+  }
+
+  .control-label{
+    margin-left:2%;
+  }
+
+  .buttonUsu{
+    margin-left:22%;
+  }
+}
+
+@media only screen and (max-width: 330px) {
+ .input-md, #email{
+   width:90%;
+ }
 }

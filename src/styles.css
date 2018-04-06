@@ -20,14 +20,21 @@ body {
   min-height: 100%;
 }
 
-
 .btn {
-  background-color: #007370;
   border-width: 0px;
+  width: 5.892em;
+  height: 2.25em;
+}
+.btn-success{
+  background-color:#006E8C!important;
 }
 
-.btn:hover {
-  background-color: #00736f5b;
+.btn-danger{
+  background-color:#EFA638;
+}
+
+.btn:hover,.btn-success:hover{
+  background-color: #41790A!important;
 }
 
 h2 {
