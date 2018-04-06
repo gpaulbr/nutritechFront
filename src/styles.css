@@ -23,8 +23,6 @@ body {
 
 .btn {
   border-width: 0px;
-  width: 5.892em;
-  height: 2.25em;
 }
 .btn-success{
   background-color:#006E8C!important;
@@ -41,8 +39,6 @@ body {
 h2 {
 	padding-left: 10%;
 }
-
-
 form, .content{
   display: block;
   margin: 2% auto;
@@ -53,7 +49,6 @@ form, .content{
 footer {
   color:white;
   text-align: center;
-  margin-top: -7rem;
 }
 
 

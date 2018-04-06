@@ -29,6 +29,11 @@ form{
   width: 20em;
 }
 
+.bnt{
+  width: 5.892em;
+  height: 2.25em;
+}
+
 /**** @media inicia aqui ****/
 
 @media only screen and (max-width: 1032px) {
