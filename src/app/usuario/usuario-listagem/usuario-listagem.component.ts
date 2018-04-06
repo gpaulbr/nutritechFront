@@ -12,8 +12,8 @@ export class UsuarioListagemComponent implements OnInit {
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {
-      this.router.navigate(['./']);
+    if(usuarioLogado == null) {  
+      // this.router.navigate(['./']);
     }
   }
 
