@@ -49,6 +49,9 @@ form, .content{
 footer {
   color:white;
   text-align: center;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 

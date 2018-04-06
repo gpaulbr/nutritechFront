@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-ingrediente">
 	<fieldset>
 	<form [formGroup]="ingredienteForm" class="form-horizontal form-container" (ngSubmit)="cadastrarIngrediente(ingredienteForm.value)" id="formulario" novalidate>
 		
@@ -15,7 +15,7 @@
 		<h2 class="form-group row justify-content-center">Cadastro de Ingrediente</h2>
     <div class="form-group row justify-content-center">
 			<label class="col-auto control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
-			<div class="col-md-3">
+			<div class="col-md-6">
 				<input formControlName="nome" type="text"
 				  placeholder="Nome do ingrediente..."  class="form-control input-md">
 				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['nome'].valid && this.ingredienteForm.controls['nome'].dirty"></app-mensagem-erro>
@@ -25,7 +25,7 @@
 		<!-- Origem -->
     <div class="form-group row justify-content-center">
 			<label class="col-auto control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
-			<div class="col-md-3">
+			<div class="col-md-6">
 				<input formControlName="origem" type="text"
 				  placeholder="Ex: Taco" class="form-control input">
 				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
