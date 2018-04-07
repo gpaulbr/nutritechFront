@@ -28,6 +28,10 @@ body {
   background-color:#006E8C!important;
 }
 
+.btn-primary {
+  background-color:#007370!important;
+}
+
 .btn-danger{
   background-color:#EFA638;
 }
@@ -49,6 +53,9 @@ form, .content{
 footer {
   color:white;
   text-align: center;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 

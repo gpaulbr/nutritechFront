@@ -1,9 +1,10 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-6 text-left">
+        <div class="col-lg-5 text-left">
                 <img src="/assets/logo.png" class="img-fluid" />
                 <br>
-            <form [formGroup]="loginForm" (ngSubmit)="logar()">
+            
+                <form [formGroup]="loginForm" (ngSubmit)="logar()">
                 <div class="form-group">
                     <label class="label-login" for="exampleInputEmail1">Email</label>
                     <input [formControl]="loginForm.controls['email']" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
@@ -24,8 +25,10 @@
                 <a href="#">Clique aqui!</a>
             </p>
             <p class="form_p">É aluno e não é cadastrado?
-                <a href="#">Clique aqui!</a>
+                <a href="/usuario">Clique aqui!</a>
             </p>
+
+            
         </div>
     </div>
 </div><br><br>

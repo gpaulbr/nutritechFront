@@ -156,3 +156,12 @@ a{
         margin-top:-10%;
     }
 }
+
+.navbar-brand {
+    color: white;
+}
+
+.dropdown-toggle {
+    color: white;
+}
+

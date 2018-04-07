@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AtributoService } from '../atributo.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-atributo-manutencao',
@@ -24,6 +25,7 @@ export class AtributoManutencaoComponent implements OnInit {
 
   constructor(
     private atributoService: AtributoService,
+    private router: Router,
     fb: FormBuilder) { 
       this.atributoForm = fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
@@ -35,6 +37,10 @@ export class AtributoManutencaoComponent implements OnInit {
     }
 
   ngOnInit() {
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado == null) {  
+      // this.router.navigate(['./']);
+    }
   }
 
   definirObrigatorio(valor: number){
