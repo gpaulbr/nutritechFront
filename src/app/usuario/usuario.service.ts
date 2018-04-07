@@ -4,10 +4,7 @@ import { Usuario } from './usuario';
 import { Observable } from 'rxjs/Observable';
 import { NUTRITECH_API } from '../app.api'
 
-@Component({
-  selector: 'app-usuario-manutencao',
-  providers: [HttpClient]
-})
+@Injectable()
 export class UsuarioService {
 
   private url = NUTRITECH_API + "/usuarios";
