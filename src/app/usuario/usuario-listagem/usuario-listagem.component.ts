@@ -21,7 +21,7 @@ export class UsuarioListagemComponent implements OnInit {
     }
     this.usuarioService.buscarUsuarios().subscribe(
       response => {
-        this.usuarios = response.Usuarios;
+        this.usuarios = response['Usuarios'];
         console.log (this.usuarios);
       }
     )

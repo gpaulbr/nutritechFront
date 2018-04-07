@@ -23,7 +23,7 @@ export class IngredienteListagemComponent implements OnInit {
     }
     this.ingredienteService.buscarIngredientes().subscribe(
       response => { 
-       this.ingredientes = response.Ingredientes;
+       this.ingredientes = response['Ingredientes'];
         console.log(this.ingredientes);
       });
   }

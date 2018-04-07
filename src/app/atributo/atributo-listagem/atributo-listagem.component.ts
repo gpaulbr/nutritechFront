@@ -25,7 +25,7 @@ export class AtributoListagemComponent implements OnInit {
     }
     this.atributoService.buscarAtributos().subscribe(
       response => {
-        this.atributos = response.Atributos;
+        this.atributos = response['Atributos'];
         console.log (this.atributos);
       }
     )
