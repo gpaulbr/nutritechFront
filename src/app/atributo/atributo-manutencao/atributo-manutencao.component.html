@@ -9,9 +9,10 @@
 				style="display: none;">
 				<span id="textoErro"><strong>Erro!</strong></span>
 			</div>
-			<div class="form-group mar-top-20">
+			<div class="form-group mar-top-20" >
 				<label class="col-md-4 control-label campo-obrigatorio" for="nome">Nome</label>
 				<div class="col-md-4">
+
 					<input formControlName="nome" id="nome" name="nome" class="form-control" type="text" placeholder="Proteina"
 						required>
 						<app-mensagem-erro [contemErro]="!this.atributoForm.controls['nome'].valid && this.atributoForm.controls['nome'].dirty"></app-mensagem-erro>
@@ -54,8 +55,8 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="confirmar"></label>
 				<div class="col-md-8">
+          <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
 					<button type="submit" id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!atributoForm.valid">Confirmar</button>
-					<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
 				</div>
 		</div>
     </form>
