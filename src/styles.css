@@ -28,6 +28,10 @@ body {
   background-color:#006E8C!important;
 }
 
+.btn-primary {
+  background-color:#007370!important;
+}
+
 .btn-danger{
   background-color:#EFA638;
 }

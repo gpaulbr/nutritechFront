@@ -1,19 +1,27 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" style="font-weight: bold" href="#">Gastronomia</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="/usuario">Cadastro
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="cadastrarIngrediente.jsp">Cadastro de Ingredientes</a></li>
-                    <li><a href="cadastrarGrupos.jsp">Cadastro de Grupos</a></li>
-                    <li><a href="cadastrarAtributos.jsp">Cadastro de Atributos</a></li>
-                    <li><a href="cadastrarUsuario.jsp">Cadastro de Usuários</a></li>
-                </ul>
-            </li>
-        </ul>
+    
+    <div class="row menu">
+    <div class="col-xl-5 dropdown menu1">
+            <button class="dropbtn">Cadastro</button>
+            <div class="dropdown-content">
+            <a alt="Cadastro de Ingredientes" [routerLink]="['/cadastroIngrediente']">Ingredientes</a>
+            <a alt="Cadastro de Grupos" [routerLink]="['/grupo']">Grupos</a>
+            <a alt="Cadastro de Atributos" [routerLink]="['/atributo']">Atributos</a>
+            <a alt="Cadastro de Usuários" [routerLink]="['/usuario']">Usuários</a>
+            </div>
     </div>
+
+    <div class="col-xl-5 dropdown menu2">
+            <button class="dropbtn">Consulta</button>
+            <div class="dropdown-content">
+            <a alt="Consulta de Ingredientes" [routerLink]="['/ingrediente-listagem']">Ingredientes</a>
+            <a alt="Consulta de Grupos" [routerLink]="['/grupo-listagem']">Grupos</a>
+            <a alt="Consulta de Atributos" [routerLink]="[]">Atributos</a> <!-- ainda não foi feito -->
+            <a alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
+            </div>
+    </div>
+    </div>
+        <a class="col-md-2 exitImg" alt="Consulta de Usuários" [routerLink]="['']"><img src="/assets/exit2.png"/></a> 
+</div>
 </nav>

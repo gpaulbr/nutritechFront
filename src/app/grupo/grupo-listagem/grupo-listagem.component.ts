@@ -26,7 +26,7 @@ export class GrupoListagemComponent implements OnInit {
     }
     this.grupoService.buscarGrupos().subscribe(
       response => {
-        this.grupos = response;
+        this.grupos = response['Grupos'];
         console.log (this.grupos);
       }
     )
