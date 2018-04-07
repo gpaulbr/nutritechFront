@@ -25,7 +25,7 @@ export class UsuarioManutencaoComponent implements OnInit {
 
   tiposUsuarios = [{
     valor: 1,
-    texto: "Usuario",
+    texto: "Usuário",
     selecionado: true
   },
   {
