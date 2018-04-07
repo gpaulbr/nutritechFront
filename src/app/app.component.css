@@ -1,0 +1,63 @@
+.row{
+  margin:25%;
+  margin-left:35%;
+}
+@media (min-width: 992px) {
+  .row{
+    margin:2%;
+  }
+}
+@media (min-width: 480px) {
+  .row{
+    margin:0%;
+  }
+}
+@media (min-width: 768px) {
+  .row{
+    margin:2%;
+  }
+}
+
+.container{
+  size: inherit;
+}
+
+.img-fluid{
+  align-content: center;
+  position: absolute;
+  margin-top: -90px;
+}
+
+.ng-pristine{
+
+  margin-top: 13rem;
+}
+      p{
+      	text-align: center;
+        color: white;
+      }
+      .btn{
+        background-color:#007370;
+        padding: 12px 24px;
+      }
+      .form_p{
+
+        text-align: left;  
+      }
+
+        .label-login{
+          color: white;
+        }  
+
+      .hr{
+        color:black;
+        border-width: 5px;
+        border-style: solid;
+        margin-left: auto;
+        margin-right: auto;        
+    }
+
+    
+
+  
+      

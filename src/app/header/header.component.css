@@ -1,3 +1,12 @@
 .navbar {
-    background: #445e5e
+    background: #207C7B;
 }
+
+.navbar-brand {
+    color: white;
+}
+
+.dropdown-toggle {
+    color: white;
+}
+

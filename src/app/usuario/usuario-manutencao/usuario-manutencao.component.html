@@ -1,95 +1,94 @@
 <div class="container">
-	<fieldset>
-	<h2>Cadastro de Usuário</h2>	
-	<form [formGroup]="usuarioForm" class="form-horizontal form-container" (ngSubmit)="cadastrarUsuario()" id="formulario">
+	<fieldset>	
+	<form [formGroup]="usuarioForm" class="form-horizontal form-container content" (ngSubmit)="cadastrarUsuario()" id="formulario">
+		<h2>Cadastro de Usuário</h2>
 		<div class="divisor">
 			<span></span>
 		</div>
 		<div class="camposForm">
-		<div class="alert alert-danger mar-top-10" role="alert" style="display: none;">
+		<div class="alert alert-danger" role="alert" style="display: none;">
 			<span id="textoErro"><strong>Erro!</strong></span>
 		</div>
-		<div class="form-group mar-top-20">
-			<label id="teste" class="col-md-4 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
+		<div class="row form-group">
+			<label id="teste" class="col-md-3 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
 			<div class="col-md-4">
 				<input id="nome" name="nome" [formControl]="usuarioForm.controls['nome']" type="text"
 				placeholder="Elaine Silva"  class="form-control input-md" required>
-				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['nome'].valid && this.usuarioForm.controls['nome'].dirty"></app-mensagem-erro>
+				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['nome'].valid && this.usuarioForm.controls['nome'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
 
 		<!-- Prepended text-->
-		<div class="form-group">
-			<label class="col-md-4 control-label campo-obrigatorio" for="email">E-mail</label>
+		<div class="row form-group">
+			<label class="col-md-3 control-label campo-obrigatorio" for="email">E-mail</label>
 			<div class="col-md-4">
 				<input id="email" name="email" [formControl]="usuarioForm.controls['email']" class="form-control" 
 				[email]="true" placeholder="email@pucrs.br" type="email">
-				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['email'].valid && this.usuarioForm.controls['email'].dirty"></app-mensagem-erro>
+				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['email'].valid && this.usuarioForm.controls['email'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
 
 		<!-- Text input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label campo-obrigatorio" for="matricula">Matrícula</label>
+		<div class="row form-group">
+			<label class="col-md-3 control-label campo-obrigatorio" for="matricula">Matrícula</label>
 			<div class="col-md-4">
 				<input id="matricula" name="matricula" [formControl]="usuarioForm.controls['matricula']"
 				type="text" placeholder="10201231" class="form-control input-md" required>
-				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['matricula'].valid && this.usuarioForm.controls['matricula'].dirty"></app-mensagem-erro>
+				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['matricula'].valid && this.usuarioForm.controls['matricula'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
 
 		<!-- Password input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label campo-obrigatorio" for="senha">Senha</label>
+		<div class="row form-group">
+			<label class="col-md-3 control-label campo-obrigatorio" for="senha">Senha</label>
 			<div class="col-md-4">
 				<input id="senha" name="senha" [formControl]="usuarioForm.controls['senha']"
 				type="password" placeholder="" class="form-control input-md" required>
-				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['senha'].valid && this.usuarioForm.controls['senha'].dirty"
+				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['senha'].valid && this.usuarioForm.controls['senha'].dirty"
 					[mensagem]="'Senha muito curta'"></app-mensagem-erro>
 			</div>
 		</div>
 
 		<!-- Password input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label campo-obrigatorio" for="confirmarsenha">Confirmar Senha</label>
+		<div class="row form-group">
+			<label class="col-md-3 control-label campo-obrigatorio" for="confirmarsenha">Confirmar Senha</label>
 			<div class="col-md-4">
 				<input id="confirmarsenha" name="confirmarsenha" [ngModelOptions]="{standalone: true}" 
 				[(ngModel)]="senhaConfirmacao" (ngModelChange)="validarSenha()" type="password" placeholder="" class="form-control input-md" required>
-				<app-mensagem-erro [contemErro]="!senhaValida"
+				<app-mensagem-erro class="erro" [contemErro]="!senhaValida"
 					[mensagem]="mensagemErroSenha"></app-mensagem-erro>
 			</div>
 		</div>
 
 		<!-- Text input-->
-		<div class="form-group">
-			<label class="col-md-4 control-label campo-obrigatorio" for="cpf">CPF</label>
+		<div class="row form-group">
+			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
 				<input id="cpf" name="cpf" [textMask]="{mask: mascaraCPF}" [formControl]="usuarioForm.controls['cpf']" [(ngModel)]="cpf" [cpf]="cpf" type="text" placeholder="030.225.410.12" class="form-control input-md">
-				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
+				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
 
-        <div class="form-group">
-            <label class="col-md-4 control-label">Tipo Usuário</label>
-            <div class="col-md-5">
-				<app-radio-button [opcoes]="tiposUsuarios" [nome]="'tipo'" (emissaoValor)="definirTipoUsuario($event)"></app-radio-button>
+        <div class="row form-group">
+            <label class="col-md-3 control-label">Tipo Usuário</label>
+            <div id="radioUusu" class="col-md-4">
+				<app-radio-button class="erro" [opcoes]="tiposUsuarios" [nome]="'tipo'" (emissaoValor)="definirTipoUsuario($event)" class="control-radio"></app-radio-button>
             </div>
         </div>
 
 
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="status-1">Status</label>
-            <div class="col-md-4">
-                <app-radio-button [opcoes]="tiposStatus" [nome]="'tipoStatus'" (emissaoValor)="definirTipoStatus($event)"></app-radio-button>
+        <div class="row form-group">
+            <label class="col-md-3 control-label" for="status-1">Status</label>
+            <div id="radioUusu" class="col-md-4">
+                <app-radio-button class="erro" [opcoes]="tiposStatus" [nome]="'tipoStatus'" (emissaoValor)="definirTipoStatus($event)" class="control-radio"></app-radio-button>
             </div>
         </div>
 
-		<div class="form-group">
-			<label class="col-md-4 control-label" for="confirmar"></label>
-			<div class="col-md-8">
+		<div class="row form-group">
+			<label class="col-xl-3 control-label" for="confirmar"></label>
+			<div class="col-xl-4 buttonUsu">
 				<button type="submit" id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!usuarioForm.valid">Confirmar</button>
 				<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
-				<button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
 			</div>
 		</div>
 	</div>

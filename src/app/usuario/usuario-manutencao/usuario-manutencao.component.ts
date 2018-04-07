@@ -5,13 +5,13 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { RadioButton, RadioButtonElemento } from '../../shared/entities/radio-button';
 import { UsuarioService } from '../usuario.service';
 import { Http, Response } from '@angular/http';
+import { Router } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-usuario-manutencao',
   templateUrl: './usuario-manutencao.component.html',
-  providers: [UsuarioService],
   styleUrls: ['./usuario-manutencao.component.css']
 })
 export class UsuarioManutencaoComponent implements OnInit {
@@ -46,6 +46,7 @@ export class UsuarioManutencaoComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
+    private router: Router,
     fb: FormBuilder) { 
       this.usuarioForm = fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
@@ -59,15 +60,20 @@ export class UsuarioManutencaoComponent implements OnInit {
     }
 
   ngOnInit() {
-   
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado == null) {
+      // this.router.navigate(['./']);
+    }
   }
 
   cadastrarUsuario(){
     this.usuarioService.salvarUsuario(this.usuarioForm.value).subscribe(
       response => {
+        console.log(response)
         alert("Usuario cadastrado com sucesso");
       },
       error => {
+        console.log(error)
         alert("Erro no cadastro");
       });
   }

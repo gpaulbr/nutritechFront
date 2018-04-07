@@ -1,0 +1,60 @@
+table {
+	width: 100%;
+	margin: 0px;
+	overflow: auto;
+	max-width: 100%;
+    white-space: nowrap;
+    align-self: center;
+    
+}
+
+thead {
+    background-color: #207C7B;
+    color: white;
+}
+
+th, tr {
+    border: 1px none white;
+    padding: 2px;
+    align-self: center;
+    text-justify: newspaper;
+    text-align: center;
+    font-weight: normal;
+}
+
+.nome-grupo {
+    text-align: left;
+}
+
+table:nth-child(odd){
+	background:linear-gradient(0deg,rgb(154, 196, 191),rgba(255,255,255,0.7));
+}
+
+div {   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h2 {
+    text-justify: newspaper;
+    text-align: center;
+    color: white;
+    text-shadow: -1px 0 #207C7B, 0 1px #207C7B, -1px 0 #207C7B, 0 -1px #207C7B;}
+
+@media only screen and (max-width: 573px) {
+    table {
+        font-size: 3vw;
+    }
+
+    thead {
+        font-size: 3.5vw;
+    }
+}
+
+@media only screen and (min-width: 942px) {
+    .container {
+        max-width: 960px;
+        min-width: 960px;        
+    }
+}

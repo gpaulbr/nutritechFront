@@ -1,99 +1,69 @@
-body{
-  background-color: #ffffff;
-}
 .campo-obrigatorio:after {
-    content:"*";
-    color:red;
+  content:"*";
+  color:red;
   }
 
+.erro{
+  font-size:0.7em;
+}
+
+h2 {
+  padding: 1px;
+  padding-bottom:1em;
+  text-align:center;
+  background-image:url(../../img/user.png); 
+  background-repeat:no-repeat;
+  background-position:20% 5%;
+  background-size:1.2em;
+}
+
+form{
+  width: 50%;
+}
+
+.control-label{
+  margin-left:10%;
+}
+
+.input-md, #email{
+  width: 20em;
+}
+
+.bnt{
+  width: 5.892em;
+  height: 2.25em;
+}
+
+/**** @media inicia aqui ****/
+
+@media only screen and (max-width: 1032px) {
+   h2{
+    font-size:1.5em;
+    padding-left: 7%;
+    background-position:0% 2.5%;
+    background-size:1.2em;
+  }
+ 
   form{
-    background-color:#f7f6f6;
-    border: solid 0.0625em #000000;
-    border-radius: 10px 10px;
-    width: 80%;
-    margin-left:9.5%;
+    width: 100%;
+    margin-left:-2%;
   }
-  .camposForm{
-    margin-top:5%;
-  }
-  .form-group{
-    margin-left:10%;
-    background-color:#f7f6f6;
+
+  .input-md, #email{
+    margin-left:2%;
   }
 
   .control-label{
-    margin-left: 0.5%;
-    margin-right:10%;
+    margin-left:2%;
   }
 
-  h2{
-    border-bottom: solid #000000 0.0400em;
-    font-size: 30px;
-    padding-left: 10%;
+  .buttonUsu{
+    margin-left:22%;
   }
-  
-  .col-md-4 input, .form-control{
-    float: right; 
-    margin-right: -15em;
-    margin-top: -2.3em;
-    width: 21.875em; 
-    /*background-color: red;*/
-  }
+}
 
-  .input-md, .form-control{
-    max-width: 100%;
-  } 
-  
-  /* ------------------------- @media a partir daqui ------------- */
-
-  @media only screen and (max-width: 600px) {
-    .input-md, .form-control{
-      max-width: 50%;
-    }
-
-    .control-label{
-      margin-left:-2em;
-    }
-    .col-md-4 input{
-      float: right; 
-      margin-right: 0.5em;
-      margin-top: -2.3em;
-    }
-    form{
-      width: 100%;
-      margin-left:0%;
-    }
-
-    .input-md, .form-control{
-      max-width: 50%;
-    }  
-  }
-  @media only screen and (max-height: 780px) {
-  }
-
-    @media only screen and (max-height: 400px) {
-    .col-md-4 input{
-      float: right; 
-      margin-right: 0.5em;
-      margin-left: -5em;
-      margin-top: -2.3em;
-    }
-
-    .col-md-8 button{
-      float: left;
-      margin-top: -2em;
-      margin-right:0.2em;
-    }
-
-    .input-md, .form-control{
-      max-width: 50%;
-    }
-
-    .col-md-8 .btn-success{
-      float: left;
-      margin-left: -2em;
-    }
-    h2{
-      font-size:1.5em;
-    }
-  }
+@media only screen and (max-width: 330px) {
+ .input-md, #email{
+   width:90%;
+ }
+}

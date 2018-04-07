@@ -9,6 +9,7 @@ import { Usuario } from '../../usuario/usuario';
 import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { IngredienteService } from '../ingrediente.service';
 import { IngredienteDto } from '../ingrediente-dto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ingrediente-cadastro',
@@ -32,7 +33,10 @@ export class IngredienteCadastroComponent implements OnInit {
     selecionado: false
   }];
 
-  constructor(private atributosService: AtributoService, private ingredienteService: IngredienteService) {
+  constructor(
+    private atributosService: AtributoService, 
+    private router: Router,
+    private ingredienteService: IngredienteService) {
     this.atributos = [];
     this.fb = new FormBuilder();
     this.ingredienteForm = this.fb.group({
@@ -43,6 +47,10 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   ngOnInit() {
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado == null) {  
+      // this.router.navigate(['./']);
+    }
     this.atributosService.buscarAtributos()
       .subscribe(a => {
         a['Atributos'].forEach(e => {
@@ -76,9 +84,9 @@ export class IngredienteCadastroComponent implements OnInit {
 
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
-        //alert(resp.message);
+        alert("Ingrediente cadastrado com sucesso!");
       }, erro =>{
-        console.log(erro);
+        alert("Erro no cadastro!");
       })
   }
 

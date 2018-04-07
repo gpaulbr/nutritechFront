@@ -2,28 +2,60 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 body {
-		background:linear-gradient(0deg,rgba(255,255,255,0.7),rgba(255,255,255,0.7)),url("app/img/background.jpg");
-    background-position-y: top;
-    background-position-x: right;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    -webkit-background-size:cover;
-    -moz-background-size:cover;
-    -o-background-size:cover;
+	background:url("app/img/background.jpg");
+  background-position-y: top;
+  background-position-x: right;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+
+	font-size: 1.1em;
+	font-weight: bold;
 }
 
 .container{
-    min-width: 100%;
-    min-height: 100%;
+  min-width: 100%;
+  min-height: 100%;
 }
-
 
 .btn {
-    background-color: #007370;
-    border-width: 0px;
+  border-width: 0px;
+}
+.btn-success{
+  background-color:#006E8C!important;
 }
 
-.btn:hover {
-    background-color: #00736f5b;
+.btn-primary {
+  background-color:#007370!important;
 }
+
+.btn-danger{
+  background-color:#EFA638;
+}
+
+.btn:hover,.btn-success:hover{
+  background-color: #41790A!important;
+}
+
+h2 {
+	padding-left: 10%;
+}
+form, .content{
+  display: block;
+  margin: 2% auto;
+  box-shadow: rgba(255,255,255,0.6) 5px 5px 5px 5px;
+  background:linear-gradient(0deg,rgba(255,255,255,0.6),rgba(255,255,255,0.6));
+}
+
+footer {
+  color:white;
+  text-align: center;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+
