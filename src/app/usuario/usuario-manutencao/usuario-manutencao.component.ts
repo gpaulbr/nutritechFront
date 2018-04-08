@@ -78,7 +78,7 @@ export class UsuarioManutencaoComponent implements OnInit {
       });
   }
 
-  definirtipo(valor: number){
+  definirTipoUsuario(valor: number){
     console.log(this.usuarioForm);
     this.usuarioForm.controls.tipo.setValue(valor);
   }

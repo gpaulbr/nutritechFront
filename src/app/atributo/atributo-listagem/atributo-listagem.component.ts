@@ -3,6 +3,7 @@ import { AtributoService } from '../atributo.service';
 import { Response } from '@angular/http/src/static_response';
 import { Router } from '@angular/router';
 import { Atributo } from '../atributo';
+import { Grupo } from '../../grupo/grupo';
 
 @Component({
   selector: 'app-atributo-listagem',
@@ -12,6 +13,7 @@ import { Atributo } from '../atributo';
 export class AtributoListagemComponent implements OnInit {
 
   atributos: Atributo[];
+  grupos: Grupo[];
 
   constructor(
     private atributoService: AtributoService,
