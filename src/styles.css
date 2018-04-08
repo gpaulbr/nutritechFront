@@ -12,8 +12,8 @@ body {
   -moz-background-size:cover;
   -o-background-size:cover;
 
-	font-size: 1.1em;
-	font-weight: bold;
+  font-size: 1.1em;
+  font-weight: bold;
 }
 
 .container{
@@ -43,7 +43,9 @@ body {
 h2 {
 	padding-left: 10%;
 }
-form, .content{
+
+
+form:not(.no-css), .content{
   display: block;
   margin: 2% auto;
   box-shadow: rgba(255,255,255,0.6) 5px 5px 5px 5px;

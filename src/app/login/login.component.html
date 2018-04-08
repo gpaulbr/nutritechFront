@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-5 text-left">
-                <img src="/assets/logo.png" class="img-fluid" />
-                <br>
+            <img src="/assets/logo.png" class="img-fluid" />
+            <br>
             
-                <form [formGroup]="loginForm" (ngSubmit)="logar()">
+            <form class="no-css" [formGroup]="loginForm" (ngSubmit)="logar()">
                 <div class="form-group">
                     <label class="label-login" for="exampleInputEmail1">Email</label>
                     <input [formControl]="loginForm.controls['email']" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
