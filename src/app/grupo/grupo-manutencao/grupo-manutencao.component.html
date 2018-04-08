@@ -1,6 +1,4 @@
-<html>
-    <body>
-        <div class="container">
+        <div class="container container-grupo">
             <br>
             <fieldset>  
                 <form [formGroup]="grupoForm" class="form-horizontal form-container" (ngSubmit)="cadastrar()" id="formulario" novalidate> 
@@ -14,64 +12,30 @@
                         <span id="textoErro"><strong>Erro!</strong></span>
                     </div>
 
-                    <div class="form-group mar-top-20">
-                        <label class="col-md-6 control-label campo-obrigatorio" for="nome">Nome</label>
-                        <div class="col-md-4">
+                    <div class="form-group row justify-content-center">
+                        <label class="col-md-5 control-label campo-obrigatorio" for="nome">Nome</label>
+                        <div class="col-md-6">
                                 <input formControlName="nome" type="text"
                                 placeholder="Nome do Grupo de Receita"  class="form-control input-md">
                                 <app-mensagem-erro [contemErro]="!this.grupoForm.controls['nome'].valid && this.grupoForm.controls['nome'].dirty"></app-mensagem-erro>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-md-6 control-label campo-obrigatorio" for="custo">Valor da Porcao (em gramas)</label>
-                        <div class="col-md-4">
+                    <div class="form-group row justify-content-center">
+                        <label class="col-md-5 control-label campo-obrigatorio" for="custo">Valor da Porção (em gramas)</label>
+                        <div class="col-md-6">
                             <input formControlName="custo" type="number"
                             placeholder="5" class = "form-control input-md">
                             <app-mensagem-erro [contemErro]="!this.grupoForm.controls['custo'].valid && this.grupoForm.controls['custo'].dirty"></app-mensagem-erro>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-md-6 control-label" for="confirmar"></label>
-                        <div class="col-md-6">
-                            <button id="confirmar" name="confirmar" class="btn btn-success" [disabled]="grupoForm.invalid">Confirmar</button>
-                        </div>
+                    <div class="but-t form-group">
                         <div>
-                            <hr>
+                            <button id="confirmar" name="confirmar" class="btn btn-success" [disabled]="grupoForm.invalid">Confirmar</button>
+                            <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
                         </div>
-                        <div class="col-md-6">
-                                <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
-                                <button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
-                            </div>
                     </div>
                 </form>
             </fieldset>
         </div>
-    </body>
-</html>
-<!-- Visualização dos Grupos de Receita --> 
-<!--
-    <div class="alert alert-success" role="alert"
-   style="display: none; width: 25%; margin-left: 37%; text-align: center;">
-</div>
-<div class="container">
-  <div class="panel panel-default panel-container">
-      <div class="panel-heading ">
-          <h3 class="titulo_lista">Lista de Grupos</h3>
-      </div>
-      <div class="panel-body">
-          <table class="table table-horvered table-striped" id="listaItens">
-              <thead>
-              <tr>
-                  <th>Id</th>
-                  <th>Nome</th>
-                  <th>Valor da Porção (em gramas)</th>
-                  <th>Ações</th>
-              </tr>
-              </thead>
-          </table>
-      </div>
-  </div>
-</div>
--->
