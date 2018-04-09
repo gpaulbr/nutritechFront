@@ -27,3 +27,15 @@
   .label-login{
     color: white;
   }
+
+  .img-fluid{
+    width:80%; 
+  }
+
+  .form_p{
+    font-size: 0.8em;
+  }
+
+  .form_p a {
+    color: #33ccff;
+  }
