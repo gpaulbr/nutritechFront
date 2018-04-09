@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'http://www.nutritechapi.com.br' //Exemplo
+  api: 'http://www.homo.ages.pucrs.br/nutritech-api' //Exemplo
 };
