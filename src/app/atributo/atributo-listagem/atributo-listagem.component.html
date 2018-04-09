@@ -17,7 +17,9 @@
                                 <tr class="table-header">
                                     <th>ID</th>
                                     <th>Nome</th>
-                                    <th>Valor da<br>Porção (g)</th>
+                                    <th>Unidade</th>
+                                    <th>Multiplicador</th>
+                                    <th>Obrigatório</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -31,7 +33,13 @@
                                                 {{atributo.nome}}
                                             </td>
                                             <td>
+                                                {{atributo.unidade}}
+                                            </td>
+                                            <td>
                                                 {{atributo.multiplicador}}
+                                            </td>
+                                            <td>
+                                                {{atributo.obrigatorio}}
                                             </td>
                                             <td>
                                                 <i class="material-icons delete">edit</i>
