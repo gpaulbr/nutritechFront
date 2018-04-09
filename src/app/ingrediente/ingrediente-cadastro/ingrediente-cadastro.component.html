@@ -12,7 +12,7 @@
 		</div>
 		<div class="testI">	
 		<div class="form-group row justify-content-center">
-			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
+			<label class="col-md-2 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
 			<div class="col-md-6">
 				<input formControlName="nome" type="text"
 				  placeholder="Nome do ingrediente..."  class="form-control input-md">
@@ -22,7 +22,7 @@
 		
 		<!-- Origem -->
     <div class="form-group row justify-content-center">
-			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
+			<label class="col-md-2 control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
 			<div class="col-md-6">
 				<input formControlName="origem" type="text"
 				  placeholder="Ex: Taco" class="form-control input-md">
@@ -32,7 +32,7 @@
 
 		<!-- Tipo -->
 		<div class="form-group row justify-content-center">
-			<label class="col-md-10 control-label campo-obrigatorio" ng-show="" for="tipo">Tipo</label>
+			<label class="col-md-5 control-label campo-obrigatorio" ng-show="" for="tipo">Tipo</label>
 				<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)" class="row form-group justify-content-center inputRadio"></app-radio-button>
 		</div>
 		
