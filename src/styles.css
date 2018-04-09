@@ -52,13 +52,14 @@ form:not(.no-css), .content{
   background:linear-gradient(0deg,rgba(255,255,255,0.6),rgba(255,255,255,0.6));
 }
 
-footer {
-  color:white;
+footer p{
+  color:white!important;
   text-align: center;
   bottom: 0;
   right: 0;
   left: 0;
   font-size: 0.9em;
+  font-weight: normal!important;
 }
 
 
