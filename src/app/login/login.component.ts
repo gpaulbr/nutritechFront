@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   fb: FormBuilder;
 
   constructor(private loginService: LoginService,
+    private router: Router,
     fb: FormBuilder) {
       this.fb = new FormBuilder();
       this.loginForm = this.fb.group({
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
       response => {
         localStorage.setItem('usuarioLogado', JSON.stringify({ id: response.id, nome: response.nome }));
         alert("Login efetuado com sucesso");
+        this.router.navigate(['./ftp-cadastro']);
       },
       error => {
         alert("Erro no login");
