@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {LocationStrategy, HashLocationStrategy} from '@angular/common'
 
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -60,6 +60,7 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     TextMaskModule
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
     AtributoService, 
     IngredienteService, 
     GrupoService, 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UsuarioManutencaoComponent } from './usuario/usuario-manutencao/usuario-manutencao.component';
 import { GrupoManutencaoComponent } from './grupo/grupo-manutencao/grupo-manutencao.component';
@@ -28,7 +28,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
   ],
   exports: [
     RouterModule
