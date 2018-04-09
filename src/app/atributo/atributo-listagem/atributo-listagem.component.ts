@@ -23,7 +23,7 @@ export class AtributoListagemComponent implements OnInit {
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {
-      // this.router.navigate(['./']);
+      this.router.navigate(['./']);
     }
     this.atributoService.buscarAtributos().subscribe(
       response => {
