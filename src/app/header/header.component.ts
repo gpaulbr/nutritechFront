@@ -13,6 +13,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  estaLogado(){
+    return JSON.parse(localStorage.getItem('usuarioLogado')) != null;
+  }
+
   logout(){
     localStorage.clear();
     this.router.navigate(['./']);
