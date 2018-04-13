@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     this.loginService.efetuarLogin(this.loginForm.value).subscribe(
       response => {
         localStorage.setItem('usuarioLogado', JSON.stringify({ id: response.id, nome: response.nome }));
-        alert("Login efetuado com sucesso");
         this.router.navigate(['./ftp-cadastro']);
       },
       error => {

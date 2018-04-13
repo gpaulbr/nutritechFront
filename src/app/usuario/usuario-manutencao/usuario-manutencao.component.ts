@@ -60,10 +60,8 @@ export class UsuarioManutencaoComponent implements OnInit {
     }
 
   ngOnInit() {
+    console.log(JSON.parse(localStorage.getItem('usuarioLogado')));
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {
-      this.router.navigate(['./']);
-    }
   }
 
   cadastrarUsuario(){
