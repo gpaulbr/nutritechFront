@@ -69,7 +69,7 @@
 			</div>
 		</div>
 
-        <div class="row form-group">
+        <div *ngIf="verificarSeUsuarioEhAdmin()"  class="row form-group">
             <label class="col-md-3 control-label">Tipo Usuário</label>
             <div id="radioUusu" class="col-md-4">
 				<app-radio-button class="erro" [opcoes]="tiposUsuarios" [nome]="'tipo'" (emissaoValor)="definirTipoUsuario($event)" class="control-radio"></app-radio-button>
