@@ -6,6 +6,7 @@ import { RadioButton, RadioButtonElemento } from '../../shared/entities/radio-bu
 import { UsuarioService } from '../usuario.service';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
+import { UsuarioLogadoDto } from '../usuario-logado-dto';
 
 
 
@@ -17,6 +18,7 @@ import { Router } from '@angular/router';
 export class UsuarioManutencaoComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
+  usuarioLogado: UsuarioLogadoDto;
   senhaConfirmacao: string = '';
   usuarioForm: FormGroup;
   mensagemErroSenha = "As senhas digitadas estão diferentes";
@@ -61,7 +63,8 @@ export class UsuarioManutencaoComponent implements OnInit {
 
   ngOnInit() {
     console.log(JSON.parse(localStorage.getItem('usuarioLogado')));
-    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    console.log(this.usuarioLogado)
   }
 
   cadastrarUsuario(){
@@ -83,6 +86,13 @@ export class UsuarioManutencaoComponent implements OnInit {
 
   definirTipoStatus(valor: boolean){
     this.usuarioForm.controls.status.setValue(valor);
+  }
+
+  verificarSeUsuarioEhAdmin() {
+    if(this.usuarioLogado) {
+      return this.usuarioLogado.tipo == 'ADMIN';
+    }
+    return false;
   }
 
   validarSenha()
