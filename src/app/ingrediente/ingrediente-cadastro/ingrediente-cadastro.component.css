@@ -18,18 +18,18 @@
   } */
 
   .atributo{
-      width: 60%!important;
+     /* width: 60%!important;*/
   }
   
    .control-label{
-    margin-left: -6%;
+   /* margin-left: -6%;*/
    }
    .container-ingrediente, form{
       width: 35%;
    } 
   
    .input-md{
-    width: 90%;
+   /* width: 90%;*/
   } 
 
   .inputRadio{
@@ -37,7 +37,7 @@
   }
 
   .testI{
-    margin-left: 12% !important;
+     /*margin-left: 12% !important;*/
   }
   hr{
     border: 0;
@@ -50,14 +50,14 @@
     margin-left: -7% !important;
   }
   .tab-atrib{
-    margin-left: 8%;
-    margin-right: 9%;
+   /* margin-left: 8%;*/
+   /* margin-right: 9%;*/
   } 
   .ing-atributo{
-    margin-left: 9.5%;
+   /* margin-left: 9.5%;*/
   }
   .but-t{
-    margin-left: 23%;
+   /* margin-left: 23%;*/
   }
 
   @media only screen and (max-width: 1032px) {

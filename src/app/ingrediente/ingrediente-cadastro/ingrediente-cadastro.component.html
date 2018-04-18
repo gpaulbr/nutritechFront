@@ -12,8 +12,9 @@
 			<hr>
 		</div>
 		<div class="testI">	
+
 		<div class="form-group row justify-content-center">
-			<label class="col-md-2 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
 			<div class="col-md-6">
 				<input formControlName="nome" type="text"
 				  placeholder="Nome do ingrediente..."  class="form-control input-md">
@@ -23,7 +24,7 @@
 		
 		<!-- Origem -->
     <div class="form-group row justify-content-center">
-			<label class="col-md-2 control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
 			<div class="col-md-6">
 				<input formControlName="origem" type="text"
 				  placeholder="Ex: Taco" class="form-control input-md">
@@ -33,40 +34,42 @@
 
 		<!-- Tipo -->
 		<div class="form-group row justify-content-center">
-			<label class="col-md-5 control-label campo-obrigatorio" ng-show="" for="tipo">Tipo</label>
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" for="tipo">Tipo</label>
+			<div class="col-md-6">
 				<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)" class="row form-group justify-content-center inputRadio"></app-radio-button>
-		</div>
+			</div>
+	</div>
 		
 		
 	<div class="tab-atrib">		
 		<!-- Atributos -->
-		<div class="row form-group">
-			<label class="col-md-6 control-label campo-obrigatorio" ng-show="" >Valor Energético (kcal)</label>
+		<div class="row form-group justify-content-center">
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Valor Energético (kcal)</label>
 			<div class="col-md-6">
 				<input  type="number"
 				  placeholder=" Kcal" class="atributo form-control input-md" min="0">
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" >Carboidratos (g)</label>
-			<div class="col-md-5">
+		<div class="row form-group justify-content-center" >
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Carboidratos (g)</label>
+			<div class="col-md-6">
 				<input  type="number"
 				  placeholder="g" class="atributo form-control input-md" min="0">
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" >Proteínas (g)</label>
-			<div class="col-md-5">
+		<div class="row form-group justify-content-center">
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Proteínas (g)</label>
+			<div class="col-md-6">
 				<input  type="number"
 				  placeholder="g" class="atributo form-control input-md" min="0">
 			</div>
 		</div>
 
-		<div class="row form-group">
-			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" >Gorduras Totais(g)</label>
-			<div class="col-md-5">
+		<div class="row form-group justify-content-center">
+			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Gorduras Totais(g)</label>
+			<div class="col-md-6">
 				<input  type="number"
 				  placeholder="g" class="atributo form-control input-md" min="0">
 			</div>
@@ -83,7 +86,7 @@
 		</div>
 		
     <div class="but-t form-group">
-		<div>			
+		<div class="justify-content-center">			
         <button type="reset" class="btn btn-danger">Limpar</button>
         <button type="submit" class="btn btn-success" [disabled]="ingredienteForm.invalid">Confirmar</button>
 			</div>
