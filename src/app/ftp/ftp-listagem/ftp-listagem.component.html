@@ -1,2 +1,41 @@
-<button (click)="teste()">teste 
-</button>
+ <button (click)="teste()">teste </button> 
+<div class="container">
+    <div class="panel panel-default panel-container">
+        <div class="panel-heading ">
+            <h2 class="titulo_lista">Lista de Receitas</h2>
+        </div>
+        <div class="panel-body">
+            <table class="display" id="listaItens">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome da Receita</th>
+                    <th>Rendimento</th>
+                    <th>Criador</th>
+                    <th>Grupo</th>
+                </tr>
+                </thead>
+                <ng-container *ngFor="let receita of receitas">
+                    <tr>
+                        <td>
+                            {{receita.id}}
+                        </td>
+                        <td>
+                          {{receita.nome}}
+                      </td>
+                      <td>
+                          {{receita.rendimento}}
+                      </td>
+                      <td>
+                          {{receita.criador}} <!-- 
+                            tirei o .nome não consegui imprimir, pq a relação é diferente, talves tenha que criar uma classe usuarioReceita, não sei -->
+                      </td>
+                      <td>
+                          {{receita.grupoReceita.nome}}
+                      </td>
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+    </div>
+  </div>

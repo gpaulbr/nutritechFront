@@ -21,7 +21,7 @@ export class FtpListagemComponent implements OnInit {
   }
 
   teste(){
-    console.log(this.receitas)
+    console.log(this.receitas) //retirar depois de testar
   }
 
 }
