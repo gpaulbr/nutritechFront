@@ -26,12 +26,12 @@ export class UsuarioManutencaoComponent implements OnInit {
   public mascaraCPF = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
   tiposUsuarios = [{
-    valor: 1,
+    valor: 2,
     texto: "Usuário",
     selecionado: true
   },
   {
-    valor: 2,
+    valor: 1,
     texto: "Professor",
     selecionado: false
   }];
@@ -56,7 +56,7 @@ export class UsuarioManutencaoComponent implements OnInit {
         matricula: [null, Validators.compose([Validators.required])],
         senha: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
         cpf: [null, Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(14)])],
-        tipo: [1, Validators.required],
+        tipo: [2, Validators.required],
         status: [true, Validators.required]
       })
     }
@@ -75,7 +75,7 @@ export class UsuarioManutencaoComponent implements OnInit {
       },
       error => {
         console.log(error)
-        alert("Erro no cadastro");
+        alert(error.error);
       });
   }
 
