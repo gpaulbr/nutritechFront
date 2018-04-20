@@ -2,7 +2,6 @@ table {
 	width: 100%;
 	margin: 0px;
 	overflow: auto;
-	max-width: 100%;
     white-space: nowrap;
     align-self: center;
     background-color:white;
@@ -26,11 +25,18 @@ th, tr {
     text-align: left;
 }
 
-div {   
+td.abreviar{
+    max-width: 15ch!;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*div {   
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
+}*/
 
 h2 {
     text-justify: newspaper;
@@ -53,4 +59,10 @@ h2 {
         max-width: 960px;
         min-width: 960px;        
     }
+}
+
+@media only screen and (max-width: 600px) {
+	table {
+		display: block;
+	}
 }

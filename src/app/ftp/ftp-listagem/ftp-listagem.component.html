@@ -25,13 +25,10 @@
                       <td>
                           {{receita.rendimento}}
                       </td>
-                      <td>
-                          <p *ngFor="let criador of receita.criadores">
+                      <td *ngFor="let criador of receita.criadores">
                             {{criador.nome}}
-                          </p>
-                            <!--tirei o .nome não consegui imprimir, pq a relação é diferente, talves tenha que criar uma classe usuarioReceita, não sei -->
                       </td>
-                      <td>
+                      <td class="abreviar">
                           {{receita.grupoReceita.nome}}
                       </td>
                     </tr>
