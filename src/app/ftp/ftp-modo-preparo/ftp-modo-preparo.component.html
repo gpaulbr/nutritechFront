@@ -1,0 +1,21 @@
+<div>
+  <h3>Modo de Preparo:</h3>
+  <ng-container *ngFor="let passo of passos"> 
+  <div class="form-group row justify-content-start row-preparo">
+    <div class="col-md-auto">
+      <label>Passo 1:</label>
+    </div>
+    <div class="col-md col-preparo-passo">
+      <input type="text" class="form-control" value="{{passo}}">
+    </div>
+  </div>
+  </ng-container>
+  <div class="row justify-content-start">
+    <div class="col-md col-preparo-passo">
+      <input type="text" class="form-control" [(ngModel)]="novoPasso" placeholder="Adicione um novo passo">
+    </div>
+    <div class="col-md-auto">
+      <button class="btn btn-success" (click)="adicionarPasso()">Adicionar</button>
+    </div>
+  </div>
+</div>
