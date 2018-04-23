@@ -30,6 +30,7 @@ import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { LoginService } from './login/login.service';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
+import { FtpService } from './ftp/ftp.service';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     IngredienteService, 
     GrupoService, 
     UsuarioService,
-    LoginService
+    LoginService,
+    FtpService
   ],
   bootstrap: [AppComponent]
 })
