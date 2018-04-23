@@ -30,6 +30,7 @@ import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { LoginService } from './login/login.service';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
+import { FtpModoPreparoComponent } from './ftp/ftp-modo-preparo/ftp-modo-preparo.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     AtributoManutencaoComponent,
     GrupoListagemComponent,
     AtributoListagemComponent,
-    LoginComponent
+    LoginComponent,
+    FtpModoPreparoComponent
   ],
   imports: [
     BrowserModule,
