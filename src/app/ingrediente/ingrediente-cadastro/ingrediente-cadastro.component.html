@@ -43,6 +43,8 @@
 		
 	<div class="tab-atrib">		
 		<!-- Atributos -->
+
+		<!--- VALOR ENERGETICO-->
 		<div class="row form-group justify-content-center">
 			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Valor Energético (kcal)</label>
 			<div class="col-md-6">
@@ -51,6 +53,7 @@
 			</div>
 		</div>
 
+		<!--- CARBOIDRATOS-->
 		<div class="row form-group justify-content-center" >
 			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Carboidratos (g)</label>
 			<div class="col-md-6">
@@ -59,6 +62,7 @@
 			</div>
 		</div>
 
+	<!--- PROTEINAS-->
 		<div class="row form-group justify-content-center">
 			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Proteínas (g)</label>
 			<div class="col-md-6">
@@ -67,6 +71,7 @@
 			</div>
 		</div>
 
+	<!--- GORDURAS TOTAIS-->
 		<div class="row form-group justify-content-center">
 			<label class="col-md-4 control-label campo-obrigatorio" ng-show="" >Gorduras Totais(g)</label>
 			<div class="col-md-6">
@@ -85,10 +90,11 @@
 			</div> -->
 		</div>
 		
+	<!--BOTOES LIMPAR E CONFIRMAR -->
     <div class="but-t form-group">
-		<div class="justify-content-center">			
+		<div class="justify-content-center">		
         <button type="reset" class="btn btn-danger">Limpar</button>
-        <button type="submit" class="btn btn-success" [disabled]="ingredienteForm.invalid">Confirmar</button>
+				<button type="submit" class = "btn btn-success" [disabled]="ingredienteForm.invalid">Confirmar</button>
 			</div>
 		</div>
 	</div>

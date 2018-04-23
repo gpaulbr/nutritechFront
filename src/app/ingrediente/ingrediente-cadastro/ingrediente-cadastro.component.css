@@ -57,7 +57,8 @@
    /* margin-left: 9.5%;*/
   }
   .but-t{
-   /* margin-left: 23%;*/
+    margin-left: 35%;
+    margin-right: auto;
   }
 
   @media only screen and (max-width: 1032px) {
