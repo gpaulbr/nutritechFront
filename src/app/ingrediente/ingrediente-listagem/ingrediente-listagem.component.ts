@@ -9,6 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./ingrediente-listagem.component.css']
 })
 export class IngredienteListagemComponent implements OnInit {
+  rows = [];
+  columns = [
+    { prop: 'id', name: "ID" },
+    { name: 'Nome' },
+    { name: 'Origem' },
+    { prop: 'criador.nome', name: "Criador" },
+    { name: 'Tipo' }
+  ];
 
   ingredientes: Ingrediente[];
 
@@ -24,6 +32,7 @@ export class IngredienteListagemComponent implements OnInit {
     this.ingredienteService.buscarIngredientes().subscribe(
       response => { 
        this.ingredientes = response['Ingredientes'];
+       this.rows = response['Ingredientes'];
         console.log(this.ingredientes);
       });
   }
