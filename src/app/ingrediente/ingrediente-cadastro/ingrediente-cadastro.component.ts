@@ -51,7 +51,7 @@ export class IngredienteCadastroComponent implements OnInit {
     if(usuarioLogado == null) {  
       this.router.navigate(['./']);
     }
-    this.atributosService.buscarAtributos()
+     this.atributosService.buscarAtributos()
       .subscribe(a => {
         a['Atributos'].forEach(e => {
           let ingAtributos = new IngredienteAtributo();
