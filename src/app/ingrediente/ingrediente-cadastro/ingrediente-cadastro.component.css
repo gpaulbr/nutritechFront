@@ -8,15 +8,16 @@
     font-size:0.7em;
   }
   
-  /* h2 {
+  h2 {
     padding: 1px;
     margin-right: 6%;
     padding-bottom:1em;
     background-repeat:no-repeat;
     background-position:20% 5%;
     background-size:1.2em;
-  } */
+  } 
 
+  
   .atributo{
      /* width: 60%!important;*/
   }
@@ -33,6 +34,7 @@
   } 
 
   .inputRadio{
+    
     margin-top:0.8em;
   }
 
