@@ -1,6 +1,7 @@
 import { Usuario } from "../usuario/usuario";
 import { GrupoReceita } from "../ingrediente/grupo-receita";
 
+
 export class Ftp {
     public id: number;
     public imagem: string;
@@ -8,7 +9,7 @@ export class Ftp {
     public rendimento: number;
     public status: boolean;
     public tempo: string;
-    public tipo: number;
+    public tipo: String;
     public criador: Usuario; 
     public grupoRceita: GrupoReceita;
 }
