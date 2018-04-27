@@ -25,7 +25,6 @@
 							</select>
 						</div>
 					</div>
-<<<<<<< HEAD
 					<div class="form-group row justify-content-start">
 						<div class="col-md-4 col-lg-3">
 							<label>Professor:</label>
@@ -60,69 +59,6 @@
 						</div>
 					</div>
 	
-=======
-				</div>
-
-				<hr>
-				<h3>Adicionar Ingredientes</h3>
-				<div class="row">
-					<div class="col-md-6">
-						<select class="form-control">
-							<option value="" disabled selected hidden>Selecione um ingrediente</option>
-							<option value="2">/ingrediente1</option>
-							<option value="3">Ingrediente2</option>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<h4>Valor por Kg:</h4>
-						<p>R$ 0,00</p>
-					</div>
-					<div class="col-md-2">
-						<label>Fator de correção:</label>
-						<p>95%</p>
-					</div>
-					<div class="col-md-2">
-						<label>Peso (g)</label>
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-md-2">
-						<button class="btn btn-success">Adicionar Ingrediente</button>
-					</div>
-				</div>
-				<div>
-					<table>
-						<tr>
-							<th>Ingrediente</th>
-							<th>Custo</th>
-							<th>Fator de correção</th>
-							<th>Peso</th>
-							<th></th>
-						</tr>
-						<tr>
-							<th>Tomates</th>
-							<th>R$ 2,00</th>
-							<th>95%</th>
-							<th>0.3Kg</th>
-							<th><i class="material-icons delete">delete</i></th>
-						</tr>
-						<tr>
-							<th>Azeitonas</th>
-							<th>R$ 5,00</th>
-							<th>94%</th>
-							<th>0.25Kg</th>
-							<th><i class="material-icons delete">delete</i></th>
-						</tr>
-					</table>
-				</div>
-
-				<button class="btn btn-success">Criar Novo Ingrediente</button>
-				<br>
-
-				<hr>
-
-				<div>
-					<app-ftp-modo-preparo></app-ftp-modo-preparo>
->>>>>>> 94ecb8fd84b07ea3fdbefd5c515f65c65e8d613e
 					<hr>
 					<h3>Adicionar Ingredientes</h3>
 					<div class="row">
@@ -179,35 +115,8 @@
 					<br>
 	
 					<hr>
-	
+					<app-ftp-modo-preparo (salvarPassos)="salvarPassos($event)"></app-ftp-modo-preparo>
 					<div>
-						<div>
-							<h3>Modo de Preparo:</h3>
-							<div class="form-group row justify-content-start row-preparo">
-								<div class="col-md-auto">
-									<label>Passo 1:</label>
-								</div>
-								<div class="col-md col-preparo-passo">
-									<input type="text" class="form-control" value="Bata os tomates e as azeitonas no liquidificador.">
-								</div>
-							</div>
-							<div class="form-group row justify-content-start row-preparo">
-								<div class="col-md-auto">
-									<label>Passo 2:</label>
-								</div>
-								<div class="col-md col-preparo-passo">
-									<input type="text" class="form-control" value="Esprema os limões para obter o suco.">
-								</div>
-							</div>
-							<div class="row justify-content-start">
-								<div class="col-md col-preparo-passo">
-									<input formControlName="passos" type="text" class="form-control" placeholder="Adicione um novo passo">
-								</div>
-								<div class="col-md-auto">formControlName="nome"
-									<button class="btn btn-success" id="add-novo-passo">Adicionar</button>
-								</div>
-							</div>
-						</div>
 						<hr>
 						<div class="row">
 							<div class="col-md-7">

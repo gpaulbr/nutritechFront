@@ -51,8 +51,8 @@ export class FTPCadastroComponent implements OnInit {
     ftp.status = true;
     ftp.imagem = "url/img.jpg"
     ftp.data = new Date(Date.now());
-    ftp.horario.hours = ftp.data.getHours();
-    ftp.horario.minutes = ftp.data.getMinutes();
+    // ftp.horario.hours = ftp.data.getHours();
+    // ftp.horario.minutes = ftp.data.getMinutes();
 
     this.ftpService.salvarFTP(ftp)
     .subscribe(resp => {
@@ -60,6 +60,10 @@ export class FTPCadastroComponent implements OnInit {
     }, erro =>{
       alert("Erro no cadastro!");
     })
+  }
+
+  salvarPassos(passos: Array<String>){
+    console.log(passos);
   }
 
 }
