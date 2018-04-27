@@ -19,7 +19,7 @@
             <a alt="Consulta de Grupos" [routerLink]="['/grupo-listagem']">Grupos</a>
             <a alt="Consulta de Atributos" [routerLink]="['/atributo-listagem']">Atributos</a>
             <a alt="Ficha Técnica de Produto" [routerLink]="['/ftp-listagem']">Ficha Técnica de Produto </a>        
-            <a *ngIf="opcaoMenu()" alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
+            <a *ngIf="admin" alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
          <!--  É preciso atualizar sempre NÃO FUNC1IONA COMO DEVERIA, AINDA
           -->     
             </div>

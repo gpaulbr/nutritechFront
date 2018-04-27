@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Usuario } from '../usuario/usuario';
+import { TipoUsuario } from '../usuario/tipo-usuario.enum';
+import { LoginService } from '../login/login.service';
+import { FtpListagemComponent } from '../ftp/ftp-listagem/ftp-listagem.component';
 
 @Component({
   selector: 'app-header',
@@ -8,27 +11,33 @@ import { Usuario } from '../usuario/usuario';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) {
-   }
 
-   usuarioLogado:Usuario;
-  ngOnInit(){
-    if(this.usuarioLogado == null) 
-      this.router.navigate(['./']);
-      
-      this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));//em teste
-    
-    console.log(this.opcaoMenu);
-    this.router.navigate(['./ftp-listagem']);// SÓ ESTÁ ACONTECENDO DEPOIS QUE ATUALIZA //redireciona para Minhas Receitas o usuário comum e Listagem de Receito o ADM,
-    //talvez isso ocorra pq o header não atualiza
+  usuarioLogado: Usuario;
+  admin: boolean = false;
+
+  constructor(private router: Router, private loginService: LoginService) {
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationEnd) {
+        this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));            
+
+        console.log(this.usuarioLogado)
+
+        if(this.usuarioLogado !== null) {
+          if(this.usuarioLogado.tipo === TipoUsuario.ADMIN || 
+            this.usuarioLogado.tipo === TipoUsuario.PROFESSOR){
+              
+            this.admin = true;
+          } else {
+            this.admin = false;
+          }                  
+        } else {
+          this.router.navigate(['./']);
+        }        
+      }
+    })
   }
 
-  opcaoMenu():boolean{    
-    if(this.usuarioLogado.nome=='Admin' || this.usuarioLogado.nome=='Professor'){//por enquanto prof e admin acessam tudo, quando trabalharmos com a questão das turmas, pode ser diferente
-      return  true;
-    }else if(this.usuarioLogado.nome=='Usuario'){
-      return false;
-    }
+  ngOnInit(){
   }
 
   estaLogado(){
