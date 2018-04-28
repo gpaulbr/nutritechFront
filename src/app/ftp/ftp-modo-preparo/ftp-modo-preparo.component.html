@@ -1,5 +1,5 @@
 <div>
-  <h3>Modo de Preparo:</h3>
+  <h3 [ngClass]="{ 'campo-obrigatorio': obrigatorio }">Modo de Preparo:</h3>
   <ng-container *ngFor="let passo of passos; let i = index"> 
   <div class="form-group row justify-content-start row-preparo">
     <div class="col-md-auto">

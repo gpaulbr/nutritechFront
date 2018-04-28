@@ -53,7 +53,7 @@ export class FTPCadastroComponent implements OnInit {
     ftp.data = new Date(Date.now());
     // ftp.horario.hours = ftp.data.getHours();
     // ftp.horario.minutes = ftp.data.getMinutes();
-
+    
     this.ftpService.salvarFTP(ftp)
     .subscribe(resp => {
       alert("Ficha Técnica de Preparo cadastrada com sucesso!");
@@ -63,7 +63,7 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   salvarPassos(passos: Array<String>){
-    console.log(passos);
+    this.ftpForm.controls.passos.setValue(passos)
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ftp-modo-preparo',
@@ -14,6 +14,8 @@ export class FtpModoPreparoComponent implements OnInit {
   
   @Output()
   salvarPassos = new EventEmitter<Array<String>>();
+  @Input()
+  obrigatorio: boolean
 
   ngOnInit() {
   }

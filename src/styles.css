@@ -62,4 +62,10 @@ footer p{
   font-weight: normal!important;
 }
 
+.campo-obrigatorio:after {
+  content:"*";
+  color:red;
+  }
+
+
 
