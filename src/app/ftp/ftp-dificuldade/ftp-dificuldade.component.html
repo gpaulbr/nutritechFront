@@ -1,0 +1,12 @@
+<div class="no-gutters">
+  <div class="col-md-auto">
+    <h4 id="dificuldade">Dificuldade:</h4>
+  </div>
+  <div class="col-md-auto clicavel">
+    <i class="material-icons" [ngClass]="{ 'checked': dificuldade >= 1 }" (click)="alterarDificuldade(1)">local_dining</i>
+    <i class="material-icons" [ngClass]="{ 'checked': dificuldade >= 2 }" (click)="alterarDificuldade(2)">local_dining</i>
+    <i class="material-icons" [ngClass]="{ 'checked': dificuldade >= 3 }" (click)="alterarDificuldade(3)">local_dining</i>
+    <i class="material-icons" [ngClass]="{ 'checked': dificuldade >= 4 }" (click)="alterarDificuldade(4)">local_dining</i>
+    <i class="material-icons" [ngClass]="{ 'checked': dificuldade >= 5 }" (click)="alterarDificuldade(5)">local_dining</i>
+  </div>
+</div>  

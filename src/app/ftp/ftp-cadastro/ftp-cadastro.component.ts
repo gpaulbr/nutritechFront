@@ -36,7 +36,8 @@ export class FTPCadastroComponent implements OnInit {
       professor: [null, Validators.compose([Validators.required])],
       //data: [null, Validators.compose([Validators.required])],
       //hora: [null, Validators.compose([Validators.required])],
-      grupoReceita: [null, Validators.compose([Validators.required])]
+      grupoReceita: [null, Validators.compose([Validators.required])],
+      dificuldade: [0]
     })
    }
    
@@ -53,7 +54,7 @@ export class FTPCadastroComponent implements OnInit {
     ftp.data = new Date(Date.now());
     // ftp.horario.hours = ftp.data.getHours();
     // ftp.horario.minutes = ftp.data.getMinutes();
-    
+
     this.ftpService.salvarFTP(ftp)
     .subscribe(resp => {
       alert("Ficha Técnica de Preparo cadastrada com sucesso!");
@@ -62,8 +63,18 @@ export class FTPCadastroComponent implements OnInit {
     })
   }
 
-  salvarPassos(passos: Array<String>){
-    this.ftpForm.controls.passos.setValue(passos)
+  alterarPassos(passos: Array<String>){
+    this.ftpForm.controls.passos.setValue(passos);
+    console.log(this.ftpForm.controls);
+  }
+
+  alterarDificuldade(dificuldade: number){
+    this.ftpForm.controls.dificuldade.setValue(dificuldade);
+    console.log(this.ftpForm.controls);
+  }
+
+  retornarDificuldade(): number{
+    return this.ftpForm.controls.dificuldade.value;
   }
 
 }

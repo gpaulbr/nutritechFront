@@ -65,7 +65,15 @@ footer p{
 .campo-obrigatorio:after {
   content:"*";
   color:red;
-  }
+}
+
+.checked {
+    color: orange;
+}
+
+.clicavel {
+  cursor: pointer;
+}
 
 
 

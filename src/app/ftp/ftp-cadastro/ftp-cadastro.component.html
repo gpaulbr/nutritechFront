@@ -115,7 +115,7 @@
 					<br>
 	
 					<hr>
-					<app-ftp-modo-preparo [obrigatorio]="true" (salvarPassos)="salvarPassos($event)"></app-ftp-modo-preparo>
+					<app-ftp-modo-preparo [obrigatorio]="true" (salvarPassos)="alterarPassos($event)"></app-ftp-modo-preparo>
 					<div>
 						<hr>
 						<div class="row">
@@ -143,16 +143,7 @@
 									</div>
 								</div>
 								<div class="row no-gutters align-items-center">
-									<div class="col-md-auto">
-										<h4 id="dificuldade">Dificuldade:</h4>
-									</div>
-									<div class="col-md-auto">
-										<i class="material-icons checked">local_dining</i>
-										<i class="material-icons checked">local_dining</i>
-										<i class="material-icons checked">local_dining</i>
-										<i class="material-icons">local_dining</i>
-										<i class="material-icons">local_dining</i>
-									</div>
+									<app-ftp-dificuldade [dificuldadeMaxima]="5" [dificuldade]="retornarDificuldade()" (salvarDificuldade)="alterarDificuldade($event)"></app-ftp-dificuldade>
 								</div>
 							</div>
 							<div class="col-md-5">
