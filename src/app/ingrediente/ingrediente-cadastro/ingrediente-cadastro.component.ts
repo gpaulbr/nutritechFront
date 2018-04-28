@@ -47,7 +47,7 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   ngOnInit() {
-    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {  
       this.router.navigate(['./']);
     }
