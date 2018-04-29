@@ -1,50 +1,70 @@
 
+/* Aviso de campo invalido */
 .campo-obrigatorio:after {
     content:"*";
     color:red;
 }
-.control-label{
-  margin: center;
+
+/* Formulario, parte esmaecida */
+form{
+  width: 50%; /* proporção do formulario */
 }
 
-.container-ingrediente, form{
-  width: 50%;
-} 
-  
-h2 {
-} 
-   
+/* Configurações do Titulo Cadastro de Ingredientes */  
+h2{
+  margin-left: 17%;
+}
 
-  .but-t{
-    background: green;
-    margin-left: 35%;
-    margin-right: auto;
-  }
+/* Referente ao but Limpar/Confirmar */   
+.but-t{
+  margin-left: 35%;
+  margin-right: auto;
+}
 
-  @media only screen and (max-width: 1032px) {
-    h2{   
+/* Nome do input, exemplo "nome" <- depois o input*/  
+.control-label{
+    margin-left:10%;
+}
+ 
+/* Input ingredientes NOME ORIGEM  */
+.input-md{
+    width: 20em;
+}
+
+/* Input Unidade Atributos */  
+#input-atributo{
+  width: 40%;
+
+}
+
+
+
+
+/* 
+@media only screen and (max-width: 1032px) {
+  h2{   
      font-size:1.5em;
      padding-left: 7%;
      background-position:0% 2.5%;
      background-size:1.2em;
-   }
+  }
   
-   form{   
+  form{   
      width: 100%;
      margin-left: 0%;
-   }
+  }
  
 /*    .input-md{
      margin-left:2%;
      width: 80%;
    }  */
  
-   .control-label{
+/*    .control-label{
     width: 80%;
    }
- }
+ } */
  
- @media only screen and (max-width: 330px) {
+/*  @media only screen and (max-width: 330px) {
   .input-md{
     widows: 90%;
     
@@ -54,4 +74,4 @@ h2 {
  .titulo {
     margin-bottom: 5%;
     text-align: center
- }
+ } */ 
