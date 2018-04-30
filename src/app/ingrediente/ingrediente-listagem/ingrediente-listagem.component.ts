@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class IngredienteListagemComponent implements OnInit {
   rows = [];
   columns = [
-    { prop: 'id', name: "ID" },
     { name: 'Nome' },
     { name: 'Origem' },
     { prop: 'criador.nome', name: "Criador" },
