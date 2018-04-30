@@ -46,7 +46,7 @@
 <!-- Aviso Calculo Porção -->
 <div id="aviso-cad" >
 <p><b>Aviso! </b></p>
-<p> Valor de cada atributo calculado para cada 100g</p>
+<p> Valor de cada atributo é calculado para cada 100g</p>
 <P> Preencher atributo obrigatorio para gerar informação nutricional </P>
 </div>
 
@@ -55,9 +55,8 @@
 		<div class="row form-group">
 		<label class="col-md-3 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
 		<div class="col-md-4">
-
 		<input id="input-atributo" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
-		placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md">
+		placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md" required>
 		</div>
 	</div>
 </div>

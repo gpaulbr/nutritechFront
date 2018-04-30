@@ -12,7 +12,8 @@ form{
 
 /* Configurações do Titulo Cadastro de Ingredientes */  
 h2{
-  margin-left: 17%;
+  margin-left: 15% !important ;
+  margin: 4% ;
 }
 
 /* Referente ao but Limpar/Confirmar */   
@@ -38,13 +39,16 @@ h2{
 
 /* Aviso Calculo */
 #aviso-cad{
-  font-size: 80%;
-  line-height: 0.5em !important;
-  text-align: center;
-  color:#D7DF01;
-  margin: 2% auto;
-  width: 80%;
-  background:linear-gradient(0deg,rgba(255,255,255,0.6), rgba(255, 255, 255, 0.6));
+  font-size: 75%; /* tamnho da fonte */
+  line-height: 0.5em !important; /* espaçamento das linhas */
+  text-align:center; /* alinhamento do texto */
+  color:rgb(202, 83, 4); /* cor do texto */
+  width: 80%; /* largura do mini-form */
+  height: 50%; /* altura do mini-form */
+  margin: 2% auto; /* margin ao redor do form */
+  padding-top: 2%; /* distancia do texto do mini-form */
+  background:linear-gradient(0deg,rgba(238, 236, 95, 0.6), rgba(233, 224, 105, 0.6));
+  /* ^^^^^ -> cor do mini-form */
 }
 
 
