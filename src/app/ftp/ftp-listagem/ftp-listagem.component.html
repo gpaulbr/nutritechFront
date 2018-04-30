@@ -1,6 +1,5 @@
 <div class="container">
-
-
+ 
     <div class="panel panel-default panel-container">
         <div class="panel-heading ">
             <h2 class="titulo_lista">Lista de Receitas</h2>
@@ -17,23 +16,25 @@
                 </tr>
                 </thead>
                 <ng-container *ngFor="let receita of receitas">
-                    <tr *ngFor="let criador of receita.criadores">
-                        <td >
+                    <tr *ngFor="let criador of receita.criadores"> 
+                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'"><!-- ngIf = só exibe se for do própiro usuário ou administrador -->
                                 {{receita.id}}
                         </td>
-                        <td>
+                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
                                 {{receita.nome}}
-                      </td>
-                      <td>
+                        
+                        </td>
+                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
                                 {{receita.rendimento}}
-                      </td>
-                      <td>
+                        </td>
+                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
                                 {{criador.nome}}
-                      </td>
-                      <td class="abreviar">
+                        </td>
+                        <td class="abreviar" *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
                                 {{receita.grupoReceita.nome}}
-                      </td>
+                        </td>
                     </tr>
+                   
                     
                     <!-- IMPLEMENTAR DEPOIS
                     

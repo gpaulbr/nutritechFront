@@ -32,7 +32,6 @@ import { LoginService } from './login/login.service';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
 import { FtpListagemComponent } from './ftp/ftp-listagem/ftp-listagem.component';
 import { FtpService } from './ftp/ftp.service';
-import { HeaderService } from './header/header.service';
 
 
 @NgModule({

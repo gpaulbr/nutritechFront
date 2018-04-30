@@ -17,7 +17,4 @@ export class FtpService {
     return this.http.get<Ftp[]>(this.url);
     //já tem a função de pegar a recita por id na API, a questão é: como usar?
   }
-
-  
-
 }
