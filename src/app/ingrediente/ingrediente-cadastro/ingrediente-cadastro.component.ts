@@ -29,7 +29,7 @@ export class IngredienteCadastroComponent implements OnInit {
   },
   {
     valor: TipoIngrediente.COMUM,
-    texto: "Comum",
+    texto: "Público",
     selecionado: false
   }];
 
