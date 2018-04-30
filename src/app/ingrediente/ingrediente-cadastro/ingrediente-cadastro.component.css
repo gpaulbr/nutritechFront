@@ -34,7 +34,17 @@ h2{
 /* Input Unidade Atributos */  
 #input-atributo{
   width: 40%;
+}
 
+/* Aviso Calculo */
+#aviso-cad{
+  font-size: 80%;
+  line-height: 0.5em !important;
+  text-align: center;
+  color:#D7DF01;
+  margin: 2% auto;
+  width: 80%;
+  background:linear-gradient(0deg,rgba(255,255,255,0.6), rgba(255, 255, 255, 0.6));
 }
 
 
