@@ -51,41 +51,99 @@ h2{
   /* ^^^^^ -> cor do mini-form */
 }
 
+#atribForm{
+  margin-left: 18%;
+}
 
-
-
-/* 
 @media only screen and (max-width: 1032px) {
-  h2{   
-     font-size:1.5em;
-     padding-left: 7%;
-     background-position:0% 2.5%;
-     background-size:1.2em;
-  }
-  
-  form{   
-     width: 100%;
-     margin-left: 0%;
-  }
- 
-/*    .input-md{
-     margin-left:2%;
-     width: 80%;
-   }  */
- 
-/*    .control-label{
-    width: 80%;
-   }
- } */
- 
-/*  @media only screen and (max-width: 330px) {
-  .input-md{
-    widows: 90%;
-    
-  }
+  h2{   /* Arrumar o recuo do titulo para a esquerda */
+   font-size:1.5em;
+   padding-left: 7%;
  }
 
- .titulo {
-    margin-bottom: 5%;
-    text-align: center
- } */ 
+ form{   /* proporção do form */
+   width: 100%;
+   margin-left:-2%;
+ }
+
+/* Nome do input, exemplo "nome" <- antes o input*/  
+.control-label{
+  margin-left:10%;
+}
+
+/* Input ingredientes NOME ORIGEM  */
+.input-md{
+  width: 22em;
+  margin: auto;
+}
+
+/* Input Unidade Atributos */  
+#input-atributo{
+  width: 60%;
+  margin-right: 55%;
+  margin-left: 10%;
+}
+
+/* Referente ao but Limpar/Confirmar */   
+.but-t{
+  margin-left: 27%;
+}
+#aviso-cad{
+  font-size: 75%; /* tamnho da fonte */
+  line-height: 0.99em !important; /* espaçamento das linhas */
+  text-align:center; /* alinhamento do texto */
+  color:rgb(202, 83, 4); /* cor do texto */
+  width: 80%; /* largura do mini-form */
+  height: 50%; /* altura do mini-form */
+  margin: 2% auto; /* margin ao redor do form */
+  padding-top: 2%; /* distancia do texto do mini-form */
+  background:linear-gradient(0deg,rgba(238, 236, 95, 0.6), rgba(233, 224, 105, 0.6));
+  /* ^^^^^ -> cor do mini-form */
+}
+.input-Radio{
+  margin-left:10%;
+}
+
+}
+
+@media only screen and (max-width: 667px) {
+h2{   /* Arrumar o recuo do titulo para a esquerda */
+  font-size:1.5em;
+  padding-left: 7%;
+  background-position:0% 2.5%;
+  background-size:1.2em;
+}
+.input-md{
+  width: 20em;
+  margin: auto;
+}
+}
+
+@media only screen and (max-width: 568px) {
+h2{   /* Arrumar o recuo do titulo para a esquerda */
+  font-size:1.5em;
+  padding-left: 7%;
+  background-position:0% 2.5%;
+  background-size:1.2em;
+}
+/* Input Unidade Atributos */  
+#atribForm{
+  width:60%;
+}
+/* Referente ao but Limpar/Confirmar */   
+.but-t{
+  margin-left: 20%;
+}
+
+}
+
+@media only screen and (max-width: 330px) {
+.input-md,#input-atributo{
+  width:90%;
+}
+
+
+}
+
+
+
