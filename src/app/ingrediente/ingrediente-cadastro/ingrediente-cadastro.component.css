@@ -12,9 +12,13 @@ form{
 
 /* Configurações do Titulo Cadastro de Ingredientes */  
 h2{
+<<<<<<< HEAD
   
   margin-left: 25% !important ;
   padding: 1%;
+=======
+  margin-left: 15% ;
+>>>>>>> 58f432ec7447d0fc694c13204076b0b5e8e7af0e
   margin: 4% ;
 }
 
@@ -72,6 +76,7 @@ h2{
 /* Nome do input, exemplo "nome" <- antes o input*/  
 .control-label{
   margin-left:10%;
+
 }
 
 /* Input ingredientes NOME ORIGEM  */
@@ -112,13 +117,17 @@ h2{
 @media only screen and (max-width: 667px) {
 h2{   /* Arrumar o recuo do titulo para a esquerda */
   font-size:1.5em;
-  padding-left: 7%;
-  background-position:0% 2.5%;
-  background-size:1.2em;
+  margin:0 !important;
+  width: 100%;
 }
 .input-md{
   width: 20em;
   margin: auto;
+
+}
+.control-label{
+ /* margin-left:0%;*/
+  width: 20em !important;
 }
 }
 
@@ -138,11 +147,18 @@ h2{   /* Arrumar o recuo do titulo para a esquerda */
   margin-left: 20%;
 }
 
+.control-label{
+  margin-left:0%;
+}
 }
 
 @media only screen and (max-width: 330px) {
 .input-md,#input-atributo{
   width:90%;
+}
+
+.control-label{
+  margin-left:0%;
 }
 
 
