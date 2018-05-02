@@ -18,4 +18,12 @@ export class UsuarioService {
   buscarUsuarios(): Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.url);
   }
+
+  buscarProfessores(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.url + "/professores")
+  }
+
+  buscarAlunos(): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(this.url + "/alunos")
+  }
 }

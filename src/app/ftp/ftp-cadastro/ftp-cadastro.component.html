@@ -18,25 +18,27 @@
 							<label class="campo-obrigatorio">Grupo Alimentar:</label>
 						</div>
 						<div class="col-md-7 col-lg-6 col-xl-5">
-							<select class="form-control">
-									<option value="" disabled selected hidden>Selecione o grupo</option>
-									<option *ngFor="let item of grupos" value= {{item}}>
-										{{item.nome}}
-									</option>
-							</select>
-							<app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
+								<select formControlName="grupoReceita" class="form-control">
+										<option value="null" disabled selected hidden>Selecione o Grupo Alimentar</option>
+										<option *ngFor="let item of gruposDisponiveis" value= {{item.id}}>
+											{{item.nome}}
+										</option>
+								</select>
+								<app-mensagem-erro [contemErro]="!this.ftpForm.controls['grupoReceita'].valid && this.ftpForm.controls['grupoReceita'].dirty"></app-mensagem-erro>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row justify-content-start">
-						<div class="col-md-4 col-lg-3">
-							<label class="campo-obrigatorio">Professor:</label>
-						</div>
-						<div class="col-md-7 col-lg-6 col-xl-5">
-							<select class="form-control">
-								<option value="" disabled selected hidden>Selecione o Professor</option>
-								<option value="1">Professor 1</option>
-								<option value="2">Professor 2</option>
-							</select>
+						<div class="form-group row justify-content-start">
+							<div class="col-md-4 col-lg-3">
+								<label class="campo-obrigatorio">Professor:</label>
+							</div>
+							<div class="col-md-7 col-lg-6 col-xl-5">
+								<select formControlName="professor" class="form-control">
+										<option value="null" disabled selected hidden>Selecione o Professor</option>
+										<option *ngFor="let item of professoresDisponiveis" value= {{item.id}}>
+											{{item.nome}}
+										</option>
+								</select>
+								<app-mensagem-erro [contemErro]="!this.ftpForm.controls['professor'].valid && this.ftpForm.controls['professor'].dirty"></app-mensagem-erro>
 						</div>
 					</div>
 	
@@ -46,11 +48,19 @@
 						</div>
 						<div class="col-md-7 col-lg-6 col-xl-5">
 							<div>
-								<select class="form-control">
-									<option value="" disabled selected hidden>Selecione um novo participante</option>
-									<option value="1">Participante1</option>
-									<option value="2">Participante2</option>
-								</select>
+								<div class="row no-gutters">
+									<div class="col">
+										<select formControlName="criadores" class="form-control">
+												<option value="null" disabled selected hidden>Selecione um Integrante</option>
+												<option *ngFor="let item of alunosDisponiveis" value= {{item.id}}>
+													{{item.nome}}
+												</option>
+										</select>
+									</div>
+									<div class="col-auto">
+										<button class="btn btn-success" [disabled]="ftpForm.invalid">+</button>
+									</div>
+								</div>
 								<p class="integrante">Gabriel</p>
 								<i class="material-icons delete">delete</i>
 								<hr class="divisor-integrantes">
@@ -65,11 +75,12 @@
 					<h3>Adicionar Ingredientes</h3>
 					<div class="row">
 						<div class="col-md-6">
-							<select class="form-control">
-								<option value="" disabled selected hidden>Selecione um ingrediente</option>
-								<option value="2">/ingrediente1</option>
-								<option value="3">Ingrediente2</option>
-							</select>
+								<select class="form-control">
+										<option value="null" disabled selected hidden>Selecione um Ingrediente</option>
+										<option *ngFor="let item of ingredientesDisponiveis" value= {{item.id}}>
+											{{item.nome}}
+										</option>
+								</select>
 						</div>
 						<div class="col-md-2">
 							<h4>Valor por Kg:</h4>
@@ -165,7 +176,7 @@
 								<button class="btn btn-success">Salvar</button>
 							</div>
 							<div class="col-auto">
-								<button class="btn btn-success" [disabled]="ftpForm.invalid">Publicar</button>
+								<button type="submit" class="btn btn-success" [disabled]="ftpForm.invalid">Publicar</button>
 							</div>
 						</div>
 					</div>

@@ -13,7 +13,7 @@ export class Ftp {
     public tempo: String;
     public peso: Number;
     public imagem: String;
-    public tipo: Number;
+    public tipo: String;
     public criadores: Usuario[];
     public ingredientes: Ingrediente[];
     public professor: Usuario;
