@@ -54,7 +54,7 @@
 <div id="atribForm" *ngFor="let ingAtributo of atributos">  <!-- referencia o atributo que vem do angular -->
 		<div class="row form-group">
 		<label class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
-		<div class="col-md-6">
+		<div class="col-md-5">
 		<input id="input-atributo" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
 		placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md" required>
 		</div>
