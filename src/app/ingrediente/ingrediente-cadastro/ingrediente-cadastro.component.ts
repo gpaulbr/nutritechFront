@@ -9,6 +9,7 @@ import { Usuario } from '../../usuario/usuario';
 import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { IngredienteService } from '../ingrediente.service';
 import { IngredienteDto } from '../ingrediente-dto';
+import { IngredienteAtributoDto } from '../ingrediente-atributo-dto';
 import { Router } from '@angular/router';
 
 @Component({
@@ -63,7 +64,7 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   setarValor(nomeAtributo: string, valor: number) {
-    this.atributos.forEach(a => {
+    this..forEach(a => {
       if(a.atributo.nome === nomeAtributo) {
         a.valor = valor;
       }
@@ -79,9 +80,9 @@ export class IngredienteCadastroComponent implements OnInit {
   cadastrarIngrediente(ingrediente: IngredienteDto) {
     ingrediente.status = true;
     ingrediente.idCriador = 1;
-
+    ingrediente.atributos = this.atributos;
     // console.log(ingrediente);
-
+    debugger;
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
         alert("Ingrediente cadastrado com sucesso!");
