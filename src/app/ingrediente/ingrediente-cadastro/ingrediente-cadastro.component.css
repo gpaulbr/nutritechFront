@@ -69,8 +69,8 @@ h2{
 
 /* Nome do input, exemplo "nome" <- antes o input*/  
 .control-label{
-  margin-left:10%;
-
+  width: 22em;
+  margin: auto;
 }
 
 /* Input ingredientes NOME ORIGEM  */
@@ -109,29 +109,30 @@ h2{
 }
 
 @media only screen and (max-width: 667px) {
-h2{   /* Arrumar o recuo do titulo para a esquerda */
+  form{
+    width: 100%; /* proporção do formulario */
+  }
+  h2{   
   font-size:1.5em;
   margin:0 !important;
   width: 100%;
 }
-.input-md{
-  width: 20em;
-  margin: auto;
+.control-label, .input-md {
+  width:90% !important;
+  margin-left: 5%;
 
 }
-.control-label{
- /* margin-left:0%;*/
-  width: 20em !important;
+.input-Radio{
+  margin-left:50%;
 }
 }
 
 @media only screen and (max-width: 568px) {
-h2{   /* Arrumar o recuo do titulo para a esquerda */
-  font-size:1.5em;
-  padding-left: 7%;
-  background-position:0% 2.5%;
-  background-size:1.2em;
-}
+  form{
+    width: 100% !important; /* proporção do formulario */
+   
+  }
+
 /* Input Unidade Atributos */  
 #atribForm{
   width:60%;
@@ -140,21 +141,32 @@ h2{   /* Arrumar o recuo do titulo para a esquerda */
 .but-t{
   margin-left: 20%;
 }
+h2{   
+  font-size:1.5em;
+  margin:0 !important;
+  width: 100% !important;
+}
+.control-label, .input-md {
+  width:90% !important;
+  margin-left: 5%;
 
-.control-label{
-  margin-left:0%;
 }
 }
 
 @media only screen and (max-width: 330px) {
-.input-md,#input-atributo{
-  width:90%;
+  form{
+    width: 100%; /* proporção do formulario */
+  }
+h2{   
+  font-size:1.5em;
+  margin:0 !important;
+  width: 100%;
 }
+.control-label, .input-md {
+  width:90% !important;
+  margin-left: 5%;
 
-.control-label{
-  margin-left:0%;
 }
-
 
 }
 
