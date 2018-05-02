@@ -7,12 +7,11 @@
 
 /* Formulario, parte esmaecida */
 form{
-  width: 50%; /* proporção do formulario */
+  width: 40%; /* proporção do formulario */
 }
 
 /* Configurações do Titulo Cadastro de Ingredientes */  
 h2{
-  margin-left: 15% ;
   margin: 4% ;
 }
 
@@ -24,7 +23,7 @@ h2{
 
 /* Nome do input, exemplo "nome" <- depois o input*/  
 .control-label{
-    margin-left:10%;
+    margin-left:17%;
 }
  
 /* Input ingredientes NOME ORIGEM  */
@@ -34,7 +33,7 @@ h2{
 
 /* Input Unidade Atributos */  
 #input-atributo{
-  width: 40%;
+  width: 40%; 
 }
 
 /* Aviso Calculo */
@@ -43,17 +42,17 @@ h2{
   line-height: 0.5em !important; /* espaçamento das linhas */
   text-align:center; /* alinhamento do texto */
   color:rgb(202, 83, 4); /* cor do texto */
-  width: 80%; /* largura do mini-form */
+  width: 63%; /* largura do mini-form */
   height: 50%; /* altura do mini-form */
   margin: 2% auto; /* margin ao redor do form */
   padding-top: 2%; /* distancia do texto do mini-form */
   background:linear-gradient(0deg,rgba(238, 236, 95, 0.6), rgba(233, 224, 105, 0.6));
+  border-radius: 10px;
   /* ^^^^^ -> cor do mini-form */
 }
 
 #atribForm{
-  margin-right: -25%;
-  margin-left: 6%;
+  margin-left: 13%;
 }
 
 @media only screen and (max-width: 1032px) {
