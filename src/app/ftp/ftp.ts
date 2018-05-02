@@ -5,19 +5,19 @@ import { Time } from "@angular/common";
 
 export class Ftp {
 
-    public id: number;
-    public nome: string;
-    public status: boolean;
-    public passos: string[];
-    public rendimento: string;
-    public tempo: string;
-    public peso: number;
-    public imagem: string;
-    public tipo: number;
+    public id: Number;
+    public nome: String;
+    public status: Boolean;
+    public passos: String[];
+    public rendimento: String;
+    public tempo: String;
+    public peso: Number;
+    public imagem: String;
+    public tipo: Number;
     public criadores: Usuario[];
     public ingredientes: Ingrediente[];
     public professor: Usuario;
     public data: Date;
-    public horario: Time;
+    public dificuldade: Number;
     public grupoReceita: GrupoReceita;
 }

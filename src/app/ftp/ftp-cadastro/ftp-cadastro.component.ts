@@ -7,6 +7,9 @@ import { Time } from '@angular/common';
 import { Usuario } from '../../usuario/usuario';
 import { TipoIngrediente } from '../../ingrediente/tipo-ingrediente.enum';
 import { debug } from 'util';
+import { GrupoService } from '../../grupo/grupo.service';
+import { Grupo } from '../../grupo/grupo';
+import { UsuarioService } from '../../usuario/usuario.service';
 
 @Component({
   selector: 'ftp-cadastro',
@@ -18,7 +21,11 @@ export class FTPCadastroComponent implements OnInit {
   ftpForm: FormGroup
   fb: FormBuilder
 
-  constructor(private ftpService: FtpService,
+  grupos: Grupo[];
+  
+  constructor(private ftpService: FtpService, 
+    private grupoService: GrupoService, 
+    private usuarioService: UsuarioService,
     private router: Router,
     fb: FormBuilder) {
     this.fb = new FormBuilder();
@@ -35,9 +42,8 @@ export class FTPCadastroComponent implements OnInit {
       ingredientes: [null, Validators.compose([Validators.required])],
       professor: [null, Validators.compose([Validators.required])],
       //data: [null, Validators.compose([Validators.required])],
-      //hora: [null, Validators.compose([Validators.required])],
-      grupoReceita: [null, Validators.compose([Validators.required])],
-      dificuldade: [0]
+      dificuldade: [0, Validators.compose([Validators.min(1), Validators.max(5)])],
+      grupoReceita: [null, Validators.compose([Validators.required])]
     })
    }
    
@@ -46,12 +52,18 @@ export class FTPCadastroComponent implements OnInit {
     if(usuarioLogado == null) {  
       this.router.navigate(['./']);
     }
+
+    this.grupoService.buscarGrupos().subscribe(
+      response => {
+        this.grupos = response['Grupos'];
+      }
+    )
   }
 
   cadastrar(ftp: Ftp) {
     ftp.status = true;
     ftp.imagem = "url/img.jpg"
-    ftp.data = new Date(Date.now());
+    ftp.data = new Date();
     // ftp.horario.hours = ftp.data.getHours();
     // ftp.horario.minutes = ftp.data.getMinutes();
 

@@ -52,7 +52,7 @@ import { FtpDificuldadeComponent } from './ftp/ftp-dificuldade/ftp-dificuldade.c
     AtributoListagemComponent,
     LoginComponent,
     FtpModoPreparoComponent,
-    FtpDificuldadeComponent
+    FtpDificuldadeComponent,
   ],
   imports: [
     BrowserModule,
