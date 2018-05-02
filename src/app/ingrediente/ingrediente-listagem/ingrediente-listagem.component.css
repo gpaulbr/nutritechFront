@@ -5,6 +5,7 @@ table {
 	max-width: 100%;
     white-space: nowrap;
     align-self: center;
+    background-color: #ffffff9c;
     
 }
 
@@ -24,10 +25,6 @@ th, tr {
 
 .nome-grupo {
     text-align: left;
-}
-
-table:nth-child(odd){
-	background:linear-gradient(0deg,rgb(154, 196, 191),rgba(255,255,255,0.7));
 }
 
 div {   

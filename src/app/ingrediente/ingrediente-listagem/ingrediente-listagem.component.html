@@ -3,21 +3,28 @@
       <div class="panel-heading ">
           <h2 class="titulo_lista">Lista de Ingredientes</h2>
       </div>
-      <div class="panel-body">
-            <div>
-                <ngx-datatable
-                    class='material'
-                    style="background: #ffffff9c"
-                    [columns]="columns"
-                    [columnMode]="'force'"
-                    [headerHeight]="50"
-                    [footerHeight]="50"
-                    [rowHeight]="'auto'"
-                    [limit]="10"
-                    [rows]='rows'>
-                </ngx-datatable>
-            </div>
-          <!-- <table class="display" id="listaItens">
+      <div class="panel-body">  
+        <div>
+                <input
+                type='text'
+                style='padding:8px;margin:15px auto;width:30%;'
+                placeholder='Type to filter the name column...'
+                (keyup)='updateFilter($event)'
+              />
+
+            <ngx-datatable
+            #table
+            class='material'
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="10"
+            [rows]='rows'>
+          </ngx-datatable>
+            <!-- FUNCIONA, MAS É GAMBIARRA 
+              <table id="listaItens" class="display">
               <thead>
               <tr>
                   <th>Id</th>
@@ -28,9 +35,11 @@
                   <th>Ações</th>
               </tr>
               </thead>
+              
               <ng-container *ngFor="let ingrediente of ingredientes">
-                  <tr>
-                      <td>
+                <tbody id="myTable"> 
+                <tr *ngIf="ingrediente.tipo=='COMUM' ||(ingrediente.tipo=='PRIVADO' && (this.usuarioLogado.id==ingrediente.criador.id || this.usuarioLogado.tipo == 'ADMIN'))">
+                    <td >
                           {{ingrediente.id}}
                       </td>
                       <td>
@@ -46,8 +55,23 @@
                         {{ingrediente.tipo}}
                     </td>
                   </tr>
+                </tbody>
               </ng-container>
+              
           </table> -->
       </div>
   </div>
+</div>
+
+<script>
+        $(document).ready(function(){
+          $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+</script>
+
 </div>
