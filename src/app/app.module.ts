@@ -34,6 +34,7 @@ import { FtpService } from './ftp/ftp.service';
 import { FtpModoPreparoComponent } from './ftp/ftp-modo-preparo/ftp-modo-preparo.component';
 import { FtpDificuldadeComponent } from './ftp/ftp-dificuldade/ftp-dificuldade.component';
 import { FtpIntegrantesComponent } from './ftp/ftp-integrantes/ftp-integrantes.component';
+import { FtpSelecaoIngredientesComponent } from './ftp/ftp-selecao-ingredientes/ftp-selecao-ingredientes.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { FtpIntegrantesComponent } from './ftp/ftp-integrantes/ftp-integrantes.c
     FtpModoPreparoComponent,
     FtpDificuldadeComponent,
     FtpIntegrantesComponent,
+    FtpSelecaoIngredientesComponent,
   ],
   imports: [
     BrowserModule,
