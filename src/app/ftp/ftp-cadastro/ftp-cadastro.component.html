@@ -58,11 +58,11 @@
 									</div>
 									<div class="col-lg-5">
 										<h4>Rendimento:</h4>
-										<input type="text" class="form-control" placeholder="Uma porção">
+										<input formControlName="rendimento" type="text" class="form-control" placeholder="Uma porção">
 									</div>
 									<div class="col-lg-4">
 										<h4>Peso:</h4>
-										<input type="text" class="form-control" placeholder="600g">
+										<input formControlName="peso" type="number" class="form-control" placeholder="600g">
 									</div>
 								</div>
 								<div id="tempo-preparo" class="row justify-content-start">
@@ -70,7 +70,7 @@
 										<h4>Tempo de preparo:</h4>
 									</div>
 									<div class="col-md-4">
-										<input type="text" class="form-control" placeholder="30 min">
+										<input formControlName="tempo" type="text" class="form-control" placeholder="30 min">
 									</div>
 								</div>
 								<div class="row no-gutters align-items-center">
@@ -91,10 +91,10 @@
 								<label id="ficha-privada" for="ftp-privacidade" ng-checked="leader" (click)="alterarTipo()">Tornar minha ficha técnica privada</label>
 							</div>
 							<div class="col-auto">
-								<button class="btn btn-success">Salvar</button>
+								<button class="btn btn-success" (click)="debugPrint()">Salvar</button>
 							</div>
 							<div class="col-auto">
-								<button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value)" [disabled]="ftpForm.invalid">Publicar</button>
+								<button type="submit" class="btn btn-success" (click)="publicarFTP(ftpForm.value)" [disabled]="ftpForm.invalid">Publicar</button>
 							</div>
 						</div>
 					</div>

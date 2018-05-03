@@ -25,35 +25,36 @@ export class FTPCadastroComponent implements OnInit {
 
   gruposDisponiveis: Grupo[];
   professoresDisponiveis: Usuario[];
-  
-  constructor(private ftpService: FtpService, 
-    private grupoService: GrupoService, 
+
+  constructor(private ftpService: FtpService,
+    private grupoService: GrupoService,
     private usuarioService: UsuarioService,
     private ingredienteService: IngredienteService,
     private router: Router,
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.ftpForm = this.fb.group({
-      /**/nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
-      /**/status: [1, Validators.compose([Validators.required])],
-      /**/passos: [null, Validators.compose([Validators.required])],
+      nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+      status: [1, Validators.compose([Validators.required])],
+      publicada: [0, Validators.compose([Validators.required])],
+      passos: [null, Validators.compose([Validators.required])],
       rendimento: [null, Validators.compose([Validators.required])],
       tempo: [null, Validators.compose([Validators.required])],
       peso: [null, Validators.compose([Validators.required])],
-      /**/imagem: [""],
+      imagem: [""],
       tipo: [false, Validators.compose([Validators.required])],
       criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       ingredientes: [null, Validators.compose([Validators.required])],
       professor: [null, Validators.compose([Validators.required, Validators.min(1)])],
-      data: [null, Validators.compose([Validators.required])],
+      datahora: [null],
       dificuldade: [null, Validators.compose([Validators.required, Validators.min(1), Validators.max(5)])],
       grupoReceita: [null, Validators.compose([Validators.required, Validators.min(1)])]
     })
    }
-   
+
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {  
+    if(usuarioLogado == null) {
       this.router.navigate(['./']);
     }
 
@@ -72,19 +73,13 @@ export class FTPCadastroComponent implements OnInit {
     )
   }
 
-  cadastrar(ftp: Ftp) {
-    ftp.status = true;
-    ftp.imagem = "url/img.jpg"
-    ftp.datahora = new Date()
-    // ftp.horario.hours = ftp.data.getHours();
-    // ftp.horario.minutes = ftp.data.getMinutes();
-
-    this.ftpService.getDateTimeNow().subscribe(
-      response => {
-        ftp.datahora = response['Receitas'];
-        console.log("Data e Hora do Cadastro: " + ftp.datahora);
-      }
-    )
+  publicarFTP(ftp: Ftp) {
+    this.ftpForm.controls.status.setValue(true);
+    this.ftpForm.controls.publicada.setValue(true);
+    this.ftpForm.controls.imagem.setValue("url/img.jpg");
+    this.ftpForm.controls.datahora.setValue(new Date());
+    
+    this.debugPrint()
 
     this.ftpService.salvarFTP(ftp)
     .subscribe(resp => {
@@ -105,7 +100,7 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   alterarIngredientes(ingredientes: Array<Ingrediente>) {
-    this.ftpForm.controls.criadores.setValue(ingredientes);
+    this.ftpForm.controls.ingredientes.setValue(ingredientes);
     console.log(ingredientes)
   }
 
@@ -128,4 +123,26 @@ export class FTPCadastroComponent implements OnInit {
     console.log("É Privado: " + this.ftpForm.controls.tipo.value);
   }
 
+
+  debugPrint() {
+    console.log("####### DADOS DO FORM #######")
+    console.log("Nome - " + this.ftpForm.controls.nome.value)
+    console.log("Status - " + this.ftpForm.controls.status.value)
+    console.log("Passos: ")
+    console.log(this.ftpForm.controls.passos.value)
+    console.log("Rendimento - " + this.ftpForm.controls.rendimento.value)
+    console.log("Tempo - " + this.ftpForm.controls.tempo.value)
+    console.log("Peso - " + this.ftpForm.controls.peso.value)
+    console.log("Imagem - " + this.ftpForm.controls.imagem.value)
+    console.log("Privado (tipo) - " + this.ftpForm.controls.tipo.value)
+    console.log("Criadores :")
+    console.log(this.ftpForm.controls.criadores.value)
+    console.log("Ingredientes :")
+    console.log(this.ftpForm.controls.ingredientes.value)
+    console.log("Professor - " + this.ftpForm.controls.professor.value)
+    console.log("Data - " + this.ftpForm.controls.datahora.value)
+    console.log("Dificuldade - " + this.ftpForm.controls.dificuldade.value)
+    console.log("Grupo Receita - " + this.ftpForm.controls.grupoReceita.value)
+    console.log("#############################")
+  }
 }
