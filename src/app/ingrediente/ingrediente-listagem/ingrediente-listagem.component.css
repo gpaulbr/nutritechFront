@@ -1,4 +1,4 @@
-table,.tabelaNgx {
+table,/*.fixed-header */{ /*comentei pq só o fundo da tabela estava funcionando, mais nada */
 	width: 100%;
 	margin: 0px;
 	overflow: auto;
@@ -8,12 +8,9 @@ table,.tabelaNgx {
     background-color: #ffffff9c!important;
     
 }
-datatable-column{ /* tentando */
-  color:white;  
-}
 
-thead {
-    background-color: #207C7B;
+thead,.datatable-row-center{
+    background-color: #207C7B!important;
     color: white;
 }
 

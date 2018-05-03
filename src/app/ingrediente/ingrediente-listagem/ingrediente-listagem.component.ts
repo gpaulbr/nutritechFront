@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Ingrediente } from '../ingrediente';
 import { IngredienteService } from '../ingrediente.service';
 import { Router } from '@angular/router';
@@ -6,22 +6,25 @@ import { Usuario } from '../../usuario/usuario';
 import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { id } from '@swimlane/ngx-datatable/release/utils';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
+  //encapsulation: ViewEncapsulation.None,//para consegguir modificar o css de ngx-datatable
   selector: 'filter-demo',
   templateUrl: './ingrediente-listagem.component.html',
-  styleUrls: ['./ingrediente-listagem.component.css']
+  styleUrls: ['./ingrediente-listagem.component.css'],
+  
 })
+
 export class IngredienteListagemComponent implements OnInit {
   ingredientes: Ingrediente[];
   usuarioLogado: Usuario;
-  
+  teste:string;
   rows = [];
   columns = [
     { name: 'Nome' },
     { name: 'Origem' },
     { prop: 'criador.nome', name: "Criador" },
-    { prop: 'criador.id', name: "idCriador" },
     { name: 'Tipo' }
   ];
 
@@ -61,19 +64,28 @@ export class IngredienteListagemComponent implements OnInit {
 
         this.rows = lista
       });
-    
   console.log("Usuário logado:" + this.usuarioLogado.tipo);//OK TIRAR
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
-    // filter our data
+    // filtra por todos os campos da tabela
     const temp = this.ingredientes.filter(function(d) {
-      return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
+      if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
+            return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(d.origem.toLowerCase().indexOf(val) !== -1 || !val)
+            return d.origem.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(d.criador.nome.toLowerCase().indexOf(val) !== -1 || !val)
+            return d.criador.nome.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
+            return d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      // fim do filtro
+      "ERRO"
     });
 
-    this.rows = temp;
+      this.rows = temp;
+
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }

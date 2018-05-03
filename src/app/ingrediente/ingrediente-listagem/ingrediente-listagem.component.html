@@ -12,14 +12,12 @@
                 (keyup)='updateFilter($event)'
               />
 
-            <ngx-datatable
+            <ngx-datatable 
             #table
-            class='tabelaNgx'
+            class="material"
             [columns]="columns"
             [columnMode]="'force'"
-            [headerHeight]="50"
-            [footerHeight]
-            [footerHeight]="50"
+            [headerHeight]="40"
             [rowHeight]="'auto'"
             [rows]='rows'>
           </ngx-datatable>
