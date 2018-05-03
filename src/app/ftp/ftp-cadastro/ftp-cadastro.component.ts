@@ -25,7 +25,6 @@ export class FTPCadastroComponent implements OnInit {
 
   gruposDisponiveis: Grupo[];
   professoresDisponiveis: Usuario[];
-  alunosDisponiveis: Usuario[];
   ingredientesDisponiveis: Ingrediente[];
   
   constructor(private ftpService: FtpService, 
@@ -36,18 +35,18 @@ export class FTPCadastroComponent implements OnInit {
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.ftpForm = this.fb.group({
-      /**/nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
-      //status: [null, Validators.compose([Validators.required])],
+      nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+      status: [1, Validators.compose([Validators.required])],
       passos: [null, Validators.compose([Validators.required])],
       rendimento: [null, Validators.compose([Validators.required])],
       tempo: [null, Validators.compose([Validators.required])],
       peso: [null, Validators.compose([Validators.required])],
-      //imagem: [null, Validators.compose([Validators.required])],
+      imagem: [null],
       tipo: [false, Validators.compose([Validators.required])],
-      criadores: [null, Validators.compose([Validators.required])],
+      criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       ingredientes: [null, Validators.compose([Validators.required])],
       professor: [null, Validators.compose([Validators.required, Validators.min(1)])],
-      //data: [null, Validators.compose([Validators.required])],
+      data: [null, Validators.compose([Validators.required])],
       dificuldade: [null, Validators.compose([Validators.required, Validators.min(1), Validators.max(5)])],
       grupoReceita: [null, Validators.compose([Validators.required, Validators.min(1)])]
     })
@@ -80,13 +79,6 @@ export class FTPCadastroComponent implements OnInit {
       }
     )
 
-    this.usuarioService.buscarAlunos().subscribe(
-      response => {
-        this.alunosDisponiveis = response['Usuarios'];
-        console.log(this.alunosDisponiveis);
-      }
-    )
-
     this.ingredienteService.buscarIngredientes().subscribe(
       response => {
         this.ingredientesDisponiveis = response['Ingredientes'];
@@ -112,12 +104,17 @@ export class FTPCadastroComponent implements OnInit {
 
   alterarPassos(passos: Array<String>){
     this.ftpForm.controls.passos.setValue(passos);
-    console.log(this.ftpForm.controls);
+    console.log(this.ftpForm.controls.passos);
+  }
+
+  alterarIntegrantes(integrantes: Array<Usuario>) {
+    this.ftpForm.controls.criadores.setValue(integrantes);
+    console.log(integrantes)
   }
 
   alterarDificuldade(dificuldade: number){
     this.ftpForm.controls.dificuldade.setValue(dificuldade);
-    console.log(this.ftpForm.controls);
+    console.log(this.ftpForm.controls.dificuldade);
     console.log("Dificuldade Alterada para: " + this.retornarDificuldade())
   }
 

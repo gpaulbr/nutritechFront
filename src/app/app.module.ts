@@ -33,6 +33,7 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
 import { FtpService } from './ftp/ftp.service';
 import { FtpModoPreparoComponent } from './ftp/ftp-modo-preparo/ftp-modo-preparo.component';
 import { FtpDificuldadeComponent } from './ftp/ftp-dificuldade/ftp-dificuldade.component';
+import { FtpIntegrantesComponent } from './ftp/ftp-integrantes/ftp-integrantes.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { FtpDificuldadeComponent } from './ftp/ftp-dificuldade/ftp-dificuldade.c
     LoginComponent,
     FtpModoPreparoComponent,
     FtpDificuldadeComponent,
+    FtpIntegrantesComponent,
   ],
   imports: [
     BrowserModule,
