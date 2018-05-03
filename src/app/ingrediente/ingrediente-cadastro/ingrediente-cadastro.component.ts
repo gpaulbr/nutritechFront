@@ -22,6 +22,7 @@ export class IngredienteCadastroComponent implements OnInit {
   ingredienteForm: FormGroup;
   fb: FormBuilder
   atributos: IngredienteAtributo[];
+  ingAtributos: IngredienteAtributoDto[];
 
   tiposIngredientes = [{
     valor: TipoIngrediente.PRIVADO,
@@ -39,11 +40,12 @@ export class IngredienteCadastroComponent implements OnInit {
     private router: Router,
     private ingredienteService: IngredienteService) {
     this.atributos = [];
+    this.ingAtributos = [];
     this.fb = new FormBuilder();
     this.ingredienteForm = this.fb.group({
       nome: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
-      tipo: [TipoIngrediente[TipoIngrediente.PRIVADO], Validators.required],
+      tipo: [TipoIngrediente[TipoIngrediente.PRIVADO], Validators.required]
     });
   }
 
@@ -61,12 +63,13 @@ export class IngredienteCadastroComponent implements OnInit {
           this.atributos.push(ingAtributos);
         });
       });
+
   }
 
-  setarValor(nomeAtributo: string, valor: number) {
-    this..forEach(a => {
+  setarValor(nomeAtributo: string, valor: string) {
+    this.atributos.forEach(a => {
       if(a.atributo.nome === nomeAtributo) {
-        a.valor = valor;
+        this.ingAtributos.push(new IngredienteAtributoDto(1,1,valor));
       }
     });
   }
@@ -80,7 +83,7 @@ export class IngredienteCadastroComponent implements OnInit {
   cadastrarIngrediente(ingrediente: IngredienteDto) {
     ingrediente.status = true;
     ingrediente.idCriador = 1;
-    ingrediente.atributos = this.atributos;
+    ingrediente.atributos = this.ingAtributos;
     // console.log(ingrediente);
     debugger;
     this.ingredienteService.cadastrarIngrediente(ingrediente)

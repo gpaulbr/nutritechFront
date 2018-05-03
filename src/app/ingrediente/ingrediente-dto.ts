@@ -1,5 +1,5 @@
 import { TipoIngrediente } from "./tipo-ingrediente.enum";
-import { IngredienteAtributo } from "./ingrediente-atributo";
+import { IngredienteAtributoDto } from "./ingrediente-atributo-dto";
 
 export class IngredienteDto {
     public nome: string;
@@ -7,5 +7,5 @@ export class IngredienteDto {
     public tipo: TipoIngrediente;
     public status: boolean;
     public idCriador: number;
-    public atributos: IngredienteAtributo[];
+    public atributos: IngredienteAtributoDto[];
 }
