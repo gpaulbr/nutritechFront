@@ -25,7 +25,6 @@ export class FTPCadastroComponent implements OnInit {
 
   gruposDisponiveis: Grupo[];
   professoresDisponiveis: Usuario[];
-  ingredientesDisponiveis: Ingrediente[];
   
   constructor(private ftpService: FtpService, 
     private grupoService: GrupoService, 
@@ -71,20 +70,6 @@ export class FTPCadastroComponent implements OnInit {
         console.log(this.professoresDisponiveis);
       }
     )
-
-    this.usuarioService.buscarProfessores().subscribe(
-      response => {
-        this.professoresDisponiveis = response['Usuarios'];
-        console.log(this.professoresDisponiveis);
-      }
-    )
-
-    this.ingredienteService.buscarIngredientes().subscribe(
-      response => {
-        this.ingredientesDisponiveis = response['Ingredientes'];
-        console.log(this.ingredientesDisponiveis);
-      }
-    )
   }
 
   cadastrar(ftp: Ftp) {
@@ -117,6 +102,11 @@ export class FTPCadastroComponent implements OnInit {
   alterarIntegrantes(integrantes: Array<Usuario>) {
     this.ftpForm.controls.criadores.setValue(integrantes);
     console.log(integrantes)
+  }
+
+  alterarIngredientes(ingredientes: Array<Ingrediente>) {
+    this.ftpForm.controls.criadores.setValue(ingredientes);
+    console.log(ingredientes)
   }
 
   alterarDificuldade(dificuldade: number){

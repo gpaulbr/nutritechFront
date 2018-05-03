@@ -1,3 +1,65 @@
-<p>
-  ftp-selecao-ingredientes works!
-</p>
+<h3>Adicionar Ingredientes</h3>
+	<div class="row">
+		<div class="col-md-6">
+				<select [(ngModel)]="ingrediente" class="form-control" >
+						<option [ngValue]="null" disabled selected hidden>Selecione um Ingrediente</option>
+						<option *ngFor="let item of ingredientesDisponiveis" [ngValue]="item">
+					{{item.nome}}
+				</option>
+			</select>
+		</div>
+			<div class="col-md-2">
+				<label>Valor/kg:</label>
+				<p>R$ 0.00</p>
+			</div>
+			<div class="col-md-2">
+				<label>Fator de correção:</label>
+				<p>95%</p>
+			</div>
+			<div class="col-md-2">
+				<label>Peso (g)</label>
+				<input type="number" class="form-control">
+			</div>
+			<div class="col-md-2">
+				<button class="btn btn-success" (click)="adicionarIngrediente()">+</button>
+			</div>	
+	</div>
+	<div>
+	<table>
+		<tr>
+			<th>Ingrediente</th>
+			<th>Peso (g)</th>
+			<th>Custo</th>
+			<th>Fator de correção</th>
+			<th>Ações</th>
+		</tr>
+			
+		<ng-container *ngFor="let item of ingredientes; let i = index">
+			<tr>
+				<th>{{item.nome}}</th>
+				<th>{{item.custo}}</th>
+				<th>{{item.fator}}</th>
+				<th>{{item.quantia}}</th>
+				<th><i class="material-icons delete"  onmouseover="" style="cursor: pointer;" (click)="removerIngredientePorIndex(i)">delete</i></th>
+			</tr>
+		</ng-container>	
+	</table>
+	</div>
+	<button class="btn btn-success" (click)="criarNovoIngrediente()">Criar Novo Ingrediente</button>
+	<br>
+
+
+	<!--<tr>
+								<th>Tomates</th>
+								<th>R$ 2,00</th>
+								<th>95%</th>
+								<th>0.3Kg</th>
+								<th><i class="material-icons delete">delete</i></th>
+							</tr>
+							<tr>
+								<th>Azeitonas</th>
+								<th>R$ 5,00</th>
+								<th>94%</th>
+								<th>0.25Kg</th>
+								<th><i class="material-icons delete">delete</i></th>
+							</tr>-->
