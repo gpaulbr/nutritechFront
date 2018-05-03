@@ -1,15 +1,60 @@
-table,/*.fixed-header */{ /*comentei pq só o fundo da tabela estava funcionando, mais nada */
+table,.fixed-header { /*comentei pq só o fundo da tabela estava funcionando, mais nada */
 	width: 100%;
 	margin: 0px;
 	overflow: auto;
 	max-width: 100%;
     white-space: nowrap;
-    align-self: center;
     background-color: #ffffff9c!important;
-    
 }
 
-thead,.datatable-row-center{
+div #buscar{
+    display: inline;
+}
+.pBuscar{
+    color:white;
+    float:left;
+    padding-right:1em;
+    font-weight: normal!important;
+}
+.inputBuscar{
+    width: 15em;
+    height: 1.5em;
+    float: left;
+}
+
+/**** CSS da ngx-datatable ****/
+:host /deep/ .datatable-body .datatable-body-row .datatable-body-cell{/*ÚNICA forma com a qual consegui alterar o CSS da ngx-datatable*/
+    color: black !important;
+    text-align: center!important;
+    align-self: center!important;
+    text-justify: newspaper!important;
+    text-align: center!important;
+}
+
+:host /deep/ .ngx-datatable.material .datatable-header span{
+    font-weight: normal!important;
+    font-size: 1.1em!important;
+}
+
+:host /deep/ .ngx-datatable.material .datatable-header{
+    background-color: #207C7B!important;
+    border: 1px none white;
+    align-self: center;
+    text-justify: newspaper;
+    text-align: center;
+    height: 30px!important;
+}
+:host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
+    color: white !important;
+    border: 1px none white;
+    padding: 2px;
+    align-self: center;
+    text-justify: newspaper;
+    text-align: center;
+    font-weight: normal;
+}
+/****** FIM ******/
+thead{
     background-color: #207C7B!important;
     color: white;
 }
@@ -39,17 +84,26 @@ h2 {
     color: white;
     text-shadow: -1px 0 #207C7B, 0 1px #207C7B, -1px 0 #207C7B, 0 -1px #207C7B;}
 
+@media only screen and (max-width: 600px) {
+        table,.fixed-header {
+            display: block;
+        }
+}
 @media only screen and (max-width: 573px) {
-    table {
+    table,.fixed-header{
         font-size: 3vw;
     }
 
     thead {
         font-size: 3.5vw;
     }
+
+    :host /deep/ .ngx-datatable.material .datatable-header{/*para modificar o ngx-datatable */
+        font-size: 3.5vw;
+    }
 }
 
-@media only screen and (min-width: 942px) {
+@media only screen and (min-width: 942px) {/*tamanho normal */
     .container {
         max-width: 960px;
         min-width: 960px;        

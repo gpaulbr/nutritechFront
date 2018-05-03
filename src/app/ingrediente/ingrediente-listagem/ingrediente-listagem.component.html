@@ -5,14 +5,16 @@
       </div>
       <div class="panel-body">  
         <div>
-                <input
-                type='text'
-                style='padding:8px;margin:15px auto;width:30%;'
-                placeholder='Type to filter the name column...'
-                (keyup)='updateFilter($event)'
-              />
+               <div id="buscar" class="row"> 
+                 <p class="pBuscar col-md-4">Buscar: </p>
+                  <input
+                  type='text' class="inputBuscar col-md-4"
+                  placeholder='Busca por qualquer coluna'
+                  (keyup)='updateFilter($event)'
+                  />  
+                </div>
 
-            <ngx-datatable 
+            <ngx-datatable
             #table
             class="material"
             [columns]="columns"
@@ -60,16 +62,5 @@
       </div>
   </div>
 </div>
-
-<script>
-        $(document).ready(function(){
-          $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-          });
-        });
-</script>
 
 </div>
