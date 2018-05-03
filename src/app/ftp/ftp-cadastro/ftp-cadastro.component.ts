@@ -90,9 +90,16 @@ export class FTPCadastroComponent implements OnInit {
   cadastrar(ftp: Ftp) {
     ftp.status = true;
     ftp.imagem = "url/img.jpg"
-    ftp.data = new Date();
+    ftp.datahora = new Date()
     // ftp.horario.hours = ftp.data.getHours();
     // ftp.horario.minutes = ftp.data.getMinutes();
+
+    this.ftpService.getDateTimeNow().subscribe(
+      response => {
+        ftp.datahora = response['Receitas'];
+        console.log("Data e Hora do Cadastro: " + ftp.datahora);
+      }
+    )
 
     this.ftpService.salvarFTP(ftp)
     .subscribe(resp => {

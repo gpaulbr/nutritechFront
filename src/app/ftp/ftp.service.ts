@@ -19,4 +19,8 @@ export class FtpService {
     return this.http.get<Ftp[]>(this.url);
   }
 
+  getDateTimeNow() : Observable<Date> {
+    return this.http.get<Date>(this.url + "/now");
+  }
+
 }
