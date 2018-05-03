@@ -1,12 +1,15 @@
-table {
+table,.tabelaNgx {
 	width: 100%;
 	margin: 0px;
 	overflow: auto;
 	max-width: 100%;
     white-space: nowrap;
     align-self: center;
-    background-color: #ffffff9c;
+    background-color: #ffffff9c!important;
     
+}
+datatable-column{ /* tentando */
+  color:white;  
 }
 
 thead {

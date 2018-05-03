@@ -45,15 +45,15 @@ export class IngredienteListagemComponent implements OnInit {
         let lista = []
 
         response['Ingredientes'].forEach(p => {
-          if(this.usuarioLogado.tipo !== "ADMIN") {
+          if(this.usuarioLogado.tipo !== "ADMIN") {//se não for admin vê se é privado ou público
             if(p.tipo === "PRIVADO") {
-              if(p.criador.id === this.usuarioLogado.id) {
-                lista.push(p)
+              if(p.criador.id === this.usuarioLogado.id) {//usuário comum só acessa os próprios, ingredientes PRIVADOS
+                lista.push(p)//insere na lista 
               }
-            } else {
+            } else {//se não for privado, insere todos o ingrediente na lista
               lista.push(p)
             }
-          } else {
+          } else {//o admin deve ter acesso a todos os ingredientes
             lista.push(p)
           }
           
