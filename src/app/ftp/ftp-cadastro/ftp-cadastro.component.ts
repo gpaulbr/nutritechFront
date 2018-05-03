@@ -34,13 +34,13 @@ export class FTPCadastroComponent implements OnInit {
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.ftpForm = this.fb.group({
-      nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
-      status: [1, Validators.compose([Validators.required])],
-      passos: [null, Validators.compose([Validators.required])],
+      /**/nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
+      /**/status: [1, Validators.compose([Validators.required])],
+      /**/passos: [null, Validators.compose([Validators.required])],
       rendimento: [null, Validators.compose([Validators.required])],
       tempo: [null, Validators.compose([Validators.required])],
       peso: [null, Validators.compose([Validators.required])],
-      imagem: [null],
+      /**/imagem: [""],
       tipo: [false, Validators.compose([Validators.required])],
       criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       ingredientes: [null, Validators.compose([Validators.required])],
@@ -117,6 +117,15 @@ export class FTPCadastroComponent implements OnInit {
 
   retornarDificuldade(): number{
     return this.ftpForm.controls.dificuldade.value;
+  }
+
+  alterarTipo() {
+    if(this.ftpForm.controls.tipo.value) {
+      this.ftpForm.controls.tipo.setValue(false);
+    } else {
+      this.ftpForm.controls.tipo.setValue(true);
+    }
+    console.log("É Privado: " + this.ftpForm.controls.tipo.value);
   }
 
 }

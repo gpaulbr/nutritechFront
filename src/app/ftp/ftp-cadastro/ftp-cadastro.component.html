@@ -87,8 +87,8 @@
 	
 						<div class="last row">
 							<div class="col-md-6 mr-auto">
-								<input formControlName="tipo" type="checkbox" id="ftp-privacidade">
-								<label id="ficha-privada" for="ftp-privacidade">Tornar minha ficha técnica privada</label>
+								<input type="checkbox" id="ftp-privacidade" ng-model="leader">
+								<label id="ficha-privada" for="ftp-privacidade" ng-checked="leader" (click)="alterarTipo()">Tornar minha ficha técnica privada</label>
 							</div>
 							<div class="col-auto">
 								<button class="btn btn-success">Salvar</button>
