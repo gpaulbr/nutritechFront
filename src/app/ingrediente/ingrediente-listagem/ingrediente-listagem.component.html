@@ -22,42 +22,6 @@
             [rowHeight]="'auto'"
             [rows]='rows'>
           </ngx-datatable>
-            <!-- FUNCIONA, MAS É GAMBIARRA 
-              <table id="listaItens" class="display">
-              <thead>
-              <tr>
-                  <th>Id</th>
-                  <th>Nome do ingrediente</th>
-                  <th>Origem</th>
-                  <th>Criador</th>
-                  <th>Tipo</th>
-                  <th>Ações</th>
-              </tr>
-              </thead>
-              
-              <ng-container *ngFor="let ingrediente of ingredientes">
-                <tbody id="myTable"> 
-                <tr *ngIf="ingrediente.tipo=='COMUM' ||(ingrediente.tipo=='PRIVADO' && (this.usuarioLogado.id==ingrediente.criador.id || this.usuarioLogado.tipo == 'ADMIN'))">
-                    <td >
-                          {{ingrediente.id}}
-                      </td>
-                      <td>
-                        {{ingrediente.nome}}
-                    </td>
-                    <td>
-                        {{ingrediente.origem}}
-                    </td>
-                    <td>
-                        {{ingrediente.criador.nome}}
-                    </td>
-                    <td>
-                        {{ingrediente.tipo}}
-                    </td>
-                  </tr>
-                </tbody>
-              </ng-container>
-              
-          </table> -->
       </div>
   </div>
 </div>
