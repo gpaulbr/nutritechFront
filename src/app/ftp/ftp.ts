@@ -2,6 +2,7 @@ import { Usuario } from "../usuario/usuario";
 import { GrupoReceita } from "../ingrediente/grupo-receita";
 import { Ingrediente } from "../ingrediente/ingrediente";
 import { Time } from "@angular/common";
+import { FtpTipo } from "./ftp-tipo.enum";
 
 export class Ftp {
 
@@ -15,7 +16,7 @@ export class Ftp {
     public peso: Number;
     public imagem: String;
     public dificuldade: Number;
-    public tipo: String;
+    public tipo: FtpTipo;
     public criadores: Usuario[];
     public ingredientes: Ingrediente[];
     public professor: Usuario;

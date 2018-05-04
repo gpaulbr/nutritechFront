@@ -12,6 +12,7 @@ import { Grupo } from '../../grupo/grupo';
 import { UsuarioService } from '../../usuario/usuario.service';
 import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
+import { FtpTipo } from '../ftp-tipo.enum';
 
 @Component({
   selector: 'ftp-cadastro',
@@ -34,6 +35,7 @@ export class FTPCadastroComponent implements OnInit {
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.ftpForm = this.fb.group({
+      id: [null],
       nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
       status: [1, Validators.compose([Validators.required])],
       publicada: [0, Validators.compose([Validators.required])],
@@ -42,7 +44,7 @@ export class FTPCadastroComponent implements OnInit {
       tempo: [null, Validators.compose([Validators.required])],
       peso: [null, Validators.compose([Validators.required])],
       imagem: [""],
-      tipo: [false, Validators.compose([Validators.required])],
+      tipo: [1, Validators.compose([Validators.required])],
       criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       ingredientes: [null, Validators.compose([Validators.required])],
       professor: [null, Validators.compose([Validators.required, Validators.min(1)])],
@@ -61,6 +63,9 @@ export class FTPCadastroComponent implements OnInit {
     this.grupoService.buscarGrupos().subscribe(
       response => {
         this.gruposDisponiveis = response['Grupos'];
+        this.gruposDisponiveis.forEach(item => {
+          delete item["active"]
+        });
         console.log(this.gruposDisponiveis);
       }
     )
@@ -68,6 +73,10 @@ export class FTPCadastroComponent implements OnInit {
     this.usuarioService.buscarProfessores().subscribe(
       response => {
         this.professoresDisponiveis = response['Usuarios'];
+        this.professoresDisponiveis.forEach(item => {
+          delete item.senha
+          delete item["valid"]
+        });
         console.log(this.professoresDisponiveis);
       }
     )
@@ -115,11 +124,12 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   alterarTipo() {
-    if(this.ftpForm.controls.tipo.value) {
-      this.ftpForm.controls.tipo.setValue(false);
+    if(this.ftpForm.controls.tipo.value == FtpTipo.PRIVADO) {
+      this.ftpForm.controls.tipo.setValue(FtpTipo.PUBLICO);
     } else {
-      this.ftpForm.controls.tipo.setValue(true);
+      this.ftpForm.controls.tipo.setValue(FtpTipo.PRIVADO);
     }
+    console.log("Tipo")
     console.log("É Privado: " + this.ftpForm.controls.tipo.value);
   }
 

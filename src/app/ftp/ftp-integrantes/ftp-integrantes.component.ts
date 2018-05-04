@@ -25,6 +25,10 @@ export class FtpIntegrantesComponent implements OnInit {
     this.usuarioService.buscarAlunos().subscribe(
       response => {
         this.alunosDisponiveis = response['Usuarios'];
+        this.alunosDisponiveis.forEach(item => {
+          delete item.senha
+          delete item["valid"]
+        });
         console.log(this.alunosDisponiveis);
       }
     )
