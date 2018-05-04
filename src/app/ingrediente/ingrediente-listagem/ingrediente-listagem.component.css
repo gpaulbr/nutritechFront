@@ -20,6 +20,8 @@ div #buscar{
     width: 15em;
     height: 1.5em;
     float: left;
+    border: 1px solid #207C7B;
+    border-radius: 8px 8px 8px;
 }
 
 /**** CSS da ngx-datatable ****/
@@ -84,6 +86,15 @@ h2 {
     color: white;
     text-shadow: -1px 0 #207C7B, 0 1px #207C7B, -1px 0 #207C7B, 0 -1px #207C7B;}
 
+@media only screen and (max-width: 768px) {
+    .inputBuscar{
+        margin-left: 4%;
+    }
+
+    #buscar{
+        margin-bottom: 2%;
+    }
+}
 @media only screen and (max-width: 600px) {
         table,.fixed-header {
             display: block;
@@ -92,6 +103,9 @@ h2 {
 @media only screen and (max-width: 573px) {
     table,.fixed-header{
         font-size: 3vw;
+    }
+    .inputBuscar{
+        width: 91%;
     }
 
     thead {
