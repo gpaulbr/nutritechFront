@@ -10,15 +10,15 @@
 		</div>
 			<div class="col-md-2">
 				<label>Valor/kg:</label>
-				<p>R$ 0.00</p>
+				<input [(ngModel)]="custoKg" type="number" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label>Fator de correção:</label>
-				<p>95%</p>
+				<input type="number" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label>Peso (g)</label>
-				<input type="number" class="form-control">
+				<input [(ngModel)]="pesoG" type="number" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<button class="btn btn-success" (click)="adicionarIngrediente()">+</button>
@@ -34,12 +34,12 @@
 			<th>Ações</th>
 		</tr>
 			
-		<ng-container *ngFor="let item of ingredientes; let i = index">
+		<ng-container *ngFor="let item of ingredientes">
 			<tr>
-				<th>{{item.nome}}</th>
-				<th>{{item.custo}}</th>
+				<th>{{item.ingrediente.nome}}</th>
+				<th>{{item.pesoG}}</th>
+				<th>{{item.custoKg}}</th>
 				<th>{{item.fator}}</th>
-				<th>{{item.quantia}}</th>
 				<th><i class="material-icons delete"  onmouseover="" style="cursor: pointer;" (click)="removerIngredientePorIndex(i)">delete</i></th>
 			</tr>
 		</ng-container>	

@@ -91,10 +91,10 @@
 								<label id="ficha-privada" for="ftp-privacidade" ng-checked="leader">Tornar minha ficha técnica privada</label>
 							</div>
 							<div class="col-auto">
-								<button class="btn btn-success" (click)="debugPrint()">Salvar</button>
+								<button class="btn btn-success" (click)="cadastrar(ftpForm.value, false)">Salvar</button>
 							</div>
 							<div class="col-auto">
-								<button type="submit" class="btn btn-success" (click)="publicarFTP(ftpForm.value)" [disabled]="ftpForm.invalid">Publicar</button>
+								<button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value, true)" [disabled]="ftpForm.invalid">Publicar</button>
 							</div>
 						</div>
 					</div>

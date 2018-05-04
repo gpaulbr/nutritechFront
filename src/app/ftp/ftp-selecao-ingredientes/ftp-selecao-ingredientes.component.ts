@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
+import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 
 @Component({
   selector: 'app-ftp-selecao-ingredientes',
@@ -10,14 +11,16 @@ import { IngredienteService } from '../../ingrediente/ingrediente.service';
 export class FtpSelecaoIngredientesComponent implements OnInit {
 
   ingrediente: Ingrediente = null;
-  ingredientes = new Array<Ingrediente>();
+  custoKG: Number = 0.00;
+  pesoG: Number = 0;
+  ingredientes = new Array<ReceitaIngrediente>();
 
   ingredientesDisponiveis: Ingrediente[];
 
   constructor(private ingredienteService: IngredienteService) { }
 
   @Output()
-  salvarIngredientes = new EventEmitter<Array<Ingrediente>>();
+  salvarIngredientes = new EventEmitter<Array<ReceitaIngrediente>>();
   @Input()
   obrigatorio: boolean
   
@@ -35,23 +38,26 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   }
 
   adicionarIngrediente() {
-    if(this.ingrediente != null && !this.ingredientes.includes(this.ingrediente)) {
-      this.ingredientes.push(this.ingrediente); 
+    console.log (this.ingredientes)
+    var novo: ReceitaIngrediente = new ReceitaIngrediente()
+    delete this.ingrediente.criador['valid']
+    novo.ingrediente = this.ingrediente;
+    novo.custoKg = this.custoKG;
+    novo.pesoG = this.pesoG;
+
+    if(this.ingrediente != null && !this.ingredientes.includes(novo)) {
+      this.ingredientes.push(novo); 
       console.log("Adicionado: " + this.ingrediente + " à lista: " + this.ingredientes);
       this.ingrediente = null;
       this.salvar();
     } else {
       console.log("Nada selecionado")
     }
+    console.log (this.ingredientes)
+
   }
 
   removerIngredientePorIndex(index : number) {
-    this.ingredientes.splice(index, 1)
-    this.salvar();
-  }
-
-  removerIngredientePorIngrediente(user : Ingrediente) {
-    var index = this.ingredientes.indexOf(user)
     this.ingredientes.splice(index, 1)
     this.salvar();
   }

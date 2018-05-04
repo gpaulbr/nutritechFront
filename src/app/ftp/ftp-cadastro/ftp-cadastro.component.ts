@@ -13,6 +13,7 @@ import { UsuarioService } from '../../usuario/usuario.service';
 import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { FtpTipo } from '../ftp-tipo.enum';
+import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 
 @Component({
   selector: 'ftp-cadastro',
@@ -46,7 +47,8 @@ export class FTPCadastroComponent implements OnInit {
       imagem: [""],
       tipo: [1, Validators.compose([Validators.required])],
       criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
-      ingredientes: [null, Validators.compose([Validators.required])],
+      //ingredientes: [null, Validators.compose([Validators.required])],
+      receitaIngrediente: [null, Validators.compose([Validators.required, Validators.min(1)])],
       professor: [null, Validators.compose([Validators.required, Validators.min(1)])],
       datahora: [null],
       dificuldade: [null, Validators.compose([Validators.required, Validators.min(1), Validators.max(5)])],
@@ -82,14 +84,11 @@ export class FTPCadastroComponent implements OnInit {
     )
   }
 
-  publicarFTP(ftp: Ftp) {
-    this.ftpForm.controls.status.setValue(true);
-    this.ftpForm.controls.publicada.setValue(true);
-    this.ftpForm.controls.imagem.setValue("url/img.jpg");
+  cadastrar(ftp: Ftp, publicada: Boolean) {
+    this.ftpForm.controls.publicada.setValue(publicada); // status de publicada no banco
+    this.ftpForm.controls.imagem.setValue("none yet");
     this.ftpForm.controls.datahora.setValue(new Date());
     
-    this.debugPrint()
-
     this.ftpService.salvarFTP(ftp)
     .subscribe(resp => {
       alert("Ficha Técnica de Preparo cadastrada com sucesso!");
@@ -108,8 +107,8 @@ export class FTPCadastroComponent implements OnInit {
     console.log(integrantes)
   }
 
-  alterarIngredientes(ingredientes: Array<Ingrediente>) {
-    this.ftpForm.controls.ingredientes.setValue(ingredientes);
+  alterarIngredientes(ingredientes: Array<ReceitaIngrediente>) {
+    this.ftpForm.controls.receitaIngrediente.setValue(ingredientes);
     console.log(ingredientes)
   }
 
@@ -131,28 +130,5 @@ export class FTPCadastroComponent implements OnInit {
     }
     console.log("Tipo")
     console.log("É Privado: " + this.ftpForm.controls.tipo.value);
-  }
-
-
-  debugPrint() {
-    console.log("####### DADOS DO FORM #######")
-    console.log("Nome - " + this.ftpForm.controls.nome.value)
-    console.log("Status - " + this.ftpForm.controls.status.value)
-    console.log("Passos: ")
-    console.log(this.ftpForm.controls.passos.value)
-    console.log("Rendimento - " + this.ftpForm.controls.rendimento.value)
-    console.log("Tempo - " + this.ftpForm.controls.tempo.value)
-    console.log("Peso - " + this.ftpForm.controls.peso.value)
-    console.log("Imagem - " + this.ftpForm.controls.imagem.value)
-    console.log("Privado (tipo) - " + this.ftpForm.controls.tipo.value)
-    console.log("Criadores :")
-    console.log(this.ftpForm.controls.criadores.value)
-    console.log("Ingredientes :")
-    console.log(this.ftpForm.controls.ingredientes.value)
-    console.log("Professor - " + this.ftpForm.controls.professor.value)
-    console.log("Data - " + this.ftpForm.controls.datahora.value)
-    console.log("Dificuldade - " + this.ftpForm.controls.dificuldade.value)
-    console.log("Grupo Receita - " + this.ftpForm.controls.grupoReceita.value)
-    console.log("#############################")
   }
 }

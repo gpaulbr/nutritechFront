@@ -3,6 +3,7 @@ import { GrupoReceita } from "../ingrediente/grupo-receita";
 import { Ingrediente } from "../ingrediente/ingrediente";
 import { Time } from "@angular/common";
 import { FtpTipo } from "./ftp-tipo.enum";
+import { ReceitaIngrediente } from "./ftp-receita-ingrediente";
 
 export class Ftp {
 
@@ -18,7 +19,8 @@ export class Ftp {
     public dificuldade: Number;
     public tipo: FtpTipo;
     public criadores: Usuario[];
-    public ingredientes: Ingrediente[];
+    //public ingredientes: Ingrediente[];
+    public receitaIngrediente: ReceitaIngrediente[];
     public professor: Usuario;
     public datahora: Date;
     public grupoReceita: GrupoReceita;
