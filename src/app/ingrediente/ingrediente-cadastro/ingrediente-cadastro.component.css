@@ -12,7 +12,8 @@ form{
 
 /* Configurações do Titulo Cadastro de Ingredientes */  
 h2{
-  margin: 4% ;
+  /*margin-left: 20% 15;*/ 
+  text-align: center; 
 }
 
 /* Referente ao but Limpar/Confirmar */   
@@ -58,6 +59,7 @@ h2{
 @media only screen and (max-width: 1032px) {
   h2{   /* Arrumar o recuo do titulo para a esquerda */
    font-size:1.5em;
+   /*padding-left: 7%;*/
    padding-left: 7%;
  }
 
@@ -68,8 +70,8 @@ h2{
 
 /* Nome do input, exemplo "nome" <- antes o input*/  
 .control-label{
-  width: 22em;
-  margin: auto;
+  margin-left:30%;
+
 }
 
 /* Input ingredientes NOME ORIGEM  */
@@ -108,30 +110,29 @@ h2{
 }
 
 @media only screen and (max-width: 667px) {
-  form{
-    width: 100%; /* proporção do formulario */
-  }
-  h2{   
+h2{   /* Arrumar o recuo do titulo para a esquerda */
   font-size:1.5em;
   margin:0 !important;
   width: 100%;
 }
-.control-label, .input-md {
-  width:90% !important;
-  margin-left: 5%;
+.input-md{
+  width: 20em;
+  margin: auto;
 
 }
-.input-Radio{
-  margin-left:50%;
+.control-label{
+ /* margin-left:0%;*/
+  width: 20em !important;
 }
 }
 
 @media only screen and (max-width: 568px) {
-  form{
-    width: 100% !important; /* proporção do formulario */
-   
-  }
-
+h2{   /* Arrumar o recuo do titulo para a esquerda */
+  font-size:1.5em;
+  padding-left: 7%;
+  background-position:0% 2.5%;
+  background-size:1.2em;
+}
 /* Input Unidade Atributos */  
 #atribForm{
   width:60%;
@@ -140,32 +141,21 @@ h2{
 .but-t{
   margin-left: 20%;
 }
-h2{   
-  font-size:1.5em;
-  margin:0 !important;
-  width: 100% !important;
-}
-.control-label, .input-md {
-  width:90% !important;
-  margin-left: 5%;
 
+.control-label{
+  margin-left:0%;
 }
 }
 
 @media only screen and (max-width: 330px) {
-  form{
-    width: 100%; /* proporção do formulario */
-  }
-h2{   
-  font-size:1.5em;
-  margin:0 !important;
-  width: 100%;
+.input-md,#input-atributo{
+  width:90%;
 }
-.control-label, .input-md {
-  width:90% !important;
-  margin-left: 5%;
 
+.control-label{
+  margin-left:0%;
 }
+
 
 }
 
