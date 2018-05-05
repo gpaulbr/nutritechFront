@@ -24,7 +24,7 @@ export class FtpListagemComponent implements OnInit {
     { name: 'Rendimento' },
     { name: 'Status' },
     { name: 'Tipo' },
-    { prop: 'criador', name: "MERADA"},
+    { prop: 'criador', name: "Criadores"},
     //{ prop: "'MERADA'", name: "Criadores" },
     { prop: 'grupoReceita.nome', name: "Grupo" }
   ];
@@ -70,8 +70,8 @@ export class FtpListagemComponent implements OnInit {
                   return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
             if(d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val)
                   return d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val;
-            /*else if(d.criador.nome.toLowerCase().indexOf(val) !== -1 || !val) 
-                  return d.criador.nome.toLowerCase().indexOf(val) !== -1 || !val;*/
+            /*else if(d.criador.toLowerCase().indexOf(val) !== -1 || !val) 
+                  return d.criador.toLowerCase().indexOf(val) !== -1 || !val;*/
             else if(d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
                   return d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val;
           
