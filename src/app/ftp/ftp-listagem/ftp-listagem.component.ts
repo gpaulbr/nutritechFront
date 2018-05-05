@@ -18,14 +18,7 @@ export class FtpListagemComponent implements OnInit {
   receitas: Ftp[]; //lista de receitas
   usuarioLogado: Usuario;
   rows = [];
-  columns = [
-    { name: 'Nome' },
-    { name: 'Rendimento' },
-    { name: 'Status' },
-    { name: 'Tipo' },
-    { prop: 'criador', name: "Criadores"},
-    { prop: 'grupoReceita.nome', name: "Grupo" }
-  ];
+  columns = [ ];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;//erro no import
   
@@ -55,7 +48,11 @@ export class FtpListagemComponent implements OnInit {
           {
             p["status"] = 'Inativa';
           }
-          lista.push(p);
+          if(p["tipo"]=="PUBLICO"){
+            p["tipo"] = "PÚBLICO";//inclui o acento para exibir para o usuário
+          }
+
+          lista.push(p);//inlcui na lista, após todas as alterações que ficaram visíveis ao usuários
         })
         this.rows = lista;
     });
@@ -70,7 +67,7 @@ export class FtpListagemComponent implements OnInit {
                   return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
             if(d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val)
                   return d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val;
-            if(d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val)
+            if(d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val)//quando tiver mais de um criador tem que percorrer os criadores e pesquisar
                 return d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val;
             if(d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
                   return d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val;

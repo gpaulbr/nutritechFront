@@ -5,9 +5,6 @@ table,.fixed-header { /*comentei pq só o fundo da tabela estava funcionando, ma
     white-space: nowrap;
     background-color: #ffffff9c!important;
 }
-.fixed-header{
-    display: block!important;
-}
 
 
 div #buscar{
@@ -25,10 +22,11 @@ div #buscar{
     float: left;
     border: 1px solid #207C7B;
     border-radius: 8px 8px 8px;
+    background-color: #ffffff;
 }
 
 /**** CSS da ngx-datatable ****/
-:host /deep/ .datatable-body .datatable-body-row .datatable-body-cell{/*ÚNICA forma com a qual consegui alterar o CSS da ngx-datatable*/
+:host /deep/ .datatable-body .datatable-body-row .datatable-body-cell{/*ÚNICO meio com o qual consegui alterar o CSS da ngx-datatable*/
     color: black !important;
     text-align: center!important;
     align-self: center!important;
@@ -40,6 +38,7 @@ div #buscar{
     font-weight: normal!important;
     font-size: 1.1em!important;
 }
+
 
 :host /deep/ .ngx-datatable.material .datatable-header{
     background-color: #207C7B!important;
