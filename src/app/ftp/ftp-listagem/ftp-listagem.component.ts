@@ -52,13 +52,14 @@ export class FtpListagemComponent implements OnInit {
             p["tipo"] = "PÚBLICO";//inclui o acento para exibir para o usuário
           }
 
-          if(this.usuarioLogado.tipo!='ADMIN' && this.usuarioLogado.tipo!='PROFESSOR'){
+          /* Comentado pq não tenho certeza se isso foi denifido nessa sprint if(this.usuarioLogado.tipo!='ADMIN' && this.usuarioLogado.tipo!='PROFESSOR'){
             if(this.usuarioLogado.id==p.criadores[0].id){
               lista.push(p);//inlcui na lista, por enquanto, só as cadastradas pelo próprio usuário comum
             }
           }else{
             lista.push(p);//se for ADMIN ou PROFESSOR, tem acesso a todas as FTPs
-          }
+          } */
+          lista.push(p);//inlcui na lista
             })
         this.rows = lista;
     });
