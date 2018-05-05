@@ -6,7 +6,27 @@
             <h2 class="titulo_lista" *ngIf="this.usuarioLogado.tipo=='USER'">Minhas Receitas</h2>
         </div>
         <div class="panel-body">
-            <table class="display" id="listaItens">
+                <div id="buscar" class="row"> 
+                        <p class="pBuscar col-md-1">Buscar: </p>
+                         <input
+                         type='text' class="inputBuscar col-md-4"
+                         (keyup)='updateFilter($event)'
+                         />  
+                </div>
+
+        <ngx-datatable
+            #table
+            class="material"
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="10"
+            [rows]='rows'>
+        </ngx-datatable>
+            <!--<table class="display" id="listaItens">
+               
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -15,10 +35,11 @@
                     <th>Criador</th>
                     <th>Grupo</th>
                 </tr>
-                </thead>
+                </thead> -->
+                <!--
                 <ng-container *ngFor="let receita of receitas">
                     <tr *ngFor="let criador of receita.criadores"> 
-                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'"><!-- ngIf = só exibe se for do própiro usuário ou administrador -->
+                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'"> ngIf = só exibe se for do própiro usuário ou administrador 
                                 {{receita.id}}
                         </td>
                         <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
@@ -35,39 +56,8 @@
                                 {{receita.grupoReceita.nome}}
                         </td>
                     </tr>
-                   
-                    
-                    <!-- IMPLEMENTAR DEPOIS
-                    
-                    <div id="openModal" class="modalDialog">
-                            <div id="conteudoModal">
-                            <a href="#close" title="Close" class="closeModal"></a>
-                            <h2 class="row">Ficha Técnica de preparação</h2>
-                    
-                            <div class="row">
-                                <p class="col-md-4"> Preparação: </p>
-                                <p class="col-md-4"> {{receita.nome}} </p>
-                            </div>
-                    
-                            <div class="row">
-                                <p class="col-md-4"> Integrantes: </p>
-                                <p class="col-md-4">Bianca, Jéssica, Elso e Lucas</p>  é só um exemplo, falta implmentar pra listar os componentes do grupo
-                            </div>
-                    
-                            <div class="row">
-                                    <p class="col-md-4"> Professor: </p>
-                                    <p class="col-md-4">Carolina Pereira Kechinski</p>
-                            </div>
-                    
-                            <div class="row">
-                                    <p class="col-md-4"> Grupo de Alimentos: </p>
-                                    <p class="col-md-4">{{receita.grupoReceita.nome}}</p>
-                            </div>
-                            </div>
-                        </div>
-                    FIM DO MODAL --> 
                 </ng-container>
-            </table>
+            </table> -->
         </div>
     </div>
   </div>

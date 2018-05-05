@@ -14,7 +14,7 @@ export class FtpService {
   }
 
   buscarFTP(): Observable<Ftp[]>{ //o ftp referencia a classe que estou usando para buscar
-    return this.http.get<Ftp[]>(this.url);
+     return this.http.get<Ftp[]>(this.url);
     //já tem a função de pegar a recita por id na API, a questão é: como usar?
   }
 }

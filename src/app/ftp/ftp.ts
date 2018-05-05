@@ -10,7 +10,9 @@ export class Ftp {
     public status: boolean;
     public tempo: string;
     public tipo: string;
-    public criador: Usuario; 
+    public criadores: Usuario[]; 
     public grupoRceita: GrupoReceita;
 }
+
+
 

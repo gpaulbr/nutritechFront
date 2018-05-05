@@ -32,6 +32,7 @@ import { LoginService } from './login/login.service';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
 import { FtpListagemComponent } from './ftp/ftp-listagem/ftp-listagem.component';
 import { FtpService } from './ftp/ftp.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -60,7 +61,9 @@ import { FtpService } from './ftp/ftp.service';
     ReactiveFormsModule,
     HttpModule,
     CpfCnpjModule,
-    TextMaskModule
+    TextMaskModule,
+    NgxDatatableModule
+    
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
