@@ -5,6 +5,10 @@ table,.fixed-header { /*comentei pq só o fundo da tabela estava funcionando, ma
     white-space: nowrap;
     background-color: #ffffff9c!important;
 }
+.fixed-header{
+    display: block!important;
+}
+
 
 div #buscar{
     display: inline;

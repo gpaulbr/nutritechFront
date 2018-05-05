@@ -23,41 +23,9 @@
             [footerHeight]="50"
             [rowHeight]="'auto'"
             [limit]="10"
-            [rows]='rows'>
+            [rows]='rows'
+            (page)="onPage($event)">
         </ngx-datatable>
-            <!--<table class="display" id="listaItens">
-               
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Nome da Receita</th>
-                    <th>Rendimento</th>
-                    <th>Criador</th>
-                    <th>Grupo</th>
-                </tr>
-                </thead> -->
-                <!--
-                <ng-container *ngFor="let receita of receitas">
-                    <tr *ngFor="let criador of receita.criadores"> 
-                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'"> ngIf = só exibe se for do própiro usuário ou administrador 
-                                {{receita.id}}
-                        </td>
-                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
-                                {{receita.nome}}
-                        
-                        </td>
-                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
-                                {{receita.rendimento}}
-                        </td>
-                        <td *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
-                                {{criador.nome}}
-                        </td>
-                        <td class="abreviar" *ngIf="criador.id==this.usuarioLogado.id || this.usuarioLogado.tipo=='ADMIN'">
-                                {{receita.grupoReceita.nome}}
-                        </td>
-                    </tr>
-                </ng-container>
-            </table> -->
         </div>
     </div>
   </div>

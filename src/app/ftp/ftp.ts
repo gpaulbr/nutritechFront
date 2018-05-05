@@ -11,7 +11,7 @@ export class Ftp {
     public tempo: string;
     public tipo: string;
     public criadores: Usuario[]; 
-    public grupoRceita: GrupoReceita;
+    public grupoReceita: GrupoReceita;
 }
 
 

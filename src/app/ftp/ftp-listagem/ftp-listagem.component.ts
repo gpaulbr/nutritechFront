@@ -70,25 +70,18 @@ export class FtpListagemComponent implements OnInit {
                   return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
             if(d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val)
                   return d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val;
-            else if(d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val)
+            if(d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val)
                 return d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val;
-            else if(d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
+            if(d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
                   return d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val;
             if(d.status.toString().toLowerCase().indexOf(val) !== -1 || !val)
                   return d.status.toString().toLowerCase().indexOf(val) !== -1 || !val;
+            if(d.grupoReceita.nome.toLowerCase().indexOf(val) !== -1 || !val)
+                  return d.grupoReceita.nome.toLowerCase().indexOf(val) !== -1 || !val;
           
           });
-      
-            this.rows = temp;
-      
+            this.rows = temp;//rows é o que possibilita o filtro na tabela
           // Whenever the filter changes, always go back to the first page
           this.table.offset = 0;
         }
-
-  teste(){
-    console.log(this.receitas) //retirar depois de testar
-  }
-  chamaNome(){
-    //
-  }
 }
