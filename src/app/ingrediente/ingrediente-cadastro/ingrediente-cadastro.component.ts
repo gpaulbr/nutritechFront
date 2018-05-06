@@ -86,12 +86,12 @@ export class IngredienteCadastroComponent implements OnInit {
     ingrediente.atributos = this.ingAtributos;
     console.log(ingrediente);
     
-    // this.ingredienteService.cadastrarIngrediente(ingrediente)
-    //   .subscribe(resp => {
-    //     alert("Ingrediente cadastrado com sucesso!");
-    //   }, erro =>{
-    //     alert("Erro no cadastro!");
-    //   })
+    this.ingredienteService.cadastrarIngrediente(ingrediente)
+      .subscribe(resp => {
+        alert("Ingrediente cadastrado com sucesso!");
+      }, erro =>{
+        alert("Erro no cadastro!");
+      })
   }
 
 }
