@@ -30,7 +30,7 @@ import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { LoginService } from './login/login.service';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
-
+import { OnlyNumber } from './shared/directives/only-number.directive'
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     AtributoManutencaoComponent,
     GrupoListagemComponent,
     AtributoListagemComponent,
-    LoginComponent
+    LoginComponent,
+    OnlyNumber
   ],
   imports: [
     BrowserModule,

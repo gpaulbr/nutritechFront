@@ -69,7 +69,7 @@ export class IngredienteCadastroComponent implements OnInit {
   setarValor(nomeAtributo: string, valor: string) {
     this.atributos.forEach(a => {
       if(a.atributo.nome === nomeAtributo) {
-        this.ingAtributos.push(new IngredienteAtributoDto(1,1,valor));
+        this.ingAtributos.push(new IngredienteAtributoDto(a.atributo.id, valor));
       }
     });
   }
@@ -84,14 +84,14 @@ export class IngredienteCadastroComponent implements OnInit {
     ingrediente.status = true;
     ingrediente.idCriador = 1;
     ingrediente.atributos = this.ingAtributos;
-    // console.log(ingrediente);
-    debugger;
-    this.ingredienteService.cadastrarIngrediente(ingrediente)
-      .subscribe(resp => {
-        alert("Ingrediente cadastrado com sucesso!");
-      }, erro =>{
-        alert("Erro no cadastro!");
-      })
+    console.log(ingrediente);
+    
+    // this.ingredienteService.cadastrarIngrediente(ingrediente)
+    //   .subscribe(resp => {
+    //     alert("Ingrediente cadastrado com sucesso!");
+    //   }, erro =>{
+    //     alert("Erro no cadastro!");
+    //   })
   }
 
 }
