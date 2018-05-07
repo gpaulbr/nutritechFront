@@ -66,7 +66,7 @@ export class FTPCadastroComponent implements OnInit {
       response => {
         this.gruposDisponiveis = response['Grupos'];
         this.gruposDisponiveis.forEach(item => {
-          delete item["active"]
+          delete item['active']
         });
         console.log(this.gruposDisponiveis);
       }
@@ -76,12 +76,11 @@ export class FTPCadastroComponent implements OnInit {
       response => {
         this.professoresDisponiveis = response['Usuarios'];
         this.professoresDisponiveis.forEach(item => {
-          delete item.senha
-          delete item["valid"]
+          delete item.senha;
+          delete item['valid'];
         });
         console.log(this.professoresDisponiveis);
-      }
-    )
+      });
   }
 
   alterarPassos(passos: Array<String>){
@@ -102,7 +101,7 @@ export class FTPCadastroComponent implements OnInit {
   alterarDificuldade(dificuldade: number){
     this.ftpForm.controls.dificuldade.setValue(dificuldade);
     console.log(this.ftpForm.controls.dificuldade);
-    console.log("Dificuldade Alterada para: " + this.retornarDificuldade())
+    console.log('Dificuldade Alterada para: ' + this.retornarDificuldade())
   }
 
   retornarDificuldade(): number{
@@ -115,8 +114,8 @@ export class FTPCadastroComponent implements OnInit {
     } else {
       this.ftpForm.controls.tipo.setValue(FtpTipo.PRIVADO);
     }
-    console.log("Tipo")
-    console.log("É Privado: " + this.ftpForm.controls.tipo.value);
+    console.log('Tipo')
+    console.log('É Privado: ' + this.ftpForm.controls.tipo.value);
   }
 
   cadastrar(ftp: Ftp, publicada: Boolean) {
