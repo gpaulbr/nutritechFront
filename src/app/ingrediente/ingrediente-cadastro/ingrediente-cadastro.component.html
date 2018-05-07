@@ -47,21 +47,21 @@
 <div id="aviso-cad" >
 <p><b>Aviso! </b></p>
 <p> Valor de cada atributo é calculado para cada 100g</p>
-<P> Preencher atributo obrigatorio para gerar informação nutricional </P>
+<p> Preencher atributo obrigatorio para gerar informação nutricional </p>
 </div>
 
 <!-- Saida dos Atributos -->
 <div id="atribForm" *ngFor="let ingAtributo of atributos">  <!-- referencia o atributo que vem do angular -->
 		<div class="row form-group">
-		<label class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
-		<div class="col-md-5">
-		<input id="input-atributo" maxlength="5" OnlyNumber="true" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
+		<label class="control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
+		<div class="col-md-4">
+		<input id="input-atributo" maxlength="10" OnlyNumber="true" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
 		placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md" required>
 		</div>
 	</div>
 </div>
 <!---->
-		<br>
+<br>
 
 <!-- Limpar ou Confirmar -->
 <div class="but-t form-group">

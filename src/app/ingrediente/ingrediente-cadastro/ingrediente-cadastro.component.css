@@ -109,21 +109,25 @@ h2{
 
 }
 
-@media only screen and (max-width: 667px) {
+@media only screen and (max-width: 768px) {
 h2{   /* Arrumar o recuo do titulo para a esquerda */
   font-size:1.5em;
   margin:0 !important;
   width: 100%;
 }
 .input-md{
-  width: 20em;
-  margin: auto;
-
+  width: 90%;
 }
 .control-label{
  /* margin-left:0%;*/
-  width: 20em !important;
+  /*width: 20em !important;*/
+  margin-left:5% !important;
 }
+#input-atributo{
+  width: 40%;
+  margin-left: 50%;
+}
+
 }
 
 @media only screen and (max-width: 568px) {
@@ -141,19 +145,31 @@ h2{   /* Arrumar o recuo do titulo para a esquerda */
 .but-t{
   margin-left: 20%;
 }
-
+.input-md{
+  width: 90%;
+}
 .control-label{
-  margin-left:0%;
+  margin-left:5% !important;
+}
+#input-atributo{
+  width: 40%;
+  margin-left: 50%;
 }
 }
 
 @media only screen and (max-width: 330px) {
-.input-md,#input-atributo{
+.input-md{
   width:90%;
 }
 
+
 .control-label{
-  margin-left:0%;
+  /*margin-left:0%;*/
+  margin-left:5% !important;
+}
+#input-atributo{
+  width: 40%;
+  margin-left: 50%;
 }
 
 
