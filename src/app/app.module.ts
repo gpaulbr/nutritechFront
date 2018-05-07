@@ -30,6 +30,9 @@ import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { LoginService } from './login/login.service';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
+import { FtpListagemComponent } from './ftp/ftp-listagem/ftp-listagem.component';
+import { FtpService } from './ftp/ftp.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -47,7 +50,8 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     AtributoManutencaoComponent,
     GrupoListagemComponent,
     AtributoListagemComponent,
-    LoginComponent
+    LoginComponent,
+    FtpListagemComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,9 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     ReactiveFormsModule,
     HttpModule,
     CpfCnpjModule,
-    TextMaskModule
+    TextMaskModule,
+    NgxDatatableModule
+    
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -65,7 +71,8 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     IngredienteService, 
     GrupoService, 
     UsuarioService,
-    LoginService
+    LoginService,
+    FtpService
   ],
   bootstrap: [AppComponent]
 })

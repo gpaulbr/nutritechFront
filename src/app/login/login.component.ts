@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TipoUsuario } from '../usuario/tipo-usuario.enum';
 
 @Component({
   selector: 'app-login',
@@ -29,8 +30,14 @@ export class LoginComponent implements OnInit {
   logar(){
     this.loginService.efetuarLogin(this.loginForm.value).subscribe(
       response => {
-        localStorage.setItem('usuarioLogado', JSON.stringify({ id: response.id, nome: response.nome }));
-        this.router.navigate(['./ftp-cadastro']);
+        localStorage.setItem('usuarioLogado',
+         JSON.stringify(
+           { id: response.id, nome: response.nome, tipo: response.tipo }
+          )
+        );
+        this.loginService.setUsuario(response);        
+        
+        this.router.navigate(['./ftp-listagem']);
       },
       error => {
         alert("Erro no login");

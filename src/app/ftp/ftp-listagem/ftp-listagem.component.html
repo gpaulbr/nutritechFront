@@ -1,0 +1,39 @@
+<div class="container">
+ 
+    <div class="panel panel-default panel-container">
+        <div class="panel-heading ">
+            <h2 class="titulo_lista" *ngIf="this.usuarioLogado.tipo=='PROFESSOR' || this.usuarioLogado.tipo=='ADMIN'">Lista de Receitas</h2>
+            <h2 class="titulo_lista" *ngIf="this.usuarioLogado.tipo=='USER'">Minhas Receitas</h2>
+        </div>
+        <div class="panel-body">
+                <div id="buscar" class="row"> 
+                        <p class="pBuscar col-md-1">Buscar: </p>
+                         <input
+                         type='text' class="inputBuscar col-md-4"
+                         (keyup)='updateFilter($event)'
+                         />  
+                </div>
+
+        <!-- configurações ngx-datatable -->
+        <ngx-datatable
+            #table
+            class="material"
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="10"
+            [rows]='rows'
+            [scrollbarH]="true">
+            <!-- COLUNAS da tabela -->
+        <ngx-datatable-column name="Nome" [width]="200"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e pq precisava definir um width diferente para algumas colunas -->
+        <ngx-datatable-column name="Rendimento" [width]="100"></ngx-datatable-column>
+        <ngx-datatable-column name="Criadores" [width]="300" prop="criador"></ngx-datatable-column>
+        <ngx-datatable-column name="Grupo de Receita" [width]="400" prop="grupoReceita.nome"></ngx-datatable-column>>
+        <ngx-datatable-column name="Tipo" [width]="100"></ngx-datatable-column>
+        <ngx-datatable-column name="Status" [width]="100"></ngx-datatable-column>        
+        </ngx-datatable>
+        </div>
+
+    </div>
+  </div>

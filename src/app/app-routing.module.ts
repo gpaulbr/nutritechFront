@@ -11,6 +11,7 @@ import { GrupoListagemComponent } from './grupo/grupo-listagem/grupo-listagem.co
 import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atributo-manutencao.component';
 import { LoginComponent } from './login/login.component';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
+import { FtpListagemComponent } from './ftp/ftp-listagem/ftp-listagem.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'grupo-listagem', component: GrupoListagemComponent },
   { path: 'atributo-listagem', component: AtributoListagemComponent},  
   { path: 'ftp-cadastro', component: FTPCadastroComponent },
+  { path: 'ftp-listagem', component: FtpListagemComponent },
   { path: '', component: LoginComponent },
 ]
 

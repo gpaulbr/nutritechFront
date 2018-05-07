@@ -15,16 +15,23 @@ export class UsuarioListagemComponent implements OnInit {
     private usuarioService: UsuarioService) { }
 
   ngOnInit() {
+
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
     if(usuarioLogado == null) {  
       this.router.navigate(['./']);
+    }else if(usuarioLogado.nome!="Admin"){
+      console.log (usuarioLogado);//tirar depois
+      this.router.navigate(['./ftp-listagem']);
     }
+
     this.usuarioService.buscarUsuarios().subscribe(
       response => {
         this.usuarios = response['Usuarios'];
         console.log (this.usuarios);
       }
     )
+
   }
 
 }
