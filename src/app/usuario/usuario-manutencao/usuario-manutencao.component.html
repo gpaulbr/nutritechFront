@@ -12,7 +12,7 @@
 		<div class="row form-group">
 			<label id="teste" class="col-md-3 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
 			<div class="col-md-4">
-				<input id="nome" name="nome" [formControl]="usuarioForm.controls['nome']" type="text"
+				<input formControlName="nome" [formControl]="usuarioForm.controls['nome']" type="text"
 				placeholder=""  class="form-control input-md" required>
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['nome'].valid && this.usuarioForm.controls['nome'].dirty"></app-mensagem-erro>
 			</div>
@@ -22,8 +22,8 @@
 		<div class="row form-group">
 			<label class="col-md-3 control-label campo-obrigatorio" for="email">E-mail</label>
 			<div class="col-md-4">
-				<input id="email" name="email" [formControl]="usuarioForm.controls['email']" class="form-control" 
-				[email]="true" placeholder="email@ufcspa" type="email">
+				<input id="email" nome="email" [formControl]="usuarioForm.controls['email']" class="form-control" 
+				[email]="true" placeholder="email@ufcspa.edu.br" type="email">
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['email'].valid && this.usuarioForm.controls['email'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 		<div class="row form-group">
 			<label class="col-md-3 control-label campo-obrigatorio" for="matricula">Matrícula</label>
 			<div class="col-md-4">
-				<input id="matricula" name="matricula" [formControl]="usuarioForm.controls['matricula']"
+				<input formControlName="matricula" [formControl]="usuarioForm.controls['matricula']"
 				type="text" placeholder="" class="form-control input-md" required>
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['matricula'].valid && this.usuarioForm.controls['matricula'].dirty"></app-mensagem-erro>
 			</div>
@@ -42,7 +42,7 @@
 		<div class="row form-group">
 			<label class="col-md-3 control-label campo-obrigatorio" for="senha">Senha</label>
 			<div class="col-md-4">
-				<input id="senha" name="senha" [formControl]="usuarioForm.controls['senha']"
+				<input formControlName="senha" [formControl]="usuarioForm.controls['senha']"
 				type="password" placeholder="" class="form-control input-md" required>
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['senha'].valid && this.usuarioForm.controls['senha'].dirty"
 					[mensagem]="'Senha muito curta'"></app-mensagem-erro>
@@ -53,30 +53,29 @@
 		<div class="row form-group">
 			<label class="col-md-3 control-label campo-obrigatorio" for="confirmarsenha">Confirmar Senha</label>
 			<div class="col-md-4">
-				<input id="confirmarsenha" name="confirmarsenha" [ngModelOptions]="{standalone: true}" 
+				<input [ngModelOptions]="{standalone: true}" 
 				[(ngModel)]="senhaConfirmacao" (ngModelChange)="validarSenha()" type="password" placeholder="" class="form-control input-md" required>
 				<app-mensagem-erro class="erro" [contemErro]="!senhaValida"
 					[mensagem]="mensagemErroSenha"></app-mensagem-erro>
 			</div>
 		</div>
 
-		<!-- Text input-->
-		<div class="row form-group">
+<!--HTML DE CPF BASEADO NO ANTIGO PROJETO-->
+		<!--<div class="row form-group">
 			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
 				<input id="cpf" name="cpf" [textMask]="{mask: mascaraCPF}" [formControl]="usuarioForm.controls['cpf']" type="text" placeholder="" class="form-control input-md">
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
 			</div>
-		</div>
+		</div>-->
 
-		<!--<div class="form-group">
+		<div class="form-group row">
 			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
-				<input id="cpf" name="cpf" [formControl]="usuarioForm.controls['cpf']" [(ngModel)]="cpf" [cpf]="cpf" type="text" placeholder="" class="form-control input-md">
+				<input [textMask]="{mask: mascaraCPF}" [formControl]="usuarioForm.controls['cpf']" [(ngModel)]="cpf" [cpf]="cpf" type="text" placeholder="" class="form-control input-md">
 				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
-	-->
 
 
         <div *ngIf="verificarSeUsuarioEhAdmin()"  class="row form-group">
