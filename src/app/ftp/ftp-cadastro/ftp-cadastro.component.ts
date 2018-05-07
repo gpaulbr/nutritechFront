@@ -84,19 +84,6 @@ export class FTPCadastroComponent implements OnInit {
     )
   }
 
-  cadastrar(ftp: Ftp, publicada: Boolean) {
-    this.ftpForm.controls.publicada.setValue(publicada); // status de publicada no banco
-    this.ftpForm.controls.imagem.setValue("none yet");
-    this.ftpForm.controls.datahora.setValue(new Date());
-    
-    this.ftpService.salvarFTP(ftp)
-    .subscribe(resp => {
-      alert("Ficha Técnica de Preparo cadastrada com sucesso!");
-    }, erro =>{
-      alert("Erro no cadastro!");
-    })
-  }
-
   alterarPassos(passos: Array<String>){
     this.ftpForm.controls.passos.setValue(passos);
     console.log(this.ftpForm.controls.passos);
@@ -130,5 +117,19 @@ export class FTPCadastroComponent implements OnInit {
     }
     console.log("Tipo")
     console.log("É Privado: " + this.ftpForm.controls.tipo.value);
+  }
+
+  cadastrar(ftp: Ftp, publicada: Boolean) {
+    delete this.ftpForm.controls['id'];
+    this.ftpForm.controls.publicada.setValue(publicada); // status de publicada no banco
+    this.ftpForm.controls.imagem.setValue('none yet');
+    this.ftpForm.controls.datahora.setValue(new Date());
+
+    this.ftpService.salvarFTP(ftp)
+      .subscribe(resp => {
+        alert('Ficha Técnica de Preparo cadastrada com sucesso!');
+      }, erro =>{
+        alert('Erro no cadastro!');
+      })
   }
 }
