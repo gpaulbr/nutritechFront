@@ -6,7 +6,11 @@ table,.fixed-header { /*comentei pq só o fundo da tabela estava funcionando, ma
     background-color: #ffffff9c!important;
 }
 
-
+.fixed-header {
+    max-height: 25em;
+    min-height: 7em;
+}
+    
 div #buscar{
     display: inline;
 }
@@ -56,6 +60,10 @@ div #buscar{
     text-justify: newspaper;
     text-align: center;
     font-weight: normal;
+}
+
+:host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell .resize-handle{
+    border:none;
 }
 /****** FIM ******/
 div {   
