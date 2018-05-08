@@ -3,7 +3,7 @@
         <div class="col-lg-5 text-left">
             <img src="assets/logo.png" class="img-fluid" />
             <br>
-            
+
             <form class="no-css" [formGroup]="loginForm" (ngSubmit)="logar()">
                 <div class="form-group">
                     <label class="label-login" for="exampleInputEmail1">Email</label>
@@ -25,7 +25,7 @@
                 <a href="#">Clique aqui!</a>
             </p>
             <p class="form_p">É aluno e não é cadastrado?
-                <a href="/#/usuario">Clique aqui!</a>
+                <a [routerLink]="['/usuario']">Clique aqui!</a>
             </p>
         </div>
     </div>

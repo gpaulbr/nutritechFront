@@ -2,6 +2,7 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ftp-selecao-ingredientes',
@@ -17,14 +18,20 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
 
   ingredientesDisponiveis: Ingrediente[];
 
-  constructor(private ingredienteService: IngredienteService) { }
+  constructor(private router: Router, private ingredienteService: IngredienteService) { }
 
   @Output()
   salvarIngredientes = new EventEmitter<Array<ReceitaIngrediente>>();
   @Input()
   obrigatorio: boolean
-  
+
   ngOnInit() {
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado == null) {
+      this.router.navigate(['./']);
+      return;
+    }
+
     this.loadDB();
   }
 
@@ -46,7 +53,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
     novo.pesoG = this.pesoG;
 
     if(this.ingrediente != null && !this.ingredientes.includes(novo)) {
-      this.ingredientes.push(novo); 
+      this.ingredientes.push(novo);
       console.log("Adicionado: " + this.ingrediente + " à lista: " + this.ingredientes);
       this.ingrediente = null;
       this.salvar();

@@ -3,14 +3,10 @@ import { Router } from '@angular/router';
 import { FtpService } from '../ftp.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Ftp } from '../ftp';
-import { Time } from '@angular/common';
 import { Usuario } from '../../usuario/usuario';
-import { TipoIngrediente } from '../../ingrediente/tipo-ingrediente.enum';
-import { debug } from 'util';
 import { GrupoService } from '../../grupo/grupo.service';
 import { Grupo } from '../../grupo/grupo';
 import { UsuarioService } from '../../usuario/usuario.service';
-import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { FtpTipo } from '../ftp-tipo.enum';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
@@ -60,8 +56,13 @@ export class FTPCadastroComponent implements OnInit {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {
       this.router.navigate(['./']);
+      return;
     }
 
+    this.loadDB();
+  }
+
+  loadDB() {
     this.grupoService.buscarGrupos().subscribe(
       response => {
         this.gruposDisponiveis = response['Grupos'];

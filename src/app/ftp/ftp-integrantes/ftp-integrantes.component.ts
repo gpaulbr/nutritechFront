@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Usuario } from '../../usuario/usuario';
 import { UsuarioService } from '../../usuario/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ftp-integrantes',
@@ -14,7 +15,7 @@ export class FtpIntegrantesComponent implements OnInit {
 
   alunosDisponiveis: Usuario[];
 
-  constructor(private usuarioService: UsuarioService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   @Output()
   salvarIntegrantes = new EventEmitter<Array<Usuario>>();
@@ -22,6 +23,16 @@ export class FtpIntegrantesComponent implements OnInit {
   obrigatorio: boolean
 
   ngOnInit() {
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(usuarioLogado == null) {
+      this.router.navigate(['./']);
+      return;
+    }
+
+    this.loadDB();
+  }
+
+  loadDB() {
     this.usuarioService.buscarAlunos().subscribe(
       response => {
         this.alunosDisponiveis = response['Usuarios'];
