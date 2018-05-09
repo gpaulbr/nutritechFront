@@ -62,14 +62,13 @@ export class FtpListagemComponent implements OnInit {
           } */
           lista.push(p);//inlcui na lista
             })
-          
         if(lista.length!=0){
           this.rows = lista;
           this.receitaEmLista = true;//para exibir mensagem se não tiver nda cadastrado
         }
         else
           this.receitaEmLista = false;
-    });
+    }); 
     }
 
         updateFilter(event) {
@@ -92,6 +91,7 @@ export class FtpListagemComponent implements OnInit {
           
           });
             this.rows = temp;//rows é o que possibilita o filtro na tabela
+            
           // Whenever the filter changes, always go back to the first page
           this.table.offset = 0;
         }
