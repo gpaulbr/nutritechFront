@@ -7,18 +7,19 @@
 
 /* Formulario, parte esmaecida */
 form{
-  width: 40%; /* proporção do formulario */
+  width: 45%; /* proporção do formulario */
 }
 
 /* Configurações do Titulo Cadastro de Ingredientes */  
 h2{
-  /*margin-left: 20% 15;*/ 
-  text-align: center; 
+  padding-left: 7%;
+  margin-left: 21%;
+
 }
 
 /* Referente ao but Limpar/Confirmar */   
 .but-t{
-  margin-left: 35%;
+  margin-left: 42%;
   margin-right: auto;
 }
 
@@ -34,7 +35,7 @@ h2{
 
 /* Input Unidade Atributos */  
 #input-atributo{
-  width: 40%; 
+  width: 40%;
 }
 
 /* Aviso Calculo */
@@ -53,127 +54,78 @@ h2{
 }
 
 #atribForm{
-  margin-left: 13%;
+  margin-left: 10%;
 }
 
+/**** @media inicia aqui ****/
+
 @media only screen and (max-width: 1032px) {
-  h2{   /* Arrumar o recuo do titulo para a esquerda */
+  h2{
+  margin-left: 0%;
    font-size:1.5em;
-   /*padding-left: 7%;*/
    padding-left: 7%;
+   background-position:0% 2.5%;
+   background-size:1.2em;
  }
 
- form{   /* proporção do form */
+ form{
+   
    width: 100%;
    margin-left:-2%;
  }
 
-/* Nome do input, exemplo "nome" <- antes o input*/  
-.control-label{
-  margin-left:30%;
+ .input-md{   
+   margin-left:2%;
+ }
 
-}
+ #labrl-comum{
+   margin-left:2%;
+ }
 
-/* Input ingredientes NOME ORIGEM  */
-.input-md{
-  width: 22em;
-  margin: auto;
-}
-
-/* Input Unidade Atributos */  
-#input-atributo{
-  width: 60%;
-  margin-right: 55%;
-  margin-left: 10%;
-}
-
-/* Referente ao but Limpar/Confirmar */   
-.but-t{
-  margin-left: 27%;
-}
+ /* Aviso Calculo */
 #aviso-cad{
   font-size: 75%; /* tamnho da fonte */
-  line-height: 0.99em !important; /* espaçamento das linhas */
-  text-align:center; /* alinhamento do texto */
-  color:rgb(202, 83, 4); /* cor do texto */
-  width: 80%; /* largura do mini-form */
-  height: 50%; /* altura do mini-form */
-  margin: 2% auto; /* margin ao redor do form */
-  padding-top: 2%; /* distancia do texto do mini-form */
-  background:linear-gradient(0deg,rgba(238, 236, 95, 0.6), rgba(233, 224, 105, 0.6));
-  /* ^^^^^ -> cor do mini-form */
-}
-.input-Radio{
-  margin-left:10%;
-}
+  line-height: 1em !important; /* espaçamento das linhas */
+  width: 90%; /* largura do mini-form */
+  height: 60%; /* altura do mini-form */
 
 }
 
-@media only screen and (max-width: 768px) {
-h2{   /* Arrumar o recuo do titulo para a esquerda */
-  font-size:1.5em;
-  margin:0 !important;
-  width: 100%;
+ #atribForm{
+  margin-left: 12%;
 }
-.input-md{
-  width: 90%;
-}
-.control-label{
- /* margin-left:0%;*/
-  /*width: 20em !important;*/
-  margin-left:5% !important;
-}
-#input-atributo{
-  width: 40%;
-  margin-left: 50%;
+ .input-Radio{ /*Privado e Publico*/
+  margin-left:2%;
 }
 
-}
-
-@media only screen and (max-width: 568px) {
-h2{   /* Arrumar o recuo do titulo para a esquerda */
-  font-size:1.5em;
-  padding-left: 7%;
-  background-position:0% 2.5%;
-  background-size:1.2em;
-}
-/* Input Unidade Atributos */  
-#atribForm{
-  width:60%;
-}
-/* Referente ao but Limpar/Confirmar */   
-.but-t{
+#input-atributo{  /* entrada do atributo*/
   margin-left: 20%;
 }
-.input-md{
-  width: 90%;
-}
-.control-label{
-  margin-left:5% !important;
-}
-#input-atributo{
-  width: 40%;
-  margin-left: 50%;
-}
+
+
+ .but-t{  /*Limpar e Confirmar*/
+   margin-left: 27%;
+ }
 }
 
 @media only screen and (max-width: 330px) {
+
+  h2{
+     font-size:1.2em;
+     padding-left: 7%;
+     background-position:0% 2.5%;
+     background-size:1.2em;
+   }  
 .input-md{
+  width: 100%;
+}
+
+#atribForm{
   width:90%;
 }
 
-
-.control-label{
-  /*margin-left:0%;*/
-  margin-left:5% !important;
-}
-#input-atributo{
-  width: 40%;
-  margin-left: 50%;
+.but-t{  /*Limpar e Confirmar*/
+  margin-left: 17%;
 }
 
-
 }
-
-
-
