@@ -9,40 +9,40 @@
 			</select>
 		</div>
 			<div class="col-md-2">
-				<label>Valor/kg:</label>
-				<input [(ngModel)]="custoKg" type="number" class="form-control">
+				<label>Valor/Kg:</label>
+				<input [(ngModel)]="custoKg" type="number" step="0.5" class="form-control">
 			</div>
 			<div class="col-md-2">
-				<label>Fator de correção:</label>
-				<input type="number" class="form-control">
+				<label>Fator de correção (%)</label>
+				<input [(ngModel)]="fatorCorrecao" type="number" value="100" min="0" max="100" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<label>Peso (g)</label>
-				<input [(ngModel)]="pesoG" type="number" class="form-control">
+				<input [(ngModel)]="pesoG" type="number" value="0" step="10" class="form-control">
 			</div>
 			<div class="col-md-2">
 				<button class="btn btn-success" (click)="adicionarIngrediente()">+</button>
-			</div>	
+			</div>
 	</div>
 	<div>
 	<table>
 		<tr>
 			<th>Ingrediente</th>
-			<th>Peso (g)</th>
-			<th>Custo</th>
-			<th>Fator de correção</th>
+			<th>Peso</th>
+			<th>Custo Total</th>
+			<th>Fator de<br>Correção</th>
 			<th>Ações</th>
 		</tr>
-			
-		<ng-container *ngFor="let item of ingredientes">
+
+		<ng-container *ngFor="let item of receitaIngredientes; let i = index">
 			<tr>
 				<th>{{item.ingrediente.nome}}</th>
-				<th>{{item.pesoG}}</th>
-				<th>{{item.custoKg}}</th>
-				<th>{{item.fator}}</th>
+				<th>{{item.pesoG}}g</th>
+				<th>R$ {{item.getCustoTotal()}}</th>
+				<th>{{item.fatorCorrecao}}%</th>
 				<th><i class="material-icons delete"  onmouseover="" style="cursor: pointer;" (click)="removerIngredientePorIndex(i)">delete</i></th>
 			</tr>
-		</ng-container>	
+		</ng-container>
 	</table>
 	</div>
 	<button class="btn btn-success" (click)="criarNovoIngrediente()">Criar Novo Ingrediente</button>

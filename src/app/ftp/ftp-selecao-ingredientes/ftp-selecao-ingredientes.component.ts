@@ -12,9 +12,10 @@ import {Router} from '@angular/router';
 export class FtpSelecaoIngredientesComponent implements OnInit {
 
   ingrediente: Ingrediente = null;
-  custoKG: Number = 0.00;
-  pesoG: Number = 0;
-  ingredientes = new Array<ReceitaIngrediente>();
+  custoKg: number;
+  fatorCorrecao: number;
+  pesoG: number;
+  receitaIngredientes = new Array<ReceitaIngrediente>();
 
   ingredientesDisponiveis: Ingrediente[];
 
@@ -32,6 +33,10 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
       return;
     }
 
+    this.custoKg = 0;
+    this.fatorCorrecao = 100;
+    this.pesoG = 0;
+
     this.loadDB();
   }
 
@@ -45,36 +50,37 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   }
 
   adicionarIngrediente() {
-    console.log (this.ingredientes)
+    console.log (this.receitaIngredientes)
     var novo: ReceitaIngrediente = new ReceitaIngrediente()
     delete this.ingrediente.criador['valid']
     novo.ingrediente = this.ingrediente;
-    novo.custoKg = this.custoKG;
+    novo.custoKg = this.custoKg;
     novo.pesoG = this.pesoG;
+    novo.fatorCorrecao = this.fatorCorrecao;
 
-    if(this.ingrediente != null && !this.ingredientes.includes(novo)) {
-      this.ingredientes.push(novo);
-      console.log("Adicionado: " + this.ingrediente + " à lista: " + this.ingredientes);
+    if(this.ingrediente != null && !this.receitaIngredientes.includes(novo)) {
+      this.receitaIngredientes.push(novo);
+      console.log('Adicionado: ' + this.ingrediente + ' à lista: ' + this.receitaIngredientes);
       this.ingrediente = null;
       this.salvar();
     } else {
-      console.log("Nada selecionado")
+      console.log('Nada selecionado')
     }
-    console.log (this.ingredientes)
+    console.log (this.receitaIngredientes)
 
   }
 
   removerIngredientePorIndex(index : number) {
-    this.ingredientes.splice(index, 1)
+    this.receitaIngredientes.splice(index, 1)
     this.salvar();
   }
 
   criarNovoIngrediente() {
-    console.log("Não implementado");
+    console.log('Não implementado');
   }
 
   salvar () {
-    this.salvarIngredientes.emit(this.ingredientes);
+    this.salvarIngredientes.emit(this.receitaIngredientes);
   }
 
 }

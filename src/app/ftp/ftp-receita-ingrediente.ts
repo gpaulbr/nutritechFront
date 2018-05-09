@@ -4,6 +4,13 @@ import { Ingrediente } from "../ingrediente/ingrediente";
 export class ReceitaIngrediente {
     public receita: Ftp = null;
     public ingrediente: Ingrediente;
-    public custoKg : Number;
-    public pesoG : Number;
+    public fatorCorrecao: number;
+    public custoKg: number;
+    public pesoG: number;
+
+
+    public getCustoTotal(): string {
+      const ct: number = (this.custoKg / 1000) * this.pesoG;
+      return ct.toFixed(2);
+    }
 }
