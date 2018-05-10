@@ -20,9 +20,9 @@ export class HeaderComponent implements OnInit {
       if(event instanceof NavigationEnd) {
         this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));            
 
-        console.log(this.usuarioLogado)
 
-        if(this.usuarioLogado !== null) {
+        console.log(this.usuarioLogado)
+        if(this.usuarioLogado!==null) {
           if(this.usuarioLogado.tipo === TipoUsuario.ADMIN || 
             this.usuarioLogado.tipo === TipoUsuario.PROFESSOR){
               
@@ -31,7 +31,8 @@ export class HeaderComponent implements OnInit {
             this.admin = false;
           }                  
         } else {
-          this.router.navigate(['./']);
+          // Comentada pois redirecionava para home quando acessava o cadastro sempre, ja que o usuario nunca estava logado
+          // this.router.navigate(['./']);
         }        
       }
     })

@@ -30,17 +30,16 @@ export class LoginComponent implements OnInit {
   logar(){
     this.loginService.efetuarLogin(this.loginForm.value).subscribe(
       response => {
-        localStorage.setItem('usuarioLogado',
-         JSON.stringify(
+        localStorage.setItem('usuarioLogado',JSON.stringify(
            { id: response.id, nome: response.nome, tipo: response.tipo }
           )
-        );
-        this.loginService.setUsuario(response);        
-        
+        );        
         this.router.navigate(['./ftp-listagem']);
+
       },
       error => {
-        alert("Erro no login");
+        console.log(error)
+        alert(error.error);
       });;
   }
 

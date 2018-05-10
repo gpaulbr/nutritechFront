@@ -6,6 +6,7 @@ import { RadioButton, RadioButtonElemento } from '../../shared/entities/radio-bu
 import { UsuarioService } from '../usuario.service';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
+import { UsuarioLogadoDto } from '../usuario-logado-dto';
 
 
 
@@ -17,6 +18,7 @@ import { Router } from '@angular/router';
 export class UsuarioManutencaoComponent implements OnInit {
 
   usuario: Usuario = new Usuario();
+  usuarioLogado: UsuarioLogadoDto;
   senhaConfirmacao: string = '';
   usuarioForm: FormGroup;
   mensagemErroSenha = "As senhas digitadas estão diferentes";
@@ -24,12 +26,12 @@ export class UsuarioManutencaoComponent implements OnInit {
   public mascaraCPF = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
   tiposUsuarios = [{
-    valor: 1,
+    valor: 2,
     texto: "Usuário",
     selecionado: true
   },
   {
-    valor: 2,
+    valor: 1,
     texto: "Professor",
     selecionado: false
   }];
@@ -54,14 +56,15 @@ export class UsuarioManutencaoComponent implements OnInit {
         matricula: [null, Validators.compose([Validators.required])],
         senha: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
         cpf: [null, Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(14)])],
-        tipo: [1, Validators.required],
+        tipo: [2, Validators.required],
         status: [true, Validators.required]
       })
     }
 
   ngOnInit() {
     console.log(JSON.parse(localStorage.getItem('usuarioLogado')));
-    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    console.log(this.usuarioLogado)
   }
 
   cadastrarUsuario(){
@@ -69,10 +72,11 @@ export class UsuarioManutencaoComponent implements OnInit {
       response => {
         console.log(response)
         alert("Usuario cadastrado com sucesso");
+          this.router.navigate(['./']);        
       },
       error => {
         console.log(error)
-        alert("Erro no cadastro");
+        alert(error.error);
       });
   }
 
@@ -83,6 +87,13 @@ export class UsuarioManutencaoComponent implements OnInit {
 
   definirTipoStatus(valor: boolean){
     this.usuarioForm.controls.status.setValue(valor);
+  }
+
+  verificarSeUsuarioEhAdmin() {
+    if(this.usuarioLogado) {
+      return this.usuarioLogado.tipo == 'ADMIN';
+    }
+    return false;
   }
 
   validarSenha()
