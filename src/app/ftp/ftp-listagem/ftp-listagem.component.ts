@@ -9,7 +9,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 
 @Component({
-   selector: 'filter-demo app-ftp-listagem',
+  selector: 'filter-demo app-ftp-listagem',
   templateUrl: './ftp-listagem.component.html',
   styleUrls: ['./ftp-listagem.component.css']
 })
@@ -17,6 +17,7 @@ export class FtpListagemComponent implements OnInit {
   public receitaRestrita:boolean;
   receitas: Ftp[]; //lista de receitas
   usuarioLogado: Usuario;
+  receitaEmLista:boolean = false;
   rows = [];
   columns = [ ];
 
@@ -61,8 +62,13 @@ export class FtpListagemComponent implements OnInit {
           } */
           lista.push(p);//inlcui na lista
             })
-        this.rows = lista;
-    });
+        if(lista.length!=0){
+          this.rows = lista;
+          this.receitaEmLista = true;//para exibir mensagem se não tiver nda cadastrado
+        }
+        else
+          this.receitaEmLista = false;
+    }); 
     }
 
         updateFilter(event) {
@@ -85,6 +91,7 @@ export class FtpListagemComponent implements OnInit {
           
           });
             this.rows = temp;//rows é o que possibilita o filtro na tabela
+            
           // Whenever the filter changes, always go back to the first page
           this.table.offset = 0;
         }
