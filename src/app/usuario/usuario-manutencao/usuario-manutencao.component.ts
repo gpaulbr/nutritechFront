@@ -7,8 +7,7 @@ import { UsuarioService } from '../usuario.service';
 import { Http, Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { UsuarioLogadoDto } from '../usuario-logado-dto';
-
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-usuario-manutencao',
@@ -49,11 +48,12 @@ export class UsuarioManutencaoComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
+    private toastr: ToastrService,
     fb: FormBuilder) { 
       this.usuarioForm = fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
         email: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
-        matricula: [null, Validators.compose([Validators.required])],
+        matricula: [null, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
         senha: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
         cpf: [null, Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(14)])],
         tipo: [2, Validators.required],
@@ -71,12 +71,12 @@ export class UsuarioManutencaoComponent implements OnInit {
     this.usuarioService.salvarUsuario(this.usuarioForm.value).subscribe(
       response => {
         console.log(response)
-        alert("Usuario cadastrado com sucesso");
+        this.toastr.success('Usuário cadastrado com sucesso');
           this.router.navigate(['./']);        
       },
       error => {
         console.log(error)
-        alert(error.error);
+        this.toastr.error(error.error);
       });
   }
 

@@ -33,6 +33,9 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
 import { FtpListagemComponent } from './ftp/ftp-listagem/ftp-listagem.component';
 import { FtpService } from './ftp/ftp.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -51,7 +54,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     GrupoListagemComponent,
     AtributoListagemComponent,
     LoginComponent,
-    FtpListagemComponent
+    FtpListagemComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     HttpModule,
     CpfCnpjModule,
     TextMaskModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
