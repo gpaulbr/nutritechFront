@@ -11,6 +11,7 @@ import { IngredienteService } from '../ingrediente.service';
 import { IngredienteDto } from '../ingrediente-dto';
 import { IngredienteAtributoDto } from '../ingrediente-atributo-dto';
 import { Router } from '@angular/router';
+import { print } from 'util';
 
 @Component({
   selector: 'app-ingrediente-cadastro',
@@ -45,8 +46,22 @@ export class IngredienteCadastroComponent implements OnInit {
     this.ingredienteForm = this.fb.group({
       nome: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
-      tipo: [TipoIngrediente[TipoIngrediente.PRIVADO], Validators.required]
+      tipo: [TipoIngrediente.PRIVADO, Validators.required]
     });
+  }
+
+  limpar(){
+    this.ingredienteForm.controls.nome.setValue('')
+    this.ingredienteForm.controls.origem.setValue('')
+    this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO)
+    // this.atributos.forEach(e => {
+    //   e.valor=0;
+    //   console.log(e.valor)
+    // });
+    const atrs = document.getElementsByClassName("atr");
+    for(let i = 0; i < atrs.length; i++) {
+      atrs[i]['value'] = 0
+    }
   }
 
   ngOnInit() {
@@ -63,7 +78,6 @@ export class IngredienteCadastroComponent implements OnInit {
           this.atributos.push(ingAtributos);
         });
       });
-
   }
 
   setarValor(nomeAtributo: string, valor: string) {
