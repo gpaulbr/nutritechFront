@@ -77,8 +77,9 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   cadastrarIngrediente(ingrediente: IngredienteDto) {
+    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     ingrediente.status = true;
-    ingrediente.idCriador = 1;
+    ingrediente.idCriador = usuarioLogado.id;
 
     // console.log(ingrediente);
 
