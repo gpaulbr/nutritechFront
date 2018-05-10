@@ -1,0 +1,56 @@
+<div class="container">
+  <form [formGroup]="ingredienteForm" class="form-horizontal form-container" id="formulario" (ngSubmit)="cadastrarIngrediente()">
+      <h2>Cadastro de Ingrediente</h2>
+      <div class="divisor">
+          <span></span>
+      </div>
+      <div class="alert alert-danger mar-top-10" role="alert"
+           style="display: none;">
+          <span id="textoErro"><strong>Erro!</strong></span>
+      </div>
+      <div class="form-group mar-top-20">
+          <label class="col-md-4 control-label" for="nome">Nome</label>
+          <div class="col-md-4">
+              <input id="nome" name="nome" class="form-control" type="text" placeholder="Arroz"
+                [formControl]="ingredienteForm.controls['nome']" required>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-md-4 control-label" for="origem">Origem</label>
+          <div class="col-md-4">
+              <input id="origem" name="origem" class="form-control" placeholder="Taco" 
+              [formControl]="ingredienteForm.controls['origem']" type="text" required>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-md-4 control-label">Tipo</label>
+          <div class="col-md-5">
+              <app-radio-button [opcoes]="tiposIngredientes" [nome]="'TipoIngrediente'" (emissaoValor)="definirTipoIngrediente($event)"></app-radio-button>
+          </div>
+      </div>
+
+      <div class="alert alert-warning mar-top-10" role="alert"
+           style="display: block;text-align: center;">
+          <strong>Aviso! </strong> Valor de cada Atributo calculado para cada 100g
+          <br>
+          <strong>Aviso! </strong> Preencher atributo obrigatório para gerar informação nutricional
+      </div>
+
+      <div id='col_atributos' class='row coluna'>
+      </div>
+      <div class="form-group" id="div_buttons">
+          <label class="col-md-4 control-label" for="confirmar"></label>
+          <div class="col-md-8" id="buttons">
+              <button type="submit" id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!ingredienteForm.valid">Confirmar</button>
+              <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
+              <button type="reset" id="resetForm" name="resetForm" class="btn btn-danger">Cancelar</button>
+          </div>
+      </div>
+  </form>
+</div>
+<br>
+<div class="alert alert-success" role="alert"
+   style="display: none; width: 25%; margin-left:37%; text-align: center;">
+</div>

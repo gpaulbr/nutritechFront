@@ -63,7 +63,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     CpfCnpjModule,
     TextMaskModule,
     NgxDatatableModule
-    
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
