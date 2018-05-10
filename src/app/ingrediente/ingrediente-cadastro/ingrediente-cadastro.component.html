@@ -37,7 +37,7 @@
 <div class="row form-group">
 	<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Domínio</label>
 	<div class="col-md-4">
-	<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="tiposIngredientes($event)" 
+	<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)" 
 	class="input-Radio"></app-radio-button>
 	</div>
 </div>
@@ -52,7 +52,8 @@
 
 <!-- Saida dos Atributos -->
 <div id="atribForm" *ngFor="let ingAtributo of atributos">  <!-- referencia o atributo que vem do angular -->
-	<div class="row form-group">
+
+		<div class="row form-group">
 		<label id="nomeAtrib" class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
 		<div class="col-md">
 		<input id="input-atributo" ngValue="ingAtributo.valor" maxlength="10" OnlyNumber="true" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
