@@ -65,4 +65,16 @@ footer p{
   font-weight: normal!important;
 }
 
+#aviso-cad{/*mensagem de aviso*/
+  font-size: 75%; /* tamanho da fonte */
+line-height: 0.5em !important; /* espaçamento das linhas */
+text-align:center; /* alinhamento do texto */
+color:rgb(202, 83, 4); /* cor do texto */
+width: 80%; /* largura do mini-form */
+height: 50%; /* altura do mini-form */
+margin: 2% auto; /* margin ao redor do form */
+padding-top: 2%; /* distancia do texto do mini-form */
+background:linear-gradient(0deg,rgba(238, 236, 95, 0.6), rgba(233, 224, 105, 0.6));/* ^^^^^ -> cor do mini-form */
+}
+
 
