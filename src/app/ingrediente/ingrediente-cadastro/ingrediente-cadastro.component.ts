@@ -51,16 +51,15 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   limpar(){
+    this.ingAtributos=[];    
     this.ingredienteForm.controls.nome.setValue('')
     this.ingredienteForm.controls.origem.setValue('')
     this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO)
-    // this.atributos.forEach(e => {
-    //   e.valor=0;
-    //   console.log(e.valor)
-    // });
+
     const atrs = document.getElementsByClassName("atr");
     for(let i = 0; i < atrs.length; i++) {
-      atrs[i]['value'] = 0
+      atrs[i]['value'] =0;
+      
     }
   }
 
@@ -69,6 +68,9 @@ export class IngredienteCadastroComponent implements OnInit {
     if(usuarioLogado == null) {  
       this.router.navigate(['./']);
     }
+    this.atributos = [];
+    console.log("atr leng",this.atributos.length);
+
      this.atributosService.buscarAtributos()
       .subscribe(a => {
         a['Atributos'].forEach(e => {
@@ -95,10 +97,10 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   cadastrarIngrediente(ingrediente: IngredienteDto) {
+    this.limpar();
     ingrediente.status = true;
     ingrediente.idCriador = 1;
     ingrediente.atributos = this.ingAtributos;
-    console.log(ingrediente);
     
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
