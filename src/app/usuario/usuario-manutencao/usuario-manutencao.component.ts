@@ -70,18 +70,15 @@ export class UsuarioManutencaoComponent implements OnInit {
   cadastrarUsuario(){
     this.usuarioService.salvarUsuario(this.usuarioForm.value).subscribe(
       response => {
-        console.log(response)
         this.toastr.success('Usuário cadastrado com sucesso');
-          this.router.navigate(['./']);        
+        this.router.navigate(['./']);        
       },
       error => {
-        console.log(error)
         this.toastr.error(error.error);
       });
   }
 
   definirTipoUsuario(valor: number){
-    console.log(this.usuarioForm);
     this.usuarioForm.controls.tipo.setValue(valor);
   }
 

@@ -10,6 +10,7 @@ import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { IngredienteService } from '../ingrediente.service';
 import { IngredienteDto } from '../ingrediente-dto';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-ingrediente-cadastro',
@@ -36,6 +37,7 @@ export class IngredienteCadastroComponent implements OnInit {
   constructor(
     private atributosService: AtributoService, 
     private router: Router,
+    private toastr: ToastrService,
     private ingredienteService: IngredienteService) {
     this.atributos = [];
     this.fb = new FormBuilder();
@@ -85,9 +87,9 @@ export class IngredienteCadastroComponent implements OnInit {
 
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
-        alert("Ingrediente cadastrado com sucesso!");
+        this.toastr.success('Ingrediente cadastrado com sucesso');
       }, erro =>{
-        alert("Erro no cadastro!");
+        this.toastr.error('Erro no cadastro');
       })
   }
 
