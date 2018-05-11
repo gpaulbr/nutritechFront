@@ -55,7 +55,7 @@
 
 		<div class="row form-group">
 		<label id="nomeAtrib" class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
-		<div class="col-md">
+		<div class="col-md-4">
 		<input id="input-atributo" ngValue="ingAtributo.valor" maxlength="10" OnlyNumber="true" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
 		placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md atr" required>
 		</div>
