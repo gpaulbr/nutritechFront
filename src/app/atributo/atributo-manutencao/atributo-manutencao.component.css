@@ -9,7 +9,7 @@ form{
   margin: 2% auto;
   width: 50%;
   height: 400px;
-  box-shadow: rgba(250,250,250,0.6) 7px 7px 7px 5px;
+  box-shadow: rgba(250,250,250,0.6) 4px 6px 7px 5px;
   background:linear-gradient(0deg,rgba(250,250,250,0.6),rgba(255,255,255,0.6));
 }
 
