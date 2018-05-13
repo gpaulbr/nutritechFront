@@ -36,6 +36,11 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FtpModoPreparoComponent } from './ftp/ftp-modo-preparo/ftp-modo-preparo.component';
+import { FtpDificuldadeComponent } from './ftp/ftp-dificuldade/ftp-dificuldade.component';
+import { FtpIntegrantesComponent } from './ftp/ftp-integrantes/ftp-integrantes.component';
+import { FtpSelecaoIngredientesComponent } from './ftp/ftp-selecao-ingredientes/ftp-selecao-ingredientes.component';
+import { FtpImageFileUploadComponent } from './ftp/ftp-image-file-upload/ftp-image-file-upload.component';
 
 
 @NgModule({
@@ -55,6 +60,11 @@ import { ToastrModule } from 'ngx-toastr';
     AtributoListagemComponent,
     LoginComponent,
     FtpListagemComponent,
+    FtpModoPreparoComponent,
+    FtpDificuldadeComponent,
+    FtpIntegrantesComponent,
+    FtpSelecaoIngredientesComponent,
+    FtpImageFileUploadComponent,
   ],
   imports: [
     BrowserModule,
