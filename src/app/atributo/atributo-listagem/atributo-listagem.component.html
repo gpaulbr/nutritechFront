@@ -37,8 +37,11 @@
                                             <td>
                                                 {{atributo.multiplicador}}
                                             </td>
-                                            <td>
-                                                {{atributo.obrigatorio}}
+                                            <td *ngIf="atributo.obrigatorio">
+                                                Sim
+                                            </td>
+                                            <td *ngIf="!atributo.obrigatorio">
+                                                Não
                                             </td>
                                             <td>
                                                 <i class="material-icons delete">edit</i>
