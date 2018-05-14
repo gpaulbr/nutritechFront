@@ -2,16 +2,20 @@
     background: #207C7B;
     background-image:url(../img/logo.png);
     background-repeat:no-repeat;
-    background-position:1% 0%;
-    background-size:7%;
+    background-position:0% 0%;
+    background-size:5em;
     height:3em;
 }
 
-.exitImg img{
-    width: 20%;
-    height: 20%;
-    float: right;
-    margin-right: -20%;
+.nomeUsu{
+    color:#D5BB46;
+    padding-left:50%;
+    margin-top: 2%;
+    margin-left: -10%;
+    background-image: url(assets/blank_user.png);
+    background-repeat:no-repeat;
+    background-position:0% 0%;
+    background-size:1.5em;
 }
 
 .menu1{
@@ -79,11 +83,25 @@ a{
 }
 
 /* @media aqui */
+
+@media only screen and (max-width: 321px) {
+    .nomeUsu{
+        background-image:none;
+        font-size: 14px;
+        padding-top:10%;
+        padding-right:-20%;
+    }
+}
 @media only screen and (max-width: 1032px) {
     .navbar {
         background-image:url(../img/logo.png);
-        background-size:16%;
+        background-size:3em;
         height:2em;
+    }
+
+    .nomeUsu{
+            margin-top: 15%;
+            background-image: none;
     }
 
     a{
@@ -148,12 +166,9 @@ a{
         margin-top: -12%;
         margin-left:70%;
     }
-
     .exitImg img{
-        width: 10%;
-        height: 10%;
-        margin-right:-15%;
-        margin-top:-10%;
+        margin-right: -10em;
+        margin-top:1em;
     }
 }
 
