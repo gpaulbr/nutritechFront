@@ -37,6 +37,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { OnlyNumber } from './shared/directives/only-number.directive'
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ToastrModule } from 'ngx-toastr';
     AtributoListagemComponent,
     LoginComponent,
     FtpListagemComponent,
+    OnlyNumber
   ],
   imports: [
     BrowserModule,

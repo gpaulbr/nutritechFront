@@ -6,3 +6,4 @@ export class IngredienteAtributo {
     public atributo: Atributo;
     public valor: number
 }
+

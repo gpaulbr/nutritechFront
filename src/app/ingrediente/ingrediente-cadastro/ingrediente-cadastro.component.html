@@ -1,92 +1,79 @@
 <div class="container container-ingrediente">
 	<fieldset>
-	<form [formGroup]="ingredienteForm" class="form-horizontal form-container" (ngSubmit)="cadastrarIngrediente(ingredienteForm.value)" id="formulario" novalidate>
-		
-    <div class="alert alert-danger mar-top-10" role="alert" style="display: none;">
-			<span id="textoErro"><strong>Erro!</strong></span>
-		</div>
-		
-		<!-- Nome -->
-		<div class="hCad">
-			<h2 class="titulo">Cadastro de Ingrediente</h2>
-		</div>
-		<div class="testI">	
-		<div class="form-group row justify-content-center">
-			<label class="col-md-2 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
-			<div class="col-md-6">
-				<input formControlName="nome" type="text"
-				  placeholder="Nome do ingrediente..."  class="form-control input-md">
-				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['nome'].valid && this.ingredienteForm.controls['nome'].dirty"></app-mensagem-erro>
-			</div>
-		</div>
-		
-		<!-- Origem -->
-    <div class="form-group row justify-content-center">
-			<label class="col-md-2 control-label campo-obrigatorio" ng-show="" for="origem">Origem</label>
-			<div class="col-md-6">
-				<input formControlName="origem" type="text"
-				  placeholder="Ex: Taco" class="form-control input-md">
-				<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
-			</div>
-		</div>
 
-		<!-- Tipo -->
-		<div class="form-group row justify-content-center">
-			<label class="col-md-5 control-label campo-obrigatorio" ng-show="" for="tipo">Tipo</label>
-				<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)" class="row form-group justify-content-center inputRadio"></app-radio-button>
+         <!--  [] -> manda do componete .ts para o HTML  -->
+	      	<!-- () -> manda do HTML para o angular -->	
+	<form [formGroup]="ingredienteForm" class="form-horizontal form-container" 
+	(ngSubmit)="cadastrarIngrediente(ingredienteForm.value)" id="formulario" novalidate>
+
+			<h2>Cadastro de Ingrediente</h2>
+<br>
+<!-- Nome -->
+<div class="row form-group">
+		<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Nome</label>
+		<div class="col-md-4">
+		<input formControlName="nome" type="text"
+		placeholder="Nome do ingrediente..."  class="form-control input-md">
+		<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['nome'].valid && 
+		this.ingredienteForm.controls['nome'].dirty"></app-mensagem-erro>
 		</div>
+</div>
+<!---->
 		
-	<div class="tab-atrib">		
-		<!-- Atributos -->
-		<div class="row form-group">
-			<label class="col-md-6 control-label campo-obrigatorio" ng-show="" >Valor Energético (kcal)</label>
-			<div class="col-md-6">
-				<input  type="number"
-				  placeholder=" Kcal" class="atributo form-control input-md" min="0">
-			</div>
-		</div>
-
-		<div class="row form-group">
-			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" >Carboidratos (g)</label>
-			<div class="col-md-5">
-				<input  type="number"
-				  placeholder="g" class="atributo form-control input-md" min="0">
-			</div>
-		</div>
-
-		<div class="row form-group">
-			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" >Proteínas (g)</label>
-			<div class="col-md-5">
-				<input  type="number"
-				  placeholder="g" class="atributo form-control input-md" min="0">
-			</div>
-		</div>
-
-		<div class="row form-group">
-			<label class="col-md-7 control-label campo-obrigatorio" ng-show="" >Gorduras Totais(g)</label>
-			<div class="col-md-5">
-				<input  type="number"
-				  placeholder="g" class="atributo form-control input-md" min="0">
-			</div>
-		</div>
-
-<!-- 		<div class="row form-group">
-				<label class="col-md-7 control-label campo-obrigatorio" ng-show="" for="origem">Gosturas Saturada(g)</label>
-				<div class="col-md-">
-					<input formControlName="origem" type="number"
-						placeholder="g" class="atributo form-control input-md" min="0">
-					<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
-				</div>
-			</div> -->
-		</div>
 		
-    <div class="but-t form-group">
-		<div>			
-        <button type="reset" class="btn btn-danger">Limpar</button>
-        <button type="submit" class="btn btn-success" [disabled]="ingredienteForm.invalid">Confirmar</button>
-			</div>
-		</div>
+<!-- Origem -->
+<div class="row form-group">
+	<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Origem</label>
+	<div class="col-md-4">
+		<input formControlName="origem" type="text"
+		placeholder="Ex: Taco" class="form-control input-md">
+		<app-mensagem-erro [contemErro]="!this.ingredienteForm.controls['origem'].valid && 
+		this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
 	</div>
+</div>
+<!---->
+
+<!-- Tipo  que na verdade é domínio -->
+<div class="row form-group">
+	<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Domínio</label>
+	<div class="col-md-4">
+	<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)" 
+	class="input-Radio"></app-radio-button>
+	</div>
+</div>
+<!---->
+
+<!-- Aviso Calculo Porção -->
+<div id="aviso-cad" >
+<p><b>Aviso! </b></p>
+<p> Valor de cada atributo é calculado para cada 100g</p>
+<p> Preencher atributo obrigatorio para gerar informação nutricional </p>
+</div>
+
+<!-- Saida dos Atributos -->
+<div id="atribForm" *ngFor="let ingAtributo of atributos">  <!-- referencia o atributo que vem do angular -->
+
+		<div class="row form-group">
+		<label id="nomeAtrib" class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
+		<div class="col-md-4">
+		<input id="input-atributo" ngValue="ingAtributo.valor" maxlength="10" OnlyNumber="true" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
+		placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md atr" required>
+		</div>
+
+	</div>
+</div>
+<!---->
+<br>
+
+<!-- Limpar ou Confirmar -->
+<div class="but-t form-group">
+	<div>			
+   <button type="button" (click)="limpar()" class="btn btn-danger">Limpar</button>
+   <button type="submit" class="btn btn-success" [disabled]="ingredienteForm.invalid">Confirmar</button>
+	</div>
+</div>
+<!---->
+
 
     </form>
   </fieldset>

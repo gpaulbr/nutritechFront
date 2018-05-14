@@ -9,8 +9,10 @@ import { Usuario } from '../../usuario/usuario';
 import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { IngredienteService } from '../ingrediente.service';
 import { IngredienteDto } from '../ingrediente-dto';
+import { IngredienteAtributoDto } from '../ingrediente-atributo-dto';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { print } from 'util';
 
 @Component({
   selector: 'app-ingrediente-cadastro',
@@ -22,6 +24,7 @@ export class IngredienteCadastroComponent implements OnInit {
   ingredienteForm: FormGroup;
   fb: FormBuilder
   atributos: IngredienteAtributo[];
+  ingAtributos: IngredienteAtributoDto[];
 
   tiposIngredientes = [{
     valor: TipoIngrediente.PRIVADO,
@@ -30,7 +33,7 @@ export class IngredienteCadastroComponent implements OnInit {
   },
   {
     valor: TipoIngrediente.COMUM,
-    texto: "Comum",
+    texto: "Público",
     selecionado: false
   }];
 
@@ -40,20 +43,37 @@ export class IngredienteCadastroComponent implements OnInit {
     private toastr: ToastrService,
     private ingredienteService: IngredienteService) {
     this.atributos = [];
+    this.ingAtributos = [];
     this.fb = new FormBuilder();
     this.ingredienteForm = this.fb.group({
       nome: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
-      tipo: [TipoIngrediente[TipoIngrediente.PRIVADO], Validators.required],
+      tipo: [TipoIngrediente.PRIVADO, Validators.required]
     });
   }
 
+  limpar(){
+    this.ingAtributos=[];    
+    this.ingredienteForm.controls.nome.setValue('')
+    this.ingredienteForm.controls.origem.setValue('')
+    this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO)
+
+    const atrs = document.getElementsByClassName("atr");
+    for(let i = 0; i < atrs.length; i++) {
+      atrs[i]['value'] =0;
+      
+    }
+  }
+
   ngOnInit() {
-    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {  
       this.router.navigate(['./']);
     }
-    this.atributosService.buscarAtributos()
+    this.atributos = [];
+    console.log("atr leng",this.atributos.length);
+
+     this.atributosService.buscarAtributos()
       .subscribe(a => {
         a['Atributos'].forEach(e => {
           let ingAtributos = new IngredienteAtributo();
@@ -64,10 +84,10 @@ export class IngredienteCadastroComponent implements OnInit {
       });
   }
 
-  setarValor(nomeAtributo: string, valor: number) {
+  setarValor(nomeAtributo: string, valor: string) {
     this.atributos.forEach(a => {
       if(a.atributo.nome === nomeAtributo) {
-        a.valor = valor;
+        this.ingAtributos.push(new IngredienteAtributoDto(a.atributo.id, valor));
       }
     });
   }
@@ -79,9 +99,11 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   cadastrarIngrediente(ingrediente: IngredienteDto) {
+    this.limpar();
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     ingrediente.status = true;
     ingrediente.idCriador = usuarioLogado.id;
+    ingrediente.atributos = this.ingAtributos;
 
     // console.log(ingrediente);
 
