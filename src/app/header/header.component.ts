@@ -30,10 +30,7 @@ export class HeaderComponent implements OnInit {
           } else {
             this.admin = false;
           }                  
-        } else {
-          // Comentada pois redirecionava para home quando acessava o cadastro sempre, ja que o usuario nunca estava logado
-          // this.router.navigate(['./']);
-        }        
+        }      
       }
     })
   }
