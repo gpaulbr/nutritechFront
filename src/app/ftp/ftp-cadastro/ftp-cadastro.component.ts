@@ -10,6 +10,7 @@ import { UsuarioService } from '../../usuario/usuario.service';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { FtpTipo } from '../ftp-tipo.enum';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'ftp-cadastro',
@@ -28,7 +29,8 @@ export class FTPCadastroComponent implements OnInit {
     private grupoService: GrupoService,
     private usuarioService: UsuarioService,
     private ingredienteService: IngredienteService,
-    private router: Router,
+    private toastr: ToastrService,
+    private router: Router
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.ftpForm = this.fb.group({
@@ -70,8 +72,7 @@ export class FTPCadastroComponent implements OnInit {
           delete item['active']
         });
         console.log(this.gruposDisponiveis);
-      }
-    )
+      });
 
     this.usuarioService.buscarProfessores().subscribe(
       response => {
@@ -127,9 +128,9 @@ export class FTPCadastroComponent implements OnInit {
 
     this.ftpService.salvarFTP(ftp)
       .subscribe(resp => {
-        alert('Ficha Técnica de Preparo cadastrada com sucesso!');
-      }, erro =>{
-        alert('Erro no cadastro!');
+        this.toastr.success('Ficha Técnica de Preparo cadastrada com sucesso!');
+      }, error =>{
+        this.toastr.error(error.error);
       })
   }
 }
