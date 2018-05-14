@@ -1,209 +1,104 @@
 <div class="container">
-	<br>
-	<fieldset>
-		<form class="content">
-			<div>
-				<h2>Ficha Técnica de Produto</h2>
-				<div class="form-group row justify-content-start">
-					<div class="col-md-4 col-lg-3">
-						<label>Produto:</label>
-					</div>
-					<div class="col-md-7 col-lg-6 col-xl-5">
-						<input type="text" class="form-control" placeholder="Nome do Produto">
-					</div>
-				</div>
-				<div class="form-group row justify-content-start">
-					<div class="col-md-4 col-lg-3">
-						<label>Grupo Alimentar:</label>
-					</div>
-					<div class="col-md-7 col-lg-6 col-xl-5">
-						<select class="form-control">
-							<option value="" disabled selected hidden>Selecione o grupo</option>
-							<option value="2">GrupoAlimentar1</option>
-							<option value="3">GrupoAlimentar2</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group row justify-content-start">
-					<div class="col-md-4 col-lg-3">
-						<label>Disciplina:</label>
-					</div>
-					<div class="col-md-7 col-lg-6 col-xl-5">
-						<select class="form-control">
-							<option value="" disabled selected hidden>Selecione a Disciplina</option>
-							<option value="2">Disciplina1</option>
-							<option value="3">Disciplina2</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group row justify-content-start">
-					<div class="col-md-4 col-lg-3">
-						<label>Integrantes:</label>
-					</div>
-					<div class="col-md-7 col-lg-6 col-xl-5">
-						<div>
-							<select class="form-control">
-								<option value="" disabled selected hidden>Selecione um novo participante</option>
-								<option value="2">Participante1</option>
-								<option value="3">Participante2</option>
-							</select>
-							<p class="integrante">Gabriel</p>
-							<i class="material-icons delete">delete</i>
-							<hr class="divisor-integrantes">
-							<p class="integrante">Bianca</p>
-							<i class="material-icons delete">delete</i>
-							<hr class="divisor-integrantes">
-						</div>
-					</div>
-				</div>
-
-				<hr>
-				<h3>Adicionar Ingredientes</h3>
-				<div class="row">
-					<div class="col-md-6">
-						<select class="form-control">
-							<option value="" disabled selected hidden>Selecione um ingrediente</option>
-							<option value="2">/ingrediente1</option>
-							<option value="3">Ingrediente2</option>
-						</select>
-					</div>
-					<div class="col-md-2">
-						<h4>Valor por Kg:</h4>
-						<p>R$ 0,00</p>
-					</div>
-					<div class="col-md-2">
-						<label>Fator de correção:</label>
-						<p>95%</p>
-					</div>
-					<div class="col-md-2">
-						<label>Peso (g)</label>
-						<input type="text" class="form-control">
-					</div>
-					<div class="col-md-2">
-						<button class="btn btn-success">Adicionar Ingrediente</button>
-					</div>
-				</div>
+		<br>
+		<fieldset>
+			<form [formGroup]="ftpForm" class="content" id="formulario" novalidate>
 				<div>
-					<table>
-						<tr>
-							<th>Ingrediente</th>
-							<th>Custo</th>
-							<th>Fator de correção</th>
-							<th>Peso</th>
-							<th></th>
-						</tr>
-						<tr>
-							<th>Tomates</th>
-							<th>R$ 2,00</th>
-							<th>95%</th>
-							<th>0.3Kg</th>
-							<th><i class="material-icons delete">delete</i></th>
-						</tr>
-						<tr>
-							<th>Azeitonas</th>
-							<th>R$ 5,00</th>
-							<th>94%</th>
-							<th>0.25Kg</th>
-							<th><i class="material-icons delete">delete</i></th>
-						</tr>
-					</table>
-				</div>
-
-				<button class="btn btn-success">Criar Novo Ingrediente</button>
-				<br>
-
-				<hr>
-
-				<div>
-					<div>
-						<h3>Modo de Preparo:</h3>
-						<div class="form-group row justify-content-start row-preparo">
-							<div class="col-md-auto">
-								<label>Passo 1:</label>
-							</div>
-							<div class="col-md col-preparo-passo">
-								<input type="text" class="form-control" value="Bata os tomates e as azeitonas no liquidificador.">
-							</div>
+					<h2>Ficha Técnica de Produto</h2>
+          <div><p id="time" type="datetime-local"></p></div>
+					<div class="form-group row justify-content-start">
+						<div class="col-md-4 col-lg-3">
+							<label class="campo-obrigatorio">Produto:</label>
 						</div>
-						<div class="form-group row justify-content-start row-preparo">
-							<div class="col-md-auto">
-								<label>Passo 2:</label>
-							</div>
-							<div class="col-md col-preparo-passo">
-								<input type="text" class="form-control" value="Esprema os limões para obter o suco.">
-							</div>
-						</div>
-						<div class="row justify-content-start">
-							<div class="col-md col-preparo-passo">
-								<input type="text" class="form-control" placeholder="Adicione um novo passo">
-							</div>
-							<div class="col-md-auto">
-								<button class="btn btn-success" id="add-novo-passo">Adicionar</button>
-							</div>
+						<div class="col-md-7 col-lg-6 col-xl-5">
+							<input formControlName="nome" type="text" class="form-control" placeholder="Nome do Produto">
+							<app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
 						</div>
 					</div>
+					<div class="form-group row justify-content-start">
+						<div class="col-md-4 col-lg-3">
+							<label class="campo-obrigatorio">Grupo Alimentar:</label>
+						</div>
+						<div class="col-md-7 col-lg-6 col-xl-5">
+								<select formControlName="grupoReceita" [(ngModel)]="gruposDisponiveis" class="form-control">
+										<option [ngValue]="null" disabled selected hidden>Selecione o Grupo Alimentar</option>
+										<option *ngFor="let item of gruposDisponiveis" [ngValue]="item">
+											{{item.nome}}
+										</option>
+								</select>
+								<app-mensagem-erro [contemErro]="!this.ftpForm.controls['grupoReceita'].valid && this.ftpForm.controls['grupoReceita'].dirty"></app-mensagem-erro>
+							</div>
+						</div>
+						<div class="form-group row justify-content-start">
+							<div class="col-md-4 col-lg-3">
+								<label class="campo-obrigatorio">Professor:</label>
+							</div>
+							<div class="col-md-7 col-lg-6 col-xl-5">
+								<select formControlName="professor" [(ngModel)]="professoresDisponiveis" class="form-control">
+										<option [ngValue]="null" disabled selected hidden>Selecione o Professor</option>
+										<option *ngFor="let item of professoresDisponiveis" [ngValue]="item">
+											{{item.nome}}
+										</option>
+								</select>
+								<app-mensagem-erro [contemErro]="!this.ftpForm.controls['professor'].valid && this.ftpForm.controls['professor'].dirty"></app-mensagem-erro>
+						</div>
+					</div>
+					<!-- -->
+					<app-ftp-integrantes [obrigatorio]=true (salvarIntegrantes)="alterarIntegrantes($event)"></app-ftp-integrantes>
 					<hr>
-					<div class="row">
-						<div class="col-md-7">
-							<div class="row">
-								<div class="col-lg-3">
-									<h4>Custo por porção:</h4>
-									<p>R$ 24,00</p>
+					<app-ftp-selecao-ingredientes [obrigatorio]=true (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
+					<hr>
+					<app-ftp-modo-preparo [obrigatorio]="true" (salvarPassos)="alterarPassos($event)"></app-ftp-modo-preparo>
+					<div>
+						<hr>
+						<div class="row">
+							<div class="col-md-7">
+								<div class="row">
+									<div class="col-lg-3">
+										<h4>Custo por porção:</h4>
+										<p>R$ 24,00</p>
+									</div>
+									<div class="col-lg-5">
+										<h4>Rendimento:</h4>
+										<input formControlName="rendimento" type="text" class="form-control" placeholder="Uma porção">
+									</div>
+									<div class="col-lg-4">
+										<h4>Peso:</h4>
+										<input formControlName="peso" type="number" class="form-control" placeholder="600g">
+									</div>
 								</div>
-								<div class="col-lg-5">
-									<h4>Rendimento:</h4>
-									<input type="text" class="form-control" placeholder="Uma porção">
+								<div id="tempo-preparo" class="row justify-content-start">
+									<div class="col-auto">
+										<h4>Tempo de preparo:</h4>
+									</div>
+									<div class="col-md-4">
+										<input formControlName="tempo" type="text" class="form-control" placeholder="30 min">
+									</div>
 								</div>
-								<div class="col-lg-4">
-									<h4>Peso:</h4>
-									<input type="text" class="form-control" placeholder="600g">
-								</div>
-							</div>
-							<div id="tempo-preparo" class="row justify-content-start">
-								<div class="col-auto">
-									<h4>Tempo de preparo:</h4>
-								</div>
-								<div class="col-md-4">
-									<input type="text" class="form-control" placeholder="30 min">
-								</div>
-							</div>
-							<div class="row no-gutters align-items-center">
-								<div class="col-md-auto">
-									<h4 id="dificuldade">Dificuldade:</h4>
-								</div>
-								<div class="col-md-auto">
-									<i class="material-icons checked">local_dining</i>
-									<i class="material-icons checked">local_dining</i>
-									<i class="material-icons checked">local_dining</i>
-									<i class="material-icons">local_dining</i>
-									<i class="material-icons">local_dining</i>
+								<div class="row no-gutters align-items-center">
+									<app-ftp-dificuldade [dificuldadeMaxima]="5" [dificuldade]="retornarDificuldade()" (salvarDificuldade)="alterarDificuldade($event)"></app-ftp-dificuldade>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-5">
-							<div class="imagem">imagem</div>
-							<button class="btn anexar">Anexar imagem</button>
-						</div>
-					</div>
+              <div class="col-md-5">
+              <app-ftp-image-file-upload></app-ftp-image-file-upload>
+              </div>
+            </div>
+						<br>
 
-					<br>
-
-					<div class="last row">
-						<div class="col-md-6 mr-auto">
-							<input type="checkbox">
-							<h4 id="ficha-privada">Tornar minha ficha técnica privada</h4>
-						</div>
-						<div class="col-auto">
-							<button class="btn btn-success">Salvar</button>
-						</div>
-						<div class="col-auto">
-							<button class="btn btn-success">Publicar</button>
+						<div class="last row">
+							<div class="col-md-6 mr-auto">
+							<input type="checkbox" id="ftp-privacidade" ng-model="leader" (click)="alterarTipo()">
+								<label id="ficha-privada" for="ftp-privacidade" ng-checked="leader">Tornar minha ficha técnica privada</label>
+							</div>
+							<div class="col-auto">
+								<button class="btn btn-success" (click)="cadastrar(ftpForm.value, false)">Salvar</button>
+							</div>
+							<div class="col-auto">
+								<button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value, true)" [disabled]="ftpForm.invalid">Publicar</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</form>
-	</fieldset>
-</div>
-<br>
+			</form>
+		</fieldset>
+	</div>
+	<br>

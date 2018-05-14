@@ -7,19 +7,14 @@ label {
 	margin-top: 5px;
 }
 
-.divisor-integrantes {
-	margin-top: 0px;
-}
-
-.integrante {
-	margin: 0px;
-	margin-top: 3px;
-	display: inline-block;
-}
-
-.delete {
+.delete {gitgit
 	display: inline-block;
 	float: right;
+}
+
+.btn-addIngrediente {
+  width: 100%;
+  margin-top: 2.5em;
 }
 
 form {
@@ -67,58 +62,4 @@ tr:first-child{
 	button {
 		margin-top: 5px;
 	}
-}
-
-@media only screen and (min-width: 768px) {
-	.row-preparo {
-		display: flex;
-	}
-
-	.col-preparo-passo {
-		flex: 1;
-	}
-}
-
-h2 {
-	margin-bottom: 5%;
-	text-align: center;
-	padding: 1px;
-	font-size: 30px;
-}
-
-h4 {
-	font-size: 1rem;
-	font-weight: bold;
-	margin-top: 5px;
-}
-
-#dificuldade {
-	margin-right: 3px;
-}
-
-i {
-	margin-top: 6px;
-}
-
-.no-gutters {
-	margin-top: 5px;
-}
-
-.last.row > *{
-	margin: 40px 0px 15px;
-}
-
-textarea {
-	width: 100%;
-	border-radius: 5px;
-	border: 0px;
-	padding: 5px;
-}
-
-#tempo-preparo {
-	margin-top: 7px;
-}
-
-#ficha-privada {
-	display: inline;
 }

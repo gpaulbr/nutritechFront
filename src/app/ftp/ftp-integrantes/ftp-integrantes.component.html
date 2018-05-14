@@ -1,0 +1,27 @@
+<div class="form-group row justify-content-start">
+  <div class="col-md-4 col-lg-3">
+    <label class="campo-obrigatorio" [ngClass]="{ 'campo-obrigatorio': obrigatorio }">Integrantes:</label>
+  </div>
+  <div class="col-md-7 col-lg-6 col-xl-5">
+    <div>
+      <div class="row no-gutters">
+        <div class="col">
+          <select [(ngModel)]="usuario" class="form-control" >
+            <option [ngValue]="null" disabled selected hidden>Selecione um Integrante</option>
+            <option *ngFor="let item of alunosDisponiveis" [ngValue]="item">
+              {{item.nome}}
+            </option>
+          </select>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-success" (click)="adicionarIntegrante()">+</button>
+        </div>
+      </div>
+      <ng-container *ngFor="let item of integrantes; let i = index"> 
+          <p align="left" class="integrante">{{item.nome}}</p>
+          <i class="material-icons delete" onmouseover="" style="cursor: pointer;" (click)="removerIntegrantePorIndex(i)">delete</i>
+          <hr class="divisor-integrantes">
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -268,4 +268,18 @@ button.toast-close-button {
     width: 25em;
   }
 }
+.campo-obrigatorio:after {
+  content:"*";
+  color:red;
+}
+
+.checked {
+    color: orange;
+}
+
+.clicavel {
+  cursor: pointer;
+}
+
+
 

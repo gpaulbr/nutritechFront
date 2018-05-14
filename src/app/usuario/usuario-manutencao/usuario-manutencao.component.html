@@ -72,7 +72,7 @@
 		<div class="form-group row">
 			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
-				<input [textMask]="{mask: mascaraCPF}" [formControl]="usuarioForm.controls['cpf']" [(ngModel)]="cpf" [cpf]="cpf" type="text" placeholder="" class="form-control input-md">
+				<input [textMask]="{mask: mascaraCPF}" [formControl]="usuarioForm.controls['cpf']" type="text" placeholder="" class="form-control input-md">
 				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
