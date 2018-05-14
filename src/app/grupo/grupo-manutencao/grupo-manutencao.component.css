@@ -21,6 +21,10 @@ form{
 .form-control{
   width: 320px;
 }
+
+.form-group{
+  margin-left: -10%;
+}
   
 /* Limpar e Confirmar */
 .but-t{
@@ -49,15 +53,3 @@ h2{
 
 
  
- 
-/*  @media only screen and (max-width: 330px) {
-  .input-md{
-    widows: 90%;
-    
-  }
- }
-
- .titulo {
-    margin-bottom: 5%;
-    text-align: center
- } */
