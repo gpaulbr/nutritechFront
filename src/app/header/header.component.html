@@ -23,11 +23,8 @@
             </div>
     </div>
     </div>
-<div class="row">
-    <p class="col-md-6 nomeUsu">{{usuarioLogado.nome}}</p>
-    <a class="col-md-6 exitImg" alt="Consulta de Usuários" (click)="logout()" [routerLink]="['']">
-        <img src="assets/blank_user.png"/>
-    </a> 
+<div class="row" (click)="logout()" [routerLink]="['']">
+    <p class="col-md-6 nomeUsu">{{usuarioLogado.nome}}</p> 
 </div>
 </div>
 </nav>

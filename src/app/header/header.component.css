@@ -7,19 +7,15 @@
     height:3em;
 }
 
-.exitImg{
-    float: right;
-    margin-right: -50%;
-}
-
 .nomeUsu{
     color:#D5BB46;
+    padding-left:50%;
     margin-top: 2%;
-    margin-right: -10%;
-}
-
-.exitImg img{
-    width: 50%;
+    margin-left: -10%;
+    background-image: url(assets/blank_user.png);
+    background-repeat:no-repeat;
+    background-position:0% 0%;
+    background-size:1.5em;
 }
 
 .menu1{
@@ -87,11 +83,25 @@ a{
 }
 
 /* @media aqui */
+
+@media only screen and (max-width: 321px) {
+    .nomeUsu{
+        background-image:none;
+        font-size: 14px;
+        padding-top:10%;
+        padding-right:-20%;
+    }
+}
 @media only screen and (max-width: 1032px) {
     .navbar {
         background-image:url(../img/logo.png);
         background-size:3em;
         height:2em;
+    }
+
+    .nomeUsu{
+            margin-top: 14%;
+            background-image: none;
     }
 
     a{
@@ -157,7 +167,8 @@ a{
         margin-left:70%;
     }
     .exitImg img{
-        width: 20%;
+        margin-right: -10em;
+        margin-top:1em;
     }
 }
 
