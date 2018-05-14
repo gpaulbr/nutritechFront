@@ -41,7 +41,6 @@ import { FtpDificuldadeComponent } from './ftp/ftp-dificuldade/ftp-dificuldade.c
 import { FtpIntegrantesComponent } from './ftp/ftp-integrantes/ftp-integrantes.component';
 import { FtpSelecaoIngredientesComponent } from './ftp/ftp-selecao-ingredientes/ftp-selecao-ingredientes.component';
 import { FtpImageFileUploadComponent } from './ftp/ftp-image-file-upload/ftp-image-file-upload.component';
-
 import { OnlyNumber } from './shared/directives/only-number.directive'
 
 @NgModule({
@@ -61,15 +60,12 @@ import { OnlyNumber } from './shared/directives/only-number.directive'
     AtributoListagemComponent,
     LoginComponent,
     FtpListagemComponent,
-<<<<<<< HEAD
-    OnlyNumber
-=======
+    OnlyNumber,
     FtpModoPreparoComponent,
     FtpDificuldadeComponent,
     FtpIntegrantesComponent,
     FtpSelecaoIngredientesComponent,
     FtpImageFileUploadComponent,
->>>>>>> 9bf7798785f7d71f463e39b1f3c0933701a8560f
   ],
   imports: [
     BrowserModule,
