@@ -3,55 +3,123 @@
     content:"*";
     color:red;
     }
-  
-  .erro{
-    font-size:0.7em;
-  }
-  
-  h2 {
-    text-justify: newspaper;
-    text-align: center;
-  }
+
+ /* Form maior */ 
+form{
+  display: block;
+  margin-top: auto;
+  width: 50%;
+  height: 200%;
+}  
+
+/* Confirgurações do Label*/  
+.control-label{
+  margin-left:17%;
+}
+
+/* input */
+.form-control{
+  width: 320px;
+}
+
+/* Limpar e Confirmar */
+.but-t{
+  margin-left: 42%;
+  margin-right: auto;
+}
+
+h2{
+    padding: 1px;
+    padding-bottom:1em;
+    text-align:center;
+    background-repeat:no-repeat;
+    background-position:20% 5%;
+    background-size:1.2em;
+}
+
+/**** @media inicia aqui ****/
+/*IPAD*/
+@media only screen and (max-width: 1024px) {
+  h2{
+   font-size:1.5em;
+   margin-left: 27%;
+   background-size:1.2em;
+ }
+ form{
    
-   .container-grupo, form{
-      width: 35%;
-   } 
-  
-   .input-md{
-    width: 90%;
+   width: 100%;
+   margin-left:-2%;
+ }
+
+ .input-md{   
+   margin-left:2%;
+ }
+}
+
+/*IPHONE 6 PLUS*/
+@media only screen and (max-width: 500px) {
+h2{
+   font-size:1.5em;
+   margin-left: 5%;
+   background-size:1.2em;
+}
+
+form{
+   width: 100%;
+   margin-left:-2%;
+}
+
+.input-md{   
+   margin-left:2%;
+}
+
+ .but-t{  /*Limpar e Confirmar*/
+   margin-left: 27%;
+ }
+
+ .control-label{
+  margin-left:0%;
+}
+}
+
+/*IPHONE 6*/
+@media only screen and (max-width: 375px) {
+
+h2{
+    font-size:1.3em;
+    margin-left: 10%;
+    background-size:1.2em;
   } 
+}
 
-  @media only screen and (max-width: 1032px) {
-    h2{   
-     font-size:1.5em;
-     padding-left: 7%;
-     background-position:0% 2.5%;
+/*IPHONE 5*/
+@media only screen and (max-width: 330px) {
+
+h2{
+     font-size:1.2em;
+     margin-left: 3%;
      background-size:1.2em;
-   }
-  
-   form{   
-     width: 100%;
-     margin-left: 0%;
-   }
- 
-    .input-md{
-     margin-left:2%;
-     width: 80%;
-   } 
- 
-   .control-label{
-    margin-left: 2%
-   }
- }
- 
- @media only screen and (max-width: 330px) {
-  .input-md{
-    widows: 90%;
-    
-  }
- }
+}  
 
- .titulo {
-    margin-bottom: 5%;
-    text-align: center
- }
+.input-md{
+  width: 100%;
+}
+
+.but-t{  /*Limpar e Confirmar*/
+  margin-left: 17%;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ 

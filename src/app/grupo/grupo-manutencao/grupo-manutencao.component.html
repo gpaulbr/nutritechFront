@@ -12,28 +12,32 @@
                         <span id="textoErro"><strong>Erro!</strong></span>
                     </div>
 
-                    <div class="form-group row justify-content-center">
-                        <label class="col-md-5 control-label campo-obrigatorio" for="nome">Nome</label>
-                        <div class="col-md-6">
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label campo-obrigatorio" for="nome">Nome</label>
+                        <div class="col-md-4">
                                 <input formControlName="nome" type="text"
                                 placeholder="Nome do Grupo de Receita"  class="form-control input-md">
                                 <app-mensagem-erro [contemErro]="!this.grupoForm.controls['nome'].valid && this.grupoForm.controls['nome'].dirty"></app-mensagem-erro>
                         </div>
                     </div>
 
-                    <div class="form-group row justify-content-center">
-                        <label class="col-md-5 control-label campo-obrigatorio" for="custo">Valor da Porção (em gramas)</label>
-                        <div class="col-md-6">
+                    <div class="row form-group">
+                        <label class="col-md-3 control-label campo-obrigatorio" for="custo">Valor da Porção (em gramas)</label>
+                        <div class="col-md-4">
                             <input formControlName="custo" type="number"
                             placeholder="5" class = "form-control input-md">
                             <app-mensagem-erro [contemErro]="!this.grupoForm.controls['custo'].valid && this.grupoForm.controls['custo'].dirty"></app-mensagem-erro>
                         </div>
                     </div>
 
+                   
+  
+
                     <div class="but-t form-group">
                         <div>
-                            <button id="confirmar" name="confirmar" class="btn btn-success" [disabled]="grupoForm.invalid">Confirmar</button>
                             <button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
+                            <button id="confirmar" name="confirmar" class="btn btn-success" [disabled]="grupoForm.invalid">Confirmar</button>
+                            
                         </div>
                     </div>
                 </form>
