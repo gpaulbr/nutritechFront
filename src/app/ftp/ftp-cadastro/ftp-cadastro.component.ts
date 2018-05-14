@@ -30,7 +30,7 @@ export class FTPCadastroComponent implements OnInit {
     private usuarioService: UsuarioService,
     private ingredienteService: IngredienteService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.ftpForm = this.fb.group({
