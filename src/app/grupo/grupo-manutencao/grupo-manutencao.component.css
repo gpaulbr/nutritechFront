@@ -22,10 +22,6 @@ form{
   width: 320px;
 }
 
-.form-group{
-  margin-left: -10%;
-}
-  
 /* Limpar e Confirmar */
 .but-t{
   margin-left: 42%;
@@ -49,11 +45,6 @@ h2{
    margin-left: 27%;
    background-size:1.2em;
  }
-
- #labrl-comum{
-  margin-left: 25%;
- }
-
  form{
    
    width: 100%;
@@ -63,72 +54,24 @@ h2{
  .input-md{   
    margin-left:2%;
  }
-
-
-
- #input-atributo{ 
-  width: 80%;
-  margin-right: 10%;
-  }
-
- /* Aviso Calculo */
-#aviso-cad{
-  font-size: 75%; /* tamnho da fonte */
-  line-height: 1em !important; /* espaçamento das linhas */
-  width: 90%; /* largura do mini-form */
-  height: 60%; /* altura do mini-form */
-
-}
- #atribForm{
-  margin-left: 12%;
-}
 }
 
 /*IPHONE 6 PLUS*/
 @media only screen and (max-width: 500px) {
-  h2{
+h2{
    font-size:1.5em;
    margin-left: 5%;
    background-size:1.2em;
- }
+}
 
- form{
-   
+form{
    width: 100%;
    margin-left:-2%;
- }
+}
 
- .input-md{   
+.input-md{   
    margin-left:2%;
- }
-
- #labrl-comum{
-   margin-left:2%;
- }
-
- #input-atributo{ 
-  width: 20%;
-  margin-top: -10%;
-  margin-right: 10%;
-  }
-
- /* Aviso Calculo */
-#aviso-cad{
-  font-size: 75%; /* tamnho da fonte */
-  line-height: 1em !important; /* espaçamento das linhas */
-  width: 90%; /* largura do mini-form */
-  height: 60%; /* altura do mini-form */
-
 }
-
- #atribForm{
-  margin-left: 12%;
-}
- .input-Radio{ /*Privado e Publico*/
-  margin-left:2%;
-}
-
-
 
  .but-t{  /*Limpar e Confirmar*/
    margin-left: 27%;
@@ -141,35 +84,25 @@ h2{
 
 /*IPHONE 6*/
 @media only screen and (max-width: 375px) {
-  #input-atributo{
-    margin-right: 10%;
-    max-width: 20%;
-    margin-top: -10%;
-  }
-  h2{
+
+h2{
     font-size:1.3em;
     margin-left: 10%;
     background-size:1.2em;
   } 
 }
+
 /*IPHONE 5*/
 @media only screen and (max-width: 330px) {
 
-  h2{
+h2{
      font-size:1.2em;
      margin-left: 3%;
      background-size:1.2em;
-   }  
-   #input-atributo{ 
-   width: 22%;
-   margin-top: -11%;
-   }
+}  
+
 .input-md{
   width: 100%;
-}
-
-#atribForm{
-  width:90%;
 }
 
 .but-t{  /*Limpar e Confirmar*/
