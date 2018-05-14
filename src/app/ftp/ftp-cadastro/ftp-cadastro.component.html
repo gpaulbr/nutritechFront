@@ -19,7 +19,7 @@
 							<label class="campo-obrigatorio">Grupo Alimentar:</label>
 						</div>
 						<div class="col-md-7 col-lg-6 col-xl-5">
-								<select formControlName="grupoReceita" [(ngModel)]="grupoReceita" class="form-control">
+								<select formControlName="grupoReceita" [(ngModel)]="gruposDisponiveis" class="form-control">
 										<option [ngValue]="null" disabled selected hidden>Selecione o Grupo Alimentar</option>
 										<option *ngFor="let item of gruposDisponiveis" [ngValue]="item">
 											{{item.nome}}
@@ -33,7 +33,7 @@
 								<label class="campo-obrigatorio">Professor:</label>
 							</div>
 							<div class="col-md-7 col-lg-6 col-xl-5">
-								<select formControlName="professor" [(ngModel)]="professor" class="form-control">
+								<select formControlName="professor" [(ngModel)]="professoresDisponiveis" class="form-control">
 										<option [ngValue]="null" disabled selected hidden>Selecione o Professor</option>
 										<option *ngFor="let item of professoresDisponiveis" [ngValue]="item">
 											{{item.nome}}
