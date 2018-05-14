@@ -43,8 +43,11 @@
                         <td>
                             {{usuario.tipo}}
                         </td>
-                        <td>
-                            {{usuario.status}}
+                        <td *ngIf="usuario.status"><!-- se for true, mostra Ativo -->
+                            Ativo
+                        </td>
+                        <td *ngIf="!usuario.status"><!-- se for false, mostra Inativo -->
+                            Inativo
                         </td>
                         <td>
                             <i class="material-icons delete">edit</i>
