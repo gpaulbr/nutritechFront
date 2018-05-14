@@ -5,14 +5,12 @@ table {
 	max-width: 100%;
     white-space: nowrap;
     align-self: center;
-    
 }
 
 thead {
     background-color: #207C7B;
     color: white;
 }
-
 th, tr {
     border: 1px none white;
     padding: 2px;
@@ -21,13 +19,18 @@ th, tr {
     text-align: center;
     font-weight: normal;
 }
-
+tr{
+    font-size: 14px;
+}
+th{
+    font-size: 1.1em!important;
+}
 .nome-grupo {
     text-align: left;
 }
 
 table:nth-child(odd){
-	background:linear-gradient(0deg,rgb(154, 196, 191),rgba(255,255,255,0.7));
+	background:linear-gradient(0deg,rgb(255,255,255,0.7),rgba(255,255,255,0.7));
 }
 
 div {   
@@ -42,6 +45,12 @@ h2 {
     color: white;
     text-shadow: -1px 0 #207C7B, 0 1px #207C7B, -1px 0 #207C7B, 0 -1px #207C7B;}
 
+@media only screen and (max-width: 320px) {
+  table{
+     margin-bottom:5%;
+     margin-top:5%;
+  }
+}
 @media only screen and (max-width: 573px) {
     table {
         font-size: 3vw;

@@ -1,11 +1,25 @@
 table {
-	width: 100%;
+    width: 100%;
 	margin: 0px;
 	overflow: auto;
-	max-width: 100%;
+    max-width: 100%;
     white-space: nowrap;
     align-self: center;
-    
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+div .panel-body{
+    overflow-x:auto;
+    height: 100%;
+}
+
+tr{
+    font-size: 15px;
+    width: 80%;
+}
+th{
+    font-size: 15px;
 }
 
 thead {
@@ -17,17 +31,12 @@ th, tr {
     border: 1px none white;
     padding: 2px;
     align-self: center;
-    text-justify: newspaper;
     text-align: center;
     font-weight: normal;
 }
 
-.nome-grupo {
-    text-align: left;
-}
-
 table:nth-child(odd){
-	background:linear-gradient(0deg,rgb(154, 196, 191),rgba(255,255,255,0.7));
+	background:linear-gradient(0deg,rgb(255,255,255,0.7),rgba(255,255,255,0.7));
 }
 
 div {   
@@ -45,6 +54,7 @@ h2 {
 @media only screen and (max-width: 573px) {
     table {
         font-size: 3vw;
+        display: block;
     }
 
     thead {
