@@ -30,6 +30,17 @@ import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { LoginService } from './login/login.service';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
+import { FtpListagemComponent } from './ftp/ftp-listagem/ftp-listagem.component';
+import { FtpService } from './ftp/ftp.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FtpModoPreparoComponent } from './ftp/ftp-modo-preparo/ftp-modo-preparo.component';
+import { FtpDificuldadeComponent } from './ftp/ftp-dificuldade/ftp-dificuldade.component';
+import { FtpIntegrantesComponent } from './ftp/ftp-integrantes/ftp-integrantes.component';
+import { FtpSelecaoIngredientesComponent } from './ftp/ftp-selecao-ingredientes/ftp-selecao-ingredientes.component';
+import { FtpImageFileUploadComponent } from './ftp/ftp-image-file-upload/ftp-image-file-upload.component';
 
 
 @NgModule({
@@ -47,7 +58,13 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     AtributoManutencaoComponent,
     GrupoListagemComponent,
     AtributoListagemComponent,
-    LoginComponent
+    LoginComponent,
+    FtpListagemComponent,
+    FtpModoPreparoComponent,
+    FtpDificuldadeComponent,
+    FtpIntegrantesComponent,
+    FtpSelecaoIngredientesComponent,
+    FtpImageFileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +74,11 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     ReactiveFormsModule,
     HttpModule,
     CpfCnpjModule,
-    TextMaskModule
+    TextMaskModule,
+    NgxDatatableModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -65,7 +86,8 @@ import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo
     IngredienteService, 
     GrupoService, 
     UsuarioService,
-    LoginService
+    LoginService,
+    FtpService
   ],
   bootstrap: [AppComponent]
 })

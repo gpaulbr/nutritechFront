@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { GrupoReceita } from '../../ingrediente/grupo-receita';
 import { GrupoService } from '../grupo.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-grupo-manutencao',
@@ -16,6 +17,7 @@ export class GrupoManutencaoComponent implements OnInit {
 
   constructor(private grupoService: GrupoService,
     private router: Router,
+    private toastr: ToastrService,
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.grupoForm = this.fb.group({
@@ -34,10 +36,10 @@ export class GrupoManutencaoComponent implements OnInit {
   cadastrar () {
     this.grupoService.salvarGrupo(this.grupoForm.value).subscribe(
       response => {
-        alert("Grupo cadastrado com sucesso");
+        this.toastr.success('Grupo cadastrado com sucesso');
       },
       error => {
-        alert("Erro no cadastro");
+        this.toastr.error('Erro no cadastro');
       });
   }
 }

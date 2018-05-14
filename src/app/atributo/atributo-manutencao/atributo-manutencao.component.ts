@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AtributoService } from '../atributo.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-atributo-manutencao',
@@ -26,6 +27,7 @@ export class AtributoManutencaoComponent implements OnInit {
   constructor(
     private atributoService: AtributoService,
     private router: Router,
+    private toastr: ToastrService,
     fb: FormBuilder) { 
       this.atributoForm = fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
@@ -50,10 +52,10 @@ export class AtributoManutencaoComponent implements OnInit {
   cadastrar(){
     this.atributoService.salvarAtributo(this.atributoForm.value).subscribe(
       response => {
-        alert("Atributo cadastrado com sucesso");
+        this.toastr.success('Atributo cadastrado com sucesso');
       },
       error => {
-        alert("Erro no cadastro");
+        this.toastr.error('Erro no cadastro');
       });
   }
 

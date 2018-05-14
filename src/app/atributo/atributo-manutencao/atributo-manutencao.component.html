@@ -1,5 +1,3 @@
-
- <app-header></app-header>
  <div class="container">
 	<fieldset>
 		<form [formGroup]="atributoForm" (ngSubmit)="cadastrar()" class="form-horizontal form-container" id="formulario">
@@ -11,18 +9,17 @@
 				style="display: none;">
 				<span id="textoErro"><strong>Erro!</strong></span>
 			</div>
-			<div class="form-group mar-top-20" >
-				<label class="col-md-4 control-label campo-obrigatorio" for="nome">Nome</label>
+			<div class="form-group" >
+				<label class="col-md-3 control-label campo-obrigatorio" ng-show="" for="nome">Nome</label>
 				<div class="col-md-4">
-
-					<input formControlName="nome" id="nome" name="nome" class="form-control" type="text" placeholder="Proteina"
+					<input formControlName="nome" id="nome" name="nome" class="form-control input-md" type="text" placeholder="Proteina"
 						required>
-						<app-mensagem-erro [contemErro]="!this.atributoForm.controls['nome'].valid && this.atributoForm.controls['nome'].dirty"></app-mensagem-erro>
+						<app-mensagem-erro class="erro" [contemErro]="!this.atributoForm.controls['nome'].valid && this.atributoForm.controls['nome'].dirty"></app-mensagem-erro>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-md-4 control-label campo-obrigatorio" for="ordem">Ordem</label>
+				<label class="col-md-3 control-label campo-obrigatorio" for="ordem">Ordem</label>
 				<div class="col-md-4">
 					<input formControlName="ordem" id="ordem" name="ordem" class="form-control"
 						   placeholder="1" type="number" required>
@@ -31,11 +28,11 @@
 			</div>
 
 			<div class="form-group">
-				<label class="col-md-4 control-label campo-obrigatorio" for="multiplicador">Multiplicador</label>
+				<label class="col-md-3 control-label campo-obrigatorio" for="multiplicador">Multiplicador</label>
 				<div class="col-md-4">
-					<input formControlName="multiplicador" id="multiplicador" name="multiplicador" class="form-control"
+					<input formControlName="multiplicador" [formControl]="atributoForm.controls['multiplicador']" class="form-control input-md"
 						placeholder="2" type="number" required>
-						<app-mensagem-erro [contemErro]="!this.atributoForm.controls['multiplicador'].valid && this.atributoForm.controls['multiplicador'].dirty"></app-mensagem-erro>
+						<app-mensagem-erro class="erro" [contemErro]="!this.atributoForm.controls['multiplicador'].valid && this.atributoForm.controls['multiplicador'].dirty"></app-mensagem-erro>
 				</div>
 			</div>
 
@@ -43,7 +40,7 @@
 				<label class="col-md-4 control-label campo-obrigatorio" for="unidade">Unidade
 					de Medida</label>
 				<div class="col-md-4">
-					<input formControlName="unidade" id="unidade" name="unidade" class="form-control"
+					<input formControlName="unidade" [formControl]="atributoForm.controls['unidade']"  class="form-control input-md"
 						placeholder="g" type="text" required>
 						<app-mensagem-erro [contemErro]="!this.atributoForm.controls['unidade'].valid && this.atributoForm.controls['unidade'].dirty"></app-mensagem-erro>
 				</div>
@@ -65,7 +62,7 @@
   </fieldset>
 </div>
 
-<br>
-<div class="alert alert-success" role="alert"
+ <br>
+ <div class="alert alert-success" role="alert"
 	style="display: none; width: 25%; margin-left: 37%; text-align: center;">
 </div>
