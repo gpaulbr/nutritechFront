@@ -4,8 +4,12 @@ table {
 	overflow: auto;
 	max-width: 100%;
     white-space: nowrap;
-    align-self: center;
-    
+    align-self: center; 
+    font-size:15px;
+}
+
+table, td, th {
+    border: none;
 }
 
 thead {
@@ -14,20 +18,14 @@ thead {
 }
 
 th, tr {
-    border: 1px none white;
     padding: 2px;
     align-self: center;
-    text-justify: newspaper;
     text-align: center;
     font-weight: normal;
 }
 
-.nome-grupo {
-    text-align: left;
-}
-
 table:nth-child(odd){
-	background:linear-gradient(0deg,rgb(154, 196, 191),rgba(255,255,255,0.7));
+	background:linear-gradient(0deg,rgb(255,255,255,0.7),rgba(255,255,255,0.7));
 }
 
 div {   
