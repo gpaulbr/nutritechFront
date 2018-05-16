@@ -38,6 +38,28 @@ export class AtributoManutencaoComponent implements OnInit {
       })
     }
 
+ 
+
+    
+
+    limpar(){
+      this.atributoForm;    
+      this.atributoForm.controls.nome.setValue('')
+      this.atributoForm.controls.nome.markAsPristine();
+
+      this.atributoForm.controls.ordem.setValue('')
+      this.atributoForm.controls.ordem.markAsPristine();
+
+      this.atributoForm.controls.multiplicador.setValue('')
+      this.atributoForm.controls.multiplicador.markAsPristine();
+
+      this.atributoForm.controls.unidade.setValue('')
+      this.atributoForm.controls.unidade.markAsPristine();
+
+      this.atributoForm.controls.obrigatorio.setValue(true)   
+      
+    }   
+
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {  
@@ -53,6 +75,7 @@ export class AtributoManutencaoComponent implements OnInit {
     this.atributoService.salvarAtributo(this.atributoForm.value).subscribe(
       response => {
         this.toastr.success('Atributo cadastrado com sucesso');
+        this.limpar();
       },
       error => {
         this.toastr.error('Erro no cadastro');
