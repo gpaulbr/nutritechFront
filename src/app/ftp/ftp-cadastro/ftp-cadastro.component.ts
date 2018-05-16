@@ -11,6 +11,7 @@ import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { FtpTipo } from '../ftp-tipo.enum';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 import {ToastrService} from "ngx-toastr";
+import {GrupoReceita} from '../../ingrediente/grupo-receita';
 
 @Component({
   selector: 'ftp-cadastro',
@@ -45,13 +46,12 @@ export class FTPCadastroComponent implements OnInit {
       imagem: [""],
       tipo: [1, Validators.compose([Validators.required])],
       criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
-      //ingredientes: [null, Validators.compose([Validators.required])],
       receitaIngrediente: [null, Validators.compose([Validators.required, Validators.min(1)])],
       professor: [null, Validators.compose([Validators.required, Validators.min(1)])],
       datahora: [null],
       dificuldade: [null, Validators.compose([Validators.required, Validators.min(1), Validators.max(5)])],
-      grupoReceita: [null, Validators.compose([Validators.required, Validators.min(1)])]
-    })
+      grupoReceita: [null, Validators.compose([Validators.required])]
+    });
    }
 
   ngOnInit() {
@@ -60,49 +60,36 @@ export class FTPCadastroComponent implements OnInit {
       this.router.navigate(['./']);
       return;
     }
-
-    this.loadDB();
-  }
-
-  loadDB() {
-    this.grupoService.buscarGrupos().subscribe(
-      response => {
-        this.gruposDisponiveis = response['Grupos'];
-        this.gruposDisponiveis.forEach(item => {
-          delete item['active']
-        });
-        console.log(this.gruposDisponiveis);
-      });
-
-    this.usuarioService.buscarProfessores().subscribe(
-      response => {
-        this.professoresDisponiveis = response['Usuarios'];
-        this.professoresDisponiveis.forEach(item => {
-          delete item.senha;
-          delete item['valid'];
-        });
-        console.log(this.professoresDisponiveis);
-      });
   }
 
   alterarPassos(passos: Array<String>){
     this.ftpForm.controls.passos.setValue(passos);
-    console.log(this.ftpForm.controls.passos);
+    console.log(passos);
   }
 
-  alterarIntegrantes(integrantes: Array<Usuario>) {
-    this.ftpForm.controls.criadores.setValue(integrantes);
-    console.log(integrantes)
+  alterarIntegrantes(criadores: Array<Usuario>) {
+    this.ftpForm.controls.criadores.setValue(criadores);
+    console.log(criadores);
   }
 
-  alterarIngredientes(ingredientes: Array<ReceitaIngrediente>) {
-    this.ftpForm.controls.receitaIngrediente.setValue(ingredientes);
-    console.log(ingredientes)
+  alterarGrupoReceita(grupoReceita: GrupoReceita) {
+    this.ftpForm.controls.grupoReceita.setValue(grupoReceita);
+    console.log(grupoReceita);
+  }
+
+  alterarProfessor(professor: Usuario) {
+    this.ftpForm.controls.professor.setValue(professor);
+    console.log(professor);
+  }
+
+  alterarIngredientes(receitaIngredientes: Array<ReceitaIngrediente>) {
+    this.ftpForm.controls.receitaIngrediente.setValue(receitaIngredientes);
+    console.log(receitaIngredientes);
   }
 
   alterarDificuldade(dificuldade: number){
     this.ftpForm.controls.dificuldade.setValue(dificuldade);
-    console.log(this.ftpForm.controls.dificuldade);
+    console.log(dificuldade);
     console.log('Dificuldade Alterada para: ' + this.retornarDificuldade())
   }
 
