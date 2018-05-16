@@ -68,7 +68,6 @@ export class IngredienteCadastroComponent implements OnInit {
     for(let i = 0; i < atrs.length; i++) {
       atrs[i]['value'] = 0;
     }
-    //window.location.reload();
   }
 
 
@@ -131,8 +130,6 @@ export class IngredienteCadastroComponent implements OnInit {
       .subscribe(resp => {
         this.toastr.success('Ingrediente cadastrado com sucesso');
         this.limpar();
-
-
       }, erro =>{
         this.toastr.error('Erro no cadastro');
       });
