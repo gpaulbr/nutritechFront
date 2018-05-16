@@ -126,6 +126,8 @@ export class IngredienteCadastroComponent implements OnInit {
     this.buscarAtributos();
   }
 
+
+
   ngOnInit() {
     
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
