@@ -3,123 +3,143 @@
     content:"*";
     color:red;
     }
+h2{
+   padding: 1px;
+   padding-bottom:1em;
+   text-align:center;
+   background-repeat:no-repeat;
+   background-position:20% 5%;
+   background-size:1.2em;
+  }
 
  /* Form maior */ 
 form{
-  display: block;
-  margin-top: auto;
   width: 50%;
-  height: 200%;
 }  
 
 /* Confirgurações do Label*/  
 .control-label{
-  margin-left:17%;
+  margin-left:22%;
 }
 
 /* input */
 .form-control{
-  width: 320px;
+  width: 100%;
 }
 
 /* Limpar e Confirmar */
 .but-t{
   margin-left: 42%;
-  margin-right: auto;
 }
 
-h2{
-    padding: 1px;
-    padding-bottom:1em;
-    text-align:center;
-    background-repeat:no-repeat;
-    background-position:20% 5%;
-    background-size:1.2em;
-}
+
 
 /**** @media inicia aqui ****/
-/*IPAD*/
-@media only screen and (max-width: 1024px) {
+
+@media only screen and (max-width: 1032px) {
   h2{
+   padding: 1%; 
    font-size:1.5em;
-   margin-left: 27%;
-   background-size:1.2em;
- }
- form{
-   
+   margin-left: -1%;
+  }
+  /* form maior */
+  form{
    width: 100%;
    margin-left:-2%;
- }
-
- .input-md{   
+  }
+  
+  /* input do nome */
+  .form-control{ 
+   width: 95%; 
    margin-left:2%;
- }
+  }
+
+  /*Limpar e Confirmar*/
+  .but-t{  
+   margin-left: 27%;
+  }
 }
 
 /*IPHONE 6 PLUS*/
 @media only screen and (max-width: 500px) {
-h2{
+  h2{
+   padding: 1%; 
    font-size:1.5em;
-   margin-left: 5%;
-   background-size:1.2em;
-}
-
-form{
+   margin-left: -1%;
+  }
+  /* form maior */
+  form{
    width: 100%;
    margin-left:-2%;
-}
-
-.input-md{   
+  }
+  
+  /* input do nome */
+  .form-control{ 
+   width: 95%; 
    margin-left:2%;
-}
+  }
 
- .but-t{  /*Limpar e Confirmar*/
+  /*Limpar e Confirmar*/
+  .but-t{  
    margin-left: 27%;
- }
+  }
+  
+  }
+  
+  /*IPHONE 6*/
+  @media only screen and (max-width: 375px) {
+    h2{
+      padding: 1%;
+      font-size:1.5em;
+      margin-left: -1%;
+     }
+     /* form maior */
+     form{
+      width: 100%;
+      margin-left:-2%;
+     }
+     
+     /* input do nome */
+     .form-control{ 
+      width: 95%;  
+      margin-left:2%;
+     }
 
- .control-label{
-  margin-left:0%;
-}
-}
+     /*Limpar e Confirmar*/
+     .but-t{  
+      margin-left: 27%;
+     }
 
-/*IPHONE 6*/
-@media only screen and (max-width: 375px) {
+     /* label do atributo */
+     .control-label{
+     margin-left:7%; 
+     }
+  }
+  /*IPHONE 5*/
+  @media only screen and (max-width: 330px) {
+  
+    h2{
+      padding: 1%;
+      font-size:1.5em;
+      margin-left: -1%;
+     }
 
-h2{
-    font-size:1.3em;
-    margin-left: 10%;
-    background-size:1.2em;
-  } 
-}
+     /* form maior */
+     form{
+      width: 100%;
+      margin-left:-2%;
+     }
+     
+     /* input do nome */
+     .form-control{ 
+      width: 95%; 
+      margin-left:2%;
+     }
 
-/*IPHONE 5*/
-@media only screen and (max-width: 330px) {
-
-h2{
-     font-size:1.2em;
-     margin-left: 3%;
-     background-size:1.2em;
-}  
-
-.input-md{
-  width: 100%;
-}
-
-.but-t{  /*Limpar e Confirmar*/
-  margin-left: 17%;
-}
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
- 
+     /*Limpar e Confirmar*/
+     .but-t{  
+      margin-left: 27%;
+     }
+    
+  }
+  

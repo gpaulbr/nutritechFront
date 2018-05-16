@@ -1,230 +1,151 @@
-input[type="reset"]{
-  background-color:#EFA638!important;
+.campo-obrigatorio:after {
+  content:"*";
+  color:red;
 }
-.erro{
-  font-size:0.7em;
+
+h2 {
+ padding: 1px;
+ padding-bottom:1em;
+ text-align:center;
+ background-repeat:no-repeat;
+ background-position:20% 5%;
+ background-size:1.2em;
 }
+
 form{
-  display: block;
-  margin: 2% auto;
   width: 50%;
-  height: 400px;
-  box-shadow: rgba(250,250,250,0.6) 4px 6px 7px 5px;
-  background:linear-gradient(0deg,rgba(250,250,250,0.6),rgba(255,255,255,0.6));
 }
 
-h2 {
-  padding: 1px;
-  padding-bottom:1em;
-  text-align:center;
-  background-repeat:no-repeat;
-  background-position:20% 5%;
-  background-size:1.2em;
-}
+/* Sim ou Não */
 .control-radio{
-  font-weight: bold;
-  margin-left: 29%;
 }
 
-#radioUusu{
-  margin-top:-1.875em;
-}
-
-/*move input*/
-.col-md-3 input, .form-control{
-  float: right;
-  margin-right: -22.5em;
-  margin-top: -2em!important;
-  width: 320px;
-}
-
+/* Confirgurações do Label unidade, multilicador, etc*/ 
 .control-label{
-  margin-left: 8.4%;
-  margin-right:-35%;
-  font-weight: bold;
-}
-.col-md-8{ /*movimenta botões "Confirmar" e "Limpar"*/
-  margin-bottom:10em;
-  margin-left:34%;
+  margin-left:22%;
 }
 
-.camposForm{
-  padding-top:5%;
-  padding-left:16%;
+/* input */
+.form-control{
+  width: 100%;
 }
 
-/*@media*/
+/* Limpar e Confirmar */
+.but-t{
+  margin-left: 38%;
+  margin-right: auto;
+  
+}
 
-@media only screen and (max-width: 1024px) {
-  .container {
-    margin-right: -15% !important;
-    margin-left: -10%;
-    overflow-x: hidden;
+
+
+/**** @media inicia aqui ****/
+
+@media only screen and (max-width: 1032px) {
+  h2{
+   padding: 1%; 
+   font-size:1.5em;
+   margin-left: -1%;
   }
-
-  .camposForm {
-    padding-top: 5%;
-    padding-left: 0%;
-  }
-
-  h2 {
-    font-size: 3em;
-    padding-left: 30%;
-    text-align: left;
-  }
-
-  .col-md-4 input, .form-control {
-    float: left;
-    margin-right: -20em;
-    margin-left: -15em;
-    margin-top: -2.3em;
-    width: 150%;
-  }
-
-  form {
-    width: 600px;
-    float: left;
-    margin: 12% auto;
-    margin-left: 30%;
-  }
-
-  .control-radio {
-    margin-left:14.3em;
-    margin-right: 1em;
-  }
-
-  .col-md-8 {
-    margin-left: 37%;
-  }
-
-  .camposForm {
-    padding-top: 10%;
-    padding-left: 10%;
-  }
-}
-
-@media only screen and (max-width: 1340px) {
-.container {
-  margin-right: 0% !important;
-  margin-left: -5%;
-  overflow-x: hidden;
-}
-
-.camposForm {
-  padding-top: 5%;
-  padding-left: 0%;
-}
-
-h2 {
-  font-size: 1.5em;
-  padding-left: 30%;
-}
-
-.col-md-4 input, .form-control {
-  float: right;
-  margin-right: -20em;
-  margin-left: -15em;
-  margin-top: -2.3em;
-  width: 150%;
-}
-
-form {
-  width: 600px;
-  float: left;
-  margin: 9.5% auto;
-  margin-left: 30%;
-}
-
-.control-radio {
-  margin-left:14.3em;
-  margin-right: 1em;
-}
-
-.col-md-8 {
-  margin-left: 37%;
-}
-
-.camposForm {
-  padding-top: 10%;
-  padding-left: 10%;
-}
-}
-@media only screen and (max-width: 750px) {
-
-h2{
-    padding: 1px;
-    padding-bottom:1em;
-    text-align:center;
-  }
-
-
+  /* form maior */
   form{
-    display: auto;
-    margin-top: 1% auto;
-    margin-left: 10em;
-    width: 100%;
-    height: 420px;
-    box-shadow: rgba(250,250,250,0.6) 4px 6px 7px 5px;
-    background:linear-gradient(0deg,rgba(250,250,250,0.6),rgba(255,255,255,0.6));
+   width: 100%;
+   margin-left:-2%;
   }
   
-
-  .col-md-3 input, .form-control{
-    float: center;
-    margin-right: 6.5em;
-    margin-top: -2em!important;
-    width: 10px;
+  /* input do nome */
+  .form-control{ 
+   width: 95%; 
+   margin-left:2%;
   }
 
-.camposForm {
-  padding-top: 50%;
-  padding-left: 10%;
-}
-
-}
-
-
-@media only screen and (max-width: 420px) {
-          .input-md[_ngcontent-c2], [_ngcontent-c2] {
-            width: 90%;
-  }.col-md-4 input, .form-control {
-    margin-right: -5em;
-    margin-left: 15em;
-    margin-top: 18em;
-    width: 48%;
-    font-size:1em;
+  .control-label{
+    margin-left: 2%;
   }
 
-  .container{
-    margin-right:-27%!important;
-    margin-left: -7%;
-    overflow-x: hidden;
-  }
-
-  h2{
-    font-size:2em;
-    padding-left: 18%;
-    text-align: center;
-  }
-  form{
-    font-size:0.75em;
-    width: 400px;
-    height:429px;
-    float: center;
-    margin: 4% auto;
-    margin-left: 16%;
-  }
-
+  /* Sim ou Não */
   .control-radio{
-    margin-left:5em;
-  }
+    margin-left: 2%; 
+   }
 
-  .col-md-8{ /*movimenta botões "Confirmar" e "Limpar"*/
-    margin-left:21%;
-    width: 80%;
-  }
-
-  #radioUusu{
-    margin-top:0em;
+  /*Limpar e Confirmar*/
+  .but-t{  
+   margin-left: 27%;
   }
 }
+
+/*IPHONE 6 PLUS*/
+@media only screen and (max-width: 500px) {
+  h2{
+    font-size:1.5em;
+    margin-left: 5%;
+    background-size:1.2%;
+  }
+  
+  form{
+    width: 100%;
+    margin-left:-2%;
+  }
+  .control-label{
+    margin-left: 2%;
+  }
+  /* Sim ou Não */
+  .control-radio{
+    margin-left: 2%; 
+   }
+  .input-md{   
+    margin-left:2%;
+  }
+  }
+  
+  /*IPHONE 6*/
+  @media only screen and (max-width: 375px) {
+    h2{
+      font-size:1.5em;
+      margin-left: 5%;
+      background-size:1.2%;
+    }
+    
+    form{
+      width: 100%;
+      margin-left:-2%;
+    }
+    .control-label{
+      margin-left: 2%;
+    }
+  /* Sim ou Não */
+  .control-radio{
+    margin-left: 2%; 
+   }
+    
+    .input-md{   
+      margin-left:2%;
+    }
+  }
+  /*IPHONE 5*/
+  @media only screen and (max-width: 330px) {
+  
+    h2{
+      font-size:1.5em;
+      margin-left: 5%;
+      background-size:1.2%;
+    }
+    
+    form{
+      width: 100%;
+      margin-left:-2%;
+    }
+
+    .control-label{
+      margin-left: 2%;
+    }
+  /* Sim ou Não */
+ .control-radio{
+  margin-left: 2%; 
+ }
+    
+    .input-md{   
+      margin-left:2%;
+    }
+    
+  }
