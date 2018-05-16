@@ -13,6 +13,7 @@ import { IngredienteAtributoDto } from '../ingrediente-atributo-dto';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { print } from 'util';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-ingrediente-cadastro',
@@ -52,19 +53,20 @@ export class IngredienteCadastroComponent implements OnInit {
     });
   }
 
-  limpar(){
-    this.ingAtributos=[];
+  limpar() {
+    console.log('limpando');
+    this.ingAtributos = [];
     this.ingredienteForm.controls.nome.setValue('')
     this.ingredienteForm.controls.nome.markAsPristine();
     this.ingredienteForm.controls.origem.setValue('')
     this.ingredienteForm.controls.origem.markAsPristine();
     this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO)
 
-    this.atributos.forEach(a => a.valor = null);
+    this.atributos.forEach(a => a.valor = 0);
 
     const atrs = document.getElementsByClassName("atr");
     for(let i = 0; i < atrs.length; i++) {
-      atrs[i]['value'] = null;
+      atrs[i]['value'] = 0;
     }
     //window.location.reload();
   }
@@ -88,6 +90,18 @@ export class IngredienteCadastroComponent implements OnInit {
           this.atributos.push(ingAtributos);
         });
       });
+  }
+
+  fieldsAreValid(): Boolean {
+    var retorno: Boolean = false;
+    this.atributos.forEach(atr => {
+      if (atr.valor === null || atr.valor === 0) {
+        retorno = true;
+      }
+    });
+    console.log(this.ingredienteForm.invalid)
+    console.log(retorno);
+    return retorno && this.ingredienteForm.invalid;
   }
 
   setarValor(nomeAtributo: string, valor: string) {
@@ -121,9 +135,7 @@ export class IngredienteCadastroComponent implements OnInit {
 
       }, erro =>{
         this.toastr.error('Erro no cadastro');
-      })
-
-
+      });
   }
 
 }
