@@ -61,9 +61,11 @@ export class IngredienteCadastroComponent implements OnInit {
     const atrs = document.getElementsByClassName("atr");
     for(let i = 0; i < atrs.length; i++) {
       atrs[i]['value'] =0;
-      
     }
+    window.location.reload(); 
   }
+
+
 
   ngOnInit() {
     let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -99,7 +101,7 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   cadastrarIngrediente(ingrediente: IngredienteDto) {
-    this.limpar();
+    //this.limpar();
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     ingrediente.status = true;
     ingrediente.idCriador = usuarioLogado.id;
@@ -110,9 +112,14 @@ export class IngredienteCadastroComponent implements OnInit {
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
         this.toastr.success('Ingrediente cadastrado com sucesso');
+        this.limpar();
+        
+       
       }, erro =>{
         this.toastr.error('Erro no cadastro');
       })
+
+
   }
 
 }
