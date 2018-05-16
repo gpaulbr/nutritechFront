@@ -101,10 +101,8 @@ export class IngredienteCadastroComponent implements OnInit {
       });
   }
 
-  limpar() {
-    console.log(this.ingredienteForm.value)
-    console.log('limpando');
-    this.ingAtributos = [];
+  limpar(){
+    this.ingAtributos=[];
     this.ingredienteForm.controls.nome.setValue('')
     this.ingredienteForm.controls.nome.markAsPristine();
     this.ingredienteForm.controls.origem.setValue('')
@@ -118,6 +116,8 @@ export class IngredienteCadastroComponent implements OnInit {
     console.log(this.ingredienteForm.controls.alergenico.setValue(this.alergDisponiveis[0].name));
     //this.ingredienteForm.controls['alergenico'].setValue("Lactose");
     this.ingAtributos.forEach(a => a.valor = "");
+
+    this.atributos.forEach(a => a.valor = null);
 
     const atrs = document.getElementsByClassName("atr");
     for(let i = 0; i < atrs.length; i++) {
