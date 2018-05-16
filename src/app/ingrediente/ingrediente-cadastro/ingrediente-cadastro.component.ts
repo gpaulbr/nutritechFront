@@ -38,7 +38,7 @@ export class IngredienteCadastroComponent implements OnInit {
   }];
 
   constructor(
-    private atributosService: AtributoService, 
+    private atributosService: AtributoService,
     private router: Router,
     private toastr: ToastrService,
     private ingredienteService: IngredienteService) {
@@ -53,23 +53,27 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   limpar(){
-    this.ingAtributos=[];    
+    this.ingAtributos=[];
     this.ingredienteForm.controls.nome.setValue('')
+    this.ingredienteForm.controls.nome.markAsPristine();
     this.ingredienteForm.controls.origem.setValue('')
+    this.ingredienteForm.controls.origem.markAsPristine();
     this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO)
+
+    this.atributos.forEach(a => a.valor = null);
 
     const atrs = document.getElementsByClassName("atr");
     for(let i = 0; i < atrs.length; i++) {
-      atrs[i]['value'] =0;
+      atrs[i]['value'] = null;
     }
-    window.location.reload(); 
+    //window.location.reload();
   }
 
 
 
   ngOnInit() {
     let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {  
+    if(usuarioLogado == null) {
       this.router.navigate(['./']);
     }
     this.atributos = [];
@@ -95,7 +99,7 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   definirTipoIngrediente(valor: TipoIngrediente){
-    let tipoIng = valor === TipoIngrediente.PRIVADO ? 
+    let tipoIng = valor === TipoIngrediente.PRIVADO ?
       TipoIngrediente[TipoIngrediente.PRIVADO] : TipoIngrediente[TipoIngrediente.COMUM];
     this.ingredienteForm.controls.tipo.setValue(tipoIng);
   }
@@ -113,8 +117,8 @@ export class IngredienteCadastroComponent implements OnInit {
       .subscribe(resp => {
         this.toastr.success('Ingrediente cadastrado com sucesso');
         this.limpar();
-        
-       
+
+
       }, erro =>{
         this.toastr.error('Erro no cadastro');
       })
