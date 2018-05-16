@@ -53,8 +53,9 @@ export class IngredienteCadastroComponent implements OnInit {
     });
   }
 
-  limpar(){
-    this.ingAtributos=[];
+  limpar() {
+    console.log('limpando');
+    this.ingAtributos = [];
     this.ingredienteForm.controls.nome.setValue('')
     this.ingredienteForm.controls.nome.markAsPristine();
     this.ingredienteForm.controls.origem.setValue('')
