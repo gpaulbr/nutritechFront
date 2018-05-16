@@ -32,7 +32,7 @@ export class AtributoManutencaoComponent implements OnInit {
       this.atributoForm = fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
         ordem: [null, Validators.compose([Validators.required, Validators.maxLength(50)])],
-        multiplicador: [null, Validators.compose([Validators.required])],
+        multiplicador: [null, Validators.compose([Validators.required,Validators.min(1)])],
         unidade: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
         obrigatorio: [true, Validators.compose([Validators.required])],
       })
