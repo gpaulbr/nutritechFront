@@ -4,6 +4,7 @@ import { GrupoReceita } from '../../ingrediente/grupo-receita';
 import { GrupoService } from '../grupo.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Grupo } from '../grupo';
 
 @Component({
   selector: 'app-grupo-manutencao',
@@ -26,6 +27,16 @@ export class GrupoManutencaoComponent implements OnInit {
     })
    }
 
+   limpar(){
+    this.grupoForm;    
+    this.grupoForm.controls.nome.setValue('')
+    this.grupoForm.controls.nome.markAsPristine();
+    this.grupoForm.controls.custo.setValue(0);
+    this.grupoForm.controls.custo.markAsPristine();
+  }
+
+
+
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {  
@@ -34,9 +45,11 @@ export class GrupoManutencaoComponent implements OnInit {
   }
 
   cadastrar () {
+    
     this.grupoService.salvarGrupo(this.grupoForm.value).subscribe(
       response => {
         this.toastr.success('Grupo cadastrado com sucesso');
+        this.limpar();
       },
       error => {
         this.toastr.error('Erro no cadastro');
