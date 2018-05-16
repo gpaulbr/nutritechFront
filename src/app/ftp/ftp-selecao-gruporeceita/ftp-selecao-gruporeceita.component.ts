@@ -36,7 +36,7 @@ export class FtpSelecaoGruporeceitaComponent implements OnInit {
       response => {
         this.gruposDisponiveis = Array.from(response['Grupos']);
         this.gruposDisponiveis.forEach(item => {
-//        delete item['Ingrediente'].criador.senha
+
         });
         // console.log(this.gruposDisponiveis);
       }
