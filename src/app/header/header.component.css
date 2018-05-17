@@ -5,17 +5,24 @@
     background-position:0% 0%;
     background-size:5em;
     height:3em;
+    width: 100%;
 }
 
 .nomeUsu{
-    color:#D5BB46;
-    padding-left:50%;
-    margin-top: 2%;
-    margin-left: -10%;
     background-image: url(assets/blank_user.png);
+    background-size:20%;
     background-repeat:no-repeat;
+    background-position:left center;
+    color:#D5BB46;
+    padding: 0;
+    /*padding-left:30%;*/
+    margin-top: 0%;
+    margin-right: 0px;
+    /*background-image: url(assets/blank_user.png);
+    
     background-position:0% 0%;
-    background-size:1.5em;
+    background-size:15%;*/
+    font-size: 12px;
 }
 
 .menu1{

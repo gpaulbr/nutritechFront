@@ -23,8 +23,11 @@
             </div>
     </div>
     </div>
-<div class="row" (click)="logout()" [routerLink]="['']">
-    <p class="col-md-6 nomeUsu">{{usuarioLogado.nome}}</p> <!-- mais pra frente, colocar só o nick --> 
-</div>
+    <div class="row dropdown userMenu" >
+        <button class="dropbtn nomeUsu">{{ nickname }}</button>
+        <div class="dropdown-content">
+            <a alt="Sair" (click)="logout()" [routerLink]="['']">Sair</a>
+        </div>
+    </div>
 </div>
 </nav>

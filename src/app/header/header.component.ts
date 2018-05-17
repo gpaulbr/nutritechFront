@@ -14,15 +14,16 @@ export class HeaderComponent implements OnInit {
 
   usuarioLogado: Usuario;
   admin: boolean = false;
+  nickname: string = "";
+
 
   constructor(private router: Router, private loginService: LoginService) {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationEnd) {
         this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));            
-
-
-        console.log(this.usuarioLogado)
+       
         if(this.usuarioLogado!==null) {
+          this.nickname = this.usuarioLogado.nome;
           if(this.usuarioLogado.tipo === TipoUsuario.ADMIN || 
             this.usuarioLogado.tipo === TipoUsuario.PROFESSOR){
               
