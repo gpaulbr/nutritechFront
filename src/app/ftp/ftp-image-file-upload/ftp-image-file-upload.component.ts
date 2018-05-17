@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NUTRITECH_API} from '../../app.api';
 import {HttpClient} from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-ftp-image-file-upload',
@@ -12,7 +13,10 @@ export class FtpImageFileUploadComponent implements OnInit {
   url = NUTRITECH_API + '/receitas/img';
   selectedFile: File;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit() {
   }
@@ -31,13 +35,11 @@ export class FtpImageFileUploadComponent implements OnInit {
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  onUpload(): String {
+  onUpload() {
     this.http.post(this.url, this.selectedFile).subscribe(response => {
-      alert('Upload de imagem realizado com sucesso!');
+      this.toastr.success('Upload de imagem realizado com sucesso!');
     }, erro => {
-      alert('Erro no upload da imagem!');
-      return null;
+      this.toastr.error('Erro no upload da imagem!');
     });
-    return 'TO BE IMPLEMENTED';
   }
 }

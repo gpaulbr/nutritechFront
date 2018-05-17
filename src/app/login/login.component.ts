@@ -3,6 +3,7 @@ import { LoginService } from './login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TipoUsuario } from '../usuario/tipo-usuario.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
     private router: Router,
+    private toastr: ToastrService,
     fb: FormBuilder) {
       this.fb = new FormBuilder();
       this.loginForm = this.fb.group({
@@ -39,7 +41,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         console.log(error)
-        alert(error.error);
+        this.toastr.error(error.error);
       });;
   }
 
