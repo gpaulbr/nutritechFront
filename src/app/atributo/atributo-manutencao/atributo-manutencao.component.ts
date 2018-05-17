@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AtributoService } from '../atributo.service';
+import { Usuario } from '../../usuario/usuario';
+import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
+import { LoginService } from '../../login/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +15,8 @@ import { ToastrService } from 'ngx-toastr';
 export class AtributoManutencaoComponent implements OnInit {
 
   atributoForm: FormGroup;
+  usuarioLogado: Usuario;
+  admin: Boolean = false;
 
   obrigatorio = [{
     valor: true,
@@ -38,9 +43,6 @@ export class AtributoManutencaoComponent implements OnInit {
       })
     }
 
- 
-
-    
 
     limpar(){
       this.atributoForm;    
@@ -64,6 +66,13 @@ export class AtributoManutencaoComponent implements OnInit {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {  
       this.router.navigate(['./']);
+    } else {
+      if(usuarioLogado.tipo === TipoUsuario.ADMIN){ 
+        this.admin = true;
+      } else{
+        this.router.navigate(['./']); 
+        this.toastr.warning("Você não tem permissão!") /* após o ajuste do header verificar essa ação */
+      }    
     }
   }
 
