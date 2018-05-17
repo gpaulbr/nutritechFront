@@ -38,7 +38,7 @@ export class FtpIntegrantesComponent implements OnInit {
         this.alunosDisponiveis = response['Usuarios'];
         this.alunosDisponiveis.forEach(item => {
           delete item.senha
-          delete item["valid"]
+          delete item["valid"];
         });
         console.log(this.alunosDisponiveis);
       }
