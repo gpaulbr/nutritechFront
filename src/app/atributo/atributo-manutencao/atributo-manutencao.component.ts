@@ -87,7 +87,7 @@ export class AtributoManutencaoComponent implements OnInit {
         this.limpar();
       },
       error => {
-        this.toastr.error('Erro no cadastro');
+        this.toastr.error(error.error.message);
       });
   }
 
