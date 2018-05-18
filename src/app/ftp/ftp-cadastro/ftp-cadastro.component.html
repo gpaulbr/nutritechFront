@@ -14,35 +14,12 @@
 							<app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
 						</div>
 					</div>
-					<div class="form-group row justify-content-start">
-						<div class="col-md-4 col-lg-3">
-							<label class="campo-obrigatorio">Grupo Alimentar:</label>
-						</div>
-						<div class="col-md-7 col-lg-6 col-xl-5">
-								<select formControlName="grupoReceita" [(ngModel)]="gruposDisponiveis" class="form-control">
-										<option [ngValue]="null" disabled selected hidden>Selecione o Grupo Alimentar</option>
-										<option *ngFor="let item of gruposDisponiveis" [ngValue]="item">
-											{{item.nome}}
-										</option>
-								</select>
-								<app-mensagem-erro [contemErro]="!this.ftpForm.controls['grupoReceita'].valid && this.ftpForm.controls['grupoReceita'].dirty"></app-mensagem-erro>
-							</div>
-						</div>
-						<div class="form-group row justify-content-start">
-							<div class="col-md-4 col-lg-3">
-								<label class="campo-obrigatorio">Professor:</label>
-							</div>
-							<div class="col-md-7 col-lg-6 col-xl-5">
-								<select formControlName="professor" [(ngModel)]="professoresDisponiveis" class="form-control">
-										<option [ngValue]="null" disabled selected hidden>Selecione o Professor</option>
-										<option *ngFor="let item of professoresDisponiveis" [ngValue]="item">
-											{{item.nome}}
-										</option>
-								</select>
-								<app-mensagem-erro [contemErro]="!this.ftpForm.controls['professor'].valid && this.ftpForm.controls['professor'].dirty"></app-mensagem-erro>
-						</div>
-					</div>
-					<!-- -->
+          <app-ftp-selecao-gruporeceita [obrigatorio]=true (salvarGrupoReceita)="alterarGrupoReceita($event)"></app-ftp-selecao-gruporeceita>
+          <app-mensagem-erro [contemErro]="!this.ftpForm.controls['grupoReceita'].valid && this.ftpForm.controls['grupoReceita'].dirty"></app-mensagem-erro>
+          <app-ftp-selecao-professor [obrigatorio]=true (salvarProfessor)="alterarProfessor($event)"></app-ftp-selecao-professor>
+          <app-mensagem-erro [contemErro]="!this.ftpForm.controls['professor'].valid && this.ftpForm.controls['professor'].dirty"></app-mensagem-erro>
+
+          <!-- -->
 					<app-ftp-integrantes [obrigatorio]=true (salvarIntegrantes)="alterarIntegrantes($event)"></app-ftp-integrantes>
 					<hr>
 					<app-ftp-selecao-ingredientes [obrigatorio]=true (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>

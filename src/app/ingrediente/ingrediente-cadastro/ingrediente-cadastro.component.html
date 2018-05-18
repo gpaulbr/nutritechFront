@@ -31,10 +31,9 @@
 		this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
 	</div>
 </div>
-<!---->
 
 <!-- Tipo  que na verdade é domínio -->
-<div class="row form-group">
+<div *ngIf="verificarSeUsuarioEhAdmin()" class="row form-group">
 	<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Domínio</label>
 	<div class="col-md-4">
 	<app-radio-button [opcoes]="tiposIngredientes" [nome]="'tipo'" (emissaoValor)="definirTipoIngrediente($event)"
@@ -42,6 +41,8 @@
 	</div>
 </div>
 <!---->
+
+<!--  -->
 
 <!-- Aviso Calculo Porção -->
 <div id="aviso-cad" >
@@ -68,8 +69,10 @@
 <!-- Limpar ou Confirmar -->
 <div class="but-t form-group">
 	<div>
+
    		<button (click)="limpar()" type="button" class="btn btn-danger">Limpar</button>
    		<button type="submit" class="btn btn-success" [disabled]="ingredienteForm.invalid">Confirmar</button>
+
 	</div>
 </div>
 <!---->

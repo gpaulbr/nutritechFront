@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { print } from 'util';
 import {forEach} from '@angular/router/src/utils/collection';
+import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
+
 
 @Component({
   selector: 'app-ingrediente-cadastro',
@@ -26,6 +28,7 @@ export class IngredienteCadastroComponent implements OnInit {
   fb: FormBuilder
   atributos: IngredienteAtributo[];
   ingAtributos: IngredienteAtributoDto[];
+  usuarioLogado: UsuarioLogadoDto;
 
   tiposIngredientes = [{
     valor: TipoIngrediente.PRIVADO,
@@ -68,13 +71,15 @@ export class IngredienteCadastroComponent implements OnInit {
     for(let i = 0; i < atrs.length; i++) {
       atrs[i]['value'] = 0;
     }
+    //window.location.reload();
   }
 
 
 
   ngOnInit() {
-    let usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {
+
+    this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if(this.usuarioLogado == null) {
       this.router.navigate(['./']);
     }
     this.atributos = [];
@@ -117,6 +122,13 @@ export class IngredienteCadastroComponent implements OnInit {
     this.ingredienteForm.controls.tipo.setValue(tipoIng);
   }
 
+  verificarSeUsuarioEhAdmin() {
+    if(this.usuarioLogado) {
+      return this.usuarioLogado.tipo === 'ADMIN';
+    }
+    return false;
+  }
+
   cadastrarIngrediente(ingrediente: IngredienteDto) {
     //this.limpar();
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -131,7 +143,7 @@ export class IngredienteCadastroComponent implements OnInit {
         this.toastr.success('Ingrediente cadastrado com sucesso');
         this.limpar();
       }, erro =>{
-        this.toastr.error('Erro no cadastro');
+        this.toastr.error(erro.error.message);
       });
   }
 

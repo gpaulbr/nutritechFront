@@ -43,14 +43,17 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   loadDB() {
     this.ingredienteService.buscarIngredientes().subscribe(
       response => {
-        this.ingredientesDisponiveis = response['Ingredientes'];
-        console.log(this.ingredientesDisponiveis);
+        this.ingredientesDisponiveis = Array.from(response['Ingredientes']);
+        this.ingredientesDisponiveis.forEach(item => {
+       // delete item['Ingrediente'].criador.senha;
+        });
+        // console.log(this.ingredientesDisponiveis);
       }
-    )
+    );
   }
 
   adicionarIngrediente() {
-    console.log (this.receitaIngredientes)
+    // console.log (this.receitaIngredientes)
     var novo: ReceitaIngrediente = new ReceitaIngrediente()
     delete this.ingrediente.criador['valid']
     novo.ingrediente = this.ingrediente;
@@ -58,15 +61,15 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
     novo.pesoG = this.pesoG;
     novo.fatorCorrecao = this.fatorCorrecao;
 
-    if(this.ingrediente != null && !this.receitaIngredientes.includes(novo)) {
+    if (this.ingrediente != null && !this.receitaIngredientes.includes(novo)) {
       this.receitaIngredientes.push(novo);
-      console.log('Adicionado: ' + this.ingrediente + ' à lista: ' + this.receitaIngredientes);
+      // console.log('Adicionado: ' + this.ingrediente + ' à lista: ' + this.receitaIngredientes);
       this.ingrediente = null;
       this.salvar();
     } else {
-      console.log('Nada selecionado')
+      // console.log('Nada selecionado')
     }
-    console.log (this.receitaIngredientes)
+    // console.log (this.receitaIngredientes)
 
   }
 
