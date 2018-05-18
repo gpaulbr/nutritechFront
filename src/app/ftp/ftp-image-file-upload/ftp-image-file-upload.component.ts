@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NUTRITECH_API} from '../../app.api';
 import {HttpClient} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { Imagem } from '../imagem';
+import {Ftp} from '../ftp';
 
 @Component({
   selector: 'app-ftp-image-file-upload',
@@ -10,13 +12,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class FtpImageFileUploadComponent implements OnInit {
 
-  url = NUTRITECH_API + '/receitas/img';
-  selectedFile: File;
+  url = NUTRITECH_API + '/imagens';
+  imagem: Imagem;
+  selectedFile: ImageData;
 
   constructor(
     private http: HttpClient,
     private toastr: ToastrService
     ) { }
+
+  @Output()
+  salvarImagem = new EventEmitter<Imagem>();
+  @Input()
+  obrigatorio: boolean;
 
   ngOnInit() {
   }
@@ -24,6 +32,10 @@ export class FtpImageFileUploadComponent implements OnInit {
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     this.previewImg(event);
+    this.imagem = new Imagem();
+    this.imagem.imagem = new Blob([this.selectedFile], {type: 'images/*'});
+    console.log('Image changed');
+    this.salvar();
   }
 
   previewImg(event) {
@@ -35,11 +47,13 @@ export class FtpImageFileUploadComponent implements OnInit {
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  onUpload() {
-    this.http.post(this.url, this.selectedFile).subscribe(response => {
-      this.toastr.success('Upload de imagem realizado com sucesso!');
-    }, erro => {
-      this.toastr.error('Erro no upload da imagem!');
+  salvar () {
+    this.salvarImagem.emit(this.imagem);
+    this.http.post<Imagem>(this.url, this.imagem).subscribe(resp => {
+      this.toastr.success('Ha!');
+    }, error =>{
+      this.toastr.error(error.error);
     });
+    console.log(this.imagem);
   }
 }

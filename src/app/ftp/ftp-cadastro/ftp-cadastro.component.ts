@@ -12,6 +12,8 @@ import { FtpTipo } from '../ftp-tipo.enum';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 import {ToastrService} from "ngx-toastr";
 import {GrupoReceita} from '../../ingrediente/grupo-receita';
+import { Imagem } from '../imagem';
+
 
 @Component({
   selector: 'ftp-cadastro',
@@ -43,7 +45,7 @@ export class FTPCadastroComponent implements OnInit {
       rendimento: [null, Validators.compose([Validators.required])],
       tempo: [null, Validators.compose([Validators.required])],
       peso: [null, Validators.compose([Validators.required])],
-      imagem: [""],
+      imagem: [null, Validators.compose([Validators.required])],
       tipo: [1, Validators.compose([Validators.required])],
       criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       receitaIngrediente: [null, Validators.compose([Validators.required, Validators.min(1)])],
@@ -87,6 +89,14 @@ export class FTPCadastroComponent implements OnInit {
     console.log(receitaIngredientes);
   }
 
+  alterarImagem(imagem: Imagem) {
+    imagem['id'] = null;
+    imagem['filePath'] = '';
+    this.ftpForm.controls.imagem.setValue(imagem);
+    console.log(imagem);
+    console.log(this.ftpForm.controls.imagem.value as Imagem);
+  }
+
   alterarDificuldade(dificuldade: number){
     this.ftpForm.controls.dificuldade.setValue(dificuldade);
     console.log(dificuldade);
@@ -109,15 +119,16 @@ export class FTPCadastroComponent implements OnInit {
 
   cadastrar(ftp: Ftp, publicada: Boolean) {
     delete this.ftpForm.controls['id'];
+    console.log(this.ftpForm.controls.imagem.value);
     this.ftpForm.controls.publicada.setValue(publicada); // status de publicada no banco
-    this.ftpForm.controls.imagem.setValue('none yet');
     this.ftpForm.controls.datahora.setValue(new Date());
 
     this.ftpService.salvarFTP(ftp)
       .subscribe(resp => {
         this.toastr.success('Ficha Técnica de Preparo cadastrada com sucesso!');
+        //this.ftpForm.reset();
       }, error =>{
         this.toastr.error(error.error);
-      })
+      });
   }
 }
