@@ -71,7 +71,10 @@ export class UsuarioManutencaoComponent implements OnInit {
     this.usuarioService.salvarUsuario(this.usuarioForm.value).subscribe(
       response => {
         this.toastr.success('Usuário cadastrado com sucesso');
-        this.router.navigate(['./']);        
+        if(this.usuarioLogado.tipo=="ADMIN")
+           this.router.navigate(['./usuario-listagem']);  
+        else
+           this.router.navigate(['./ftp-listagem']); 
       },
       error => {
         this.toastr.error(error.error);
