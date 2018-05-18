@@ -1,7 +1,6 @@
 <nav *ngIf="estaLogado()"  class="navbar navbar-default">
     <div class="container-fluid">
-    <div class="row menu">
-    <div class="col-xl-4 dropdown menu1">
+    <div class="dropdown menu1">
             <button class="dropbtn">Cadastro</button>
             <div class="dropdown-content">
             <a alt="Ingredientes" [routerLink]="['/cadastroIngrediente']">Ingredientes</a>
@@ -12,7 +11,7 @@
             </div>
     </div>
 
-    <div class="col-xl-4 dropdown menu2">
+    <div class="dropdown menu2">
             <button class="dropbtn">Consulta</button>
             <div class="dropdown-content">
             <a alt="Consulta de Ingredientes" [routerLink]="['/ingrediente-listagem']">Ingredientes</a>
@@ -22,12 +21,13 @@
             <a *ngIf="admin" alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
             </div>
     </div>
-    </div>
-    <div class="row dropdown userMenu" >
-        <button class="dropbtn nomeUsu">{{ nickname }}</button>
+    
+    <div class="dropdown userMenu" >
+        <button class="dropbtn circle"><p id="usernickname">A</p></button> <!--{{ nickname }} -->
         <div class="dropdown-content">
             <a alt="Sair" (click)="logout()" [routerLink]="['']">Sair</a>
         </div>
     </div>
 </div>
+
 </nav>

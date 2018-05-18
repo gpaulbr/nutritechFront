@@ -23,7 +23,11 @@ export class HeaderComponent implements OnInit {
         this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));            
        
         if(this.usuarioLogado!==null) {
+
           this.nickname = this.usuarioLogado.nome;
+          //para mobile
+          //this.nickname = this.nickname.charAt(0);
+
           if(this.usuarioLogado.tipo === TipoUsuario.ADMIN || 
             this.usuarioLogado.tipo === TipoUsuario.PROFESSOR){
               

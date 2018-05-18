@@ -15,13 +15,8 @@
     background-position:left center;
     color:#D5BB46;
     padding: 0;
-    /*padding-left:30%;*/
     margin-top: 0%;
     margin-right: 0px;
-    /*background-image: url(assets/blank_user.png);
-    
-    background-position:0% 0%;
-    background-size:15%;*/
     font-size: 12px;
 }
 
@@ -88,6 +83,12 @@ a{
 .dropdown:hover .dropbtn {
     background-color: #EFA638;
 }
+#usernickname{
+    text-align: center;
+    font-size: 25px !important;
+    margin:-18px;
+    color:black;
+}
 
 /* @media aqui */
 
@@ -98,12 +99,68 @@ a{
         padding-top:10%;
         padding-right:-20%;
     }
+    .navbar {
+        background-image: url(assets/logo_mobile.png);
+        background-size:1.7em;
+        background-position:left center;
+        background-position:2%;
+       
+    }
+    .circle {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px; 
+        
+        /* width and height can be anything, as long as they're equal */
+    }
+    
+    /** menu dropdown **/
+    .dropbtn {
+        background-color:#207C7B;
+        color: white;
+        cursor: pointer;
+        border: none;
+        width: 2em;
+        height: 2em; 
+        padding:0em;
+        padding: 1em;;
+        font-size: 1em;
+        
+    }
+    .menu1{
+        margin-left:0%;
+    }
+    
+    .menu2{
+        margin-top: 0%;
+        margin-left:0%;
+    }
+   
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 10px;
+        box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        width:1em;
+    }
+    
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: black;
+        padding: 0.75em 1em;
+        text-decoration: none;
+        display: block;
+    }
 }
 @media only screen and (max-width: 1032px) {
     .navbar {
-        background-image:url(../img/logo.png);
-        background-size:3em;
-        height:2em;
+        background-image: url(assets/logo_mobile.png);
+        background-size:1.7em;
+        background-position:left center;
+        background-position:2%;
     }
 
     .nomeUsu{
@@ -115,17 +172,25 @@ a{
         font-size:0.5em;
     }
     /** menu dropdown **/
+    .circle {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px; 
+        background-color:#D5BB46 !important;
+        
+        /* width and height can be anything, as long as they're equal */
+    }
+    
+    /** menu dropdown **/
     .dropbtn {
         background-color:#207C7B;
         color: white;
-        padding: 0.1em;
-        font-size: 0.8em;
-        border: none;
-        width:6.2em;
         cursor: pointer;
-        height:2em;
+        border: none;
+        width: 30px;
+        height: 30px; 
+       
     }
-
     /* The container <div> - needed to position the dropdown content */
     .dropdown {
         position: relative;
