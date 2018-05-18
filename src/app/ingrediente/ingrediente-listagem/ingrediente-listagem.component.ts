@@ -25,7 +25,8 @@ export class IngredienteListagemComponent implements OnInit {
     { name: 'Nome' },
     { name: 'Origem' },
     { prop: 'criador.nome', name: "Criador" },
-    { name: 'Tipo' }
+    { name: 'Tipo' },
+    { name: 'Ações' }
   ];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
@@ -63,6 +64,7 @@ export class IngredienteListagemComponent implements OnInit {
         })
 
         this.rows = lista
+        
       });
   console.log("Usuário logado:" + this.usuarioLogado.tipo);//OK TIRAR
   }
@@ -83,11 +85,13 @@ export class IngredienteListagemComponent implements OnInit {
       // fim do filtro
       "ERRO"
     });
-
       this.rows = temp;
-
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
+  }
+
+  redirecionarParaCadastro(index: number){
+    console.log(index);
   }
 
 }
