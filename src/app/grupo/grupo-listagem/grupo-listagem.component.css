@@ -35,8 +35,8 @@ th, tr {
     font-weight: normal;
 }
 
-table:nth-child(odd){
-	background:linear-gradient(0deg,rgb(255,255,255,0.7),rgba(255,255,255,0.7));
+table{
+	background-color:rgba(255,255,255,0.7);
 }
 
 div {   
