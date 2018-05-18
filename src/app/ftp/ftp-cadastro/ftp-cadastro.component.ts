@@ -44,7 +44,7 @@ export class FTPCadastroComponent implements OnInit {
       tempo: [null, Validators.compose([Validators.required])],
       peso: [null, Validators.compose([Validators.required])],
       imagem: [""],
-      tipo: [1, Validators.compose([Validators.required])],
+      tipo: [FtpTipo.PUBLICO, Validators.compose([Validators.required])],
       criadores: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       receitaIngrediente: [null, Validators.compose([Validators.required, Validators.min(1)])],
       professor: [null, Validators.compose([Validators.required, Validators.min(1)])],
@@ -64,7 +64,6 @@ export class FTPCadastroComponent implements OnInit {
 
   alterarPassos(passos: Array<String>){
     this.ftpForm.controls.passos.setValue(passos);
-    console.log(passos);
   }
 
   alterarIntegrantes(criadores: Array<Usuario>) {
