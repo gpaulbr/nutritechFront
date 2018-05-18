@@ -45,6 +45,7 @@ import { OnlyNumber } from './shared/directives/only-number.directive';
 import { FtpSelecaoProfessorComponent } from './ftp/ftp-selecao-professor/ftp-selecao-professor.component';
 import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/ftp-selecao-gruporeceita.component'
 
+
 @NgModule({
   declarations: [
     AppComponent,
