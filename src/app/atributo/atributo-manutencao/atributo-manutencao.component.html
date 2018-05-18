@@ -21,7 +21,7 @@
 			<div class="row form-group">
 				<label class="col-md-3 control-label campo-obrigatorio" for="ordem">Ordem</label>
 				<div class="col-md-4">
-					<input formControlName="ordem" id="ordem" name="ordem" class="form-control"
+					<input formControlName="ordem" id="ordem" name="ordem" class="form-control" min="1"
 						   placeholder="1" type="number" required>
 					<app-mensagem-erro [contemErro]="!this.atributoForm.controls['ordem'].valid && this.atributoForm.controls['ordem'].dirty"></app-mensagem-erro>
 				</div>
@@ -30,8 +30,8 @@
 			<div class="row form-group">
 				<label class="col-md-3 control-label campo-obrigatorio" for="multiplicador">Multiplicador</label>
 				<div class="col-md-4">
-					<input formControlName="multiplicador" [formControl]="atributoForm.controls['multiplicador']" class="form-control input-md"
-						placeholder="2" type="number" required>
+					<input formControlName="multiplicador" [formControl]="atributoForm.controls['multiplicador']" 
+					class="form-control input-md" min="1" placeholder="2" type="number" required>
 						<app-mensagem-erro class="erro" [contemErro]="!this.atributoForm.controls['multiplicador'].valid && this.atributoForm.controls['multiplicador'].dirty"></app-mensagem-erro>
 				</div>
 			</div>
