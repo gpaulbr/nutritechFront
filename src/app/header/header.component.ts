@@ -14,40 +14,44 @@ export class HeaderComponent implements OnInit {
 
   usuarioLogado: Usuario;
   admin: boolean = false;
+  professor: boolean = false;
   nickname: string = "";
 
 
   constructor(private router: Router, private loginService: LoginService) {
     this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd) {
-        this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));            
-       
-        if(this.usuarioLogado!==null) {
+      if (event instanceof NavigationEnd) {
+        this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+        if (this.usuarioLogado !== null) {
 
           this.nickname = this.usuarioLogado.nome;
           //para mobile
           //this.nickname = this.nickname.charAt(0);
 
-          if(this.usuarioLogado.tipo === TipoUsuario.ADMIN || 
-            this.usuarioLogado.tipo === TipoUsuario.PROFESSOR){
-              
+          if (this.usuarioLogado.tipo === TipoUsuario.ADMIN) {
+
             this.admin = true;
           } else {
             this.admin = false;
-          }                  
-        }      
+          }
+          if (this.usuarioLogado.tipo === TipoUsuario.PROFESSOR) {
+            this.professor = true;
+          } else {
+            this.professor = false;
+          }
+        }
       }
     })
   }
 
-  ngOnInit(){
+  ngOnInit() {
   }
 
-  estaLogado(){
+  estaLogado() {
     return JSON.parse(localStorage.getItem('usuarioLogado')) != null;
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
     this.router.navigate(['./']);
   }
