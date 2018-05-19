@@ -23,7 +23,7 @@
 			<label class="col-md-3 control-label campo-obrigatorio" for="email">E-mail</label>
 			<div class="col-md-4">
 				<input id="email" nome="email" [formControl]="usuarioForm.controls['email']" class="form-control" 
-				[email]="true" placeholder="email@ufcspa.edu.br" type="email">
+				[email]="true" placeholder="email@ufcspa.edu.br" pattern="[a-z0-9._%+-]+@ufcspa.edu.br" type="email">
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['email'].valid && this.usuarioForm.controls['email'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
@@ -33,7 +33,9 @@
 			<label class="col-md-3 control-label campo-obrigatorio" for="matricula">Matrícula</label>
 			<div class="col-md-4">
 				<input formControlName="matricula" [formControl]="usuarioForm.controls['matricula']"
-				type="text" placeholder="" class="form-control input-md" required>
+				type="text" placeholder="" class="form-control input-md" 
+				onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" 
+				maxlength="11" required>
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['matricula'].valid && this.usuarioForm.controls['matricula'].dirty"></app-mensagem-erro>
 			</div>
 		</div>
@@ -72,7 +74,7 @@
 		<div class="form-group row">
 			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
-				<input [textMask]="{mask: mascaraCPF}" [formControl]="usuarioForm.controls['cpf']" type="text" placeholder="" class="form-control input-md">
+				<input name="cpf" [textMask]="{mask: mascaraCPF}" [(ngModel)]="cpf" [cpf]="cpf"  [formControl]="usuarioForm.controls['cpf']" type="text" placeholder="" class="form-control input-md">
 				<app-mensagem-erro [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
 			</div>
 		</div>

@@ -24,7 +24,7 @@
                     <div class="row form-group">
                         <label class="col-md-3 control-label campo-obrigatorio" for="custo">Valor da Porção (em gramas)</label>
                         <div class="col-md-4">
-                            <input formControlName="custo" type="number"
+                            <input formControlName="custo"  min="1"  type="number"
                             placeholder="5" class = "form-control input-md">
                             <app-mensagem-erro [contemErro]="!this.grupoForm.controls['custo'].valid && this.grupoForm.controls['custo'].dirty"></app-mensagem-erro>
                         </div>
