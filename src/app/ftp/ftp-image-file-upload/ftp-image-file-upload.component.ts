@@ -14,7 +14,6 @@ export class FtpImageFileUploadComponent implements OnInit {
 
   url = NUTRITECH_API + '/imagens';
   imagem: Imagem;
-  selectedFile: ImageData;
 
   constructor(
     private http: HttpClient,
@@ -30,12 +29,27 @@ export class FtpImageFileUploadComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    this.selectedFile = event.target.files[0];
+    //debugger
     this.previewImg(event);
-    this.imagem = new Imagem();
-    this.imagem.imagem = new Blob([this.selectedFile], {type: 'images/*'});
-    console.log('Image changed');
-    this.salvar();
+
+    let img;
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (e: any) => {
+      img =  e.target.result; // data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA8AAAAPACAIAAA...
+      const tokens = img.split(','); // [data:image/png;base64] [*]
+      const tokens2 = tokens[0].split(';'); // [data:image/png] [base64]
+      const tokens3 = tokens2[0].split(':'); // [data] [image/png]
+      const tokens4 = tokens3[1].split('/'); // [image] [png]
+
+      this.imagem = new Imagem();
+      this.imagem.ext = tokens4[1];
+      this.imagem.base64 = btoa(tokens[1]); // converte para blob // para desconverter usar alob
+      //console.log('Image changed');
+      //console.log(this.imagem);
+      this.salvar();
+    };
+
   }
 
   previewImg(event) {
@@ -49,11 +63,6 @@ export class FtpImageFileUploadComponent implements OnInit {
 
   salvar () {
     this.salvarImagem.emit(this.imagem);
-    this.http.post<Imagem>(this.url, this.imagem).subscribe(resp => {
-      this.toastr.success('Ha!');
-    }, error =>{
-      this.toastr.error(error.error);
-    });
     console.log(this.imagem);
   }
 }

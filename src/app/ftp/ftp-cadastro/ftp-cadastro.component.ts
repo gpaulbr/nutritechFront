@@ -94,7 +94,7 @@ export class FTPCadastroComponent implements OnInit {
     imagem['filePath'] = '';
     this.ftpForm.controls.imagem.setValue(imagem);
     console.log(imagem);
-    console.log(this.ftpForm.controls.imagem.value as Imagem);
+    //console.log(this.ftpForm.controls.imagem.value as Imagem);
   }
 
   alterarDificuldade(dificuldade: number){
