@@ -15,14 +15,8 @@ export class GrupoListagemComponent implements OnInit {
 
   grupos: Grupo[];
   rows = [];
-  columns = [
-    { prop: 'id', name: 'ID' },
-    { name: 'Nome' },
-    { prop: 'custo', name: "Valor/Porção (g)" },
-    { name: "Ações" }
-    //ações vão no html
-  ];
-
+  admin:boolean;
+  columns = [];
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(
@@ -34,7 +28,32 @@ export class GrupoListagemComponent implements OnInit {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(usuarioLogado == null) {
       this.router.navigate(['./']);
+    }else{
+      if(usuarioLogado.tipo == "ADMIN"){  
+        this.admin = true;
+      } else {
+        this.admin = false;
+      }
     }
+
+  if(this.admin){//se for admin, exibe com as ações
+      this.columns = [
+        { prop: 'id', name: 'ID' },
+        { name: 'Nome' },
+        { prop: 'custo', name: "Valor/Porção (g)" },
+        { name: "Ações" }
+        //ícones de ação vão no html
+      ];
+  }else{//se for prof ou usuário exibe sem as ações
+      this.columns = [
+        { prop: 'id', name: 'ID' },
+        { name: 'Nome' },
+        { prop: 'custo', name: "Valor/Porção (g)" }
+        //ícones de ação vão no html
+      ];
+   }
+                  
+  
 
     this.grupoService.buscarGrupos().subscribe(
       response => {

@@ -31,14 +31,14 @@
             <ngx-datatable-column name="{{columns[0].name}}" prop="id" ></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[1].name}}" class="first-title-detail label-wrap-detail" [width]="200" prop="nome"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[2].name}}" prop="custo"></ngx-datatable-column>
-            <ngx-datatable-column
+            <ngx-datatable-column *ngIf="admin"
                 name="{{columns[3].name}}"
                 [width]="100"
                 [sortable]="false"
                 [canAutoResize]="false"
                 [draggable]="false"
                 [resizeable]="false">
-                <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                <ng-template *ngIf="admin" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                     <i class="material-icons" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
                     <i class="material-icons" (click)="redirecionarParaCadastro(rowIndex)">delete</i>
                 </ng-template>
