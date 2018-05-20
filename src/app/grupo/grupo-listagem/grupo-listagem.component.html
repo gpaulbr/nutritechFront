@@ -9,6 +9,7 @@
                     <div class="panel-heading ">
                         <h2 class="titulo_lista">Listagem de Grupos de Receitas</h2  >
                     </div>
+
                     <div class="panel-body">
                         <div>
                             <div id="buscar" class="row"> 
@@ -19,48 +20,34 @@
                                />  
                              </div>
              
-                         <ngx-datatable
+        <ngx-datatable
                          #table
                          class="material"
-                         [columns]="columns"
                          [columnMode]="'force'"
                          [headerHeight]="40"
                          [rowHeight]="'auto'"
                          [rows]='rows'>
-                       </ngx-datatable>
+
+            <ngx-datatable-column name="{{columns[0].name}}" prop="id" ></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[1].name}}" class="first-title-detail label-wrap-detail" [width]="200" prop="nome"></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[2].name}}" prop="custo"></ngx-datatable-column>
+            <ngx-datatable-column
+                name="{{columns[3].name}}"
+                [width]="100"
+                [sortable]="false"
+                [canAutoResize]="false"
+                [draggable]="false"
+                [resizeable]="false">
+                <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                    <i class="material-icons" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
+                    <i class="material-icons" (click)="redirecionarParaCadastro(rowIndex)">delete</i>
+                </ng-template>
+
+            </ngx-datatable-column>
+              
+        </ngx-datatable>
+
                    </div>
-                        
-                        
-                        <!-- Table 
-                        <table>
-                            <thead>
-                                <tr class="table-header">
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Valor da Porção (g)</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <ng-container *ngFor="let grupo of grupos">
-                                        <tr>
-                                            <td>
-                                                {{grupo.id}}
-                                            </td>
-                                            <td>
-                                                {{grupo.nome}}
-                                            </td>
-                                            <td>
-                                                {{grupo.custo}}
-                                            </td>
-                                            <td>
-                                                <i class="material-icons delete">edit</i>
-                                            </td>
-                                        </tr>
-                                    </ng-container>
-                            </tbody>
-                        </table>
-                    -->
                     </div>      
                 </div>
             </div>
