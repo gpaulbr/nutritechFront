@@ -18,7 +18,8 @@ export class GrupoListagemComponent implements OnInit {
   columns = [
     { prop: 'id', name: 'ID' },
     { name: 'Nome' },
-    { prop: 'custo', name: "Valor da Porção (g)" }
+    { prop: 'custo', name: "Valor/Porção (g)" },
+    { name: "Ações" }
     //ações vão no html
   ];
 

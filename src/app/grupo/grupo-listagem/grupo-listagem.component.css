@@ -3,12 +3,13 @@ table,.fixed-header  {
 	margin: 0px;
 	overflow: auto;
 	max-width: 100%;
-    white-space: nowrap;
+    white-space: normal;
     background-color: #ffffff9c!important;
 }
 
 div #buscar{
     display: inline;
+    padding-left: 5%;
 }
 
 .pBuscar{
@@ -100,7 +101,16 @@ h2 {
     text-align: center;
     color: white;
     text-shadow: -1px 0 #207C7B, 0 1px #207C7B, -1px 0 #207C7B, 0 -1px #207C7B;}
-
+@media only screen and (max-width: 414px),(min-height: 736px) {
+    :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
+        margin-right: -10px!important;
+    }
+}
+@media only screen and (max-height: 568px),(max-width: 320) {
+        :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
+            margin-right: -5px!important;
+        }
+}
 @media only screen and (max-width: 768px) {
     .inputBuscar{
         margin-left: 4%;
@@ -111,9 +121,8 @@ h2 {
     }
 
     h2 {
-        text-justify: newspaper;
         float: left;
-        text-align: center;
+        margin-left:-13%;
     }
 }
 @media only screen and (max-width: 573px) {
@@ -129,7 +138,12 @@ h2 {
     }
 
     :host /deep/ .ngx-datatable.material .datatable-header{/*para modificar o ngx-datatable */
-        font-size: 3.5vw;
+        font-size: 3.5vw; 
+    }
+    :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
+        padding-left: 0px;
+        margin-right: 3.1%;
+        width: 100%!important;
     }
 }
 
