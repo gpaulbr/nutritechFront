@@ -22,7 +22,7 @@
           <!-- -->
 					<app-ftp-integrantes [obrigatorio]=true (salvarIntegrantes)="alterarIntegrantes($event)"></app-ftp-integrantes>
 					<hr>
-					<app-ftp-selecao-ingredientes [obrigatorio]=true (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
+					<app-ftp-selecao-ingredientes [obrigatorio]=true (salvarCusto)="alterarCustoTotal($event)" (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
 					<hr>
 					<app-ftp-modo-preparo [obrigatorio]="true" (salvarPassos)="alterarPassos($event)"></app-ftp-modo-preparo>
 					<div>
@@ -32,15 +32,16 @@
 								<div class="row">
 									<div class="col-lg-3">
 										<h4>Custo por porção:</h4>
-										<p>R$ 24,00</p>
+                    <p [ngModel]="custoTotal">{{this.custoTotal}}</p>
+										<!--<p>R$ 24,00</p> -->
 									</div>
 									<div class="col-lg-5">
 										<h4>Rendimento:</h4>
-										<input formControlName="rendimento" type="text" class="form-control" placeholder="Uma porção">
+										<input formControlName="rendimento" type="number" class="form-control" min="1" (value)="1">
 									</div>
 									<div class="col-lg-4">
 										<h4>Peso:</h4>
-										<input formControlName="peso" type="number" class="form-control" placeholder="600g">
+										<input formControlName="peso" type="number" class="form-control" min="0" placeholder="600g">
 									</div>
 								</div>
 								<div id="tempo-preparo" class="row justify-content-start">
@@ -56,7 +57,7 @@
 								</div>
 							</div>
               <div class="col-md-5">
-              <app-ftp-image-file-upload></app-ftp-image-file-upload>
+              <app-ftp-image-file-upload [obrigatorio]=true (salvarImagem)="alterarImagem($event)"></app-ftp-image-file-upload>
               </div>
             </div>
 						<br>
@@ -66,9 +67,12 @@
 							<input type="checkbox" id="ftp-privacidade" ng-model="leader" (click)="alterarTipo()">
 								<label id="ficha-privada" for="ftp-privacidade" ng-checked="leader">Tornar minha ficha técnica privada</label>
 							</div>
-							<div class="col-auto">
-								<button class="btn btn-success" (click)="cadastrar(ftpForm.value, false)">Salvar</button>
-							</div>
+              <!--<div class="col-auto">-->
+                <!--<button class="btn btn-danger" (click)="ftpForm.reset()">Limpar</button>-->
+              <!--</div>-->
+              <div class="col-auto">
+                <button class="btn btn-success" (click)="cadastrar(ftpForm.value, false)">Salvar</button>
+              </div>
 							<div class="col-auto">
 								<button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value, true)" [disabled]="ftpForm.invalid">Publicar</button>
 							</div>

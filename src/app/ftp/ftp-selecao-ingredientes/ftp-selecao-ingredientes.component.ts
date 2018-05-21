@@ -22,13 +22,15 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   constructor(private router: Router, private ingredienteService: IngredienteService) { }
 
   @Output()
+  salvarCusto = new EventEmitter<String>();
+  @Output()
   salvarIngredientes = new EventEmitter<Array<ReceitaIngrediente>>();
   @Input()
   obrigatorio: boolean
 
   ngOnInit() {
-    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (usuarioLogado == null) {
       this.router.navigate(['./']);
       return;
     }
@@ -54,7 +56,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
 
   adicionarIngrediente() {
     // console.log (this.receitaIngredientes)
-    var novo: ReceitaIngrediente = new ReceitaIngrediente()
+    let novo: ReceitaIngrediente = new ReceitaIngrediente()
     delete this.ingrediente.criador['valid']
     novo.ingrediente = this.ingrediente;
     novo.custoKg = this.custoKg;
@@ -82,8 +84,17 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
     console.log('Não implementado');
   }
 
+  getCustoTotal(): String {
+    let custoTotal = 0;
+    for (const item of this.receitaIngredientes) {
+      custoTotal = custoTotal + Number(item.getCustoTotal());
+    }
+    return String(custoTotal.toFixed(2));
+  }
+
   salvar () {
     this.salvarIngredientes.emit(this.receitaIngredientes);
+    this.salvarCusto.emit(this.getCustoTotal());
   }
 
 }
