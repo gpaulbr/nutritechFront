@@ -13,19 +13,33 @@
     margin-left:20%;
 }
 
+.nomeUsu{
+    background-image: url(assets/blank_user.png);
+    background-size:20%;
+    background-repeat:no-repeat;
+    background-position:left center;
+    color:#D5BB46;
+    padding: 0;
+    margin-top: 0%;
+    margin-right: 0px;
+    font-size: 12px;
+}
+
+.menu{
+    margin-left:50%;
+}
+
+.menu2{
+    margin-top: -13%;
+    margin-left:100%;
+}
+
 a{
     font-size:1em;
     font-weight: normal;
 }
 
 /** menu dropdown **/
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
 .dropbtn {
     background-color:#207C7B;
     color: white;
@@ -35,6 +49,13 @@ a{
     width:10em;
     cursor: pointer;
     height:3em;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 5em;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -68,12 +89,11 @@ a{
 .dropdown:hover .dropbtn {
     background-color: #EFA638;
 }
-
 #usernickname{
     text-align: center;
     font-size: 25px !important;
     margin:-18px;
-    color:black;
+    color:white;
 }
 #userMenu{
     margin-right: -10px;
@@ -87,6 +107,8 @@ a{
         background-size:1.7em;
         background-position:left center;
         background-position:20%;
+        width: 100% !important;
+       
     }
     .container-fluid{
         margin-left:0%;
@@ -96,40 +118,40 @@ a{
         width: 30px;
         height: 30px; 
     } 
-
-   
-   
     /** menu dropdown **/
-    .dropdown {
-        margin-left: 2em;
-    }
-
     .dropbtn {
         background-color:#207C7B;
         color: white;
         cursor: pointer;
         border: none;
+        width: 10px !important;
+        height: 10px !important; 
+        padding: 1em;
         font-size: 1em;
-        width: 100%!important;
-        height: 80%!important;
         /*margin-top:-50%;*/
+    }
+    .dropdown {
+        margin-left: 5%;
     }
    
     /* Dropdown Content (Hidden by Default) */
     .dropdown-content {
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 15px;
+        box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
         z-index: 1;
-        width:5em;
-    }
-   s .dropdown:hover .dropdown-content {
+        width:3em;
     }
     .dropdown:hover .dropbtn {
         background-color: #EFA638;
     }
-      
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
 }
-
-
 @media only screen and (max-width: 1032px) {
     .navbar {
         background-image: url(assets/logo_mobile.png);
@@ -206,6 +228,14 @@ a{
         background-color: #EFA638;
     }
 
+    .menu1{
+        margin-left:30%;
+    }
+    
+    .menu2{
+        margin-top: -12%;
+        margin-left:70%;
+    }
     .exitImg img{
         margin-right: -10em;
         margin-top:1em;
