@@ -22,7 +22,7 @@
           <!-- -->
 					<app-ftp-integrantes [obrigatorio]=true (salvarIntegrantes)="alterarIntegrantes($event)"></app-ftp-integrantes>
 					<hr>
-					<app-ftp-selecao-ingredientes [obrigatorio]=true (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
+					<app-ftp-selecao-ingredientes [obrigatorio]=true (salvarCusto)="alterarCustoTotal($event)" (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
 					<hr>
 					<app-ftp-modo-preparo [obrigatorio]="true" (salvarPassos)="alterarPassos($event)"></app-ftp-modo-preparo>
 					<div>
@@ -32,6 +32,7 @@
 								<div class="row">
 									<div class="col-lg-3">
 										<h4>Custo por porção:</h4>
+                    <p [ngModel]="custoTotal">{{this.custoTotal}}</p>
 										<!--<p>R$ 24,00</p> -->
 									</div>
 									<div class="col-lg-5">

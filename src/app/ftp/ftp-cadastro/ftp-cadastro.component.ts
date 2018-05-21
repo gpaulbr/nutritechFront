@@ -27,6 +27,7 @@ export class FTPCadastroComponent implements OnInit {
 
   gruposDisponiveis: Grupo[];
   professoresDisponiveis: Usuario[];
+  custoTotal: String = "0.00";
 
   constructor(private ftpService: FtpService,
     private grupoService: GrupoService,
@@ -93,13 +94,17 @@ export class FTPCadastroComponent implements OnInit {
     imagem['filePath'] = '';
     this.ftpForm.controls.imagem.setValue(imagem);
     console.log(imagem);
-    //console.log(this.ftpForm.controls.imagem.value as Imagem);
   }
 
   alterarDificuldade(dificuldade: number){
     this.ftpForm.controls.dificuldade.setValue(dificuldade);
     console.log(dificuldade);
     console.log('Dificuldade Alterada para: ' + this.retornarDificuldade())
+  }
+
+  alterarCustoTotal(custoTotal: String) {
+    this.custoTotal = custoTotal;
+    console.log(this.custoTotal);
   }
 
   retornarDificuldade(): number{

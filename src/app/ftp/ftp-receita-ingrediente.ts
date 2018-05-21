@@ -9,7 +9,7 @@ export class ReceitaIngrediente {
     public pesoG: number;
 
 
-    public getCustoTotal(): string {
+    public getCustoTotal(): String {
       const ct: number = (this.custoKg / 1000) * this.pesoG;
       return ct.toFixed(2);
     }
