@@ -4,7 +4,7 @@
             <button class="dropbtn">Cadastro</button>
             <div class="dropdown-content">
                 <a  alt="Ingredientes" [routerLink]="['/cadastroIngrediente']">Ingredientes</a>
-               <a *ngIf="admin" alt="Grupos" [routerLink]="['/grupo']">Grupos</a>
+                <a *ngIf="admin" alt="Grupos" [routerLink]="['/grupo']">Grupos</a>
                 <a *ngIf="admin" alt="Atributos" [routerLink]="['/atributo']">Atributos</a>
                 <a *ngIf="admin || professor" alt="Usuários" [routerLink]="['/usuario']">Usuários</a>
                 <a alt="Ficha Técnica de Produto" [routerLink]="['/ftp-cadastro']">Ficha Técnica de Produto </a>
@@ -26,6 +26,7 @@
                     <a alt="Sair" (click)="logout()" [routerLink]="['']">Sair</a>
                 </div>
             </div>
+
 </div>
 
 </nav>
