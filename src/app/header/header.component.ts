@@ -23,10 +23,11 @@ export class HeaderComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
         if (this.usuarioLogado !== null) {
-
           this.nickname = this.usuarioLogado.nome;
-          //para mobile
-          //this.nickname = this.nickname.charAt(0);
+          // precisa atualizar a página para trocar nome do usuário
+          if(screen.width < 321 || screen.width < 800 || screen.width < 1025 ){
+              this.nickname = this.nickname.charAt(0);
+          }
 
           if (this.usuarioLogado.tipo === TipoUsuario.ADMIN) {
 
