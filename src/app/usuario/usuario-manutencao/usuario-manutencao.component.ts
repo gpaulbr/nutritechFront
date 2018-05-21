@@ -51,7 +51,7 @@ export class UsuarioManutencaoComponent implements OnInit {
     private toastr: ToastrService,
     fb: FormBuilder) { 
       this.usuarioForm = fb.group({
-        nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+        nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
         email: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
         matricula: [null, Validators.compose([Validators.required, Validators.minLength(11), Validators.maxLength(11)])],
         senha: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(30)])],
@@ -71,10 +71,14 @@ export class UsuarioManutencaoComponent implements OnInit {
     this.usuarioService.salvarUsuario(this.usuarioForm.value).subscribe(
       response => {
         this.toastr.success('Usuário cadastrado com sucesso');
-        if(this.usuarioLogado.tipo=="ADMIN")
-           this.router.navigate(['./usuario-listagem']);  
-        else
-           this.router.navigate(['./ftp-listagem']); 
+
+        if(this.usuarioLogado!=null){
+            if(this.usuarioLogado.tipo=="ADMIN"){
+              this.router.navigate(['./usuario-listagem']);
+            }
+        }else{
+          this.router.navigate(['./']); 
+        }
       },
       error => {
         this.toastr.error(error.error);
