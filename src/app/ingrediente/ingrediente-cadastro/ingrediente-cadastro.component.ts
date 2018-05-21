@@ -10,7 +10,7 @@ import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { IngredienteService } from '../ingrediente.service';
 import { IngredienteDto } from '../ingrediente-dto';
 import { IngredienteAtributoDto } from '../ingrediente-atributo-dto';
-import { Router } from '@angular/router';
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { print } from 'util';
 import {forEach} from '@angular/router/src/utils/collection';
@@ -44,7 +44,9 @@ export class IngredienteCadastroComponent implements OnInit {
     private atributosService: AtributoService,
     private router: Router,
     private toastr: ToastrService,
-    private ingredienteService: IngredienteService) {
+    private ingredienteService: IngredienteService,
+    private route: ActivatedRoute
+  ) {
     this.atributos = [];
     this.ingAtributos = [];
     this.fb = new FormBuilder();
@@ -53,6 +55,15 @@ export class IngredienteCadastroComponent implements OnInit {
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       tipo: [TipoIngrediente.PRIVADO, Validators.required]
     });
+    var idIngrediente
+    this.route.params.subscribe( params => idIngrediente = params);
+
+    this.ingredienteService.obterIngrediente(idIngrediente.id)
+      .subscribe(res => {
+        this.ingredienteForm.controls['nome'].setValue(res.nome);
+        this.ingredienteForm.controls['origem'].setValue(res.origem);
+        this.ingredienteForm.controls['tipo'].setValue(res.tipo);
+      });
   }
 
   limpar() {

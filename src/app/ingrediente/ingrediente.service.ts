@@ -17,4 +17,8 @@ export class IngredienteService {
   buscarIngredientes(): Observable<Ingrediente[]>{
     return this.http.get<Ingrediente[]>(NUTRITECH_API + '/ingredientes');
   }
+
+  obterIngrediente(id: string): Observable<Ingrediente>{
+    return this.http.get<Ingrediente>(`${NUTRITECH_API}/ingredientes/${id}/`);
+  }
 }
