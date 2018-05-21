@@ -4,7 +4,7 @@ import { IngredienteAtributoDto } from './ingrediente-atributo-dto';
 import { Usuario } from "../usuario/usuario";
 
 export class Ingrediente {
-    
+    public id?: number
     public nome: string;
     public origem: string;
     public tipo: TipoIngrediente;
