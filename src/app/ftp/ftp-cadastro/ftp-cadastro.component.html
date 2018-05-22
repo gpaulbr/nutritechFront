@@ -4,15 +4,26 @@
 			<form [formGroup]="ftpForm" class="content" id="formulario" novalidate>
 				<div>
 					<h2>Ficha Técnica de Produto</h2>
+
           <div><p id="time" type="datetime-local"></p></div>
-					<div class="form-group row justify-content-start">
-						<div class="col-md-4 col-lg-3">
-							<label class="campo-obrigatorio">Produto:</label>
-						</div>
-						<div class="col-md-7 col-lg-6 col-xl-5">
-							<input formControlName="nome" type="text" class="form-control" placeholder="Nome do Produto">
-							<app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
-						</div>
+
+          <div *ngIf="UsuarioEhAdmin() || UsuarioEhProfessor()" class="form-group row justify-content-start">
+              <div class="col-md-4 col-lg-3">
+                <label class="campo-obrigatorio">Nota:</label>
+              </div>
+              <div class="col-md-7 col-lg-6 col-xl-5">
+                <input formControlName="nota" type="number" class="form-control" min="0" max="10" step="0.1">
+                <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nota'].valid && this.ftpForm.controls['nota'].dirty"></app-mensagem-erro>
+              </div>
+          </div>
+            <div class="form-group row justify-content-start">
+              <div class="col-md-4 col-lg-3">
+                <label class="campo-obrigatorio">Produto:</label>
+              </div>
+              <div class="col-md-7 col-lg-6 col-xl-5">
+                <input formControlName="nome" type="text" class="form-control" placeholder="Nome do Produto">
+                <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
+              </div>
 					</div>
           <app-ftp-selecao-gruporeceita [obrigatorio]=true (salvarGrupoReceita)="alterarGrupoReceita($event)"></app-ftp-selecao-gruporeceita>
           <app-mensagem-erro [contemErro]="!this.ftpForm.controls['grupoReceita'].valid && this.ftpForm.controls['grupoReceita'].dirty"></app-mensagem-erro>
@@ -32,7 +43,7 @@
 								<div class="row">
 									<div class="col-lg-3">
 										<h4>Custo por porção:</h4>
-                    <p [ngModel]="custoTotal">{{this.custoTotal}}</p>
+                    <p>{{this.custoTotal}}</p>
 										<!--<p>R$ 24,00</p> -->
 									</div>
 									<div class="col-lg-5">
@@ -54,7 +65,8 @@
 								</div>
 								<div class="row no-gutters align-items-center">
 									<app-ftp-dificuldade [dificuldadeMaxima]="5" [dificuldade]="retornarDificuldade()" (salvarDificuldade)="alterarDificuldade($event)"></app-ftp-dificuldade>
-								</div>
+                  <app-mensagem-erro [contemErro]="!this.ftpForm.controls['dificuldade'].valid && this.ftpForm.controls['dificuldade'].dirty"></app-mensagem-erro>
+                </div>
 							</div>
               <div class="col-md-5">
               <app-ftp-image-file-upload [obrigatorio]=true (salvarImagem)="alterarImagem($event)"></app-ftp-image-file-upload>
@@ -67,14 +79,14 @@
 							<input type="checkbox" id="ftp-privacidade" ng-model="leader" (click)="alterarTipo()">
 								<label id="ficha-privada" for="ftp-privacidade" ng-checked="leader">Tornar minha ficha técnica privada</label>
 							</div>
-              <!--<div class="col-auto">-->
-                <!--<button class="btn btn-danger" (click)="ftpForm.reset()">Limpar</button>-->
-              <!--</div>-->
               <div class="col-auto">
-                <button class="btn btn-success" (click)="cadastrar(ftpForm.value, false)">Salvar</button>
+                <button (click)="limpar()" type="button" class="btn btn-danger" [disabled]="ftpForm.value.id != null">Limpar</button>
+              </div>
+              <div class="col-auto">
+                <button class="btn btn-success" (click)="cadastrar(ftpForm.value, 0)" [disabled]="ftpForm.value.id != null">Salvar</button>
               </div>
 							<div class="col-auto">
-								<button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value, true)" [disabled]="ftpForm.invalid">Publicar</button>
+								<button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value, 1)" [disabled]="ftpForm.invalid">Publicar</button>
 							</div>
 						</div>
 					</div>

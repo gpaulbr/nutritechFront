@@ -21,8 +21,9 @@ const routes: Routes = [
   { path: 'usuario-listagem', component: UsuarioListagemComponent },
   { path: 'ingrediente-listagem', component: IngredienteListagemComponent },
   { path: 'grupo-listagem', component: GrupoListagemComponent },
-  { path: 'atributo-listagem', component: AtributoListagemComponent},  
+  { path: 'atributo-listagem', component: AtributoListagemComponent},
   { path: 'ftp-cadastro', component: FTPCadastroComponent },
+  { path: 'ftp-cadastro/:id', component: FTPCadastroComponent },
   { path: 'ftp-listagem', component: FtpListagemComponent },
   { path: '', component: LoginComponent },
 ]

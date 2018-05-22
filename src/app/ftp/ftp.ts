@@ -22,4 +22,6 @@ export class Ftp {
     public professor: Usuario;
     public datahora: Date;
     public grupoReceita: GrupoReceita;
+
+    public nota: Number;
 }

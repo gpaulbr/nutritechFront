@@ -11,7 +11,7 @@ export class FtpModoPreparoComponent implements OnInit {
 
   novoPasso: String = '';
   passos = new Array<String>();
-  
+
   @Output()
   salvarPassos = new EventEmitter<Array<String>>();
   @Input()

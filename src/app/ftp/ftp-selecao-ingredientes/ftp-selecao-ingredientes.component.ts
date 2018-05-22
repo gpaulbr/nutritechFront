@@ -3,6 +3,7 @@ import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 import {Router} from '@angular/router';
+import {Usuario} from '../../usuario/usuario';
 
 @Component({
   selector: 'app-ftp-selecao-ingredientes',
@@ -63,7 +64,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
     novo.pesoG = this.pesoG;
     novo.fatorCorrecao = this.fatorCorrecao;
 
-    if (this.ingrediente != null && !this.receitaIngredientes.includes(novo)) {
+    if (this.ingrediente != null && !this.estaIncluido(novo.ingrediente)) {
       this.receitaIngredientes.push(novo);
       // console.log('Adicionado: ' + this.ingrediente + ' à lista: ' + this.receitaIngredientes);
       this.ingrediente = null;
@@ -72,10 +73,19 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
       // console.log('Nada selecionado')
     }
     // console.log (this.receitaIngredientes)
-
   }
 
-  removerIngredientePorIndex(index : number) {
+  estaIncluido(ingrediente: Ingrediente) {
+    let incluido = false;
+    this.receitaIngredientes.forEach(ri => {
+      if (ri.ingrediente.nome == ingrediente.nome) {
+        incluido = true;
+      }
+    });
+    return incluido;
+  }
+
+  removerIngredientePorIndex(index: number) {
     this.receitaIngredientes.splice(index, 1)
     this.salvar();
   }

@@ -28,12 +28,18 @@
 
             [scrollbarH]="true">
             <!-- COLUNAS da tabela -->
-        <ngx-datatable-column name="Nome" [width]="10"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e pq precisava definir um width diferente para algumas colunas -->
-        <ngx-datatable-column name="Rendimento" [width]="10"></ngx-datatable-column>
-        <ngx-datatable-column name="Criadores" [width]="10" prop="criador"> </ngx-datatable-column>
-        <ngx-datatable-column name="Grupo de Receita" [width]="10" prop="grupoReceita.nome"></ngx-datatable-column>>
-        <ngx-datatable-column name="Tipo" [width]="5"></ngx-datatable-column>
-        <ngx-datatable-column name="Status" [width]="5"></ngx-datatable-column>
+
+          <ngx-datatable-column name="Nome"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e pq precisava definir um width diferente para algumas colunas -->
+          <ngx-datatable-column name="Rendimento"></ngx-datatable-column>
+          <ngx-datatable-column name="Criadores" prop="criador"> </ngx-datatable-column>
+          <ngx-datatable-column name="Grupo de Receita" prop="grupoReceita.nome"></ngx-datatable-column>>
+          <ngx-datatable-column name="Tipo"></ngx-datatable-column>
+          <ngx-datatable-column name="Status"></ngx-datatable-column>
+          <ngx-datatable-column name="Ações">
+            <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+              <i class="material-icons" onmouseover="" style="cursor: pointer;"  (click)="redicionarAlterar(rowIndex)">edit</i>
+            </ng-template>
+          </ngx-datatable-column>
         </ngx-datatable>
 
             <div id="aviso-cad" *ngIf="!receitaEmLista">

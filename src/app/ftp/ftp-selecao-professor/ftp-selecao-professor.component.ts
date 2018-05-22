@@ -43,6 +43,8 @@ export class FtpSelecaoProfessorComponent implements OnInit {
       });
   }
 
+
+
   salvar () {
     this.salvarProfessor.emit(this.professor);
     // console.log(this.professor);
