@@ -92,4 +92,7 @@ export class GrupoListagemComponent implements OnInit {
         this.table.offset = 0;
       }
 
+      redirecionarParaCadastro(index: number){
+        this.router.navigate([`./grupo/${this.grupos[index].id}`]);
+      }
   }

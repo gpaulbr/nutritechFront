@@ -1,7 +1,12 @@
 <div class="container container-grupo">
             <br>
             <fieldset>  
-                <form [formGroup]="grupoForm" class="form-horizontal form-container" (ngSubmit)="cadastrar()" id="formulario" novalidate> 
+
+                <!--  [] -> manda do componete .ts para o HTML  -->
+                <!-- () -> manda do HTML para o angular -->
+                <form [formGroup]="grupoForm" class="form-horizontal form-container" 
+                (ngSubmit)="cadastrar()" id="formulario" novalidate> 
+                    
                     <h2>Cadastro de Grupo de Receita</h2>
                     <div class="divisor">
                         <span></span>
@@ -29,9 +34,6 @@
                             <app-mensagem-erro [contemErro]="!this.grupoForm.controls['custo'].valid && this.grupoForm.controls['custo'].dirty"></app-mensagem-erro>
                         </div>
                     </div>
-
-                   
-  
 
                     <div class="but-t form-group">
                         <div>
