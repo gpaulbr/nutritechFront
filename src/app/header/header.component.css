@@ -112,25 +112,32 @@ a{
     .container-fluid{
         margin-left:0%;
     }
-    .circle {
-        border-radius: 50%;
-        width: 30px;
-        height: 30px; 
-    } 
     /** menu dropdown **/
     .dropbtn {
         background-color:#207C7B;
         color: white;
         cursor: pointer;
         border: none;
-        width: 10px !important;
-        height: 10px !important; 
+        width: 100% !important;
+        /* height: % !important;  */
         padding: 1em;
         font-size: 1em;
         /*margin-top:-50%;*/
     }
+
+    .circle {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        margin-left:-0.8em;
+        margin-right:-2em;
+        background-color:#DFCB3A;
+    } 
     .dropdown {
         margin-left: 5%;
+    }
+    .menu2{
+        margin-left: -15%;
     }
    
     /* Dropdown Content (Hidden by Default) */
@@ -141,7 +148,7 @@ a{
         min-width: 15px;
         box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
         z-index: 1;
-        width:7em;
+        width:6em;
     }
     .dropdown:hover .dropbtn {
         background-color: #EFA638;
@@ -149,11 +156,19 @@ a{
     .dropdown:hover .dropdown-content {
         display: block;
     }
+    .dropdown-content a {
+        margin-left:-0.7em;
+    }
     #sair-content{
-        width:3em;
+        width:2.5em;
+        margin-left:-1em;
+        margin-right:-2em;
     }
     #sair-content a{
-        margin-left:-0.3em;
+        margin-left:-0.6em;
+    }
+    #userMenu{
+        /* margin-right: -2em; */
     }
 }
 @media only screen and (max-width: 1032px) {

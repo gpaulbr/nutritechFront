@@ -11,8 +11,8 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn">Consulta</button>
-            <div class="dropdown-content">
+            <button class="dropbtn menu2">Consulta</button>
+            <div class="dropdown-content menu2" >
                 <a alt="Consulta de Ingredientes" [routerLink]="['/ingrediente-listagem']">Ingredientes</a>
                 <a alt="Consulta de Grupos" [routerLink]="['/grupo-listagem']">Grupos</a>
                 <a alt="Consulta de Atributos" [routerLink]="['/atributo-listagem']">Atributos</a>
@@ -20,7 +20,7 @@
                 <a *ngIf="admin" alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
             </div>
         </div>
-            <div class="dropdown" id="userMenu">
+            <div class="dropdown" id="">
                 <button class="dropbtn circle"><p id="usernickname"> {{ nickname }} </p></button>
                 <div class="dropdown-content" id="sair-content">
                     <a alt="Sair" (click)="logout()" [routerLink]="['']" >Sair</a>
