@@ -18,6 +18,11 @@ export class GrupoService {
   buscarGrupos(): Observable<Grupo[]>{
     return this.http.get<Grupo[]>(this.url);
   }
+
+  obterGrupo(id: string): Observable<Grupo>{
+    return this.http.get<Grupo>(`${NUTRITECH_API}/grupos/${id}/`);
+  }
+
   
 
 }

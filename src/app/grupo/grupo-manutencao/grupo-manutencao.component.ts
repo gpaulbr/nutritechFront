@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { GrupoReceita } from '../../ingrediente/grupo-receita';
 import { GrupoService } from '../grupo.service';
-import { Router } from '@angular/router';
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Grupo } from '../grupo';
 
@@ -16,7 +16,9 @@ export class GrupoManutencaoComponent implements OnInit {
   grupoForm: FormGroup;
   fb: FormBuilder;
 
-  constructor(private grupoService: GrupoService,
+  constructor(
+    private grupoService: GrupoService,
+    private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
     fb: FormBuilder) {
@@ -24,7 +26,17 @@ export class GrupoManutencaoComponent implements OnInit {
     this.grupoForm = this.fb.group({
       nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
       custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])]      
-    })
+    });
+
+    var idGrupo
+    this.route.params.subscribe( params => idGrupo = params);
+
+    this.grupoService.obterGrupo(idGrupo.id)
+      .subscribe(res => {
+        this.grupoForm.controls['nome'].setValue(res.nome);
+        this.grupoForm.controls['custo'].setValue(res.custo);
+      });
+
    }
 
    limpar(){
