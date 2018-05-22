@@ -117,6 +117,8 @@ export class FTPCadastroComponent implements OnInit {
 
           this.ftpForm.controls['grupoReceita'].setValue(res.grupoReceita); //
           this.gruporeceitaComponent.grupoReceita = res.grupoReceita;
+
+          this.ftpForm.controls['nota'].setValue(res.nota);
         });
     }
   }
