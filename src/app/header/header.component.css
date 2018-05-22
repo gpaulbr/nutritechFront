@@ -24,16 +24,6 @@
     margin-right: 0px;
     font-size: 12px;
 }
-
-.menu{
-    margin-left:50%;
-}
-
-.menu2{
-    margin-top: -13%;
-    margin-left:100%;
-}
-
 a{
     font-size:1em;
     font-weight: normal;
@@ -98,6 +88,15 @@ a{
 #userMenu{
     margin-right: -10px;
 }
+#sair-content{}
+
+.navbar-brand {
+    color: white;
+}
+
+.dropdown-toggle {
+    color: white;
+}
 
 /* @media aqui */
 
@@ -106,7 +105,7 @@ a{
         background-image: url(assets/logo_mobile.png);
         background-size:1.7em;
         background-position:left center;
-        background-position:20%;
+        background-position:2%;
         width: 100% !important;
        
     }
@@ -142,7 +141,7 @@ a{
         min-width: 15px;
         box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.2);
         z-index: 1;
-        width:3em;
+        width:7em;
     }
     .dropdown:hover .dropbtn {
         background-color: #EFA638;
@@ -150,10 +149,15 @@ a{
     .dropdown:hover .dropdown-content {
         display: block;
     }
-    
+    #sair-content{
+        width:3em;
+    }
+    #sair-content a{
+        margin-left:-0.3em;
+    }
 }
 @media only screen and (max-width: 1032px) {
-    .navbar {
+    /* .navbar {
         background-image: url(assets/logo_mobile.png);
         background-size:1.7em;
         background-position:left center;
@@ -170,17 +174,17 @@ a{
         font-size:0.5em;
     }
     /** menu dropdown **/
-    .circle {
+    /* .circle {
         border-radius: 50%;
         width: 30px;
         height: 30px; 
         background-color:#D5BB46 !important;
         
         /* width and height can be anything, as long as they're equal */
-    }
+    /*} */
     
     /** menu dropdown **/
-    .dropbtn {
+    /* .dropbtn {
         background-color:#207C7B;
         color: white;
         cursor: pointer;
@@ -188,14 +192,14 @@ a{
         width: 30px;
         height: 30px; 
        
-    }
+    } */
     /* The container <div> - needed to position the dropdown content */
-    .dropdown {
+    /* .dropdown {
         position: relative;
         display: inline-block;
-    }
+    } */
 
-    /* Dropdown Content (Hidden by Default) */
+    /* Dropdown Content (Hidden by Default)
     .dropdown-content {
         display: none;
         position: absolute;
@@ -207,24 +211,24 @@ a{
     }
 
     /* Links inside the dropdown */
-    .dropdown-content a {
+    /* .dropdown-content a {
         color: black;
         padding: 0.75em 1em;
         text-decoration: none;
         display: block;
         font-size:0.7em;
-    }
+    } */ 
 
-    /* Change color of dropdown links on hover */
+    /* Change color of dropdown links on hover
     .dropdown-content a:hover {background-color: #f1f1f1}
 
     /* Show the dropdown menu on hover */
-    .dropdown:hover .dropdown-content {
+   /* .dropdown:hover .dropdown-content {
         display: block;
-    }
+    } */
 
     /* Change the background color of the dropdown button when the dropdown content is shown */
-    .dropdown:hover .dropbtn {
+    /* .dropdown:hover .dropbtn {
         background-color: #EFA638;
     }
 
@@ -239,14 +243,8 @@ a{
     .exitImg img{
         margin-right: -10em;
         margin-top:1em;
-    }
+    } */ 
 }
 
-.navbar-brand {
-    color: white;
-}
 
-.dropdown-toggle {
-    color: white;
-}
 
