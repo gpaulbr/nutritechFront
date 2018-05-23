@@ -16,7 +16,8 @@ export class GrupoService {
   }
 
   editarGrupo(grupo: Grupo): Observable<Grupo>{
-    return this.http.post<Grupo>(this.url + "/update", grupo);
+    console.log(this.url + "/update" + grupo);
+    return this.http.put<Grupo>(this.url + "/update", grupo);
   }
 
   buscarGrupos(): Observable<Grupo[]>{

@@ -1,6 +1,6 @@
 table,.fixed-header  {
-    width: 100%;
-	margin: 0px;
+    width: 85%;
+	margin: 0 auto;
 	overflow: auto;
 	max-width: 100%;
     white-space: normal;
