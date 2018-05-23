@@ -19,10 +19,14 @@ export class GrupoManutencaoComponent implements OnInit {
 
   grupoForm: FormGroup;
   fb: FormBuilder;
+<<<<<<< HEAD
   usuarioLogado: Usuario;
   admin: Boolean = false;
 
 
+=======
+  id: Number;
+>>>>>>> tentativa de editar - não funcionou ainda
 
   constructor(
     private grupoService: GrupoService,
@@ -37,12 +41,16 @@ export class GrupoManutencaoComponent implements OnInit {
     });
 
     var idGrupo
-    this.route.params.subscribe( params => idGrupo = params);
+    this.route.params.subscribe( params => {
+      idGrupo = params;
+      this.id = idGrupo.id;
+    });
 
     this.grupoService.obterGrupo(idGrupo.id)
       .subscribe(res => {
         this.grupoForm.controls['nome'].setValue(res.nome);
         this.grupoForm.controls['custo'].setValue(res.custo);
+        this.grupoForm.controls['id'].setValue(res.id);
       });
 
    }
@@ -82,5 +90,28 @@ export class GrupoManutencaoComponent implements OnInit {
       error => {
         this.toastr.error(error.error.message);
       });
+  }
+
+  update () {
+    this.grupoForm.value.id = this.id;
+    this.grupoService.editarGrupo(this.grupoForm.value).subscribe(
+      response => {
+        this.toastr.success('Grupo editado com sucesso');
+        this.limpar();
+      },
+      error => {
+        this.toastr.error('Erro na edição');
+      });
+  }
+
+  salvar() {
+    if (this.id === undefined) {
+      // cadastrar
+      this.cadastrar();
+    } else {
+      // atualizar
+      this.update();
+    }
+    
   }
 }

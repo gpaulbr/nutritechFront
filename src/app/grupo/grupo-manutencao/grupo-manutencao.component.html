@@ -5,8 +5,8 @@
                 <!--  [] -> manda do componete .ts para o HTML  -->
                 <!-- () -> manda do HTML para o angular -->
                 <form [formGroup]="grupoForm" class="form-horizontal form-container" 
-                (ngSubmit)="cadastrar()" id="formulario" novalidate> 
-                    
+                (ngSubmit)="salvar()" id="formulario" novalidate> 
+                    <input type="hidden" formControlName="id">
                     <h2>Cadastro de Grupo de Receita</h2>
                     <div class="divisor">
                         <span></span>
