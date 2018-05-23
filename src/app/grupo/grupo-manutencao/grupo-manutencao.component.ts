@@ -25,8 +25,9 @@ export class GrupoManutencaoComponent implements OnInit {
     fb: FormBuilder) {
     this.fb = new FormBuilder();
     this.grupoForm = this.fb.group({
-      nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
-      custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])]      
+        nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+        custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])],     
+        id: [null]
     });
 
     var idGrupo
@@ -37,9 +38,10 @@ export class GrupoManutencaoComponent implements OnInit {
 
     this.grupoService.obterGrupo(idGrupo.id)
       .subscribe(res => {
+        console.log("res:" + res.id);
+        console.log("idGrupo:" + idGrupo.id);        
         this.grupoForm.controls['nome'].setValue(res.nome);
         this.grupoForm.controls['custo'].setValue(res.custo);
-        this.grupoForm.controls['id'].setValue(res.id);
       });
 
    }
@@ -62,11 +64,11 @@ export class GrupoManutencaoComponent implements OnInit {
   }
 
   cadastrar () {
-    
     this.grupoService.salvarGrupo(this.grupoForm.value).subscribe(
       response => {
         this.toastr.success('Grupo cadastrado com sucesso');
         this.limpar();
+        this.router.navigate(['./']);
       },
       error => {
         this.toastr.error('Erro no cadastro');
@@ -79,6 +81,7 @@ export class GrupoManutencaoComponent implements OnInit {
       response => {
         this.toastr.success('Grupo editado com sucesso');
         this.limpar();
+        this.router.navigate(['./grupo-listagem']);
       },
       error => {
         this.toastr.error('Erro na edição');
