@@ -15,7 +15,6 @@ export class GrupoManutencaoComponent implements OnInit {
 
   grupoForm: FormGroup;
   fb: FormBuilder;
-  id: Number;
 
   constructor(
     private grupoService: GrupoService,
@@ -31,10 +30,7 @@ export class GrupoManutencaoComponent implements OnInit {
     });
 
     var idGrupo
-    this.route.params.subscribe( params => {
-      idGrupo = params;
-      this.id = idGrupo.id;
-    });
+    this.route.params.subscribe( params => idGrupo = params);
 
     this.grupoService.obterGrupo(idGrupo.id)
       .subscribe(res => {

@@ -28,4 +28,8 @@ export class GrupoService {
     return this.http.get<Grupo>(`${NUTRITECH_API}/grupos/${id}/`);
   }
 
+  excluirGrupo(id: Number): Observable<any> {
+    return this.http.delete<any>(`${NUTRITECH_API}/grupos/${id}/`);
+  }
+
 }
