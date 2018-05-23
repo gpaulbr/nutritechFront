@@ -23,10 +23,11 @@
                   [rows]='rows'
                   [scrollbarH]="true">
             <!-- COLUNAS da tabela -->
-        <ngx-datatable-column name="Nome" [width]="10"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e pq precisava definir um width diferente para algumas colunas -->
+        <ngx-datatable-column name="Nome" [width]="10"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e porque precisava definir um width diferente para algumas colunas -->
         <ngx-datatable-column name="Unidade" [width]="10"></ngx-datatable-column>
         <ngx-datatable-column name="Multiplicador" [width]="10" prop="multiplicador"> </ngx-datatable-column>
         <ngx-datatable-column name="Obrigatório" [width]="10" prop="obrigatorio"></ngx-datatable-column>>
+        <ngx-datatable-column name="Ações" [width]="10"></ngx-datatable-column>
         </ngx-datatable>
                 <div id="aviso-cad" *ngIf="!atributoEmLista">
                     <p> Nenhum Atributo Cadastrado</p>
