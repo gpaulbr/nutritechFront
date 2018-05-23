@@ -28,7 +28,7 @@
                          [rowHeight]="'auto'"
                          [rows]='rows'>
 
-            <ngx-datatable-column name="{{columns[0].name}}" prop="id" ></ngx-datatable-column>
+            <ngx-datatable-column  name="{{columns[0].name}}" prop="id" ></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[1].name}}" class="first-title-detail label-wrap-detail" [width]="200" prop="nome"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[2].name}}" prop="custo"></ngx-datatable-column>
             <ngx-datatable-column *ngIf="admin"
@@ -40,7 +40,7 @@
                 [resizeable]="false">
                 <ng-template *ngIf="admin" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                     <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
-                    <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)">delete</i>
+                    <i class="material-icons" style="cursor: pointer;" (click)="deletarGrupo(rowIndex)">delete</i>
                 </ng-template>
 
             </ngx-datatable-column>
