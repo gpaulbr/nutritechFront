@@ -49,19 +49,17 @@ export class AtributoListagemComponent implements OnInit {
 
     if(this.admin){//se for admin, exibe com as ações
       this.columns = [
-        { prop: 'id', name: 'ID' },
         { name: 'Nome' },
         { name: 'Unidade'},
-        { prop: 'multiplicador', name: "Multiplicador" },
-        { prop: 'obrigatorio', name: "Obrigatorio"},
+        { name: "Multiplicador" },
+        { name: "Obrigatorio"},
         { name: "Ações" }
         //ícones de ação vão no html
       ];
   }else{ //se for prof ou usuário exibe sem as ações
       this.columns = [
-        { prop: 'id', name: 'ID' },
         { name: 'Nome' },
-        { prop: 'multiplicador', name: "Multiplicador" },
+        { name: "Multiplicador" },
         { name: "Obrigatorio"}
         //ícones de ação vão no html
       ];
@@ -114,3 +112,5 @@ updateFilter(event) {
   }
 
 }
+
+
