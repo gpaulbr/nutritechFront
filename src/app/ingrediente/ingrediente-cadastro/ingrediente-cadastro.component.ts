@@ -16,6 +16,7 @@ import { print } from 'util';
 import {forEach} from '@angular/router/src/utils/collection';
 import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
 
+
 @Component({
   selector: 'app-ingrediente-cadastro',
   templateUrl: './ingrediente-cadastro.component.html',
@@ -76,6 +77,7 @@ export class IngredienteCadastroComponent implements OnInit {
 
 
   ngOnInit() {
+
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(this.usuarioLogado == null) {
       this.router.navigate(['./']);
@@ -140,8 +142,6 @@ export class IngredienteCadastroComponent implements OnInit {
       .subscribe(resp => {
         this.toastr.success('Ingrediente cadastrado com sucesso');
         this.limpar();
-
-
       }, erro =>{
         this.toastr.error(erro.error.message);
       });
