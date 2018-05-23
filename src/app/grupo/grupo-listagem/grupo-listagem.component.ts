@@ -95,4 +95,15 @@ export class GrupoListagemComponent implements OnInit {
       redirecionarParaCadastro(index: number){
         this.router.navigate([`./grupo/${this.grupos[index].id}`]);
       }
+
+      deletarGrupo(index: any) {
+        console.log(this.grupos[index])
+
+        this.grupoService.excluirGrupo(this.grupos[index].id)
+          .subscribe(resp => {
+            console.log(resp)
+          }, e => {
+            console.log(e)
+          })
+      }
   }
