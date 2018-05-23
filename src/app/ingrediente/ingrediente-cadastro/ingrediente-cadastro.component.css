@@ -1,91 +1,285 @@
 
+/* Aviso de campo invalido */
 .campo-obrigatorio:after {
-    content:"*";
-    color:red;
-    }
-  
-  .erro{
-    font-size:0.7em;
-  }
-  
-  /* h2 {
-    padding: 1px;
-    margin-right: 6%;
-    padding-bottom:1em;
-    background-repeat:no-repeat;
-    background-position:20% 5%;
-    background-size:1.2em;
-  } */
+  content:"*";
+  color:red;
+}
 
-  .atributo{
-      width: 60%!important;
-  }
-  
+/* Formulario, parte esmaecida */
+form{
+width: 50%; /* proporção do formulario */
+}
+
+/* Configurações do Titulo Cadastro de Ingredientes */  
+h2{
+padding: 1px;
+text-align:center;
+background-repeat:no-repeat;
+background-position:20% 5%;
+background-size:1.2em;
+
+}
+
+/* Referente ao but Limpar/Confirmar */   
+.but-t{
+margin-left: 40%;
+margin-right: auto;
+}
+
+/* Nome do input */  
+.control-label{
+  margin-left:22%;
+}
+
+/* Input ingredientes NOME ORIGEM  */
+.input-md{
+  width: 100%;
+}
+
+/* Input Unidade Atributos */  
+#input-atributo{
+max-width: 80%;
+float: right;
+margin-right: 30%;
+margin-left:auto;
+}
+
+#nomeAtrib{
+float:left;
+}
+
+/* Aviso Calculo */
+#aviso-cad{
+font-size: 75%; /* tamnho da fonte */
+line-height: 1.5em !important; /* espaçamento das linhas */
+text-align:center; /* alinhamento do texto */
+color:rgb(202, 83, 4); /* cor do texto */
+width: 70%; /* largura do mini-form */
+height: 40%; /* altura do mini-form */
+margin: 2% auto; /* margin ao redor do form */
+padding-top: 1%; /* distancia do texto do mini-form */
+background:linear-gradient(0deg,rgba(238, 236, 95, 0.6), rgba(233, 224, 105, 0.6));
+border-radius: 10px;
+/* ^^^^^ -> cor do mini-form */
+}
+
+/* ***************************************************************************************************** */
+/**** @media inicia aqui ****/
+/*IPAD*/
+@media only screen and (max-width: 1024px) {
+h2{
+  font-size:1.5em;
+  margin-left: -1%;
+}
+
+
+/* label nome e origem */
+#labrl-comum{
+margin-left: 24%;
+}
+
+/* referente ao formulario */
+form{
+ width: 100%;
+ margin-left:-1%;
+}
+
+/* input nome e origem */
+.form-control{
+ margin-left:2%;
+}
+
+/*input dos atributos  */
+#input-atributo{ 
+width: 80%;
+margin-right: 16%;
+}
+
+/* Aviso Calculo */
+#aviso-cad{
+font-size: 75%; /* tamnho da fonte */
+line-height: 1em !important; /* espaçamento das linhas */
+width: 90%; /* largura do mini-form */
+height: 60%; /* altura do mini-form */
+
+}
+/* #atribForm{
+  background: chartreuse;
+  width: 70%;                              --------------------- não esta aplicando!
+  margin-left: 20%;
+} */
+}
+
+/*IPHONE 6 PLUS*/
+@media only screen and (max-width: 500px) {
+h2{
+ font-size:1.5em;
+ margin-left: -1%;
+}
+/* form maior */
+form{
+ width: 100%;
+ margin-left:-2%;
+}
+
+/* input do nome e origem */
+.form-control{ 
+ width: 95%; 
+ margin-left:2%;
+}
+
+/* label nome e origem */
+#labrl-comum{
+ margin-left:2%;
+}
+
+/* #input-atributo{ 
+width: 20%;
+margin-top: -10%;             -------------------------------- não estava aplicando!!
+margin-right: 10%;
+} */ 
+
+/* Aviso Calculo */
+#aviso-cad{
+font-size: 75%; /* tamnho da fonte */
+line-height: 1em !important; /* espaçamento das linhas */
+width: 90%; /* largura do mini-form */
+height: 60%; /* altura do mini-form */
+
+}
+
+/* row dos atributos */
+#atribForm{
+margin-left: 10%;
+}
+
+.input-Radio{ /*Privado e Publico*/
+margin-left:2%;
+}
+
+.but-t{  /*Limpar e Confirmar*/
+ margin-left: 27%;
+}
+
+.control-label{
+margin-left:7%; /* label do atributo */
+}
+
+}
+
+/*IPHONE 6*/
+@media only screen and (max-width: 375px) {
+  h2{
+    font-size:1.5em;
+    margin-left: -1%;
+   }
+   /* form maior */
+   form{
+    width: 100%;
+    margin-left:-2%;
+   }
+   
+   /* input do nome e origem */
+   .form-control{ 
+    width: 95%; 
+    margin-left:2%;
+   }
+   
+   /* label nome e origem */
+   #labrl-comum{
+    margin-left:2%;
+   }
+   
+   /* #input-atributo{ 
+   width: 20%;
+   margin-top: -10%;             -------------------------------- não estava aplicando!!
+   margin-right: 10%;
+   } */ 
+   
+   /* Aviso Calculo */
+   #aviso-cad{
+   font-size: 75%; /* tamnho da fonte */
+   line-height: 1em !important; /* espaçamento das linhas */
+   width: 90%; /* largura do mini-form */
+   height: 60%; /* altura do mini-form */
+   
+   }
+   
+   /* row dos atributos */
+   #atribForm{
+   margin-left: 10%;
+   }
+   
+   .input-Radio{ /*Privado e Publico*/
+   margin-left:2%;
+   }
+   
+   .but-t{  /*Limpar e Confirmar*/
+    margin-left: 27%;
+   }
+   
    .control-label{
-    margin-left: -6%;
+   margin-left:7%; /* label do atributo */
    }
-   .container-ingrediente, form{
-      width: 35%;
-   } 
-  
-   .input-md{
-    width: 90%;
-  } 
+}
+/*IPHONE 5*/
+@media only screen and (max-width: 330px) {
 
-  .inputRadio{
-    margin-top:-1.8em;
-  }
-
-  .testI{
-    margin-left: 12% !important;
-  }
-
-  
-  .hCad{
-    margin-left: -7% !important;
-  }
-  .tab-atrib{
-    margin-left: 8%;
-    margin-right: 9%;
-  } 
-  .ing-atributo{
-    margin-left: 9.5%;
-  }
-  .but-t{
-    margin-left: 23%;
-  }
-
-  @media only screen and (max-width: 1032px) {
-    h2{   
-     font-size:1.5em;
-     padding-left: 7%;
-     background-position:0% 2.5%;
-     background-size:1.2em;
+  h2{
+    font-size:1.5em;
+    margin-left: -1%;
    }
-  
-   form{   
-     width: 100%;
-     margin-left: 0%;
+   /* form maior */
+   form{
+    width: 100%;
+    margin-left:-2%;
    }
- 
-/*    .input-md{
-     margin-left:2%;
-     width: 80%;
-   }  */
- 
+   
+   /* input do nome e origem */
+   .form-control{ 
+    width: 95%; 
+    margin-left:2%;
+   }
+   
+   /* label nome e origem */
+   #labrl-comum{
+    margin-left:2%;
+   }
+   
+   /* #input-atributo{ 
+   width: 20%;
+   margin-top: -10%;             -------------------------------- não estava aplicando!!
+   margin-right: 10%;
+   } */ 
+   
+   /* Aviso Calculo */
+   #aviso-cad{
+   font-size: 75%; /* tamnho da fonte */
+   line-height: 1em !important; /* espaçamento das linhas */
+   width: 90%; /* largura do mini-form */
+   height: 60%; /* altura do mini-form */
+   
+   }
+   
+   /* row dos atributos */
+   #atribForm{
+   margin-left: 10%;
+   }
+   
+   .input-Radio{ /*Privado e Publico*/
+   margin-left:2%;
+   }
+   
+   .but-t{  /*Limpar e Confirmar*/
+    margin-left: 27%;
+   }
+   
    .control-label{
-    width: 80%;
+   margin-left:7%; /* label do atributo */
    }
- }
- 
- @media only screen and (max-width: 330px) {
-  .input-md{
-    widows: 90%;
-    
+   .but-t{  /*Limpar e Confirmar*/
+    margin-left: 18%;
   }
- }
+  
 
- .titulo {
-    margin-bottom: 5%;
-    text-align: center
- }
+}

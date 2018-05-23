@@ -79,26 +79,6 @@ tr:first-child{
 	}
 }
 
-.anexar {
-	float: right;
-	color: white;
-	background-color: gray;
-	border: solid gray 1px;
-}
-
-.anexar:hover {
-	color: gray;
-	background-color: white;
-	border: solid black 1px;
-}
-
-.imagem {
-	padding-top: 56.25%;
-	background-color: gray;
-	margin-bottom: 5px;
-	margin-top: 10px;
-}
-
 h2 {
 	margin-bottom: 5%;
 	text-align: center;
@@ -133,10 +113,6 @@ textarea {
 	border-radius: 5px;
 	border: 0px;
 	padding: 5px;
-}
-
-.checked {
-  color: orange;
 }
 
 #tempo-preparo {

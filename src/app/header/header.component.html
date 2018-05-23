@@ -1,8 +1,7 @@
-<nav class="navbar navbar-default">
+<nav *ngIf="estaLogado()"  class="navbar navbar-default">
     <div class="container-fluid">
-    
     <div class="row menu">
-    <div class="col-xl-5 dropdown menu1">
+    <div class="col-xl-4 dropdown menu1">
             <button class="dropbtn">Cadastro</button>
             <div class="dropdown-content">
             <a alt="Ingredientes" [routerLink]="['/cadastroIngrediente']">Ingredientes</a>
@@ -13,16 +12,19 @@
             </div>
     </div>
 
-    <div class="col-xl-5 dropdown menu2">
+    <div class="col-xl-4 dropdown menu2">
             <button class="dropbtn">Consulta</button>
             <div class="dropdown-content">
             <a alt="Consulta de Ingredientes" [routerLink]="['/ingrediente-listagem']">Ingredientes</a>
             <a alt="Consulta de Grupos" [routerLink]="['/grupo-listagem']">Grupos</a>
-            <a alt="Consulta de Atributos" [routerLink]="['/atributo-listagem']">Atributos</a> <!-- ainda não foi feito -->
-            <a alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
+            <a alt="Consulta de Atributos" [routerLink]="['/atributo-listagem']">Atributos</a>
+            <a alt="Ficha Técnica de Produto" [routerLink]="['/ftp-listagem']">Ficha Técnica de Produto </a>        
+            <a *ngIf="admin" alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
             </div>
     </div>
     </div>
-    <a class="col-md-2 exitImg" alt="Consulta de Usuários" [routerLink]="['']"><img src="assets/blank_user.png"/></a> 
+<div class="row" (click)="logout()" [routerLink]="['']">
+    <p class="col-md-6 nomeUsu">{{usuarioLogado.nome}}</p> <!-- mais pra frente, colocar só o nick --> 
+</div>
 </div>
 </nav>

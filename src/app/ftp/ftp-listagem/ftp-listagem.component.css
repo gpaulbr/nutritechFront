@@ -1,0 +1,155 @@
+table,.fixed-header  {
+  width: 100%;
+  margin: 0px;
+  overflow: auto;
+  max-width: 100%;
+  white-space: normal;
+  background-color: #ffffff9c!important;
+}
+
+div #buscar{
+    display: inline;
+}
+.pBuscar{
+    color:white;
+    float:left;
+    padding-right:1em;
+    font-weight: normal!important;
+}
+.inputBuscar{
+    width: 15em;
+    height: 1.5em;
+    float: left;
+    border: 1px solid #207C7B;
+    border-radius: 8px 8px 8px;
+    background-color: #ffffff;
+}
+
+/**** CSS da ngx-datatable ****/
+:host /deep/ .datatable-body .datatable-body-row .datatable-body-cell{/*ÚNICO meio com o qual consegui alterar o CSS da ngx-datatable*/
+    color: black !important;
+    text-align: center!important;
+    align-self: center!important;
+    text-justify: newspaper!important;
+    text-align: center!important;
+}
+
+:host /deep/ .ngx-datatable.material .datatable-header span{
+    font-weight: normal!important;
+    font-size: 1.1em!important;
+}
+
+
+:host /deep/ .ngx-datatable.material .datatable-header{
+    background-color: #207C7B!important;
+    border: 1px none white;
+    align-self: center;
+    text-justify: newspaper;
+    text-align: center;
+    height: 30px!important;
+}
+:host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
+    color: white !important;
+    border: 1px none white;
+    padding: 2px;
+    align-self: center;
+    text-justify: newspaper;
+    text-align: center;
+    font-weight: normal;
+}
+
+:host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell .resize-handle{
+    border:none;
+}
+/****** FIM ******/
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+table a{
+    text-decoration:none;
+    color:black;
+}
+
+thead {
+    background-color: #207C7B;
+    color: white;
+}
+
+th, tr {
+    border: 1px none white;
+    padding: 2px;
+    align-self: center;
+    text-justify: newspaper;
+    text-align: center;
+    font-weight: normal;
+}
+
+.nome-grupo {
+    text-align: left;
+}
+
+td.abreviar{
+    max-width: 50ch;/*abrevia o campo Grupo se tiver mais que 50 caracteres */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+h2 {/*só o H2 principal, não o do modal */
+    text-justify: newspaper;
+    text-align: center;
+    color: white;
+    text-shadow: -1px 0 #207C7B, 0 1px #207C7B, -1px 0 #207C7B, 0 -1px #207C7B;
+}
+
+#openModal h2{
+    text-shadow: none;
+    padding-bottom: 2%;
+    color: black;
+    font-size:1.5em;
+    display: block;
+    margin: auto;
+}
+
+#conteudoModal div, #conteudoModal div a{
+    padding-left:0%;
+}
+#openModal #conteudoModal row{
+    text-align: justify;
+}
+
+@media only screen and (max-width: 768px) {
+    .inputBuscar{
+        margin-left: 4%;
+    }
+
+    #buscar{
+        margin-bottom: 2%;
+    }
+}
+
+@media only screen and (max-width: 573px) {
+    table {
+        font-size: 3vw;
+    }
+
+    thead {
+        font-size: 3.5vw;
+    }
+}
+
+@media only screen and (min-width: 942px) {
+    .container {
+        max-width: 960px;
+        min-width: 960px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+	table {
+		display: block;
+	}
+}

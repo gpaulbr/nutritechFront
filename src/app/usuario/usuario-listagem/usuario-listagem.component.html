@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="container"> 
     <fieldset>  
         <div class="alert alert-success" role="alert"
@@ -10,7 +9,7 @@
                     <h2 class="titulo_lista">Listagem de Usuários</h2  >
                 </div>
                 <div class="panel-body">
-          <table class="table table-horvered table-striped" id="listaItens">
+          <table class="table" id="listaItens">
               <thead>
                 <tr class="table-header">
                   <th>Id</th>
@@ -44,8 +43,11 @@
                         <td>
                             {{usuario.tipo}}
                         </td>
-                        <td>
-                            {{usuario.status}}
+                        <td *ngIf="usuario.status"><!-- se for true, mostra Ativo -->
+                            Ativo
+                        </td>
+                        <td *ngIf="!usuario.status"><!-- se for false, mostra Inativo -->
+                            Inativo
                         </td>
                         <td>
                             <i class="material-icons delete">edit</i>

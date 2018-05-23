@@ -1,41 +1,29 @@
-<app-header></app-header>
 <div class="container">
   <div class="panel panel-default panel-container">
       <div class="panel-heading ">
           <h2 class="titulo_lista">Lista de Ingredientes</h2>
       </div>
-      <div class="panel-body">
-          <table class="display" id="listaItens">
-              <thead>
-              <tr>
-                  <th>Id</th>
-                  <th>Nome do ingrediente</th>
-                  <th>Origem</th>
-                  <th>Criador</th>
-                  <th>Tipo</th>
-                  <th>Ações</th>
-              </tr>
-              </thead>
-              <ng-container *ngFor="let ingrediente of ingredientes">
-                  <tr>
-                      <td>
-                          {{ingrediente.id}}
-                      </td>
-                      <td>
-                        {{ingrediente.nome}}
-                    </td>
-                    <td>
-                        {{ingrediente.origem}}
-                    </td>
-                    <td>
-                        {{ingrediente.criador.nome}}
-                    </td>
-                    <td>
-                        {{ingrediente.tipo}}
-                    </td>
-                  </tr>
-              </ng-container>
-          </table>
+      <div class="panel-body">  
+        <div>
+               <div id="buscar" class="row"> 
+                 <p class="pBuscar col-md-1">Buscar: </p>
+                  <input
+                  type='text' class="inputBuscar col-md-4"
+                  (keyup)='updateFilter($event)'
+                  />  
+                </div>
+
+            <ngx-datatable
+            #table
+            class="material"
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="40"
+            [rowHeight]="'auto'"
+            [rows]='rows'>
+          </ngx-datatable>
       </div>
   </div>
+</div>
+
 </div>
