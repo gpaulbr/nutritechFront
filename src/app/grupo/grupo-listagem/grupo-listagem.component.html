@@ -7,7 +7,7 @@
             <div class="row justify-content-center">
                 <div class="panel panel-default panel-container">
                     <div class="panel-heading ">
-                        <h2 class="titulo_lista">Listagem de Grupos de Receitas</h2  >
+                        <h2 class="titulo_lista">Lista de Grupos de Receitas</h2  >
                     </div>
 
                     <div class="panel-body">
@@ -39,8 +39,8 @@
                 [draggable]="false"
                 [resizeable]="false">
                 <ng-template *ngIf="admin" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                    <i class="material-icons" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
-                    <i class="material-icons">delete</i>
+                    <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
+                    <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)">delete</i>
                 </ng-template>
 
             </ngx-datatable-column>
