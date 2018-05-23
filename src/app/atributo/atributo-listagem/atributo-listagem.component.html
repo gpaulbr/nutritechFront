@@ -1,76 +1,37 @@
-        <br>
-        <div class="container"> 
-        <fieldset>  
-            <div class="alert alert-success" role="alert"
-                style="display: none; width: 25%; margin-left: 37%; text-align: center;">
+<div class="container">
+        <div class="panel panel-default panel-container">
+            <div class="panel-heading ">
+                <h2 class="titulo_lista">Lista de Atributos</h2>
             </div>
-            <div class="row justify-content-center">
-                <div class="panel panel-default panel-container">
-                    <div class="panel-heading ">
-                        <h2 class="titulo_lista">Listagem de Atributos</h2  >
-                    </div>
-                    <div class="panel-body">
-                        <!-- Table -->
-                        <table>
-                            <thead>
-                                <tr class="table-header">
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Unidade</th>
-                                    <th>Multiplicador</th>
-                                    <th>Obrigatório</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <ng-container *ngFor="let atributo of atributos">
-                                        <tr>
-                                            <td>
-                                                {{atributo.id}}
-                                            </td>
-                                            <td>
-                                                {{atributo.nome}}
-                                            </td>
-                                            <td>
-                                                {{atributo.unidade}}
-                                            </td>
-                                            <td>
-                                                {{atributo.multiplicador}}
-                                            </td>
-                                            <td *ngIf="atributo.obrigatorio">
-                                                Sim
-                                            </td>
-                                            <td *ngIf="!atributo.obrigatorio">
-                                                Não
-                                            </td>
-                                            <td>
-                                                <i class="material-icons delete">edit</i>
-                                            </td>
-                                        </tr>
-                                    </ng-container>
-                               <!--  <tr>
-                                    <th>0</th>
-                                    <th class="nome-grupo">Nome Longo Teste 123</th>
-                                    <th>1000</th>
-                                    <th><i class="material-icons delete">edit</i></th>                             
-                                </tr>  
-                                
-                                <tr>
-                                    <th>1</th>
-                                    <th class="nome-grupo">Curto</th>
-                                    <th>665</th>
-                                    <th><i class="material-icons delete">edit</i></th>                             
-                                </tr> 
-                                <tr>
-                                    <th>001e3</th>
-                                    <th class="nome-grupo">ID LONGO E NOME LONGO</th>
-                                    <th>330</th>
-                                    <th><i class="material-icons delete">edit</i></th>                             
-                                </tr>  -->
-                            </tbody>
-                        </table>
-                    </div>      
+            <div class="panel-body">  
+              <div>
+                     <div id="buscar" class="row"> 
+                       <p class="pBuscar col-md-1">Buscar: </p>
+                        <input
+                        type='text' class="inputBuscar col-md-4"
+                        (keyup)='updateFilter($event)'
+                        />  
+                      </div>
+      
+                  <ngx-datatable *ngIf="atributoEmLista"
+                  #table
+                  class="material"
+                  [columns]="columns"
+                  [columnMode]="'force'"
+                  [headerHeight]="40"
+                  [rowHeight]="'auto'"
+                  [rows]='rows'
+                  [scrollbarH]="true">
+            <!-- COLUNAS da tabela -->
+        <ngx-datatable-column name="Nome" [width]="10"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e pq precisava definir um width diferente para algumas colunas -->
+        <ngx-datatable-column name="Unidade" [width]="10"></ngx-datatable-column>
+        <ngx-datatable-column name="Multiplicador" [width]="10" prop="multiplicador"> </ngx-datatable-column>
+        <ngx-datatable-column name="Obrigatório" [width]="10" prop="obrigatorio"></ngx-datatable-column>>
+        </ngx-datatable>
+                <div id="aviso-cad" *ngIf="!atributoEmLista">
+                    <p> Nenhum Atributo Cadastrado</p>
                 </div>
-            </div>
-        </fieldset>
-        </div>
+    
+             </div>
+           </div>
+       </div>
