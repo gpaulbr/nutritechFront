@@ -176,7 +176,7 @@ a{
     }
 
     #logoMobile{
-        margin-left:-800%;
+        margin-left:-1.6em !important;
         width: 35px;
         height: 45px;
         margin-top:10%;
@@ -184,7 +184,7 @@ a{
 }
 
 /* Tablet */
-@media only screen and (max-width: 769px) {
+@media only screen and (min-width: 768px) {
     .navbar {
         /*background-image: url(assets/logo_mobile.png);*/
         background-size:1.7em;
@@ -195,6 +195,12 @@ a{
     }
     .container-fluid{
         margin-left:15%;
+    }
+    #logoMobile{
+        margin-left: -11.5em;
+        width: 50px;
+        height: 45px;
+        margin-top:30%;
     }
     /** menu dropdown **/
     .dropbtn {
@@ -254,17 +260,12 @@ a{
     #userMenu{
         /* margin-right: -2em; */
     }
-    #logoMobile{
-        margin-left: -130%;
-        width: 35px;
-        height: 45px;
-        margin-top:10%;
-    }
+   
 
 }
 
 /* IPad Pro */
-@media only screen and (max-width: 1032px) {   
+@media only screen and (min-width: 1000px) {   
     .navbar {
     /*background-image: url(assets/logo_mobile.png);*/
     background-size:1.7em;
@@ -335,7 +336,7 @@ a{
     /* margin-right: -2em; */
 }
 #logoMobile{
-    margin-left:-800%;
+    margin-left:-16em;
     width: 35px;
     height: 45px;
     margin-top:0%;
