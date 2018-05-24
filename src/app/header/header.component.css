@@ -45,7 +45,6 @@ a{
 .dropdown {
     position: relative;
     display: inline-block;
-    margin-left: 5em;
 }
 
 /* Dropdown Content (Hidden by Default) */
@@ -96,6 +95,12 @@ a{
 
 .dropdown-toggle {
     color: white;
+}
+#logo{
+    margin-left: -17.5em;
+    width: 125px;
+    margin-top: 5px;
+    height: 85px;
 }
 
 /* @media aqui */
@@ -171,7 +176,7 @@ a{
     }
 
     #logoMobile{
-        margin-left: 0%;
+        margin-left:-800%;
         width: 35px;
         height: 45px;
         margin-top:10%;
