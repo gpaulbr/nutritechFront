@@ -1,6 +1,6 @@
 .navbar {
     background: #207C7B;
-    background-image:url(../img/logo.png);
+    /*background-image:url(../img/logo.png);*/
     background-repeat:no-repeat;
     background-position:0% 0%;
     background-size:6.5em;
@@ -101,7 +101,7 @@ a{
 /* @media aqui */
 @media only screen and (max-width: 480px) {
     .navbar {
-        background-image: url(assets/logo_mobile.png);
+        /*background-image: url(assets/logo_mobile.png);*/
         background-size:1.7em;
         background-position:left center;
         background-position:2%;
@@ -169,12 +169,19 @@ a{
     #userMenu{
         /* margin-right: -2em; */
     }
+
+    #logoMobile{
+        margin-left: 0%;
+        width: 35px;
+        height: 45px;
+        margin-top:10%;
+    }
 }
 
 /* Tablet */
 @media only screen and (max-width: 769px) {
     .navbar {
-        background-image: url(assets/logo_mobile.png);
+        /*background-image: url(assets/logo_mobile.png);*/
         background-size:1.7em;
         background-position:left center;
         background-position:2%;
@@ -242,12 +249,19 @@ a{
     #userMenu{
         /* margin-right: -2em; */
     }
+    #logoMobile{
+        margin-left: -130%;
+        width: 35px;
+        height: 45px;
+        margin-top:10%;
+    }
+
 }
 
 /* IPad Pro */
 @media only screen and (max-width: 1032px) {   
     .navbar {
-    background-image: url(assets/logo_mobile.png);
+    /*background-image: url(assets/logo_mobile.png);*/
     background-size:1.7em;
     background-position:left center;
     background-position:2%;
@@ -314,6 +328,12 @@ a{
 }
 #userMenu{
     /* margin-right: -2em; */
+}
+#logoMobile{
+    margin-left:-800%;
+    width: 35px;
+    height: 45px;
+    margin-top:0%;
 }
 }
 

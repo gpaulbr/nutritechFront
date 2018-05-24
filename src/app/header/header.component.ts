@@ -16,6 +16,8 @@ export class HeaderComponent implements OnInit {
   admin: boolean = false;
   professor: boolean = false;
   nickname: string = "";
+  mobile: boolean = false;
+  normal: boolean = false;
 
 
   constructor(private router: Router, private loginService: LoginService) {
@@ -27,7 +29,9 @@ export class HeaderComponent implements OnInit {
           // precisa atualizar a página para trocar nome do usuário
           if(screen.width < 321 || screen.width < 800 || screen.width < 1025 ){
               this.nickname = this.nickname.charAt(0);
+              this.mobile = true;
           }
+          else {this.normal = true;}
 
           if (this.usuarioLogado.tipo === TipoUsuario.ADMIN) {
 

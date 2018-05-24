@@ -1,5 +1,11 @@
 <nav *ngIf="estaLogado()"  class="navbar navbar-default">
-    <div class="container-fluid">
+    <div class="container-fluid">   
+        <div >
+        <a href="./"><img id="logo" *ngIf= "normal" src="../img/logo.png"/></a>
+        </div>
+        <div>
+        <a href="./"><img id="logoMobile" *ngIf="mobile" src="assets/logo_mobile.png"/></a>
+        </div>
     <div class="dropdown">
             <button class="dropbtn">Cadastro</button>
             <div class="dropdown-content">
