@@ -81,7 +81,7 @@ a{
 #usernickname{
     text-align: center;
     font-size: 25px !important;
-    margin:-18px;
+    margin:-6px;
     color:white;
 }
 #userMenu{
@@ -97,7 +97,7 @@ a{
     color: white;
 }
 #logo{
-    margin-left: -17.5em;
+    margin-left: -12.5em;
     width: 125px;
     margin-top: 5px;
     height: 85px;
