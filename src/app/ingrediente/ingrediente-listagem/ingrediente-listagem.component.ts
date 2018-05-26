@@ -104,6 +104,10 @@ export class IngredienteListagemComponent implements OnInit {
         response => {
           this.toastr.success(response['message']);
           this.atualizarGrade();
+        },
+        error => {
+          console.log(error);
+          this.toastr.error(error.error);
         }
       );
     }
