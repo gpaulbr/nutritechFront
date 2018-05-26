@@ -33,7 +33,7 @@
             [resizeable]="false">
             <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
               <i class="material-icons" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
-              <i class="material-icons">delete</i>
+              <i class="material-icons" (click)="excluirIngrediente(rowIndex)">delete</i>
             </ng-template>
           </ngx-datatable-column>
           </ngx-datatable>

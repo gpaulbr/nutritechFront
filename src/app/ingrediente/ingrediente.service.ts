@@ -25,4 +25,8 @@ export class IngredienteService {
   obterIngrediente(id: string): Observable<Ingrediente>{
     return this.http.get<Ingrediente>(`${NUTRITECH_API}/ingredientes/${id}/`);
   }
+
+  excluirIngrediente(id: string): Observable<Ingrediente>{
+    return this.http.delete<Ingrediente>(`${NUTRITECH_API}/ingredientes/${id}`)
+  }
 }
