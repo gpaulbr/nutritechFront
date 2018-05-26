@@ -7,6 +7,7 @@ import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { id } from '@swimlane/ngx-datatable/release/utils';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   //encapsulation: ViewEncapsulation.None,//para consegguir modificar o css de ngx-datatable
@@ -33,40 +34,16 @@ export class IngredienteListagemComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private ingredienteService: IngredienteService) { }
+    private ingredienteService: IngredienteService,
+    private toastr: ToastrService,) { }
 
    ngOnInit() {
-  
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(this.usuarioLogado == null) {
       this.router.navigate(['./']);
     }
-
-    this.ingredienteService.buscarIngredientes().subscribe(
-      response => { 
-        this.ingredientes = response['Ingredientes'];
-
-        let lista = []
-
-        response['Ingredientes'].forEach(p => {
-          if(this.usuarioLogado.tipo !== "ADMIN") {//se não for admin vê se é privado ou público
-            if(p.tipo === "PRIVADO") {
-              if(p.criador.id === this.usuarioLogado.id) {//usuário comum só acessa os próprios, ingredientes PRIVADOS
-                lista.push(p)//insere na lista 
-              }
-            } else {//se não for privado, insere todos o ingrediente na lista
-              lista.push(p)
-            }
-          } else {//o admin deve ter acesso a todos os ingredientes
-            lista.push(p)
-          }
-          
-        })
-
-        this.rows = lista
-        
-      });
-  console.log("Usuário logado:" + this.usuarioLogado.tipo);//OK TIRAR
+    this.atualizarGrade();
+    console.log("Usuário logado:" + this.usuarioLogado.tipo);//OK TIRAR
   }
 
   updateFilter(event) {
@@ -90,8 +67,43 @@ export class IngredienteListagemComponent implements OnInit {
     this.table.offset = 0;
   }
 
+  atualizarGrade(){
+    this.ingredienteService.buscarIngredientes().subscribe(
+      response => { 
+        this.ingredientes = response['Ingredientes'];
+        debugger;
+        let lista = []
+
+        response['Ingredientes'].forEach(p => {
+          if(this.usuarioLogado.tipo !== "ADMIN") {//se não for admin vê se é privado ou público
+            if(p.tipo === "PRIVADO") {
+              if(p.criador.id === this.usuarioLogado.id) {//usuário comum só acessa os próprios, ingredientes PRIVADOS
+                lista.push(p)//insere na lista 
+              }
+            } else {//se não for privado, insere todos o ingrediente na lista
+              lista.push(p)
+            }
+          } else {//o admin deve ter acesso a todos os ingredientes
+            lista.push(p)
+          } 
+        })
+        this.rows = lista
+      });
+  }
+
   redirecionarParaCadastro(index: number){
     this.router.navigate([`./ingrediente/${this.ingredientes[index].id}`]);
+  }
+
+  excluirIngrediente(index: number) {
+    let idIngrediente = this.ingredientes[index].id;
+    this.ingredienteService.excluirIngrediente(`${idIngrediente}`).subscribe(
+      response => {
+        console.log(response);
+        this.toastr.success(`Ingrediente excluido com sucesso`);
+        this.atualizarGrade();
+      }
+    );
   }
 
 }
