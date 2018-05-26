@@ -8,6 +8,7 @@ import { id } from '@swimlane/ngx-datatable/release/utils';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { ToastrService } from 'ngx-toastr';
+import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
 
 @Component({
   //encapsulation: ViewEncapsulation.None,//para consegguir modificar o css de ngx-datatable
@@ -19,7 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 
 export class IngredienteListagemComponent implements OnInit {
   ingredientes: Ingrediente[];
-  usuarioLogado: Usuario;
+  usuarioLogado: UsuarioLogadoDto;
   teste:string;
   rows = [];
   columns = [
@@ -35,7 +36,7 @@ export class IngredienteListagemComponent implements OnInit {
   constructor(
     private router: Router,
     private ingredienteService: IngredienteService,
-    private toastr: ToastrService,) { }
+    private toastr: ToastrService) { }
 
    ngOnInit() {
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -67,11 +68,10 @@ export class IngredienteListagemComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  atualizarGrade(){
+  atualizarGrade() {
     this.ingredienteService.buscarIngredientes().subscribe(
       response => { 
         this.ingredientes = response['Ingredientes'];
-        debugger;
         let lista = []
 
         response['Ingredientes'].forEach(p => {
@@ -91,19 +91,22 @@ export class IngredienteListagemComponent implements OnInit {
       });
   }
 
-  redirecionarParaCadastro(index: number){
+  redirecionarParaCadastro(index: number) {
     this.router.navigate([`./ingrediente/${this.ingredientes[index].id}`]);
   }
 
   excluirIngrediente(index: number) {
-    let idIngrediente = this.ingredientes[index].id;
-    this.ingredienteService.excluirIngrediente(`${idIngrediente}`).subscribe(
-      response => {
-        console.log(response);
-        this.toastr.success(`Ingrediente excluido com sucesso`);
-        this.atualizarGrade();
-      }
-    );
+    if(this.usuarioLogado.tipo == TipoUsuario.USUARIO && this.ingredientes[index].criador.id !== this.usuarioLogado.id) {
+      this.toastr.error('Você só pode excluir ingredientes que você criou.')
+    } else {
+      let idIngrediente = this.ingredientes[index].id;
+      this.ingredienteService.excluirIngrediente(`${idIngrediente}`).subscribe(
+        response => {
+          this.toastr.success(response['message']);
+          this.atualizarGrade();
+        }
+      );
+    }
   }
 
 }
