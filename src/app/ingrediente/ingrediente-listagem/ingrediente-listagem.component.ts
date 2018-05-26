@@ -91,7 +91,6 @@ export class IngredienteListagemComponent implements OnInit {
   }
 
   redirecionarParaCadastro(index: number){
-    debugger;
     this.router.navigate([`./ingrediente/${this.ingredientes[index].id}`]);
   }
 

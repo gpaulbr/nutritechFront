@@ -10,8 +10,12 @@ export class IngredienteService {
 
   constructor(private http: HttpClient) { }
 
-  cadastrarIngrediente(ingrediente: IngredienteDto): Observable<IngredienteDto>{
+  cadastrarIngrediente(ingrediente: Ingrediente): Observable<IngredienteDto>{
     return this.http.post<IngredienteDto>(NUTRITECH_API + '/ingredientes', ingrediente);
+  }
+
+  atualizarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente>{
+    return this.http.put<Ingrediente>(NUTRITECH_API + '/ingredientes/update', ingrediente);
   }
 
   buscarIngredientes(): Observable<Ingrediente[]>{
