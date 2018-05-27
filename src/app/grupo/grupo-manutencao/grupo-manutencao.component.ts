@@ -28,17 +28,19 @@ export class GrupoManutencaoComponent implements OnInit {
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
         custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])],     
         id:[null]
-    });
+     });
 
     var idGrupo;
     this.route.params.subscribe( params => idGrupo = params);
+    this.id = idGrupo.id;
     this.grupoService.obterGrupo(idGrupo.id)
       .subscribe(res => {
         console.log("res:" + res.id);
-        console.log("idGrupo:" + idGrupo.id);        
+        console.log("idGrupo:" + idGrupo.id);  
+        console.log("id:" + this.id);       
         this.grupoForm.controls['nome'].setValue(res.nome);
         this.grupoForm.controls['custo'].setValue(res.custo);
-        this.id = idGrupo.id;
+        this.grupoForm.controls['id'].setValue(res.id);
       });
 
    }
@@ -73,6 +75,7 @@ export class GrupoManutencaoComponent implements OnInit {
   }
 
   update () {
+    console.log(this.grupoForm.value)
     this.grupoService.editarGrupo(this.grupoForm.value).subscribe(
       response => {
         this.toastr.success('Grupo editado com sucesso');
