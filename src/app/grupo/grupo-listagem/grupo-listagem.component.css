@@ -111,10 +111,6 @@ h2 {
     }
 }*/
 @media only screen and (max-height: 568px),(max-width: 320) {
-        :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
-           
-        }
-
         table,.fixed-header  {
             width: 100%!important;
         }
