@@ -16,7 +16,7 @@ export class GrupoService {
   }
 
   editarGrupo(grupo: Grupo): Observable<Grupo>{
-    console.log(this.url + "/update" + grupo);
+    console.log(grupo);/*está inserindo novo */
     return this.http.put<Grupo>(this.url + "/update", grupo);
   }
 
