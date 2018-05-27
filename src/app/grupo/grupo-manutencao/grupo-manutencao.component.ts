@@ -32,10 +32,11 @@ export class GrupoManutencaoComponent implements OnInit {
     private toastr: ToastrService,
     fb: FormBuilder) {
     this.fb = new FormBuilder();
+
     this.grupoForm = this.fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
         custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])],     
-        id: [null]
+        id:[null]
     });
 
     var idGrupo
@@ -50,6 +51,7 @@ export class GrupoManutencaoComponent implements OnInit {
         console.log("idGrupo:" + idGrupo.id);        
         this.grupoForm.controls['nome'].setValue(res.nome);
         this.grupoForm.controls['custo'].setValue(res.custo);
+        this.id = idGrupo.id;
       });
 
    }
@@ -92,7 +94,6 @@ export class GrupoManutencaoComponent implements OnInit {
   }
 
   update () {
-    this.grupoForm.value.id = this.id;
     this.grupoService.editarGrupo(this.grupoForm.value).subscribe(
       response => {
         this.toastr.success('Grupo editado com sucesso');
