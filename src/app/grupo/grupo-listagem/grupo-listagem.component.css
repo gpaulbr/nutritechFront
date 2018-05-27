@@ -7,6 +7,10 @@ table,.fixed-header  {
     background-color: #ffffff9c!important;
 }
 
+.panel-body{
+    overflow: hidden!important;
+}
+
 div #buscar{
     display: inline;
     padding-left: 5%;
@@ -101,14 +105,18 @@ h2 {
     text-align: center;
     color: white;
     text-shadow: -1px 0 #207C7B, 0 1px #207C7B, -1px 0 #207C7B, 0 -1px #207C7B;}
-@media only screen and (max-width: 414px),(min-height: 736px) {
+/*@media only screen and (max-width: 414px),(min-height: 736px) {
     :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
         margin-right: -10px!important;
     }
-}
+}*/
 @media only screen and (max-height: 568px),(max-width: 320) {
         :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
-            margin-right: -5px!important;
+           
+        }
+
+        table,.fixed-header  {
+            width: 100%!important;
         }
 }
 @media only screen and (max-width: 768px) {
@@ -142,7 +150,11 @@ h2 {
     }
     :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
         padding-left: 0px;
-        margin-right: 3.1%;
+        /*margin-right: 3.1%;*/
+        width: 100%!important;
+    }
+
+    table,.fixed-header  {
         width: 100%!important;
     }
 }
