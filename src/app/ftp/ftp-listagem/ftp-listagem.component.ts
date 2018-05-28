@@ -6,6 +6,7 @@ import { Usuario } from '../../usuario/usuario';
 import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -23,9 +24,11 @@ export class FtpListagemComponent implements OnInit {
 
   @ViewChild(DatatableComponent) table: DatatableComponent; // erro no import
 
-  constructor(private router: Router, private ftpServices: FtpService) { // variável da classe FtpService
+  constructor(
+    private router: Router, 
+    private ftpServices: FtpService,
+    private toastr: ToastrService) { // variável da classe FtpService
     this.receitas = []; // inciando o array
-
     }
 
   ngOnInit() {
@@ -100,5 +103,17 @@ export class FtpListagemComponent implements OnInit {
     this.router.navigate(['./ftp-cadastro/' + String(this.receitas[index as number].id)]);
   }
 
+  excluirFtp(index: number) {
+      let idFtp = this.receitas[index].id;
+      this.ftpServices.excluirFTP(+idFtp).subscribe(
+        response => {
+          this.toastr.success(response['message']);
+        },
+        error => {
+          console.log(error);
+          this.toastr.error(error.error);
+        }
+      );
+  }
 
 }
