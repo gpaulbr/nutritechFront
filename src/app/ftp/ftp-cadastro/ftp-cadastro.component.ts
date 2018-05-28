@@ -121,7 +121,6 @@ export class FTPCadastroComponent implements OnInit {
          
 
           this.ftpForm.controls['nota'].setValue(res.nota);
-          console.log(this.ftpForm.value)
         });
     }
   }
@@ -321,16 +320,9 @@ export class FTPCadastroComponent implements OnInit {
 
   cadastrar(ftp: Ftp, publicada: Boolean) {
     this.limparDadosInvalidos(ftp);
-    this.ftpForm.controls.publicada.setValue(publicada); // status de publicada no banco
-    this.ftpForm.controls.datahora.setValue(new Date());
+    ftp.publicada = publicada // status de publicada no banco
+    ftp.datahora = new Date();
     this.dirtyAll();
-
-    if (publicada) {
-      console.log("Receita sendo salva/atualizada como publicada " + this.ftpForm.controls.publicada.value);
-      console.log(this.ftpForm.controls)
-    } else {
-      console.log("Receita sendo salva/atualizada como não publicada");
-    }
 
     if (ftp.id != null) {
       this.ftpService.atualizarFTP(ftp).subscribe( resp => {
