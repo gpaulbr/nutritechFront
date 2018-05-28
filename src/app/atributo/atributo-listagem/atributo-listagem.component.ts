@@ -51,15 +51,15 @@ export class AtributoListagemComponent implements OnInit {
       this.columns = [
         { name: 'Nome' },
         { name: 'Unidade'},
-        { name: "Multiplicador" },
-        { name: "Obrigatorio"},
+      
+        
         { name: "Ações" }
         //ícones de ação vão no html
       ];
   }else{ //se for prof ou usuário exibe sem as ações
       this.columns = [
         { name: 'Nome' },
-        { name: "Multiplicador" },
+     
         { name: "Obrigatorio"}
         //ícones de ação vão no html
       ];
@@ -91,6 +91,7 @@ export class AtributoListagemComponent implements OnInit {
  
 updateFilter(event) {
     const val = event.target.value.toLowerCase();
+
     // filtra por todos os campos da tabela
     const temp = this.atributos.filter(function(d) {
       if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
@@ -107,10 +108,22 @@ updateFilter(event) {
 
       this.rows = temp;
 
-    // Independente se o filtro muda ou não, sempre irá voltar para a primeira página
+    // Independente se o filtro muda ou não, sempre irá voltar para a primeira página Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
 
+  redirecionarParaCadastro(index: number) {
+    this.router.navigate([`./atributos/${this.atributos[index].id}`]);
+  }
+
+  deletarAtributo(index: any) {
+    console.log(this.atributos[index])
+
+    this.atributoService.excluirAtributo(this.atributos[index].id)
+      .subscribe(resp => {
+        console.log(resp)
+      }, e => {
+        console.log(e)
+      })
+  }
 }
-
-

@@ -8,6 +8,8 @@ import { NUTRITECH_API } from '../app.api'
 @Injectable()
 export class AtributoService {
 
+  private url = NUTRITECH_API + "/atributos";
+
   constructor(private http: HttpClient) { }
 
   salvarAtributo(atributo: Atributo): Observable<Atributo>{
@@ -17,5 +19,21 @@ export class AtributoService {
   buscarAtributos(): Observable<Atributo[]>{
     return this.http.get<Atributo[]>(NUTRITECH_API + '/atributos');
   }
+
+  editarAtributo(atributo: Atributo): Observable<Atributo>{
+    console.log(this.url + "/update" + atributo);
+    return this.http.put<Atributo>(this.url + "/update", atributo);
+  }
+
+  excluirAtributo(id: number): Observable<any> {
+    return this.http.delete<any>(`${NUTRITECH_API}/atributos/${id}/`);
+  }
+
+
+  obterAtributo(id: string): Observable<Atributo>{
+    return this.http.get<Atributo>(`${NUTRITECH_API}/atributos/${id}/`);
+  }
+
+
 
 }
