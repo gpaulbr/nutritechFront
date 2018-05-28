@@ -21,6 +21,8 @@ export class FtpIntegrantesComponent implements OnInit {
   salvarIntegrantes = new EventEmitter<Array<Usuario>>();
   @Input()
   obrigatorio: boolean
+  @Input()
+  podeAlterar: boolean
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));

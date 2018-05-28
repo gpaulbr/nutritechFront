@@ -24,6 +24,8 @@ export class FtpImageFileUploadComponent implements OnInit {
   salvarImagem = new EventEmitter<Imagem>();
   @Input()
   obrigatorio: boolean;
+  @Input()
+  podeAlterar: boolean;
 
   ngOnInit() {
   }

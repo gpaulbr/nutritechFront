@@ -11,7 +11,8 @@ import {Usuario} from '../../usuario/usuario';
 export class FtpSelecaoProfessorComponent implements OnInit {
 
   professor: Usuario = null;
-  professoresDisponiveis: Usuario[];
+  professoresDisponiveis: Array<Usuario> = new Array<Usuario>();
+  dropdown: HTMLInputElement;
 
   constructor(private router: Router, private usuarioService: UsuarioService) { }
 
@@ -19,6 +20,8 @@ export class FtpSelecaoProfessorComponent implements OnInit {
   salvarProfessor = new EventEmitter<Usuario>();
   @Input()
   obrigatorio: boolean
+  @Input()
+  podeAlterar: boolean
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -26,20 +29,20 @@ export class FtpSelecaoProfessorComponent implements OnInit {
       this.router.navigate(['./']);
       return;
     }
-
     this.loadDB();
   }
 
   loadDB() {
     this.usuarioService.buscarProfessores().subscribe(
       response => {
-        this.professoresDisponiveis = Array.from(response['Usuarios']);
-        this.professoresDisponiveis.forEach(item => {
+        let professores = Array.from(response['Usuarios']) as Array<Usuario>;
+        professores.forEach(item => {
           delete item.senha;
           delete item['valid'];
-          // console.log(item);
+          if (item.status == true) {
+            this.professoresDisponiveis.push(item);
+          }
         });
-        // console.log(this.professoresDisponiveis);
       });
   }
 
@@ -47,7 +50,6 @@ export class FtpSelecaoProfessorComponent implements OnInit {
 
   salvar () {
     this.salvarProfessor.emit(this.professor);
-    // console.log(this.professor);
   }
 
 }

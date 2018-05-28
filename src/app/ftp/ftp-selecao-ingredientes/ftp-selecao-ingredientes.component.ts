@@ -17,7 +17,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   fatorCorrecao: number;
   pesoG: number;
   receitaIngredientes = new Array<ReceitaIngrediente>();
-
+   
   ingredientesDisponiveis: Ingrediente[];
 
   constructor(private router: Router, private ingredienteService: IngredienteService) { }
@@ -26,8 +26,12 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   salvarCusto = new EventEmitter<String>();
   @Output()
   salvarIngredientes = new EventEmitter<Array<ReceitaIngrediente>>();
+  @Output()
+  salvarPeso = new EventEmitter<Number>();
   @Input()
   obrigatorio: boolean
+  @Input()
+  podeAlterar: boolean
 
   ngOnInit() {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -68,11 +72,20 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
       this.receitaIngredientes.push(novo);
       // console.log('Adicionado: ' + this.ingrediente + ' à lista: ' + this.receitaIngredientes);
       this.ingrediente = null;
+      this.custoKg = 0;
+      this.fatorCorrecao = 100;
+      this.pesoG = 0;
       this.salvar();
     } else {
-      // console.log('Nada selecionado')
     }
-    // console.log (this.receitaIngredientes)
+  }
+
+  podeIncluirIngrediente() {
+    if (this.ingrediente != null && this.custoKg > 0 && this.fatorCorrecao >= 0 && this.fatorCorrecao <= 100 && this.pesoG > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   estaIncluido(ingrediente: Ingrediente) {
@@ -95,16 +108,25 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   }
 
   getCustoTotal(): String {
-    let custoTotal = 0;
+    let total = 0;
     for (const item of this.receitaIngredientes) {
-      custoTotal = custoTotal + Number(item.getCustoTotal());
+      total = total + Number(item.getCustoTotal());
     }
-    return String(custoTotal.toFixed(2));
+    return String(total.toFixed(2));
+  }
+
+  getPesoTotal(): Number {
+    let total = 0;
+    for (const item of this.receitaIngredientes) {
+      total = total + Number(item.pesoG);
+    }
+    return Number(total.toFixed(2));
   }
 
   salvar () {
     this.salvarIngredientes.emit(this.receitaIngredientes);
     this.salvarCusto.emit(this.getCustoTotal());
+    this.salvarPeso.emit(this.getPesoTotal());
   }
 
 }

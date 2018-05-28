@@ -14,6 +14,9 @@ export class FtpDificuldadeComponent implements OnInit {
   @Input()
   dificuldade: number;
 
+  @Input()
+  podeAlterar: boolean;
+
   @Output()
   salvarDificuldade = new EventEmitter<{dificuldade: number}>();
 
@@ -23,8 +26,10 @@ export class FtpDificuldadeComponent implements OnInit {
   }
 
   alterarDificuldade(dificuldade: any){
-    this.dificuldade = dificuldade;
-    this.salvarDificuldade.emit(dificuldade);
+    if (this.podeAlterar) {
+      this.dificuldade = dificuldade;
+      this.salvarDificuldade.emit(dificuldade);
+    }
   }
 
 }

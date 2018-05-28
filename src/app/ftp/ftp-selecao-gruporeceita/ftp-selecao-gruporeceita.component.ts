@@ -20,6 +20,8 @@ export class FtpSelecaoGruporeceitaComponent implements OnInit {
   salvarGrupoReceita = new EventEmitter<GrupoReceita>();
   @Input()
   obrigatorio: boolean
+  @Input()
+  podeAlterar: boolean
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));

@@ -1,97 +1,117 @@
 <div class="container">
-		<br>
-		<fieldset>
-			<form [formGroup]="ftpForm" class="content" id="formulario" novalidate>
-				<div>
-					<h2>Ficha Técnica de Produto</h2>
+    <br>
+    <fieldset>
+        <form [formGroup]="ftpForm" class="content" id="formulario" novalidate>
+            <div>
+                <h2>Ficha Técnica de Produto</h2>
 
-          <div><p id="time" type="datetime-local"></p></div>
-
-          <div *ngIf="UsuarioEhAdmin() || UsuarioEhProfessor()" class="form-group row justify-content-start">
-              <div class="col-md-4 col-lg-3">
-                <label class="campo-obrigatorio">Nota:</label>
-              </div>
-              <div class="col-md-7 col-lg-6 col-xl-5">
-                <input formControlName="nota" type="number" class="form-control" min="0" max="10" step="0.1">
-                <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nota'].valid && this.ftpForm.controls['nota'].dirty"></app-mensagem-erro>
-              </div>
-          </div>
-            <div class="form-group row justify-content-start">
-              <div class="col-md-4 col-lg-3">
-                <label class="campo-obrigatorio">Produto:</label>
-              </div>
-              <div class="col-md-7 col-lg-6 col-xl-5">
-                <input formControlName="nome" type="text" class="form-control" placeholder="Nome do Produto">
-                <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
-              </div>
-					</div>
-          <app-ftp-selecao-gruporeceita [obrigatorio]=true (salvarGrupoReceita)="alterarGrupoReceita($event)"></app-ftp-selecao-gruporeceita>
-          <app-mensagem-erro [contemErro]="!this.ftpForm.controls['grupoReceita'].valid && this.ftpForm.controls['grupoReceita'].dirty"></app-mensagem-erro>
-          <app-ftp-selecao-professor [obrigatorio]=true (salvarProfessor)="alterarProfessor($event)"></app-ftp-selecao-professor>
-          <app-mensagem-erro [contemErro]="!this.ftpForm.controls['professor'].valid && this.ftpForm.controls['professor'].dirty"></app-mensagem-erro>
-
-          <!-- -->
-					<app-ftp-integrantes [obrigatorio]=true (salvarIntegrantes)="alterarIntegrantes($event)"></app-ftp-integrantes>
-					<hr>
-					<app-ftp-selecao-ingredientes [obrigatorio]=true (salvarCusto)="alterarCustoTotal($event)" (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
-					<hr>
-					<app-ftp-modo-preparo [obrigatorio]="true" (salvarPassos)="alterarPassos($event)"></app-ftp-modo-preparo>
-					<div>
-						<hr>
-						<div class="row">
-							<div class="col-md-7">
-								<div class="row">
-									<div class="col-lg-3">
-										<h4>Custo por porção:</h4>
-                    <p>{{this.custoTotal}}</p>
-										<!--<p>R$ 24,00</p> -->
-									</div>
-									<div class="col-lg-5">
-										<h4>Rendimento:</h4>
-										<input formControlName="rendimento" type="number" class="form-control" min="1" (value)="1">
-									</div>
-									<div class="col-lg-4">
-										<h4>Peso:</h4>
-										<input formControlName="peso" type="number" class="form-control" min="0" placeholder="600g">
-									</div>
-								</div>
-								<div id="tempo-preparo" class="row justify-content-start">
-									<div class="col-auto">
-										<h4>Tempo de preparo:</h4>
-									</div>
-									<div class="col-md-4">
-										<input formControlName="tempo" type="text" class="form-control" placeholder="30 min">
-									</div>
-								</div>
-								<div class="row no-gutters align-items-center">
-									<app-ftp-dificuldade [dificuldadeMaxima]="5" [dificuldade]="retornarDificuldade()" (salvarDificuldade)="alterarDificuldade($event)"></app-ftp-dificuldade>
-                  <app-mensagem-erro [contemErro]="!this.ftpForm.controls['dificuldade'].valid && this.ftpForm.controls['dificuldade'].dirty"></app-mensagem-erro>
+                <div>
+                    <p id="time" type="datetime-local"></p>
                 </div>
-							</div>
-              <div class="col-md-5">
-              <app-ftp-image-file-upload [obrigatorio]=true (salvarImagem)="alterarImagem($event)"></app-ftp-image-file-upload>
-              </div>
-            </div>
-						<br>
 
-						<div class="last row">
-							<div class="col-md-6 mr-auto">
-							<input type="checkbox" id="ftp-privacidade" ng-model="leader" (click)="alterarTipo()">
-								<label id="ficha-privada" for="ftp-privacidade" ng-checked="leader">Tornar minha ficha técnica privada</label>
-							</div>
-              <div class="col-auto">
-                <button (click)="limpar()" type="button" class="btn btn-danger" [disabled]="ftpForm.value.id != null">Limpar</button>
-              </div>
-              <div class="col-auto">
-                <button class="btn btn-success" (click)="cadastrar(ftpForm.value, 0)" [disabled]="ftpForm.value.id != null">Salvar</button>
-              </div>
-							<div class="col-auto">
-								<button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value, 1)" [disabled]="ftpForm.invalid">Publicar</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</fieldset>
-	</div>
-	<br>
+                <!-- DADOS BASE + NOTA-->
+                <div>
+                    <!-- NOTA -->
+                    <div class="form-group row justify-content-end" *ngIf="receitaEstaPublicada()">
+                        <div class="row justify-content-start">
+                            <div class="col-md-6">
+                                <label>Nota:</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input formControlName="nota" type="number" class="form-control" min="0" max="10" step="0.1">
+                                <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nota'].valid && this.ftpForm.controls['nota'].dirty"></app-mensagem-erro>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FIM NOTA -->
+                    <!-- DADOS BASE-->
+                    <div>
+                        <div>
+                            <div class="form-group row justify-content-start">
+                                <div class="col-md-4 col-lg-3">
+                                    <label class="campo-obrigatorio">Produto:</label>
+                                </div>
+                                <div class="col-md-7 col-lg-6 col-xl-5">
+                                    <input formControlName="nome" type="text" class="form-control" placeholder="Nome do Produto">
+                                    <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
+                                </div>
+                            </div>
+                        </div>
+
+                        <app-ftp-selecao-gruporeceita [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarGrupoReceita)="alterarGrupoReceita($event)"></app-ftp-selecao-gruporeceita>
+                        <app-mensagem-erro [contemErro]="!this.ftpForm.controls['grupoReceita'].valid && this.ftpForm.controls['grupoReceita'].dirty"></app-mensagem-erro>
+
+                        <app-ftp-selecao-professor [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarProfessor)="alterarProfessor($event)"></app-ftp-selecao-professor>
+                        <app-mensagem-erro [contemErro]="!this.ftpForm.controls['professor'].valid && this.ftpForm.controls['professor'].dirty"></app-mensagem-erro>
+
+                        <app-ftp-integrantes [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarIntegrantes)="alterarIntegrantes($event)"></app-ftp-integrantes>
+                        <!-- FIM DADOS BASE -->
+                    </div>
+                </div>
+                <hr>
+                <!-- FIM DADOS BASE + NOTA-->
+
+
+                <app-ftp-selecao-ingredientes [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarPeso)="alterarPesoTotal($event)" (salvarCusto)="alterarCustoTotal($event)" (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
+                <hr>
+                <app-ftp-modo-preparo [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarPassos)="alterarPassos($event)"></app-ftp-modo-preparo>
+                <div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <h4>Custo por porção:</h4>
+                                    <p>{{this.custoTotal}}</p>
+                                </div>
+                                <div class="col-lg-5">
+                                    <h4>Rendimento:</h4>
+                                    <input formControlName="rendimento" type="number" class="form-control" min="1" (value)="1">
+                                    <app-mensagem-erro [contemErro]="!this.ftpForm.controls['rendimento'].valid && this.ftpForm.controls['rendimento'].dirty"></app-mensagem-erro>
+                                </div>
+                                <div class="col-lg-4">
+                                    <h4>Peso (g):</h4>
+                                    <input formControlName="peso" type="number" class="form-control" min="0">
+                                    <app-mensagem-erro [contemErro]="!this.ftpForm.controls['peso'].valid && this.ftpForm.controls['peso'].dirty"></app-mensagem-erro>
+                                </div>
+                            </div>
+                            <div id="tempo-preparo" class="row justify-content-start">
+                                <div class="col-auto">
+                                    <h4>Tempo de preparo:</h4>
+                                </div>
+                                <div class="col-md-4">
+                                    <input formControlName="tempo" type="text" class="form-control">
+                                    <app-mensagem-erro [contemErro]="!this.ftpForm.controls['tempo'].valid && this.ftpForm.controls['tempo'].dirty"></app-mensagem-erro>
+                                </div>
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <app-ftp-dificuldade [dificuldadeMaxima]="5" [podeAlterar]="campoPodeSerAlterado()" [dificuldade]="retornarDificuldade()" (salvarDificuldade)="alterarDificuldade($event)"></app-ftp-dificuldade>
+                                <app-mensagem-erro [contemErro]="!this.ftpForm.controls['dificuldade'].valid && this.ftpForm.controls['dificuldade'].dirty"></app-mensagem-erro>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <app-ftp-image-file-upload [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarImagem)="alterarImagem($event)"></app-ftp-image-file-upload>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="last row">
+                        <div class="col-md-6 mr-auto">
+                            <input type="checkbox" id="ftp-privacidade" ng-model="leader" (click)="alterarTipo()">
+                            <label id="ficha-privada" for="ftp-privacidade" ng-checked="leader">Tornar minha ficha técnica privada</label>
+                        </div>
+                        <div class="col-auto">
+                            <button (click)="limpar()" type="button" class="btn btn-danger" [disabled]="!podeLimpar()">Limpar</button>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-success" (click)="cadastrar(ftpForm.value, false)" [disabled]="!podeSalvar()">Salvar</button>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success" (click)="cadastrar(ftpForm.value, true)" [disabled]="ftpForm.invalid">Publicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>

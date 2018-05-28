@@ -57,7 +57,7 @@ export class FTPCadastroComponent implements OnInit {
       id: [null],
       nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
       status: [1, Validators.compose([Validators.required])],
-      publicada: [0, Validators.compose([Validators.required])],
+      publicada: [false],
       passos: [null, Validators.compose([Validators.required])],
       rendimento: [null, Validators.compose([Validators.required])],
       tempo: [null, Validators.compose([Validators.required])],
@@ -105,20 +105,23 @@ export class FTPCadastroComponent implements OnInit {
             this.ingredientesComponent.custoKg = ri.custoKg;
             this.ingredientesComponent.pesoG = ri.pesoG;
             this.ingredientesComponent.adicionarIngrediente();
-          })
+          });
+
+          this.ftpForm.controls['grupoReceita'].setValue(res.grupoReceita); //
+          (document.getElementById('seletorGrupoReceita') as HTMLSelectElement).options[0].innerHTML = res.grupoReceita.nome ;
 
           this.ftpForm.controls['professor'].setValue(res.professor); //
-          this.professorComponent.loadUsuarioWithIdOnInit = res.professor.id;
+          (document.getElementById('seletorProf') as HTMLSelectElement).options[0].innerHTML = res.professor.nome;
 
           this.ftpForm.controls['datahora'].setValue(res.datahora);
 
           this.ftpForm.controls['dificuldade'].setValue(res.dificuldade); // ok
           this.dificuldadeComponent.alterarDificuldade(res.dificuldade);
 
-          this.ftpForm.controls['grupoReceita'].setValue(res.grupoReceita); //
-          this.gruporeceitaComponent.grupoReceita = res.grupoReceita;
+         
 
           this.ftpForm.controls['nota'].setValue(res.nota);
+          console.log(this.ftpForm.value)
         });
     }
   }
@@ -131,44 +134,44 @@ export class FTPCadastroComponent implements OnInit {
     }
   }
 
+  /*
+   * Manipulação dos Dados do Formulário
+   */
+
   alterarPassos(passos: Array<String>){
     this.ftpForm.controls.passos.setValue(passos);
   }
 
   alterarIntegrantes(criadores: Array<Usuario>) {
     this.ftpForm.controls.criadores.setValue(criadores);
-    console.log(criadores);
   }
 
   alterarGrupoReceita(grupoReceita: GrupoReceita) {
     this.ftpForm.controls.grupoReceita.setValue(grupoReceita);
-    console.log(grupoReceita);
   }
 
   alterarProfessor(professor: Usuario) {
     this.ftpForm.controls.professor.setValue(professor);
-    console.log(professor);
   }
 
   alterarIngredientes(receitaIngredientes: Array<ReceitaIngrediente>) {
     this.ftpForm.controls.receitaIngrediente.setValue(receitaIngredientes);
-    console.log(receitaIngredientes);
   }
 
   alterarImagem(imagem: Imagem) {
     this.ftpForm.controls.imagem.setValue(imagem);
-    console.log(imagem);
   }
 
   alterarDificuldade(dificuldade: number){
     this.ftpForm.controls.dificuldade.setValue(dificuldade);
-    console.log(dificuldade);
-    console.log('Dificuldade Alterada para: ' + this.retornarDificuldade())
   }
 
   alterarCustoTotal(custoTotal: String) {
     this.custoTotal = custoTotal;
-    console.log(this.custoTotal);
+  }
+
+  alterarPesoTotal(pesoTotal: Number) {
+    this.ftpForm.controls.peso.setValue(pesoTotal);
   }
 
   retornarDificuldade(): number{
@@ -181,9 +184,11 @@ export class FTPCadastroComponent implements OnInit {
     } else {
       this.ftpForm.controls.tipo.setValue(FtpTipo.PRIVADO);
     }
-    console.log('Tipo')
-    console.log('É Privado: ' + this.ftpForm.controls.tipo.value);
   }
+
+  /*
+   * Verificações
+   */
 
   UsuarioEhAdmin(): Boolean {
     if (this.usuarioLogado) {
@@ -199,21 +204,47 @@ export class FTPCadastroComponent implements OnInit {
     return false;
   }
 
-  limparDadosInvalidos(ftp: Ftp) {
-    ftp.criadores.forEach(c => {
-      delete c['valid'];
-      delete c.senha;
-      console.log(c);
-    });
-    delete ftp.professor['valid'];
-    delete ftp.professor.senha;
-    console.log(ftp.professor)
-
-    ftp.receitaIngrediente.forEach(ri => {
-      delete ri.ingrediente.criador['valid'];
-    });
-    delete ftp.grupoReceita['active'];
+  UsuarioEhProfessorDisciplina(): Boolean {
+    if (this.usuarioLogado) {
+      return this.usuarioLogado.id == this.ftpForm.value.professor.id;
+    }
+    return false;
   }
+
+  podeLimpar(): Boolean {
+    if (this.podeSalvar() || this.ftpForm.value.id == null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  podeSalvar(): Boolean {
+    if (!this.receitaEstaPublicada()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  campoPodeSerAlterado(): Boolean {
+    if(this.receitaEstaPublicada()) {
+      return false;
+    }
+    return true; // é mais complicado que isso, mas temporariamente fica assim
+  }
+
+  podeAlterarNota(): Boolean {
+    return (this.UsuarioEhAdmin() || this.UsuarioEhProfessorDisciplina()); // é mais complicado que isso, mas temporariamente fica assim
+  }
+
+  receitaEstaPublicada(): Boolean {
+    return (this.ftpForm.value.publicada == true)
+  }
+
+  /*
+   * Controle de Estado dos Campos do Formulário
+   */
 
   dirtyAll() { // não encontrei forma de iterar sobre controls.
     this.ftpForm.controls['id'].markAsDirty();
@@ -253,11 +284,31 @@ export class FTPCadastroComponent implements OnInit {
     this.ftpForm.controls['grupoReceita'].markAsPristine();
   }
 
+  limparDadosInvalidos(ftp: Ftp) {
+    ftp.criadores.forEach(c => {
+      delete c['valid'];
+      delete c.senha;
+      console.log(c);
+    });
+    delete ftp.professor['valid'];
+    delete ftp.professor.senha;
+    console.log(ftp.professor)
+
+    ftp.receitaIngrediente.forEach(ri => {
+      delete ri.ingrediente.criador['valid'];
+    });
+    delete ftp.grupoReceita['active'];
+  }
+
+  /*
+   * Funções dos Botões do Formulário
+   */
+
   limpar() {
     this.ftpForm.reset();
     this.ftpForm.controls['id'].setValue(null);
     this.ftpForm.controls['status'].setValue(1);
-    this.ftpForm.controls['publicada'].setValue(0);
+    this.ftpForm.controls['publicada'].setValue(false);
     this.ftpForm.controls['tipo'].setValue(FtpTipo.PUBLICO);
     this.gruporeceitaComponent.grupoReceita = null;
     this.professorComponent.professor = null;
@@ -274,10 +325,17 @@ export class FTPCadastroComponent implements OnInit {
     this.ftpForm.controls.datahora.setValue(new Date());
     this.dirtyAll();
 
+    if (publicada) {
+      console.log("Receita sendo salva/atualizada como publicada " + this.ftpForm.controls.publicada.value);
+      console.log(this.ftpForm.controls)
+    } else {
+      console.log("Receita sendo salva/atualizada como não publicada");
+    }
+
     if (ftp.id != null) {
       this.ftpService.atualizarFTP(ftp).subscribe( resp => {
         this.toastr.success('Ficha Técnica de Preparo atualizada com sucesso!');
-        this.limpar();
+        this.router.navigate(['./ftp-listagem']);
       }, error => {
         this.toastr.error(error.error);
       });
@@ -285,7 +343,7 @@ export class FTPCadastroComponent implements OnInit {
       this.ftpService.salvarFTP(ftp)
         .subscribe(resp => {
           this.toastr.success('Ficha Técnica de Preparo cadastrada com sucesso!');
-          this.limpar();
+          this.router.navigate(['./ftp-listagem']);
         }, error => {
           this.toastr.error(error.error);
         });

@@ -1,21 +1,23 @@
 <div>
-  <h3 [ngClass]="{ 'campo-obrigatorio': obrigatorio }">Modo de Preparo:</h3>
-  <ng-container *ngFor="let passo of passos; let i = index">
-  <div class="form-group row justify-content-start row-preparo">
-    <div class="col-md-auto">
-      <label>Passo {{i + 1}}:</label>
+    <h3 [ngClass]="{ 'campo-obrigatorio': obrigatorio }">Modo de Preparo:</h3>
+    <ng-container *ngFor="let passo of passos; let i = index">
+        <div class="form-group row justify-content-start row-preparo">
+            <div class="col-md-auto">
+                <label>Passo {{i + 1}}:</label>
+            </div>
+            <div class="col-md col-preparo-passo">
+                <input type="text" class="form-control" value="{{passo}}" (focusout)="atualizarPassos(input.value, i)" [disabled]="!podeAlterar" #input>
+            </div>
+        </div>
+    </ng-container>
+    <div *ngIf="podeAlterar">
+        <div class="row justify-content-start">
+            <div class="col-md col-preparo-passo">
+                <input type="text" class="form-control" [(ngModel)]="novoPasso" placeholder="Adicione um novo passo">
+            </div>
+            <div class="col-md-auto">
+                <button type="button" class="btn btn-success" (click)="adicionarPasso()">Adicionar</button>
+            </div>
+        </div>
     </div>
-    <div class="col-md col-preparo-passo">
-      <input type="text" class="form-control" value="{{passo}}" (focusout)="atualizarPassos(input.value, i)" #input>
-    </div>
-  </div>
-  </ng-container>
-  <div class="row justify-content-start">
-    <div class="col-md col-preparo-passo">
-      <input type="text" class="form-control" [(ngModel)]="novoPasso" placeholder="Adicione um novo passo">
-    </div>
-    <div class="col-md-auto">
-      <button type="button" class="btn btn-success" (click)="adicionarPasso()">Adicionar</button>
-    </div>
-  </div>
 </div>
