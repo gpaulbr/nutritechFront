@@ -32,6 +32,7 @@ export class FTPCadastroComponent implements OnInit {
 
   ftpForm: FormGroup;
   fb: FormBuilder;
+
   custoTotal: String = '0.00';
 
   usuarioLogado: Usuario;
@@ -120,6 +121,7 @@ export class FTPCadastroComponent implements OnInit {
           this.dificuldadeComponent.alterarDificuldade(res.dificuldade);
 
           this.ftpForm.controls['nota'].setValue(res.nota);
+          (document.getElementById('inputNota') as HTMLInputElement).innerHTML = res.professor.nome;
           console.log(res.nota);
 
           console.log(this.ftpForm.value);
@@ -214,7 +216,7 @@ export class FTPCadastroComponent implements OnInit {
 
   UsuarioEhAluno(): Boolean {
     if (this.usuarioLogado) {
-      return this.usuarioLogado.tipo == TipoUsuario.USER;
+      return this.usuarioLogado.tipo == TipoUsuario.USUARIO;
     }
     return false;
   }
