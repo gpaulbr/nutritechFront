@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Ingrediente } from '../ingrediente';
 import { TipoIngrediente } from '../tipo-ingrediente.enum';
 import { AtributoService } from '../../atributo/atributo.service';
@@ -10,7 +10,7 @@ import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { IngredienteService } from '../ingrediente.service';
 import { IngredienteDto } from '../ingrediente-dto';
 import { IngredienteAtributoDto } from '../ingrediente-atributo-dto';
-import { Router } from '@angular/router';
+import { Router, ParamMap, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { print } from 'util';
 import {forEach} from '@angular/router/src/utils/collection';
@@ -25,9 +25,10 @@ export class IngredienteCadastroComponent implements OnInit {
 
   ingredienteForm: FormGroup;
   fb: FormBuilder
-  atributos: IngredienteAtributo[];
   ingAtributos: IngredienteAtributoDto[];
   usuarioLogado: UsuarioLogadoDto;
+  criador: UsuarioLogadoDto;
+  idParam: string;
 
   tiposIngredientes = [{
     valor: TipoIngrediente.PRIVADO,
@@ -44,8 +45,9 @@ export class IngredienteCadastroComponent implements OnInit {
     private atributosService: AtributoService,
     private router: Router,
     private toastr: ToastrService,
-    private ingredienteService: IngredienteService) {
-    this.atributos = [];
+    private ingredienteService: IngredienteService,
+    private route: ActivatedRoute
+  ) {
     this.ingAtributos = [];
     this.fb = new FormBuilder();
     this.ingredienteForm = this.fb.group({
@@ -53,6 +55,40 @@ export class IngredienteCadastroComponent implements OnInit {
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       tipo: [TipoIngrediente.PRIVADO, Validators.required]
     });
+
+    this.buscarAtributos()
+    this.route.params.subscribe( params => this.idParam = params.id);
+
+    if (this.idParam) {
+      this.inicializarIngrediente();
+    }
+  }
+
+  buscarAtributos(){
+    this.ingAtributos = [];
+     this.atributosService.buscarAtributos()
+      .subscribe(a => {
+        a['Atributos'].forEach(e => {
+          let ingAtributosBuscados = new IngredienteAtributoDto();
+          ingAtributosBuscados.atributo = e;
+          ingAtributosBuscados.valor = "";
+          this.ingAtributos.push(ingAtributosBuscados);
+        });
+      });
+  }
+
+  inicializarIngrediente() {
+    this.ingredienteService.obterIngrediente(this.idParam)
+      .subscribe(res => {
+        this.criador = new UsuarioLogadoDto();
+        this.criador.definirUsuarioLogadoDto(res.criador);
+        this.ingredienteForm.controls['nome'].setValue(res.nome);
+        this.ingredienteForm.controls['origem'].setValue(res.origem);
+        this.ingredienteForm.controls['tipo'].setValue(res.tipo);
+        for(let ingredienteAtributo of res.ingredienteAtributo) {
+          this.ingAtributos.filter(a => a.atributo.id === ingredienteAtributo.atributo.id)[0].valor = ingredienteAtributo.valor;
+        }
+      });
   }
 
   limpar() {
@@ -64,7 +100,7 @@ export class IngredienteCadastroComponent implements OnInit {
     this.ingredienteForm.controls.origem.markAsPristine();
     this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO)
 
-    this.atributos.forEach(a => a.valor = 0);
+    this.ingAtributos.forEach(a => a.valor = "");
 
     const atrs = document.getElementsByClassName("atr");
     for(let i = 0; i < atrs.length; i++) {
@@ -79,25 +115,15 @@ export class IngredienteCadastroComponent implements OnInit {
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(this.usuarioLogado == null) {
       this.router.navigate(['./']);
+    } else if(!this.criador) {
+        this.criador = this.usuarioLogado;
     }
-    this.atributos = [];
-    console.log("atr leng",this.atributos.length);
-
-     this.atributosService.buscarAtributos()
-      .subscribe(a => {
-        a['Atributos'].forEach(e => {
-          let ingAtributos = new IngredienteAtributo();
-          ingAtributos.atributo = e;
-          ingAtributos.valor = 0;
-          this.atributos.push(ingAtributos);
-        });
-      });
   }
 
   fieldsAreValid(): Boolean {
     var retorno: Boolean = false;
-    this.atributos.forEach(atr => {
-      if (atr.valor === null || atr.valor === 0) {
+    this.ingAtributos.forEach(atr => {
+      if (atr.valor === null || atr.valor === "") {
         retorno = true;
       }
     });
@@ -107,14 +133,14 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   setarValor(nomeAtributo: string, valor: string) {
-    this.atributos.forEach(a => {
+    this.ingAtributos.forEach(a => {
       if(a.atributo.nome === nomeAtributo) {
-        this.ingAtributos.push(new IngredienteAtributoDto(a.atributo.id, valor));
+        a.valor = valor;
       }
     });
   }
 
-  definirTipoIngrediente(valor: TipoIngrediente){
+  definirTipoIngrediente(valor: TipoIngrediente) {
     let tipoIng = valor === TipoIngrediente.PRIVADO ?
       TipoIngrediente[TipoIngrediente.PRIVADO] : TipoIngrediente[TipoIngrediente.COMUM];
     this.ingredienteForm.controls.tipo.setValue(tipoIng);
@@ -127,24 +153,46 @@ export class IngredienteCadastroComponent implements OnInit {
     return false;
   }
 
-  cadastrarIngrediente(ingrediente: IngredienteDto) {
-    //this.limpar();
-    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    ingrediente.status = true;
-    ingrediente.idCriador = usuarioLogado.id;
-    ingrediente.atributos = this.ingAtributos;
+  salvarIngrediente() {
+    if (!this.idParam) {
+      this.cadastrarIngrediente(this.definirIngrediente());
+    } 
+    else {
+      this.atualizarIngrediente(this.definirIngrediente());
+    }
+  }
 
-    // console.log(ingrediente);
-
+  cadastrarIngrediente(ingrediente: Ingrediente) {
     this.ingredienteService.cadastrarIngrediente(ingrediente)
       .subscribe(resp => {
         this.toastr.success('Ingrediente cadastrado com sucesso');
         this.limpar();
-
-
       }, erro =>{
         this.toastr.error(erro.error.message);
       });
+  }
+
+  atualizarIngrediente(ingrediente: Ingrediente) {
+    ingrediente.id = +this.idParam;
+      this.ingredienteService.atualizarIngrediente(ingrediente)
+        .subscribe(resp => {
+          this.toastr.success('Ingrediente atualizado com sucesso');
+          this.limpar();
+        }, erro =>{
+          this.toastr.error(erro.error.message);
+        });
+  }
+
+  definirIngrediente(): Ingrediente {
+    let ingrediente = new Ingrediente();
+    ingrediente.nome = this.ingredienteForm.get('nome').value;
+    ingrediente.origem = this.ingredienteForm.get('origem').value;
+    ingrediente.tipo = this.ingredienteForm.get('tipo').value;
+    ingrediente.status = true;
+    ingrediente.criador = new Usuario();
+    ingrediente.criador.definirUsuario(this.criador);
+    ingrediente.ingredienteAtributo = this.ingAtributos;
+    return ingrediente;
   }
 
 }
