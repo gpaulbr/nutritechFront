@@ -97,6 +97,8 @@ export class GrupoListagemComponent implements OnInit {
       }
 
       redirecionarParaCadastro(index: number){
+        console.log("teste: " 
+        + this.grupos[index].id);
         this.router.navigate([`./grupo/${this.grupos[index].id}`]);
       }
 
