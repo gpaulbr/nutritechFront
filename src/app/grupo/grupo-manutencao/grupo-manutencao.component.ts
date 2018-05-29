@@ -27,7 +27,8 @@ export class GrupoManutencaoComponent implements OnInit {
     this.grupoForm = this.fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
         custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])],     
-        id:[null]
+        id:[null],
+        status:[true]
      });
 
     var idGrupo;
@@ -75,7 +76,6 @@ export class GrupoManutencaoComponent implements OnInit {
   }
 
   update () {
-    console.log(this.grupoForm.value)
     this.grupoService.editarGrupo(this.grupoForm.value).subscribe(
       response => {
         this.toastr.success('Grupo editado com sucesso');
