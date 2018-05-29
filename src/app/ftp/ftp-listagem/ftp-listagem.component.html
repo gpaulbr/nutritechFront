@@ -12,21 +12,33 @@
             </div>
 
             <!-- configurações ngx-datatable -->
-            <ngx-datatable *ngIf="receitaEmLista" #table class="material" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]='rows' [scrollbarH]="true">
+            <ngx-datatable *ngIf="receitaEmLista" #table class="material" 
+            [columns]="columns" 
+            [columnMode]="'force'" 
+            [headerHeight]="40" 
+            [footerHeight]="40" 
+            [rowHeight]="'auto'"
+            [rows]='rows' 
+            [scrollbarH]="true">
                 <!-- COLUNAS da tabela -->
 
-                <ngx-datatable-column name="Nome"></ngx-datatable-column>
-                <!--ficou no html por conta do scroll horizontal e pq precisava definir um width diferente para algumas colunas -->
-                <ngx-datatable-column name="Rendimento"></ngx-datatable-column>
-                <ngx-datatable-column name="Criadores" prop="criador"> </ngx-datatable-column>
-                <ngx-datatable-column name="Grupo de Receita" prop="grupoReceita.nome"></ngx-datatable-column>>
-                <ngx-datatable-column name="Tipo"></ngx-datatable-column>
-                <ngx-datatable-column name="Publicada"></ngx-datatable-column>
-                <ngx-datatable-column name="Status"></ngx-datatable-column>
-                <ngx-datatable-column name="Ações">
+                <ngx-datatable-column *ngIf="columns[0] != undefined" name="{{columns[0].name}}" prop="{{columns[0].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[1] != undefined" name="{{columns[1].name}}" prop="{{columns[1].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[2] != undefined" name="{{columns[2].name}}" prop="{{columns[2].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[3] != undefined" name="{{columns[3].name}}" prop="{{columns[3].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[4] != undefined" name="{{columns[4].name}}" prop="{{columns[4].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[5] != undefined" name="{{columns[5].name}}" prop="{{columns[5].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[6] != undefined" name="{{columns[6].name}}" prop="{{columns[6].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[7] != undefined" name="{{columns[7].name}}" prop="{{columns[7].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column 
+                        name="Ações"
+                        [sortable]="false"
+                        [canAutoResize]="false"
+                        [draggable]="false"
+                        [resizeable]="false">            
                     <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="redicionarAlterar(rowIndex)">edit</i>
-                        <i class="material-icons" (click)="excluirFtp(rowIndex)">delete</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="excluirFtp(rowIndex)">delete</i>
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>

@@ -7,6 +7,7 @@ import { TipoUsuario } from '../../usuario/tipo-usuario.enum';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
+import { Nota } from '../nota';
 
 
 @Component({
@@ -20,7 +21,17 @@ export class FtpListagemComponent implements OnInit {
   usuarioLogado: Usuario;
   receitaEmLista:boolean = false;
   rows = [];
-  columns = [ ];
+  columns = [
+    { name: 'Nome' },
+    { name: 'Nota', prop: 'nota.nota' },
+    { name: 'Rendimento' },
+    { name: 'Criadores', prop: 'criador' },
+    { name: 'Grupo de Receita', prop: 'grupoReceita.nome' },
+    { name: 'Tipo' },
+    { name: 'Publicada' },
+    { name: 'Status' },
+  ];
+
 
   @ViewChild(DatatableComponent) table: DatatableComponent; // erro no import
 
@@ -52,8 +63,20 @@ export class FtpListagemComponent implements OnInit {
           {
             p["status"] = 'Inativa';
           }
+
+          if(p["publicada"]){ // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
+            p["publicada"] = 'Publicada';
+          }else if(!p["publicada"])// para ficar mais familar para o usuário troco 'false' por 'Inativa' para a exibição
+          {
+            p["publicada"] = 'Não Publicada';
+          }
+
           if(p["tipo"]=="PUBLICO"){
             p["tipo"] = "PÚBLICO"; // inclui o acento para exibir para o usuário
+          }
+          if(p['nota'] == null) {
+            p['nota'] = new Nota(-1, null);
+            p['nota']['nota'] = 'Não Avaliada'
           }
 
           /* Comentado pq não tenho certeza se isso foi denifido nessa sprint if(this.usuarioLogado.tipo!='ADMIN' &&
@@ -75,30 +98,31 @@ export class FtpListagemComponent implements OnInit {
     });
     }
 
-        updateFilter(event) {
-          const val = event.target.value.toLowerCase();
-          let i = 0;
-          // filtra por todos os campos da tabela
-          const temp = this.receitas.filter(function(d) {
-            if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
-                  return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
-            if(d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val)
-                  return d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val;
-            if(d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val) // quando tiver mais de um criador tem que percorrer os criadores e pesquisar
-                return d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val;
-            if(d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
-                  return d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val;
-            if(d.status.toString().toLowerCase().indexOf(val) !== -1 || !val)
-                  return d.status.toString().toLowerCase().indexOf(val) !== -1 || !val;
-            if(d.grupoReceita.nome.toLowerCase().indexOf(val) !== -1 || !val)
-                  return d.grupoReceita.nome.toLowerCase().indexOf(val) !== -1 || !val;
+    updateFilter(event) {
+      const val = event.target.value.toLowerCase();
+      let i = 0;
+      // filtra por todos os campos da tabela
+      const temp = this.receitas.filter(function(d) {
+        if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
+              return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
+        if(d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val)
+              return d.rendimento.toString().toLowerCase().indexOf(val) !== -1 || !val;
+        if(d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val) // quando tiver mais de um criador tem que percorrer os criadores e pesquisar
+            return d.criadores[0].nome.toLowerCase().indexOf(val) !== -1 || !val;
+        if(d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
+              return d.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val;
+        if(d.status.toString().toLowerCase().indexOf(val) !== -1 || !val)
+              return d.status.toString().toLowerCase().indexOf(val) !== -1 || !val;
+        if(d.grupoReceita.nome.toLowerCase().indexOf(val) !== -1 || !val)
+              return d.grupoReceita.nome.toLowerCase().indexOf(val) !== -1 || !val;
 
-          });
-            this.rows = temp; // rows é o que possibilita o filtro na tabela
+      });
+        this.rows = temp; // rows é o que possibilita o filtro na tabela
 
-          // Whenever the filter changes, always go back to the first page
-          this.table.offset = 0;
-        }
+      // Whenever the filter changes, always go back to the first page
+      this.table.offset = 0;
+    }
+
   redicionarAlterar(index: Number) {
     this.router.navigate(['./ftp-cadastro/' + String(this.receitas[index as number].id)]);
   }
