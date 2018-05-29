@@ -4,6 +4,7 @@ import { Grupo } from '../grupo';
 import { GrupoService } from '../grupo.service';
 import { Response } from '@angular/http/src/static_response';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 @Component({
@@ -21,7 +22,8 @@ export class GrupoListagemComponent implements OnInit {
 
   constructor(
     private grupoService: GrupoService,
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService) {
    }
 
   ngOnInit() {
@@ -101,9 +103,9 @@ export class GrupoListagemComponent implements OnInit {
 
         this.grupoService.excluirGrupo(this.grupos[index].id)
           .subscribe(resp => {
-            console.log(resp)
+            this.toastr.success(resp.message);
           }, e => {
-            console.log(e)
+            this.toastr.error(e.error.message);
           })
       }
   }
