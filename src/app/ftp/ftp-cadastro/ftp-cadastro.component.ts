@@ -121,7 +121,7 @@ export class FTPCadastroComponent implements OnInit {
           this.dificuldadeComponent.alterarDificuldade(res.dificuldade);
 
           this.ftpForm.controls['nota'].setValue(res.nota);
-          (document.getElementById('inputNota') as HTMLInputElement).innerHTML = res.professor.nome;
+          //(document.getElementById('inputNota') as HTMLInputElement).innerHTML = res.professor.nome;
           console.log(res.nota);
 
           console.log(this.ftpForm.value);
@@ -194,6 +194,13 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   alterarNota(nota: Number) {
+    if (nota == -1) {
+      this.ftpForm.value.nota = null;
+      console.log("Nota foi limpa. TO DO: Limpar no backend a nota antiga.");
+      // Tem de limpar no backend a nota antiga quando publicar desta forma.
+      return;
+    }
+
     let novaNota: Nota;
     if (this.ftpForm.value.nota != null) {
       novaNota = this.ftpForm.value.nota as Nota;
