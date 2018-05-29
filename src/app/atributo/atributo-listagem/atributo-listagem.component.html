@@ -32,7 +32,7 @@
         <ngx-datatable-column name="Ações" [width]="10">
         <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
             <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
-            <!-- <i class="material-icons" (click)="redirecionarParaCadastro(rowIndex)">edit</i>-->
+            <i class="material-icons" style="cursor: pointer;" (click)="deletarAtributo(rowIndex)">delete</i>
         </ng-template>
     </ngx-datatable-column>
         </ngx-datatable>
