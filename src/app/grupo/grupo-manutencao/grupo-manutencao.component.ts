@@ -68,7 +68,7 @@ export class GrupoManutencaoComponent implements OnInit {
       response => {
         this.toastr.success('Grupo cadastrado com sucesso');
         this.limpar();
-        this.router.navigate(['./']);
+        this.router.navigate(['./grupo-listagem']);
       },
       error => {
         this.toastr.error('Erro no cadastro');
