@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AtributoService } from '../atributo.service';
 import { Response } from '@angular/http/src/static_response';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Grupo } from '../../grupo/grupo';
 import { id } from '@swimlane/ngx-datatable/release/utils';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({ //para conseguir modificar o css de ngx-datatable
   selector: 'app-atributo-listagem',
@@ -31,7 +32,7 @@ export class AtributoListagemComponent implements OnInit {
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   
-  constructor(private atributoService: AtributoService, private router: Router) {
+  constructor(private atributoService: AtributoService, private router: Router, private toastr: ToastrService) {
     this.atributos=[];
    }
 
@@ -108,7 +109,7 @@ updateFilter(event) {
 
       this.rows = temp;
 
-    // Independente se o filtro muda ou não, sempre irá voltar para a primeira página Whenever the filter changes, always go back to the first page
+    // Independente se o filtro muda ou não, sempre irá voltar para a primeira página
     this.table.offset = 0;
   }
 
@@ -119,7 +120,7 @@ updateFilter(event) {
   deletarAtributo(index: any) {
     console.log(this.atributos[index])
 
-    this.atributoService.excluirAtributo(this.atributos[index].id)
+    this.atributoService.deletarAtributo(this.atributos[index].id)
       .subscribe(resp => {
         console.log(resp)
       }, e => {
