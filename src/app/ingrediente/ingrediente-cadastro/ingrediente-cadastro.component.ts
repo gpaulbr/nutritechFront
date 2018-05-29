@@ -64,7 +64,7 @@ export class IngredienteCadastroComponent implements OnInit {
     }
   }
 
-  buscarAtributos(){
+  buscarAtributos() {
     this.ingAtributos = [];
      this.atributosService.buscarAtributos()
       .subscribe(a => {
@@ -106,6 +106,7 @@ export class IngredienteCadastroComponent implements OnInit {
     for(let i = 0; i < atrs.length; i++) {
       atrs[i]['value'] = 0;
     }
+    this.buscarAtributos();
     //window.location.reload();
   }
 
