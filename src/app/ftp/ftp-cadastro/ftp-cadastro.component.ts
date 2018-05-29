@@ -12,6 +12,7 @@ import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 import {ToastrService} from 'ngx-toastr';
 import {GrupoReceita} from '../../ingrediente/grupo-receita';
 import { Imagem } from '../imagem';
+import { Nota } from '../nota';
 import {FtpIntegrantesComponent} from '../ftp-integrantes/ftp-integrantes.component';
 import {FtpModoPreparoComponent} from '../ftp-modo-preparo/ftp-modo-preparo.component';
 import {FtpSelecaoIngredientesComponent} from '../ftp-selecao-ingredientes/ftp-selecao-ingredientes.component';
@@ -118,9 +119,10 @@ export class FTPCadastroComponent implements OnInit {
           this.ftpForm.controls['dificuldade'].setValue(res.dificuldade); // ok
           this.dificuldadeComponent.alterarDificuldade(res.dificuldade);
 
-         
-
           this.ftpForm.controls['nota'].setValue(res.nota);
+          console.log(res.nota);
+
+          console.log(this.ftpForm.value);
         });
     }
   }
@@ -130,6 +132,10 @@ export class FTPCadastroComponent implements OnInit {
     if (this.usuarioLogado == null) {
       this.router.navigate(['./']);
       return;
+    }
+
+    if (!this.campoPodeSerAlterado) {
+      this.desabilitarCampos();
     }
   }
 
@@ -185,9 +191,33 @@ export class FTPCadastroComponent implements OnInit {
     }
   }
 
+  alterarNota(nota: Number) {
+    let novaNota: Nota;
+    if (this.ftpForm.value.nota != null) {
+      novaNota = this.ftpForm.value.nota as Nota;
+    } else {
+      novaNota = new Nota(nota, this.usuarioLogado);
+    }
+    let avaliador: Usuario;
+    this.usuarioService.buscarUsuario(this.usuarioLogado.id).subscribe(data => {
+      delete data.senha;
+      novaNota.avaliador = data;
+      novaNota.nota = nota;
+      this.ftpForm.controls.nota.setValue(novaNota);
+      console.log(novaNota);
+    });
+  }
+
   /*
    * Verificações
    */
+
+  UsuarioEhAluno(): Boolean {
+    if (this.usuarioLogado) {
+      return this.usuarioLogado.tipo == TipoUsuario.USER;
+    }
+    return false;
+  }
 
   UsuarioEhAdmin(): Boolean {
     if (this.usuarioLogado) {
@@ -204,7 +234,7 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   UsuarioEhProfessorDisciplina(): Boolean {
-    if (this.usuarioLogado) {
+    if (this.usuarioLogado && this.ftpForm.value.professor != undefined) {
       return this.usuarioLogado.id == this.ftpForm.value.professor.id;
     }
     return false;
@@ -227,23 +257,50 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   campoPodeSerAlterado(): Boolean {
-    if(this.receitaEstaPublicada()) {
-      return false;
-    }
-    return true; // é mais complicado que isso, mas temporariamente fica assim
+    let notaPublicada = this.receitaFoiAvaliada();
+    let ehAdmin = this.UsuarioEhAdmin();
+    let ehProfDisciplina = this.UsuarioEhProfessorDisciplina();
+    let ehAluno = this.UsuarioEhAluno();
+    
+    return (ehAdmin || ehProfDisciplina || !(notaPublicada && ehAluno)); // é mais complicado que isso, mas temporariamente fica assim
   }
 
   podeAlterarNota(): Boolean {
-    return (this.UsuarioEhAdmin() || this.UsuarioEhProfessorDisciplina()); // é mais complicado que isso, mas temporariamente fica assim
+    console.log('Nota é ' + this.ftpForm.value.nota); 
+    let ehAdmin = this.UsuarioEhAdmin();
+    let ehProfDisciplina = this.UsuarioEhProfessorDisciplina();
+
+    return (ehAdmin || ehProfDisciplina); // é mais complicado que isso, mas temporariamente fica assim
   }
 
   receitaEstaPublicada(): Boolean {
-    return (this.ftpForm.value.publicada == true)
+    return (this.ftpForm.value.publicada == true);
+  }
+
+  receitaFoiAvaliada(): Boolean {
+    return (this.ftpForm.value.nota != null);
   }
 
   /*
    * Controle de Estado dos Campos do Formulário
    */
+
+   desabilitarCampos() {
+    this.ftpForm.controls['nome'].disable;
+    this.ftpForm.controls['publicada'].disable;
+    this.ftpForm.controls['passos'].disable;
+    this.ftpForm.controls['rendimento'].disable;
+    this.ftpForm.controls['tempo'].disable;
+    this.ftpForm.controls['peso'].disable;
+    this.ftpForm.controls['imagem'].disable;
+    this.ftpForm.controls['tipo'].disable;
+    this.ftpForm.controls['criadores'].disable;
+    this.ftpForm.controls['receitaIngrediente'].disable;
+    this.ftpForm.controls['grupoReceita'].disable;
+    this.ftpForm.controls['professor'].disable;
+    this.ftpForm.controls['datahora'].disable;
+    this.ftpForm.controls['dificuldade'].disable;
+   }
 
   dirtyAll() { // não encontrei forma de iterar sobre controls.
     this.ftpForm.controls['id'].markAsDirty();
@@ -286,12 +343,12 @@ export class FTPCadastroComponent implements OnInit {
   limparDadosInvalidos(ftp: Ftp) {
     ftp.criadores.forEach(c => {
       delete c['valid'];
-      delete c.senha;
-      console.log(c);
     });
     delete ftp.professor['valid'];
-    delete ftp.professor.senha;
-    console.log(ftp.professor)
+
+    if (ftp.nota != undefined) {
+      delete ftp.nota.avaliador['valid'];
+    }
 
     ftp.receitaIngrediente.forEach(ri => {
       delete ri.ingrediente.criador['valid'];
@@ -322,11 +379,13 @@ export class FTPCadastroComponent implements OnInit {
     this.limparDadosInvalidos(ftp);
     ftp.publicada = publicada // status de publicada no banco
     ftp.datahora = new Date();
+
     this.dirtyAll();
 
     if (ftp.id != null) {
       this.ftpService.atualizarFTP(ftp).subscribe( resp => {
         this.toastr.success('Ficha Técnica de Preparo atualizada com sucesso!');
+        this.limpar();
         this.router.navigate(['./ftp-listagem']);
       }, error => {
         this.toastr.error(error.error);

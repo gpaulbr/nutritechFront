@@ -43,7 +43,7 @@ import { FtpSelecaoIngredientesComponent } from './ftp/ftp-selecao-ingredientes/
 import { FtpImageFileUploadComponent } from './ftp/ftp-image-file-upload/ftp-image-file-upload.component';
 import { OnlyNumber } from './shared/directives/only-number.directive';
 import { FtpSelecaoProfessorComponent } from './ftp/ftp-selecao-professor/ftp-selecao-professor.component';
-import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/ftp-selecao-gruporeceita.component'
+import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/ftp-selecao-gruporeceita.component';
 
 
 @NgModule({
