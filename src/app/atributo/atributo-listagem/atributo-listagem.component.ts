@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AtributoService } from '../atributo.service';
 import { Response } from '@angular/http/src/static_response';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Grupo } from '../../grupo/grupo';
 import { id } from '@swimlane/ngx-datatable/release/utils';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({ //para conseguir modificar o css de ngx-datatable
   selector: 'app-atributo-listagem',
@@ -31,7 +32,7 @@ export class AtributoListagemComponent implements OnInit {
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
   
-  constructor(private atributoService: AtributoService, private router: Router) {
+  constructor(private atributoService: AtributoService, private router: Router, private toastr: ToastrService) {
     this.atributos=[];
    }
 
@@ -51,15 +52,15 @@ export class AtributoListagemComponent implements OnInit {
       this.columns = [
         { name: 'Nome' },
         { name: 'Unidade'},
-        { name: "Multiplicador" },
-        { name: "Obrigatorio"},
+      
+        
         { name: "Ações" }
         //ícones de ação vão no html
       ];
   }else{ //se for prof ou usuário exibe sem as ações
       this.columns = [
         { name: 'Nome' },
-        { name: "Multiplicador" },
+     
         { name: "Obrigatorio"}
         //ícones de ação vão no html
       ];
@@ -91,6 +92,7 @@ export class AtributoListagemComponent implements OnInit {
  
 updateFilter(event) {
     const val = event.target.value.toLowerCase();
+
     // filtra por todos os campos da tabela
     const temp = this.atributos.filter(function(d) {
       if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
@@ -115,6 +117,18 @@ updateFilter(event) {
     this.table.offset = 0;
   }
 
+  redirecionarParaCadastro(index: number) {
+    this.router.navigate([`./atributos/${this.atributos[index].id}`]);
+  }
+
+  deletarAtributo(index: any) {
+    console.log(this.atributos[index])
+
+    this.atributoService.deletarAtributo(this.atributos[index].id)
+      .subscribe(resp => {
+        console.log(resp)
+      }, e => {
+        console.log(e)
+      })
+  }
 }
-
-

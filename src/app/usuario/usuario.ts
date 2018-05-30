@@ -1,4 +1,5 @@
 import { TipoUsuario } from "./tipo-usuario.enum";
+import { UsuarioLogadoDto } from "./usuario-logado-dto";
 
 export class Usuario {
 
@@ -10,4 +11,10 @@ export class Usuario {
     public cpf: string;
     public status: boolean;
     public tipo: TipoUsuario;    
+
+    public definirUsuario(usuarioLogado: UsuarioLogadoDto) {
+        this.id = usuarioLogado.id;
+        this.nome = usuarioLogado.nome;
+    }
+
 }
