@@ -1,14 +1,14 @@
 <nav *ngIf="estaLogado()"  class="navbar navbar-default">
     <div class="container-fluid">   
         <div >
-        <a href="./"><img id="logo" *ngIf= "normal" src="assets/logo.png"/></a>
+        <a [routerLink]="['/ftp-listagem']"><img id="logo" *ngIf= "normal" src="assets/logo.png"/></a>
         </div>
         <div>
-        <a href="./"><img id="logoMobile" *ngIf="mobile" src="assets/logo_mobile.png"/></a>
+        <a [routerLink]="['/ftp-listagem']"><img id="logoMobile" *ngIf="mobile" src="assets/logo_mobile.png"/></a>
         </div>
-    <div class="dropdown">
-            <button class="dropbtn">Cadastro</button>
-            <div class="dropdown-content">
+    <div class="dropdown menu">
+            <button class="dropbtn ">Cadastro</button>
+            <div class="dropdown-content menu2">
                 <a  alt="Ingredientes" [routerLink]="['/cadastroIngrediente']">Ingredientes</a>
                 <a *ngIf="admin" alt="Grupos" [routerLink]="['/grupo']">Grupos</a>
                 <a *ngIf="admin" alt="Atributos" [routerLink]="['/atributo']">Atributos</a>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn menu2">Consulta</button>
+            <button class="dropbtn ">Consulta</button>
             <div class="dropdown-content menu2" >
                 <a alt="Consulta de Ingredientes" [routerLink]="['/ingrediente-listagem']">Ingredientes</a>
                 <a alt="Consulta de Grupos" [routerLink]="['/grupo-listagem']">Grupos</a>
@@ -27,7 +27,7 @@
             </div>
         </div>
             <div class="dropdown" id="">
-                <button class="dropbtn circle"><p id="usernickname"> {{ nickname }} </p></button>
+                <button class="dropbtn circle "><p id="usernickname"> {{ nickname }} </p></button>
                 <div class="dropdown-content" id="sair-content">
                     <a alt="Sair" (click)="logout()" [routerLink]="['']" >Sair</a>
                 </div>
