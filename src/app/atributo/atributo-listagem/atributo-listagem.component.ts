@@ -95,10 +95,14 @@ updateFilter(event) {
     const temp = this.atributos.filter(function(d) {
       if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
            return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(d.id.toString().toLowerCase().indexOf(val) !== -1 || !val)
+           return d.id.toString().toLowerCase().indexOf(val) !== -1 || !val;
       else if(d.unidade.toLowerCase().indexOf(val) !== -1 || !val)
            return d.unidade.toLowerCase().indexOf(val) !== -1 || !val;
      //else if(d.multiplicador.toLowerCase().indexOf(val) !== -1 || !val)
            //return d.multiplicador.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val)
+           return d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val;
       else if(d.obrigatorio.toString().indexOf(val) !== -1 || !val)
            return d.obrigatorio.toString().indexOf(val) !== -1 || !val;
       // fim do filtro
