@@ -118,7 +118,7 @@ updateFilter(event) {
   }
 
   redirecionarParaCadastro(index: number) {
-    this.router.navigate([`./atributos/${this.atributos[index].id}`]);
+    this.router.navigate([`./atributo/${this.atributos[index].id}`]);
   }
 
   deletarAtributo(index: any) {

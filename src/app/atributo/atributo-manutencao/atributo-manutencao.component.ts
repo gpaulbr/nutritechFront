@@ -18,8 +18,6 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
   atributoForm: FormGroup;
   usuarioLogado: UsuarioLogadoDto;
   admin: Boolean = false;
-  idAtributo: string;
-  id = Number;
 
   obrigatorio = [{
     valor: true,
@@ -48,23 +46,20 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
       });
 
       //this.buscarAtributos()
-      this.route.params.subscribe( params => this.idAtributo = params.id);
+      let idAtributo;
+      this.route.params.subscribe( params => idAtributo = params.id);
   
-      /*if (this.idAtributo) {
-        this.inicializarAtributo();
-      }*/
+      if (idAtributo != null) {
+        this.atributoService.obterAtributo(idAtributo).subscribe(response => {
+          this.atributoForm.controls['id'].setValue(response.id);
+          this.atributoForm.controls['nome'].setValue(response.nome);
+          this.atributoForm.controls['ordem'].setValue(response.ordem);
+          this.atributoForm.controls['multiplicador'].setValue(response.multiplicador),
+          this.atributoForm.controls['unidade'].setValue(response.unidade),
+          this.atributoForm.controls['obrigatorio'].setValue(response.obrigatorio);        
+        });
+      }
     }
-
-     /* inicializarAtributo() {
-        this.atributoService.obterAtributo(this.idAtributo)
-      .subscribe(res => {       
-        this.atributoForm.controls['nome'].setValue(res.nome);
-        this.atributoForm.controls['ordem'].setValue(res.ordem);
-        this.atributoForm.controls['multiplicador'].setValue(res.multiplicador),
-        this.atributoForm.controls['unidade'].setValue(res.unidade),
-        this.atributoForm.controls['obrigatorio'].setValue(res.obrigatorio);
-       }
-    });*/
 
     limpar(){
       this.atributoForm;    
@@ -113,7 +108,6 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
       });
   }
   update () {
-    this.atributoForm.value.id = this.id;
     this.atributoService.editarAtributo(this.atributoForm.value).subscribe(
       response => {
         this.toastr.success('Atributo editado com sucesso');
@@ -126,12 +120,10 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
   }
 
   salvar() {
-    if (this.id === undefined) {
-      // cadastrar
-      this.cadastrar();
+    if (this.atributoForm.value.id != null) {
+      this.update();      
     } else {
-      // atualizar
-      this.update();
+      this.cadastrar();
     }
     
   }
