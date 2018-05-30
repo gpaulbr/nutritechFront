@@ -20,7 +20,7 @@ export class AtributoListagemComponent implements OnInit {
   atributos: Atributo[];
   grupos: Grupo[];
   admin: boolean;
-  atributoEmLista:boolean = false;
+  atributoEmLista: boolean = false;
   rows = [];
   columns = [
     { name: 'Nome' },
@@ -31,87 +31,95 @@ export class AtributoListagemComponent implements OnInit {
 
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
-  
-  constructor(private atributoService: AtributoService, private router: Router, private toastr: ToastrService) {
-    this.atributos=[];
-   }
+
+  constructor(
+    private atributoService: AtributoService,
+    private router: Router,
+    private toastr: ToastrService) {
+    this.atributos = [];
+  }
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {
+    if (usuarioLogado == null) {
       this.router.navigate(['./']);
-    }else{
-      if(usuarioLogado.tipo == "ADMIN"){  
+    } else {
+      if (usuarioLogado.tipo == "ADMIN") {
         this.admin = true;
       } else {
         this.admin = false;
       }
     }
 
-    if(this.admin){//se for admin, exibe com as ações
+    if (this.admin) {//se for admin, exibe com as ações
       this.columns = [
         { name: 'Nome' },
-        { name: 'Unidade'},
-      
-        
+        { name: 'Unidade' },
+
+
         { name: "Ações" }
         //ícones de ação vão no html
       ];
-  }else{ //se for prof ou usuário exibe sem as ações
+    } else { //se for prof ou usuário exibe sem as ações
       this.columns = [
         { name: 'Nome' },
-     
-        { name: "Obrigatorio"}
+
+        { name: "Obrigatorio" }
         //ícones de ação vão no html
       ];
-   }
+    }
+    
+    this.buscarAtributos()
+  }
 
-
-
+  buscarAtributos() {
     this.atributoService.buscarAtributos().subscribe(
       atributos => {
         this.atributos = atributos['Atributos'];
-        var listaA:Atributo [] = [];
+        var listaA: Atributo[] = [];
         atributos['Atributos'].forEach(p => {
-          if(p["obrigatorio"]){ // Troca o boolean em caso de true para a string Sim (Na coluna Obrigatório irá aparecer a string)
+          if (p["obrigatorio"]) { // Troca o boolean em caso de true para a string Sim (Na coluna Obrigatório irá aparecer a string)
             p["obrigatorio"] = 'Sim';
-          }else if(!p["obrigatorio"]) // Troca o boolean em caso de false para a String Não (Na coluna Obrigatório irá aparecer a string)
+          } else if (!p["obrigatorio"]) // Troca o boolean em caso de false para a String Não (Na coluna Obrigatório irá aparecer a string)
           {
             p["obrigatorio"] = 'Não';
           }
+
+          if(p.status) {
             listaA.push(p); //inlcui na lista
-          })
-          if(listaA.length!=0){
-            this.rows = listaA;
-            this.atributoEmLista = true; //Para poder exibir mensagem que não tem nenhum atributo cadastrado
-           } else
-            this.atributoEmLista = false;
-}); 
-     console.log (this.atributos);
-}
- 
-updateFilter(event) {
+          }
+        })
+        if (listaA.length != 0) {
+          this.rows = listaA;
+          this.atributoEmLista = true; //Para poder exibir mensagem que não tem nenhum atributo cadastrado
+        } else
+          this.atributoEmLista = false;
+      });
+    console.log(this.atributos);
+  }
+
+  updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filtra por todos os campos da tabela
-    const temp = this.atributos.filter(function(d) {
-      if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
-           return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
-      else if(d.id.toString().toLowerCase().indexOf(val) !== -1 || !val)
-           return d.id.toString().toLowerCase().indexOf(val) !== -1 || !val;
-      else if(d.unidade.toLowerCase().indexOf(val) !== -1 || !val)
-           return d.unidade.toLowerCase().indexOf(val) !== -1 || !val;
-     //else if(d.multiplicador.toLowerCase().indexOf(val) !== -1 || !val)
-           //return d.multiplicador.toLowerCase().indexOf(val) !== -1 || !val;
-      else if(d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val)
-           return d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val;
-      else if(d.obrigatorio.toString().toLowerCase().indexOf(val) !== -1 || !val)
-           return d.obrigatorio.toString().toLowerCase().indexOf(val) !== -1 || !val;
+    const temp = this.atributos.filter(function (d) {
+      if (d.nome.toLowerCase().indexOf(val) !== -1 || !val)
+        return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
+      else if (d.id.toString().toLowerCase().indexOf(val) !== -1 || !val)
+        return d.id.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      else if (d.unidade.toLowerCase().indexOf(val) !== -1 || !val)
+        return d.unidade.toLowerCase().indexOf(val) !== -1 || !val;
+      //else if(d.multiplicador.toLowerCase().indexOf(val) !== -1 || !val)
+      //return d.multiplicador.toLowerCase().indexOf(val) !== -1 || !val;
+      else if (d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val)
+        return d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      else if (d.obrigatorio.toString().toLowerCase().indexOf(val) !== -1 || !val)
+        return d.obrigatorio.toString().toLowerCase().indexOf(val) !== -1 || !val;
       // fim do filtro
       "ERRO"
     });
 
-      this.rows = temp;
+    this.rows = temp;
 
     // Independente se o filtro muda ou não, sempre irá voltar para a primeira página
     this.table.offset = 0;
@@ -122,24 +130,13 @@ updateFilter(event) {
   }
 
   deletarAtributo(index: any) {
-    console.log(this.atributos[index])
-
+    console.log("id" + this.atributos[index].id);
     this.atributoService.excluirAtributo(this.atributos[index].id)
       .subscribe(resp => {
-        console.log(resp)
+        this.toastr.success(resp.message)
+        this.buscarAtributos()
       }, e => {
-        console.log(e)
+        this.toastr.error(e.error.message)
       })
   }
-
-  /*deletarAtributo(index: any) {
-    console.log(this.atributos[index])
-
-    this.atributoService.deletarAtributo(this.atributos[index].id)
-      .subscribe(resp => {
-        console.log(resp)
-      }, e => {
-        console.log(e)
-      })
-  }*/
 }
