@@ -121,7 +121,7 @@ updateFilter(event) {
     this.router.navigate([`./atributos/${this.atributos[index].id}`]);
   }
 
-  deletarAtributo(index: any) {
+  /*deletarAtributo(index: any) {
     console.log(this.atributos[index])
 
     this.atributoService.deletarAtributo(this.atributos[index].id)
@@ -130,5 +130,5 @@ updateFilter(event) {
       }, e => {
         console.log(e)
       })
-  }
+  }*/
 }

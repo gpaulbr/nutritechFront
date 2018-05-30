@@ -47,15 +47,15 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
         id: [null]
       });
 
-      this.buscarAtributos()
+      //this.buscarAtributos()
       this.route.params.subscribe( params => this.idAtributo = params.id);
   
-      if (this.idAtributo) {
+      /*if (this.idAtributo) {
         this.inicializarAtributo();
-      }
+      }*/
     }
 
-      inicializarAtributo() {
+     /* inicializarAtributo() {
         this.atributoService.obterAtributo(this.idAtributo)
       .subscribe(res => {       
         this.atributoForm.controls['nome'].setValue(res.nome);
@@ -64,7 +64,7 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
         this.atributoForm.controls['unidade'].setValue(res.unidade),
         this.atributoForm.controls['obrigatorio'].setValue(res.obrigatorio);
        }
-    });
+    });*/
 
     limpar(){
       this.atributoForm;    
