@@ -29,7 +29,7 @@
         <ngx-datatable-column name="Unidade" [width]="10"></ngx-datatable-column>
         <ngx-datatable-column name="Multiplicador" [width]="10" prop="multiplicador"> </ngx-datatable-column>
         <ngx-datatable-column name="Obrigatório" [width]="10" prop="obrigatorio"></ngx-datatable-column>>
-        <ngx-datatable-column name="Ações" [width]="10">
+        <ngx-datatable-column *ngIf="admin" name="Ações" [width]="10">
         <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
             <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
             <i class="material-icons" style="cursor: pointer;" (click)="deletarAtributo(rowIndex)">delete</i>
