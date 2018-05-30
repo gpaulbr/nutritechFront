@@ -105,8 +105,8 @@ updateFilter(event) {
            //return d.multiplicador.toLowerCase().indexOf(val) !== -1 || !val;
       else if(d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val)
            return d.multiplicador.toString().toLowerCase().indexOf(val) !== -1 || !val;
-      else if(d.obrigatorio.toString().indexOf(val) !== -1 || !val)
-           return d.obrigatorio.toString().indexOf(val) !== -1 || !val;
+      else if(d.obrigatorio.toString().toLowerCase().indexOf(val) !== -1 || !val)
+           return d.obrigatorio.toString().toLowerCase().indexOf(val) !== -1 || !val;
       // fim do filtro
       "ERRO"
     });
