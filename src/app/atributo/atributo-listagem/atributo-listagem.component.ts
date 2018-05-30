@@ -121,6 +121,17 @@ updateFilter(event) {
     this.router.navigate([`./atributos/${this.atributos[index].id}`]);
   }
 
+  deletarAtributo(index: any) {
+    console.log(this.atributos[index])
+
+    this.atributoService.excluirAtributo(this.atributos[index].id)
+      .subscribe(resp => {
+        console.log(resp)
+      }, e => {
+        console.log(e)
+      })
+  }
+
   /*deletarAtributo(index: any) {
     console.log(this.atributos[index])
 
