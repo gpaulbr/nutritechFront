@@ -16,7 +16,7 @@ export class GrupoListagemComponent implements OnInit {
 
   grupos: Grupo[];
   rows = [];
-  admin:boolean;
+  admin: boolean;
   columns = [];
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
@@ -24,21 +24,21 @@ export class GrupoListagemComponent implements OnInit {
     private grupoService: GrupoService,
     private router: Router,
     private toastr: ToastrService) {
-   }
+  }
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {
+    if (usuarioLogado == null) {
       this.router.navigate(['./']);
-    }else{
-      if(usuarioLogado.tipo == "ADMIN"){  
+    } else {
+      if (usuarioLogado.tipo == "ADMIN") {
         this.admin = true;
       } else {
         this.admin = false;
       }
     }
 
-  if(this.admin){//se for admin, exibe com as ações
+    if (this.admin) {//se for admin, exibe com as ações
       this.columns = [
         { prop: 'id', name: 'ID' },
         { name: 'Nome' },
@@ -46,17 +46,19 @@ export class GrupoListagemComponent implements OnInit {
         { name: "Ações" }
         //ícones de ação vão no html
       ];
-  }else{//se for prof ou usuário exibe sem as ações
+    } else {//se for prof ou usuário exibe sem as ações
       this.columns = [
         { prop: 'id', name: 'ID' },
         { name: 'Nome' },
         { prop: 'custo', name: "Valor/Porção (g)" }
         //ícones de ação vão no html
       ];
-   }
-                  
-  
+    }
 
+    this.listGrupos()
+  }
+
+  listGrupos(){
     this.grupoService.buscarGrupos().subscribe(
       response => {
         this.grupos = response['Grupos'];
@@ -64,52 +66,51 @@ export class GrupoListagemComponent implements OnInit {
         let lista = []
 
         response['Grupos'].forEach(p => {
-          if(p.status) {
+          if (p.status) {
             lista.push(p)
-          }            
+          }
         })
-        
+
         this.rows = lista;
-        });
-
-        console.log (this.grupos);
-      }
-
-      updateFilter(event) {
-        const val = event.target.value.toLowerCase();
-    
-        // filtra por todos os campos da tabela
-        const temp = this.grupos.filter(function(d) {
-          if(d.nome.toLowerCase().indexOf(val) !== -1 || !val)
-                return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
-          else if(d.id.toString().indexOf(val) !== -1 || !val)
-                return d.id.toString().toLowerCase().indexOf(val) !== -1 || !val;
-          else if(d.custo.toString().toLowerCase().indexOf(val) !== -1 || !val)
-                return d.custo.toString().toLowerCase().indexOf(val) !== -1 || !val;
-          // fim do filtro
-          "ERRO"
-        });
-    
-          this.rows = temp;
-    
-        // Whenever the filter changes, always go back to the first page
-        this.table.offset = 0;
-      }
-
-      redirecionarParaCadastro(index: number){
-        console.log("teste: " 
-        + this.grupos[index].id);
-        this.router.navigate([`./grupo/${this.grupos[index].id}`]);
-      }
-
-      deletarGrupo(index: any) {
-        console.log(this.grupos[index])
-
-        this.grupoService.excluirGrupo(this.grupos[index].id)
-          .subscribe(resp => {
-            this.toastr.success(resp.message);
-          }, e => {
-            this.toastr.error(e.error.message);
-          })
-      }
+      });
   }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filtra por todos os campos da tabela
+    const temp = this.grupos.filter(function (d) {
+      if (d.nome.toLowerCase().indexOf(val) !== -1 || !val)
+        return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
+      else if (d.id.toString().indexOf(val) !== -1 || !val)
+        return d.id.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      else if (d.custo.toString().toLowerCase().indexOf(val) !== -1 || !val)
+        return d.custo.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      // fim do filtro
+      "ERRO"
+    });
+
+    this.rows = temp;
+
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
+
+  redirecionarParaCadastro(index: number) {
+    console.log("teste: "
+      + this.grupos[index].id);
+    this.router.navigate([`./grupo/${this.grupos[index].id}`]);
+  }
+
+  deletarGrupo(index: any) {
+    console.log(this.grupos[index])
+
+    this.grupoService.excluirGrupo(this.grupos[index].id)
+      .subscribe(resp => {
+        this.toastr.success(resp.message);
+        this.listGrupos()
+      }, e => {
+        this.toastr.error(e.error.message);
+      })
+  }
+}
