@@ -76,7 +76,6 @@ export class GrupoManutencaoComponent implements OnInit {
   }
 
   update () {
-    console.log(this.grupoForm.value)
     this.grupoService.editarGrupo(this.grupoForm.value).subscribe(
       response => {
         this.toastr.success('Grupo atualizado com sucesso');
