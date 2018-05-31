@@ -66,9 +66,7 @@ export class GrupoListagemComponent implements OnInit {
         let lista = []
 
         response['Grupos'].forEach(p => {
-          if (p.status) {
-            lista.push(p)
-          }
+          lista.push(p)
         })
 
         this.rows = lista;

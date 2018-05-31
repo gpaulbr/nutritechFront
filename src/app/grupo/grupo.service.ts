@@ -21,7 +21,7 @@ export class GrupoService {
   }
 
   buscarGrupos(): Observable<Grupo[]>{
-    return this.http.get<Grupo[]>(this.url);
+    return this.http.get<Grupo[]>(`${this.url}/ativos`);
   }
 
   obterGrupo(id: string): Observable<Grupo>{
