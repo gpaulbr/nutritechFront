@@ -27,7 +27,8 @@ export class GrupoManutencaoComponent implements OnInit {
     this.grupoForm = this.fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
         custo: [null, Validators.compose([Validators.required, Validators.min(0), Validators.max(32768)])],     
-        id:[null]
+        id:[null],
+        status:[true]
      });
 
     var idGrupo;
@@ -67,7 +68,7 @@ export class GrupoManutencaoComponent implements OnInit {
       response => {
         this.toastr.success('Grupo cadastrado com sucesso');
         this.limpar();
-        this.router.navigate(['./']);
+        this.router.navigate(['./grupo-listagem']);
       },
       error => {
         this.toastr.error('Erro no cadastro');
@@ -78,7 +79,7 @@ export class GrupoManutencaoComponent implements OnInit {
     console.log(this.grupoForm.value)
     this.grupoService.editarGrupo(this.grupoForm.value).subscribe(
       response => {
-        this.toastr.success('Grupo editado com sucesso');
+        this.toastr.success('Grupo atualizado com sucesso');
         this.limpar();
         this.router.navigate(['./grupo-listagem']);
       },
