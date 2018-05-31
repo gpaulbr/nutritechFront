@@ -95,7 +95,7 @@ export class GrupoManutencaoComponent implements OnInit {
   update () {
     this.grupoService.editarGrupo(this.grupoForm.value).subscribe(
       response => {
-        this.toastr.success('Grupo editado com sucesso');
+        this.toastr.success('Grupo atualizado com sucesso');
         this.limpar();
         this.router.navigate(['./grupo-listagem']);
       },

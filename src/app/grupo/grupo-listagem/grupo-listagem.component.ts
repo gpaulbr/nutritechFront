@@ -110,5 +110,6 @@ export class GrupoListagemComponent implements OnInit {
       }, e => {
         this.toastr.error(e.error.message);
       })
+      window.location.reload();/* só pra atualizar após deletar precisamos */
   }
 }
