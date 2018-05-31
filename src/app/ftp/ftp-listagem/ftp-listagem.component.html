@@ -2,8 +2,8 @@
 
     <div class="panel panel-default panel-container">
         <div class="panel-heading ">
-            <h2 class="titulo_lista" *ngIf="this.usuarioLogado.tipo=='PROFESSOR' || this.usuarioLogado.tipo=='ADMIN'">Lista de Receitas</h2>
-            <h2 class="titulo_lista" *ngIf="this.usuarioLogado.tipo=='USER'">Minhas Receitas</h2>
+            <h2 class="titulo_lista" *ngIf="usuarioEhAdmin() || usuarioEhProfessor()">Lista de Receitas</h2>
+            <h2 class="titulo_lista" *ngIf="usuarioEhAluno()">Minhas Receitas</h2>
         </div>
         <div class="panel-body">
             <div id="buscar" class="row" *ngIf="receitaEmLista">
@@ -29,7 +29,12 @@
                 <ngx-datatable-column *ngIf="columns[4] != undefined" name="{{columns[4].name}}" prop="{{columns[4].prop}}"></ngx-datatable-column>
                 <ngx-datatable-column *ngIf="columns[5] != undefined" name="{{columns[5].name}}" prop="{{columns[5].prop}}"></ngx-datatable-column>
                 <ngx-datatable-column *ngIf="columns[6] != undefined" name="{{columns[6].name}}" prop="{{columns[6].prop}}"></ngx-datatable-column>
-                <ngx-datatable-column *ngIf="columns[7] != undefined" name="{{columns[7].name}}" prop="{{columns[7].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[7] != undefined" name="{{columns[7].name}}" prop="{{columns[7].prop}}">
+                    <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                        <p *ngIf="receitaAtiva(rowIndex)">Ativo</p>
+                        <p *ngIf="!receitaAtiva(rowIndex)">Inativo</p>
+                    </ng-template>
+                </ngx-datatable-column>
                 <ngx-datatable-column 
                         name="Ações"
                         [sortable]="false"
@@ -38,7 +43,10 @@
                         [resizeable]="false">            
                     <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="redicionarAlterar(rowIndex)">edit</i>
-                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="excluirFtp(rowIndex)">delete</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarRotulo(rowIndex)">grid_on</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarPDF(rowIndex)">picture_as_pdf</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="receitaAtiva(rowIndex)" (click)="verificarAntesDeExcluir(rowIndex)">delete</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="!receitaAtiva(rowIndex)"(click)="ativarReceita(rowIndex)">autorenew</i>
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>

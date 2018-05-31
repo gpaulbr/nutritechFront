@@ -23,6 +23,10 @@ export class FtpService {
     return this.http.get<Ftp[]>(this.url);
   }
 
+  buscarAtivas(): Observable<Ftp[]>{
+    return this.http.get<Ftp[]>(this.url + '/ativas');
+  }
+
   obterFTP(id: string): Observable<Ftp>{
     return this.http.get<Ftp>(`${NUTRITECH_API}/receitas/${id}/`);
   }
@@ -30,7 +34,6 @@ export class FtpService {
   excluirFTP(id: number): Observable<Ftp>{
     return this.http.delete<Ftp>(`${NUTRITECH_API}/receitas/${id}`)
   }
-
 
   getDateTimeNow(): Observable<Date> {
     return this.http.get<Date>(this.url + '/now');

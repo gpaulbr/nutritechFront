@@ -29,7 +29,7 @@ export class FtpListagemComponent implements OnInit {
     { name: 'Grupo de Receita', prop: 'grupoReceita.nome' },
     { name: 'Tipo' },
     { name: 'Publicada' },
-    { name: 'Status' },
+    { name: 'Status', prop: 'status' },
   ];
 
 
@@ -57,12 +57,12 @@ export class FtpListagemComponent implements OnInit {
             stringCriadores += u.nome + "<br>"; // concatena cada nome de criador de receita
           });
           p['criador'] = stringCriadores;
-          if(p["status"]){ // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
-            p["status"] = 'Ativa';
-          }else if(!p["status"])// para ficar mais familar para o usuário troco 'false' por 'Inativa' para a exibição
-          {
-            p["status"] = 'Inativa';
-          }
+          // if(p["status"]){ // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
+          //   p["status"] = 'Ativa';
+          // }else if(!p["status"])// para ficar mais familar para o usuário troco 'false' por 'Inativa' para a exibição
+          // {
+          //   p["status"] = 'Inativa';
+          // }
 
           if(p["publicada"]){ // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
             p["publicada"] = 'Publicada';
@@ -98,6 +98,32 @@ export class FtpListagemComponent implements OnInit {
     });
     }
 
+    receitaAtiva(index: number) {
+      console.log(this.receitas[index].status)
+      return this.receitas[index].status;
+    }
+
+    usuarioEhAluno(): Boolean {
+      if (this.usuarioLogado) {
+        return this.usuarioLogado.tipo == TipoUsuario.USUARIO;
+      }
+      return false;
+    }
+  
+    usuarioEhAdmin(): Boolean {
+      if (this.usuarioLogado) {
+        return this.usuarioLogado.tipo == TipoUsuario.ADMIN;
+      }
+      return false;
+    }
+  
+    usuarioEhProfessor(): Boolean {
+      if (this.usuarioLogado) {
+        return this.usuarioLogado.tipo == TipoUsuario.PROFESSOR;
+      }
+      return false;
+    }
+
     updateFilter(event) {
       const val = event.target.value.toLowerCase();
       let i = 0;
@@ -127,17 +153,43 @@ export class FtpListagemComponent implements OnInit {
     this.router.navigate(['./ftp-cadastro/' + String(this.receitas[index as number].id)]);
   }
 
+  gerarRotulo(index: Number) {
+    //this.router.navigate(['./rotulo/' + String(this.receitas[index as number].id)]);
+    this.toastr.warning('Ainda não implementado.');
+  }
+
+  gerarPDF(index: Number) {
+    //this.router.navigate(['./pdf/' + String(this.receitas[index as number].id)]);
+    this.toastr.warning('Ainda não implementado.');
+  }
+
+  verificarAntesDeExcluir(index: number) {
+    let msg = 'Clique aqui para confirmar';
+    const mm = this.toastr.show(msg, null, {
+      closeButton: true,
+      progressBar: true,
+    });
+    mm.onTap.subscribe(() => this.excluirFtp(index));
+  }
+
+  ativarReceita(index: number) {
+    this.toastr.warning('Não implementado')
+  }
+
   excluirFtp(index: number) {
-      let idFtp = this.receitas[index].id;
+    let idFtp = this.receitas[index].id;
       this.ftpServices.excluirFTP(+idFtp).subscribe(
         response => {
           this.toastr.success(response['message']);
+          this.receitas[index].status=false;
         },
         error => {
           console.log(error);
           this.toastr.error(error.error);
         }
       );
+      //location.reload();      
   }
+  
 
 }
