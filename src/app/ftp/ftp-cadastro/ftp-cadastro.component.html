@@ -1,6 +1,6 @@
 <div class="container">
     <br>
-    <fieldset>
+    <fieldset [disabled]="isSaving">
         <form [formGroup]="ftpForm" class="content" id="formulario" novalidate>
             <div>
                 <h2>Ficha Técnica de Produto</h2>
@@ -18,7 +18,7 @@
                                 <label>Nota:</label>
                             </div>
                             <div class="col-md-6">
-                                <input id="inputNota" formControlName="nota" [value]="ftpForm.get('nota').value.nota" type="number" class="form-control" min="0" max="10" step="0.1" (change)="alterarNota($event.target.value)">
+                                <input [value]="ftpForm.get('nota').value.nota" type="number" class="form-control" min="0" max="10" step="0.1" (change)="alterarNota($event.target.value)">
                                 <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nota'].valid && this.ftpForm.controls['nota'].dirty"></app-mensagem-erro>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
 
                     <div class="last row">
                         <div class="col-md-6 mr-auto">
-                            <input type="checkbox" id="ftp-privacidade" ng-model="leader" (click)="alterarTipo()">
+                            <input type="checkbox" [checked]="receitaEhPrivada()" id="ftp-privacidade" ng-model="leader" (click)="alterarTipo()">
                             <label id="ficha-privada" for="ftp-privacidade" ng-checked="leader">Tornar minha ficha técnica privada</label>
                         </div>
                         <div class="col-auto">

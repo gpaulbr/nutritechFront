@@ -21,6 +21,7 @@ import {FtpSelecaoGruporeceitaComponent} from '../ftp-selecao-gruporeceita/ftp-s
 import {FtpSelecaoProfessorComponent} from '../ftp-selecao-professor/ftp-selecao-professor.component';
 import {FtpDificuldadeComponent} from '../ftp-dificuldade/ftp-dificuldade.component';
 import {TipoUsuario} from '../../usuario/tipo-usuario.enum';
+import { TipoIngrediente } from '../../ingrediente/tipo-ingrediente.enum';
 
 
 @Component({
@@ -32,6 +33,8 @@ export class FTPCadastroComponent implements OnInit {
 
   ftpForm: FormGroup;
   fb: FormBuilder;
+
+  isSaving: Boolean = false;
 
   custoTotal: String = '0.00';
 
@@ -135,10 +138,6 @@ export class FTPCadastroComponent implements OnInit {
       this.router.navigate(['./']);
       return;
     }
-
-    if (!this.campoPodeSerAlterado) {
-      this.desabilitarCampos();
-    }
   }
 
   /*
@@ -191,6 +190,7 @@ export class FTPCadastroComponent implements OnInit {
     } else {
       this.ftpForm.controls.tipo.setValue(FtpTipo.PRIVADO);
     }
+    console.log("Novo Tipo: " + this.ftpForm.value.tipo);
   }
 
   alterarNota(nota: Number) {
@@ -221,6 +221,10 @@ export class FTPCadastroComponent implements OnInit {
    * Verificações
    */
 
+  UsuarioEhDonoDaReceita(): Boolean {
+    return this.integrantesComponent.estaIncluido(this.usuarioLogado);
+  }
+  
   UsuarioEhAluno(): Boolean {
     if (this.usuarioLogado) {
       return this.usuarioLogado.tipo == TipoUsuario.USUARIO;
@@ -269,9 +273,9 @@ export class FTPCadastroComponent implements OnInit {
     let notaPublicada = this.receitaFoiAvaliada();
     let ehAdmin = this.UsuarioEhAdmin();
     let ehProfDisciplina = this.UsuarioEhProfessorDisciplina();
-    let ehAluno = this.UsuarioEhAluno();
-    
-    return (ehAdmin || ehProfDisciplina || !(notaPublicada && ehAluno)); // é mais complicado que isso, mas temporariamente fica assim
+    let ehDonoDaReceita = this.UsuarioEhDonoDaReceita();
+
+    return (ehAdmin || ehProfDisciplina || (ehDonoDaReceita && !notaPublicada)); // é mais complicado que isso, mas temporariamente fica assim
   }
 
   podeAlterarNota(): Boolean {
@@ -288,6 +292,14 @@ export class FTPCadastroComponent implements OnInit {
 
   receitaFoiAvaliada(): Boolean {
     return (this.ftpForm.value.nota != null);
+  }
+
+  receitaEhPrivada(): Boolean { // Tá sempre retornando false, why?
+    if (this.ftpForm.value.tipo == FtpTipo.PRIVADO) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /*
@@ -385,6 +397,7 @@ export class FTPCadastroComponent implements OnInit {
 
 
   cadastrar(ftp: Ftp, publicada: Boolean) {
+    this.isSaving = true; // desabilita todos os campos até função terminar de ser executada
     this.limparDadosInvalidos(ftp);
     ftp.publicada = publicada // status de publicada no banco
     ftp.datahora = new Date();
@@ -408,5 +421,6 @@ export class FTPCadastroComponent implements OnInit {
           this.toastr.error(error.error);
         });
     }
+    this.isSaving = false;
   }
 }
