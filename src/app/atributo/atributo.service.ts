@@ -17,7 +17,7 @@ export class AtributoService {
   }
 
   buscarAtributos(): Observable<Atributo[]>{
-    return this.http.get<Atributo[]>(NUTRITECH_API + '/atributos');
+    return this.http.get<Atributo[]>(NUTRITECH_API + '/atributos/ativos');
   }
 
   editarAtributo(atributo: Atributo): Observable<Atributo>{

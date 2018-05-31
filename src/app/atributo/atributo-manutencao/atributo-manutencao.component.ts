@@ -102,6 +102,7 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
       response => {
         this.toastr.success('Atributo cadastrado com sucesso');
         this.limpar();
+        this.router.navigate(['./atributo-listagem']);
       },
       error => {
         this.toastr.error(error.error.message);

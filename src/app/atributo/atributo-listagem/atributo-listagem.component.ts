@@ -84,10 +84,7 @@ export class AtributoListagemComponent implements OnInit {
           {
             p["obrigatorio"] = 'Não';
           }
-
-          if(p.status) {
-            listaA.push(p); //inlcui na lista
-          }
+          listaA.push(p); //inlcui na lista        
         })
         if (listaA.length != 0) {
           this.rows = listaA;
