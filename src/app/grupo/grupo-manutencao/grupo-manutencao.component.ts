@@ -112,6 +112,5 @@ export class GrupoManutencaoComponent implements OnInit {
       // atualizar
       this.update();
     }
-    
   }
 }
