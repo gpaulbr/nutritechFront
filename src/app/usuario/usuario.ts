@@ -10,9 +10,8 @@ export class Usuario {
     public senha: string;
     public cpf: string;
     public status: boolean;
-    public tipo: TipoUsuario; 
-    
-    
+    public tipo: TipoUsuario;    
+
     public definirUsuario(usuarioLogado: UsuarioLogadoDto) {
         this.id = usuarioLogado.id;
         this.nome = usuarioLogado.nome;

@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
   { path: 'grupo', component: GrupoManutencaoComponent },
   { path: 'atributo', component: AtributoManutencaoComponent},
+  { path: 'atributo/:id', component: AtributoManutencaoComponent},
   { path: 'ingrediente', component: IngredienteCadastroComponent },
   { path: 'ingrediente/:id', component: IngredienteCadastroComponent },
   { path: 'usuario-listagem', component: UsuarioListagemComponent },
