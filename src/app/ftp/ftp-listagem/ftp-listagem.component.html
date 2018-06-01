@@ -12,14 +12,15 @@
             </div>
 
             <!-- configurações ngx-datatable -->
-            <ngx-datatable *ngIf="receitaEmLista" #table class="material" 
+            <ngx-datatable *ngIf="receitaEmLista" #table class="material"
             [columns]="columns" 
             [columnMode]="'force'" 
-            [headerHeight]="40" 
-            [footerHeight]="40" 
+            [headerHeight]="50" 
+            [footerHeight]="0" 
             [rowHeight]="'auto'"
             [rows]='rows' 
-            [scrollbarH]="true">
+            [scrollbarH]="true"
+            >
                 <!-- COLUNAS da tabela -->
 
                 <ngx-datatable-column *ngIf="columns[0] != undefined" name="{{columns[0].name}}" prop="{{columns[0].prop}}"></ngx-datatable-column>
