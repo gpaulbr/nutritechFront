@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Ftp } from '../../ftp/ftp';
 import { Ingrediente } from '../../ingrediente/ingrediente';
 import { ReceitaIngrediente } from '../../ftp/ftp-receita-ingrediente';
@@ -18,13 +18,9 @@ export class RotuloIngredientesComponent implements OnInit {
 
   ftp: Ftp;
 
-  todosAtributos: Array<Atributo>;
-  atributosMostrados: Array<Atributo>;
-
+  @Input()
   gramasPorPorcao?: number;
   
-  @Input()
-  permitirInputValorPorcao: boolean = false;
   @Input()
   numeroCasasDecimais: number = 3;
 
@@ -44,7 +40,7 @@ export class RotuloIngredientesComponent implements OnInit {
     let receita;
     this.route.params.subscribe(params => receita = params);
 
-    if (receita.id !== undefined) {
+    if (receita.id !== undefined && this.ftp === undefined) {
       this.ftpService.obterFTP(receita.id)
         .subscribe(res => {
           this.ftp = res;
@@ -56,13 +52,8 @@ export class RotuloIngredientesComponent implements OnInit {
             if (a.pesoG < b.pesoG) return 1;
             if (a.pesoG > b.pesoG) return -1;
           })
-          this.resetar();
-              });
-    } else {
-      this.toastr.error('Redirecionando', 'Não foi possível carregar uma receita.');
+        });
     }
-    
-    this.todosAtributos = new Array<Atributo>();
   }
 
   ngOnInit() {
@@ -70,10 +61,6 @@ export class RotuloIngredientesComponent implements OnInit {
     if (usuarioLogado == null) {  // só libera após login
       return;
     }
-
-    this.atributeService.buscarAtributos().subscribe(response => {
-      this.todosAtributos = response['Atributos'];
-    });
   }
 
   /*
@@ -81,7 +68,10 @@ export class RotuloIngredientesComponent implements OnInit {
    */
 
   ingredientes(): Array<ReceitaIngrediente> {
-    return this.ftp.receitaIngrediente;
+    if (this.ftp != undefined) {
+      return this.ftp.receitaIngrediente;
+    }
+    return Array<ReceitaIngrediente>();
   }
 
   ingrediente(index: number): ReceitaIngrediente {
@@ -90,10 +80,6 @@ export class RotuloIngredientesComponent implements OnInit {
     } else {
       return this.ingredientes()[index];
     }
-  }
-  
-  resetar(): number {
-    return this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
   }
 
   /*
@@ -116,7 +102,8 @@ export class RotuloIngredientesComponent implements OnInit {
   }
 
   pesoIngredientePorPorcao(ingrediente: ReceitaIngrediente, gramasPorPorcao?: number) {
-    console.log(this.ftp.peso);
+    //console.log(this.ftp.peso);
+    //console.log(ingrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso))
     return ingrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso);
   }
 
@@ -126,5 +113,13 @@ export class RotuloIngredientesComponent implements OnInit {
       soma += this.pesoIngredientePorPorcao(item, gramasPorPorcao);
     });
     return soma;
+  }
+
+  alterar() {
+    let output = new Array<{ingrediente, valor}>();
+    this.ingredientes().forEach(item => {
+      let novo = {ingrediente: item.ingrediente, valor: 0 };
+      output.push(novo);
+    });
   }
 }

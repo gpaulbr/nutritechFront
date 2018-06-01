@@ -1,16 +1,13 @@
-<div>
-  <div *ngIf="permitirInputValorPorcao">
-    <label> Porção (g): </label>
-    <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao">
-    <button type="number" (click)="resetar()">Resetar</button>
-  </div>
+<div *ngIf="this.ftp !== undefined">
+  <br>
+  <h3>Ingredientes da Receita</h3>
   <table *ngIf="mostrarListaIngredientes">
     <tr> <!-- Cabeçalho -->
       <th> <!-- Item -->
-        Receita para {{ftp.rendimento}} porções<br>da receita {{ftp.nome}}
+        Receita para {{this.ftp.rendimento}} porções<br>da receita {{this.ftp.nome}}
       </th>
       <th>
-        Receita para uma porção ({{pesoTotalPorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais)}}g)
+        Receita para uma porção ({{pesoTotalPorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g)
       </th>
     </tr>
     <ng-container *ngFor="let item of ingredientes(); let i = index">
@@ -19,7 +16,7 @@
           {{item.pesoG}}g de {{item.ingrediente.nome}}
         </th>
         <th>
-          {{pesoIngredientePorPorcao(item, gramasPorPorcao).toFixed(numeroCasasDecimais)}}g
+          {{pesoIngredientePorPorcao(item, gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g
         </th>
       </tr>
     </ng-container>
@@ -28,7 +25,7 @@
         <b>Peso Total: {{ftp.peso}}</b>
       </th>
       <th>
-        <b>Peso Total: {{totalIngredientePorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais)}}</b>
+        <b>Peso Total: {{totalIngredientePorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}</b>
       </th>
     </tr>
   </table>

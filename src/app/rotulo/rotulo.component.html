@@ -1,12 +1,21 @@
-<div class="container">
+<div class="container" *ngIf="this.ftp !== undefined">
   <fieldset>	
-    <h2>Rótulo Nutricional</h2>
     <div class="divisor content">
-      <app-rotulo-ingredientes 
-        [permitirInputValorPorcao]="true"
-        [numeroCasasDecimais]="3" 
+      <h2>Rótulo Nutricional</h2>
+      <div *ngIf="permitirInputValorPorcao">
+        <label> Porção (g): </label>
+        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao">
+        <button type="number" (click)="componentePorcaoIngrediente.resetar()">Resetar</button>
+      </div>
+      <app-rotulo-ingredientes
+        (outputIngredienteVlrPorcao)="ingredienteValorPorcao"
+        [gramasPorPorcao]="gramasPorPorcao"
+        [numeroCasasDecimais]="1" 
         [mostrarListaIngredientes]="true">
       </app-rotulo-ingredientes>
+      <app-rotulo-ingredientes-atributos>  
+        
+      </app-rotulo-ingredientes-atributos>
     </div>
   </fieldset>
 </div>

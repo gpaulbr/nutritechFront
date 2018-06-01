@@ -46,6 +46,7 @@ import { FtpSelecaoProfessorComponent } from './ftp/ftp-selecao-professor/ftp-se
 import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/ftp-selecao-gruporeceita.component';
 import { RotuloComponent } from './rotulo/rotulo.component';
 import { RotuloIngredientesComponent } from './rotulo/rotulo-ingredientes/rotulo-ingredientes.component';
+import { RotuloIngredientesAtributosComponent } from './rotulo/rotulo-ingredientes-atributos/rotulo-ingredientes-atributos.component';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { RotuloIngredientesComponent } from './rotulo/rotulo-ingredientes/rotulo
     FtpSelecaoGruporeceitaComponent,
     RotuloComponent,
     RotuloIngredientesComponent,
+    RotuloIngredientesAtributosComponent,
   ],
   imports: [
     BrowserModule,

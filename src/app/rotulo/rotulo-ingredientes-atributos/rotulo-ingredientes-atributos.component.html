@@ -1,0 +1,48 @@
+<div  *ngIf="this.ftp !== undefined">
+  <div *ngIf="mostrarListasIngredientesAtributos">
+    <h3>Atributos dos Ingredientes da Receita</h3>
+    <ng-container *ngFor="let atr of atributos(); let i = index">
+      <br>
+      <h4>Tabela do(s) {{atr.nome}}</h4>
+      <table>
+        <!-- Cabeçalho -->
+        <tr>
+          <th>
+            Ingrediente
+          </th>
+          <th> 
+            {{atr.nome}}<br>em 100g {{atr.unidade}} de produto.
+          </th>
+          <th>
+            Quantidade do<br>ingrediente na receita.
+          </th>
+          <th>
+            {{atr.nome}} na<br>receita para uma porção.
+          </th>
+        </tr>
+        <!-- Corpo -->
+        <ng-container *ngFor="let ing of ingredientes(); let j = index;">
+          <tr>
+            <th>
+              {{ing.ingrediente.nome}}
+            </th>
+            <th>
+              <ng-container *ngIf="ingredienteAtributo(ing.ingrediente, atr).valor != null">
+                {{ingredienteAtributo(ing.ingrediente, atr).valor}}{{atr.unidade}}
+              </ng-container>
+              <ng-container *ngIf="ingredienteAtributo(ing.ingrediente, atr).valor == null">
+                0{{atr.unidade}}
+              </ng-container>
+            </th>
+            <th>
+              g
+            </th>
+            <th>
+              teste
+            </th>
+          </tr>
+        </ng-container>
+      </table>
+    </ng-container>
+  </div>
+</div>
