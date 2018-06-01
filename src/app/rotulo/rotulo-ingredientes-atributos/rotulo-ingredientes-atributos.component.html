@@ -2,7 +2,6 @@
   <div *ngIf="mostrarListasIngredientesAtributos">
     <h3>Atributos dos Ingredientes da Receita</h3>
     <ng-container *ngFor="let atr of atributos(); let i = index">
-      <br>
       <h4>Tabela do(s) {{atr.nome}}</h4>
       <table>
         <!-- Cabeçalho -->
@@ -35,14 +34,15 @@
               </ng-container>
             </th>
             <th>
-              g
+              {{getIngredienteValorPorcao(ing.ingrediente)}}g
             </th>
             <th>
-              teste
+              {{getAtributoNaReceitaParaUmaPorcao(ing.ingrediente, atr)}}g
             </th>
           </tr>
         </ng-container>
       </table>
+      <br>
     </ng-container>
   </div>
 </div>

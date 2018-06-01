@@ -15,13 +15,12 @@ import { RotuloIngredientesAtributosComponent } from './rotulo-ingredientes-atri
 })
 export class RotuloComponent implements OnInit {
 
-  @ViewChild(RotuloIngredientesComponent) componentePorcaoIngrediente;
-  @ViewChild(RotuloIngredientesAtributosComponent) componenteAtributosIngredientes;
+  @ViewChild(RotuloIngredientesComponent) componentRotuloIngrediente;
+  @ViewChild(RotuloIngredientesAtributosComponent) componentRotuloIngredienteAtributos;
 
   ftp: Ftp;
   gramasPorPorcao?: number;
-
-  ingredienteValorPorcao = Array<{ingrediente: Ingrediente, valor: number}>()
+  ingredienteValorPorcao: any;
 
   @Input()
   permitirInputValorPorcao: boolean = true;
@@ -55,10 +54,16 @@ export class RotuloComponent implements OnInit {
       }
   }
 
+  alterarIngredienteValor(ingValor: any) {
+    this.ingredienteValorPorcao = ingValor;
+    this.componentRotuloIngredienteAtributos.ingredienteValorPorcao = this.ingredienteValorPorcao;    
+    console.log(this.ingredienteValorPorcao);
+  }
+
   resetarGramasPorPorcao() {
     this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
-    if (this.componentePorcaoIngrediente !== undefined) {
-      this.componentePorcaoIngrediente.gramasPorPorcao = this.gramasPorPorcao;
+    if (this.ftp !== undefined && this.componentRotuloIngrediente !== undefined) {
+      this.componentRotuloIngrediente.gramasPorPorcao = this.gramasPorPorcao;
     }
   }
 

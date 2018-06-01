@@ -27,6 +27,10 @@ export class RotuloIngredientesComponent implements OnInit {
   @Input()
   mostrarListaIngredientes: boolean = false;
 
+  @Output()
+  outputIngredienteValorPorcao = new EventEmitter<any>(); // Se descobrir como faz sem o any, me avisa leonardo.marcelino@outlook.com
+
+
   // Temporariamente isto está aqui
   msgValoresDiarios: String = "(*)% Valores Diários de referência com base em uma dieta de 2.000 kcal ou 8400 kJ. Seus valoers diários podem ser maiores ou menores dependendo de suas necessidades energéticas."
 
@@ -52,6 +56,7 @@ export class RotuloIngredientesComponent implements OnInit {
             if (a.pesoG < b.pesoG) return 1;
             if (a.pesoG > b.pesoG) return -1;
           })
+          this.alterar();
         });
     }
   }
@@ -68,7 +73,7 @@ export class RotuloIngredientesComponent implements OnInit {
    */
 
   ingredientes(): Array<ReceitaIngrediente> {
-    if (this.ftp != undefined) {
+    if (this.ftp !== undefined) {
       return this.ftp.receitaIngrediente;
     }
     return Array<ReceitaIngrediente>();
@@ -116,10 +121,12 @@ export class RotuloIngredientesComponent implements OnInit {
   }
 
   alterar() {
-    let output = new Array<{ingrediente, valor}>();
+    let output = new Array<any>();
     this.ingredientes().forEach(item => {
-      let novo = {ingrediente: item.ingrediente, valor: 0 };
+      let novo: any = {ingrediente: item.ingrediente, valor: this.pesoIngredientePorPorcao(item, this.gramasPorPorcao) };
       output.push(novo);
     });
+    //console.log(output);
+    this.outputIngredienteValorPorcao.emit(output);
   }
 }

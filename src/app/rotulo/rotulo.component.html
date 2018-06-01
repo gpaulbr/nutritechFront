@@ -4,17 +4,19 @@
       <h2>Rótulo Nutricional</h2>
       <div *ngIf="permitirInputValorPorcao">
         <label> Porção (g): </label>
-        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao">
-        <button type="number" (click)="componentePorcaoIngrediente.resetar()">Resetar</button>
+        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" (change)="componentePorcaoIngrediente.alterar()">
+        <button type="number" (click)="resetarGramasPorPorcao()">Resetar</button>
       </div>
+      <br>
       <app-rotulo-ingredientes
-        (outputIngredienteVlrPorcao)="ingredienteValorPorcao"
+        (outputIngredienteValorPorcao)="alterarIngredienteValor($event)"
         [gramasPorPorcao]="gramasPorPorcao"
         [numeroCasasDecimais]="1" 
         [mostrarListaIngredientes]="true">
       </app-rotulo-ingredientes>
-      <app-rotulo-ingredientes-atributos>  
-        
+      <app-rotulo-ingredientes-atributos
+        [mostrarListasIngredientesAtributos]="true"
+        [qntdeEmGramas]="100">  
       </app-rotulo-ingredientes-atributos>
     </div>
   </fieldset>

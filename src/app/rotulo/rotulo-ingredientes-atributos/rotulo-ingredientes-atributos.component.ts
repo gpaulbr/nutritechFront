@@ -18,11 +18,14 @@ import { IngredienteAtributoDto } from '../../ingrediente/ingrediente-atributo-d
 export class RotuloIngredientesAtributosComponent implements OnInit {
 
   ftp: Ftp;
-
   todosAtributos: Array<Atributo>;
+  ingredienteValorPorcao: any;
 
   @Input()
-  mostrarListasIngredientesAtributos: Boolean = true;
+  mostrarListasIngredientesAtributos: Boolean;
+
+  @Input()
+  qntdeEmGramas: number;
 
   constructor(
     private router: Router,
@@ -104,5 +107,23 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
       }
     });
     return resultado;
+  }
+
+  getIngredienteValorPorcao(ingrediente: Ingrediente): number {
+    let result = -1;
+    console.log("testests")
+    console.log(this.ingredienteValorPorcao);
+    this.ingredienteValorPorcao.forEach(item => {
+      console.log(item.ingrediente.id + ' vs ' + ingrediente.id)
+      if (item.ingrediente.id === ingrediente.id) {
+        console.log('found: ' + item.valor)
+        result = item.valor;
+      }
+    });
+    return result;
+  }
+
+  getAtributoNaReceitaParaUmaPorcao(ingrediente: Ingrediente, atributo: Atributo): number {
+    return Number(this.ingredienteAtributo(ingrediente, atributo).valor) * this.getIngredienteValorPorcao(ingrediente) / this.qntdeEmGramas;
   }
 }
