@@ -48,9 +48,9 @@ export class FtpListagemComponent implements OnInit {
       this.router.navigate(['./']);
     }
 
-    this.ftpServices.buscarFTP().subscribe(receitas =>{
+    this.ftpServices.buscarFTP().subscribe(receitas => {
          this.receitas = receitas['Receitas']; // acesso o que o método buscarReceita
-         let lista: Ftp [] = [];
+         const lista: Ftp [] = [];
          receitas['Receitas'].forEach(p => {
           let stringCriadores: String = ''; // cria uma string vazia para concaternamos os nomes
           p['criadores'].forEach(u => {
@@ -70,7 +70,7 @@ export class FtpListagemComponent implements OnInit {
             p['publicada'] = 'Não Publicada';
           }
 
-          if (p['tipo'] == 'PUBLICO') {
+          if (p['tipo'] === 'PUBLICO') {
             p['tipo'] = 'PÚBLICO'; // inclui o acento para exibir para o usuário
           }
           if (p['nota'] == null) {
@@ -98,7 +98,7 @@ export class FtpListagemComponent implements OnInit {
     }
 
     receitaAtiva(index: number) {
-      console.log(this.receitas[index].status)
+      console.log(this.receitas[index].status);
       return this.receitas[index].status;
     }
 
