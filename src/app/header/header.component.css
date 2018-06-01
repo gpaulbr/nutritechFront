@@ -83,6 +83,9 @@ a{
     background-color: #EFA638;
     color:#ffffff;
 }
+.dropdown:hover .dropbtn p{
+    color: #ffffff!important;
+}
 
 .menu{
     margin-left: -30%;
