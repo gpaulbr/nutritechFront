@@ -4,7 +4,7 @@
           <h2 class="titulo_lista">Lista de Ingredientes</h2>
       </div>
       <div class="panel-body">  
-        <div>
+        <div *ngIf="rows.length > 0">
                <div id="buscar" class="row"> 
                  <p class="pBuscar col-md-1">Buscar: </p>
                   <input
@@ -37,7 +37,10 @@
             </ng-template>
           </ngx-datatable-column>
           </ngx-datatable>
-      </div>
+        </div>
+            <div id="aviso-cad" *ngIf="rows.length == 0">
+              <p> Nenhum Ingrediente Cadastrado</p>
+            </div>
   </div>
 </div>
 
