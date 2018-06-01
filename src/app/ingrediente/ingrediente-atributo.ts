@@ -4,6 +4,6 @@ import { Atributo } from '../atributo/atributo';
 export class IngredienteAtributo {
     public ingrediente: Ingrediente;
     public atributo: Atributo;
-    public valor: number
+    public valor: string
 }
 

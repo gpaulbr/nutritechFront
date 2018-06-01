@@ -1,5 +1,5 @@
 export class Atributo {
-    public id: number;
+    public id?: number;
     public multiplicador: number;
     public nome: string;
     public obrigatorio: boolean;

@@ -10,11 +10,23 @@ export class IngredienteService {
 
   constructor(private http: HttpClient) { }
 
-  cadastrarIngrediente(ingrediente: IngredienteDto): Observable<IngredienteDto>{
+  cadastrarIngrediente(ingrediente: Ingrediente): Observable<IngredienteDto>{
     return this.http.post<IngredienteDto>(NUTRITECH_API + '/ingredientes', ingrediente);
+  }
+
+  atualizarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente>{
+    return this.http.put<Ingrediente>(NUTRITECH_API + '/ingredientes/update', ingrediente);
   }
 
   buscarIngredientes(): Observable<Ingrediente[]>{
     return this.http.get<Ingrediente[]>(NUTRITECH_API + '/ingredientes');
+  }
+
+  obterIngrediente(id: string): Observable<Ingrediente>{
+    return this.http.get<Ingrediente>(`${NUTRITECH_API}/ingredientes/${id}/`);
+  }
+
+  excluirIngrediente(id: string): Observable<Ingrediente>{
+    return this.http.delete<Ingrediente>(`${NUTRITECH_API}/ingredientes/${id}`)
   }
 }

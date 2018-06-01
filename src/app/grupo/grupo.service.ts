@@ -15,9 +15,21 @@ export class GrupoService {
     return this.http.post<Grupo>(this.url, grupo);
   }
 
-  buscarGrupos(): Observable<Grupo[]>{
-    return this.http.get<Grupo[]>(this.url);
+  editarGrupo(grupo: Grupo): Observable<Grupo>{
+    console.log(grupo);/*está inserindo novo */
+    return this.http.put<Grupo>(this.url + "/update", grupo);
   }
-  
+
+  buscarGrupos(): Observable<Grupo[]>{
+    return this.http.get<Grupo[]>(`${this.url}/ativos`);
+  }
+
+  obterGrupo(id: string): Observable<Grupo>{
+    return this.http.get<Grupo>(`${NUTRITECH_API}/grupos/${id}/`);
+  }
+
+  excluirGrupo(id: Number): Observable<any> {
+    return this.http.delete<any>(`${NUTRITECH_API}/grupos/${id}/`);
+  }
 
 }

@@ -58,7 +58,7 @@ export class UsuarioManutencaoComponent implements OnInit {
         cpf: [null, Validators.compose([Validators.required, Validators.minLength(14), Validators.maxLength(14)])],
         tipo: [2, Validators.required],
         status: [true, Validators.required]
-      })
+      });
     }
 
   ngOnInit() {
