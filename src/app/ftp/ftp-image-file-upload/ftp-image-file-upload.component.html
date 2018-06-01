@@ -1,5 +1,6 @@
-<div>
+<div class="col">
     <img class="img" id="preview">
+    <br>
     <div *ngIf="podeAlterar">
         <input style="display: none" type="file" accept="image/*" (change)="onFileChanged($event)" #fileInput>
         <button class="btn anexar" (click)="fileInput.click()">Selecione uma Imagem</button>

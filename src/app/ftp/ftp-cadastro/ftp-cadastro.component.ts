@@ -94,8 +94,6 @@ export class FTPCadastroComponent implements OnInit {
 
           this.ftpForm.controls['rendimento'].setValue(res.rendimento);
           this.ftpForm.controls['tempo'].setValue(res.tempo);
-          this.ftpForm.controls['peso'].setValue(res.peso);
-
           this.ftpForm.controls['imagem'].setValue(res.imagem); // ok
           this.imageComponent.imgFromBase64(res.imagem.ext, res.imagem.base64);
 
@@ -124,9 +122,8 @@ export class FTPCadastroComponent implements OnInit {
           this.dificuldadeComponent.alterarDificuldade(res.dificuldade);
 
           this.ftpForm.controls['nota'].setValue(res.nota);
-          //(document.getElementById('inputNota') as HTMLInputElement).innerHTML = res.professor.nome;
-          console.log(res.nota);
 
+          this.ftpForm.controls['peso'].setValue(res.peso);
           console.log(this.ftpForm.value);
         });
     }

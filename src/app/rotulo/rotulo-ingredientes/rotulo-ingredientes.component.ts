@@ -1,0 +1,129 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { Ftp } from '../../ftp/ftp';
+import { Ingrediente } from '../../ingrediente/ingrediente';
+import { ReceitaIngrediente } from '../../ftp/ftp-receita-ingrediente';
+import { AtributoService } from '../../atributo/atributo.service';
+import { Atributo } from '../../atributo/atributo';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { FtpService } from '../../ftp/ftp.service';
+import { IngredienteService } from '../../ingrediente/ingrediente.service';
+
+@Component({
+  selector: 'app-rotulo-ingredientes',
+  templateUrl: './rotulo-ingredientes.component.html',
+  styleUrls: ['./rotulo-ingredientes.component.css']
+})
+export class RotuloIngredientesComponent implements OnInit {
+
+  ftp: Ftp;
+
+  todosAtributos: Array<Atributo>;
+  atributosMostrados: Array<Atributo>;
+
+  gramasPorPorcao?: number;
+
+  @Input()
+  permitirInputValorPorcao: boolean = false;
+  @Input()
+  numeroCasasDecimais: number = 3;
+
+  @Input()
+  mostrarListaIngredientes: boolean = false;
+
+ 
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private ftpService: FtpService,
+    private atributeService: AtributoService,
+  ) {
+    let receita;
+    this.route.params.subscribe(params => receita = params);
+
+    if (receita.id !== undefined) {
+      this.ftpService.obterFTP(receita.id)
+        .subscribe(res => {
+          this.ftp = res;
+          this.ftp.receitaIngrediente.sort((a, b) => {
+            if (a.pesoG == b.pesoG) {
+              if (a.ingrediente.nome.toLowerCase() < b.ingrediente.nome.toLowerCase()) return -1;
+              if (a.ingrediente.nome.toLowerCase() > b.ingrediente.nome.toLowerCase()) return 1;
+            }
+            if (a.pesoG < b.pesoG) return 1;
+            if (a.pesoG > b.pesoG) return -1;
+          })
+          this.resetar();
+              });
+    } else {
+      this.toastr.error('Redirecionando', 'Não foi possível carregar uma receita.');
+    }
+    
+    this.todosAtributos = new Array<Atributo>();
+  }
+
+  ngOnInit() {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (usuarioLogado == null) {  // só libera após login
+      return;
+    }
+
+    this.atributeService.buscarAtributos().subscribe(response => {
+      this.todosAtributos = response['Atributos'];
+    });
+  }
+
+  /*
+   * Dados
+   */
+
+  ingredientes(): Array<ReceitaIngrediente> {
+    return this.ftp.receitaIngrediente;
+  }
+
+  ingrediente(index: number): ReceitaIngrediente {
+    if (index >= this.ingredientes().length || index < 0) {
+      return null;
+    } else {
+      return this.ingredientes()[index];
+    }
+  }
+  
+  resetar(): number {
+    return this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
+  }
+
+  /*
+   * Cálculos
+   */
+  pesoIngredienteXReceitaTotal(ingrediente: ReceitaIngrediente, gramasPorPorcao?: number) {
+    let pesoTotal = Number(this.ftp.peso) as number;
+    if(gramasPorPorcao != null) {
+      ingrediente.pesoG * gramasPorPorcao / pesoTotal
+    }
+  }
+
+  pesoTotalPorPorcao(gramasPorPorcao?: number) {
+    if (gramasPorPorcao != null) {
+      return gramasPorPorcao;
+    } else {
+      let pesoTotal = (Number(this.ftp.peso)) as number
+      return (Number(pesoTotal)/Number(this.ftp.rendimento)) as number;
+    }
+  }
+
+  pesoIngredientePorPorcao(ingrediente: ReceitaIngrediente, gramasPorPorcao?: number) {
+    console.log(this.ftp.peso);
+    return ingrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso);
+  }
+
+  totalIngredientePorPorcao(gramasPorPorcao?: number): number {
+    let soma: number = 0;
+    this.ftp.receitaIngrediente.forEach(item => {
+      soma += this.pesoIngredientePorPorcao(item, gramasPorPorcao);
+    });
+    return soma;
+  }
+}

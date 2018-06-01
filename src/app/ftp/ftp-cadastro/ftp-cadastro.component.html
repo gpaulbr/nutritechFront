@@ -52,7 +52,7 @@
                 <!-- FIM DADOS BASE + NOTA-->
 
 
-                <app-ftp-selecao-ingredientes [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarPeso)="alterarPesoTotal($event)" (salvarCusto)="alterarCustoTotal($event)" (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
+                <app-ftp-selecao-ingredientes [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()"  (salvarCusto)="alterarCustoTotal($event)" (salvarPeso)="alterarPesoTotal($event)" (salvarIngredientes)="alterarIngredientes($event)"></app-ftp-selecao-ingredientes>
                 <hr>
                 <app-ftp-modo-preparo [obrigatorio]="true" [podeAlterar]="campoPodeSerAlterado()" (salvarPassos)="alterarPassos($event)"></app-ftp-modo-preparo>
                 <div>
@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <h4>Peso (g):</h4>
-                                    <input formControlName="peso" type="number" class="form-control" min="0">
+                                    <input formControlName="peso" type="number" class="form-control" min="0" (change)="alterarPesoTotal($event.target.value)">
                                     <app-mensagem-erro [contemErro]="!this.ftpForm.controls['peso'].valid && this.ftpForm.controls['peso'].dirty"></app-mensagem-erro>
                                 </div>
                             </div>

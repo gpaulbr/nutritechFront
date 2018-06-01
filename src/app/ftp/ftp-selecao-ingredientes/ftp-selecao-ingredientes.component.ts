@@ -16,11 +16,12 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   custoKg: number;
   fatorCorrecao: number;
   pesoG: number;
-  receitaIngredientes = new Array<ReceitaIngrediente>();
-   
+  receitaIngredientes: Array<ReceitaIngrediente>;
   ingredientesDisponiveis: Ingrediente[];
 
-  constructor(private router: Router, private ingredienteService: IngredienteService) { }
+  constructor(private router: Router, private ingredienteService: IngredienteService) {
+    this.receitaIngredientes = new Array<ReceitaIngrediente>();
+   }
 
   @Output()
   salvarCusto = new EventEmitter<String>();
@@ -29,9 +30,9 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   @Output()
   salvarPeso = new EventEmitter<Number>();
   @Input()
-  obrigatorio: boolean
+  obrigatorio: boolean;
   @Input()
-  podeAlterar: boolean
+  podeAlterar: boolean;
 
   ngOnInit() {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -61,8 +62,8 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
 
   adicionarIngrediente() {
     // console.log (this.receitaIngredientes)
-    let novo: ReceitaIngrediente = new ReceitaIngrediente()
-    delete this.ingrediente.criador['valid']
+    let novo: ReceitaIngrediente = new ReceitaIngrediente();
+    delete this.ingrediente.criador['valid'];
     novo.ingrediente = this.ingrediente;
     novo.custoKg = this.custoKg;
     novo.pesoG = this.pesoG;
@@ -91,7 +92,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   estaIncluido(ingrediente: Ingrediente) {
     let incluido = false;
     this.receitaIngredientes.forEach(ri => {
-      if (ri.ingrediente.nome == ingrediente.nome) {
+      if (ri.ingrediente.nome === ingrediente.nome) {
         incluido = true;
       }
     });
@@ -99,7 +100,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   }
 
   removerIngredientePorIndex(index: number) {
-    this.receitaIngredientes.splice(index, 1)
+    this.receitaIngredientes.splice(index, 1);
     this.salvar();
   }
 

@@ -44,6 +44,8 @@ import { FtpImageFileUploadComponent } from './ftp/ftp-image-file-upload/ftp-ima
 import { OnlyNumber } from './shared/directives/only-number.directive';
 import { FtpSelecaoProfessorComponent } from './ftp/ftp-selecao-professor/ftp-selecao-professor.component';
 import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/ftp-selecao-gruporeceita.component';
+import { RotuloComponent } from './rotulo/rotulo.component';
+import { RotuloIngredientesComponent } from './rotulo/rotulo-ingredientes/rotulo-ingredientes.component';
 
 
 @NgModule({
@@ -57,7 +59,7 @@ import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/
     IngredienteCadastroComponent,
     UsuarioListagemComponent,
     IngredienteListagemComponent,
-		FTPCadastroComponent,
+    FTPCadastroComponent,
     AtributoManutencaoComponent,
     GrupoListagemComponent,
     AtributoListagemComponent,
@@ -71,6 +73,8 @@ import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/
     FtpImageFileUploadComponent,
     FtpSelecaoProfessorComponent,
     FtpSelecaoGruporeceitaComponent,
+    RotuloComponent,
+    RotuloIngredientesComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,9 +92,9 @@ import { FtpSelecaoGruporeceitaComponent } from './ftp/ftp-selecao-gruporeceita/
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
-    AtributoService, 
-    IngredienteService, 
-    GrupoService, 
+    AtributoService,
+    IngredienteService,
+    GrupoService,
     UsuarioService,
     LoginService,
     FtpService

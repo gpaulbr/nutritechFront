@@ -98,13 +98,11 @@ export class FtpListagemComponent implements OnInit {
     }
 
     receitaAtiva(index: number) {
-      console.log(this.receitas[index].status);
       return this.receitas[index].status;
     }
 
     usuarioEhAluno(): Boolean {
       if (this.usuarioLogado) {
-        console.log('aluno é');
         return this.usuarioLogado.tipo === TipoUsuario.USUARIO;
       }
       return false;
@@ -112,7 +110,6 @@ export class FtpListagemComponent implements OnInit {
 
     usuarioEhAdmin(): Boolean {
       if (this.usuarioLogado) {
-        console.log('admin é');
         return this.usuarioLogado.tipo === TipoUsuario.ADMIN;
       }
       return false;
@@ -120,7 +117,6 @@ export class FtpListagemComponent implements OnInit {
 
     usuarioEhProfessor(): Boolean {
       if (this.usuarioLogado) {
-        console.log('prof é');
         return this.usuarioLogado.tipo === TipoUsuario.PROFESSOR;
       }
       return false;
@@ -162,8 +158,7 @@ export class FtpListagemComponent implements OnInit {
   }
 
   gerarRotulo(index: Number) {
-    // this.router.navigate(['./rotulo/' + String(this.receitas[index as number].id)]);
-    this.toastr.warning('Ainda não implementado.');
+    this.router.navigate(['./rotulo/' + String(this.receitas[index as number].id)]);
   }
 
   gerarPDF(index: Number) {

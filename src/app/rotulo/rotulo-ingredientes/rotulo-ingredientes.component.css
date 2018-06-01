@@ -1,0 +1,65 @@
+hr {
+	border-width: 3px;
+	margin-top: 10px;
+}
+
+label {
+	margin-top: 5px;
+}
+
+.delete {
+	display: inline-block;
+	float: right;
+}
+
+.btn-addIngrediente {
+  width: 100%;
+  margin-top: 2.5em;
+}
+
+form {
+	padding: 5%;
+	padding-top: 1%;
+	padding-bottom: 2%;
+	width: 80%;
+}
+
+table {
+	width: 100%;
+	margin: 10px 0px;
+	overflow: auto;
+	max-width: 100%;
+	white-space: nowrap;
+}
+
+th, tr {
+	border: 1px solid black;
+	padding: 2px;
+}
+
+tr:nth-child(odd){
+	background:linear-gradient(0deg,rgba(255,255,255,0.4),rgba(255,255,255,0.4));
+}
+
+tr:first-child{
+	background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+	color: lightgray;
+}
+
+@media only screen and (max-width: 600px) {
+	table {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.imagem {
+		width: auto;
+		margin: 10%;
+		height: 100%;
+	}
+
+	button {
+		margin-top: 5px;
+	}
+}

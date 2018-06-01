@@ -12,6 +12,7 @@ import { AtributoManutencaoComponent } from './atributo/atributo-manutencao/atri
 import { LoginComponent } from './login/login.component';
 import { AtributoListagemComponent } from './atributo/atributo-listagem/atributo-listagem.component';
 import { FtpListagemComponent } from './ftp/ftp-listagem/ftp-listagem.component';
+import { RotuloComponent } from './rotulo/rotulo.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'ftp-cadastro', component: FTPCadastroComponent },
   { path: 'ftp-cadastro/:id', component: FTPCadastroComponent },
   { path: 'ftp-listagem', component: FtpListagemComponent },
+  { path: 'rotulo/:id', component: RotuloComponent },
   { path: '', component: LoginComponent },
 ]
 
