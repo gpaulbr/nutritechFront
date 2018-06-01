@@ -1,5 +1,5 @@
-import { Ftp } from "./ftp";
-import { Ingrediente } from "../ingrediente/ingrediente";
+import { Ftp } from './ftp';
+import { Ingrediente } from '../ingrediente/ingrediente';
 
 export class ReceitaIngrediente {
     public receita: Ftp = null;
