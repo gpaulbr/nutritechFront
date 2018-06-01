@@ -22,7 +22,7 @@ export class RotuloIngredientesComponent implements OnInit {
   atributosMostrados: Array<Atributo>;
 
   gramasPorPorcao?: number;
-
+  
   @Input()
   permitirInputValorPorcao: boolean = false;
   @Input()
@@ -31,7 +31,8 @@ export class RotuloIngredientesComponent implements OnInit {
   @Input()
   mostrarListaIngredientes: boolean = false;
 
- 
+  // Temporariamente isto está aqui
+  msgValoresDiarios: String = "(*)% Valores Diários de referência com base em uma dieta de 2.000 kcal ou 8400 kJ. Seus valoers diários podem ser maiores ou menores dependendo de suas necessidades energéticas."
 
   constructor(
     private router: Router,

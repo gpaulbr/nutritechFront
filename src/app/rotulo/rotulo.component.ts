@@ -13,9 +13,6 @@ import { Ftp } from '../ftp/ftp';
 })
 export class RotuloComponent implements OnInit {
 
-  @Input()
-  msgValoresDiarios: String = "(*)% Valores Diários de referência com base em uma dieta de 2.000 kcal ou 8400 kJ. Seus valoers diários podem ser maiores ou menores dependendo de suas necessidades energéticas."
-
   @ViewChild(RotuloIngredientesComponent) infoNutricional;
 
   constructor(
