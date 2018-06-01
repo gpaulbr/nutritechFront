@@ -43,11 +43,10 @@
                         [draggable]="false"
                         [resizeable]="false">            
                     <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="redicionarAlterar(rowIndex)">edit</i>
-                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarRotulo(rowIndex)">grid_on</i>
-                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarPDF(rowIndex)">picture_as_pdf</i>
-                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="receitaAtiva(rowIndex)" (click)="verificarAntesDeExcluir(rowIndex)">delete</i>
-                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="!receitaAtiva(rowIndex)"(click)="ativarReceita(rowIndex)">autorenew</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarRotulo(rowIndex)" title="Rótulo">grid_on</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarPDF(rowIndex)" title="PDF">picture_as_pdf</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="receitaAtiva(rowIndex)" title="Excluir" (click)="verificarAntesDeExcluir(rowIndex)">delete</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="!receitaAtiva(rowIndex)"(click)="ativarReceita(rowIndex)" title="Ativar" >autorenew</i>
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>
