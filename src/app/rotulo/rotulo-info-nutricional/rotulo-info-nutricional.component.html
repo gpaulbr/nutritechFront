@@ -1,3 +1,56 @@
-<p>
-  rotulo-info-nutricional works!
-</p>
+<div *ngIf="this.ftp !== undefined && valorEnergeticoPorcao !== undefined">
+
+    <br> 
+    <hr>
+
+  <div *ngIf="mostrarInfoNutricional">
+    <!-- <h3>Informações Nutricionais</h3> -->
+    <table>
+      <tr> <!-- Cabeçalho -->
+        <th>
+          <h5>INFORMAÇÕES NUTRICIONAIS</h5>
+          <h6>Porção de {{gramasPorPorcao}}g</h6>
+        </th>
+      </tr>
+    </table>
+    <table>
+      <tr> <!-- Cabeçalho -->
+        <th>
+          
+        </th>
+        <th>
+          Quantidade por Porção
+        </th>
+        <th>
+          %VD(*)
+        </th>
+      </tr>
+      <ng-container *ngFor="let item of valorEnergeticoPorcao; let i = index">
+        <tr>
+          <th>
+            {{item.atributo.nome}}
+          </th>
+          <th>
+            {{item.valor.toFixed(numeroCasasDecimais).replace(".", ",")}}
+          </th>
+          <th>
+          </th>
+        </tr>
+      </ng-container>
+      <tr>
+        <th>
+          <b>TOTAL:</b>
+        </th>
+        <th></th>
+        <th>
+          <b>temp0,00g</b>
+        </th>
+      </tr>
+    </table>
+  </div>
+  
+  <br> 
+  <hr>
+  <br>
+
+</div>

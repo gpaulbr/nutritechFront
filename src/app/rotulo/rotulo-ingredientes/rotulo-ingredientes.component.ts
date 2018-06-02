@@ -23,10 +23,10 @@ export class RotuloIngredientesComponent implements OnInit {
   gramasPorPorcao?: number;
   
   @Input()
-  numeroCasasDecimais: number = 3;
+  numeroCasasDecimais: number;
 
   @Input()
-  mostrarListaIngredientes: boolean = false;
+  mostrarListaIngredientes: boolean;
 
   @Output()
   outputIngredienteValorPorcao = new EventEmitter<any>(); // Se descobrir como faz sem o any, me avisa leonardo.marcelino@outlook.com

@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Ftp } from '../../ftp/ftp';
+import { Atributo } from '../../atributo/atributo';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-rotulo-valor-energetico',
@@ -23,7 +25,8 @@ export class RotuloValorEnergeticoComponent implements OnInit {
   @Input()
   mostrarListaValorEnergetico: Boolean
 
-  
+  @Output()
+  outputValorEnergetico = new EventEmitter<Array<any>>();
 
   constructor() { }
 
@@ -41,9 +44,26 @@ export class RotuloValorEnergeticoComponent implements OnInit {
     return soma;
   }
 
+  getList(): Array<any> {
+    let array = new Array<any>();
+    let novo: {
+      atributo: Atributo,
+      valor: number
+    }
+
+    this.nutrientesValorPorcao.forEach(item => {
+      novo = {
+        atributo: item.atributo,
+        valor: item.valor * item.atributo.multiplicador
+      }
+      array.push(novo);
+    });
+
+    return array;
+  }
+
   salvar() {
-    console.log('output');
-    console.log(this.nutrientesValorPorcao);
+    this.outputValorEnergetico.emit(this.getList());
   }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Ftp } from '../../ftp/ftp';
 
 @Component({
   selector: 'app-rotulo-info-nutricional',
@@ -6,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rotulo-info-nutricional.component.css']
 })
 export class RotuloInfoNutricionalComponent implements OnInit {
+
+  @Input()
+  ftp: Ftp;
+
+  @Input()
+  mostrarInfoNutricional: boolean;
+
+  @Input()
+  gramasPorPorcao: number;
+
+  @Input()
+  numeroCasasDecimais: number;
+
+  @Input()
+  valorEnergeticoPorcao: any; 
 
   constructor() { }
 

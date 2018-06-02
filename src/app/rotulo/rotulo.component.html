@@ -8,6 +8,14 @@
         <button type="number" class="btn btn-danger" (click)="resetarGramasPorPorcao()">Resetar</button>
       </div>
       <br>
+
+      <app-rotulo-info-nutricional
+        [ftp]="ftp"
+        [mostrarInfoNutricional]="true"
+        [gramasPorPorcao]="gramasPorPorcao"
+        [numeroCasasDecimais]="2"
+        [valorEnergeticoPorcao]="valorEnergeticoPorcao">
+      </app-rotulo-info-nutricional>
       
       <app-rotulo-ingredientes
         (outputIngredienteValorPorcao)="alterarIngredienteValor($event)"
@@ -29,6 +37,7 @@
       </app-rotulo-ingredientes-atributos>
 
       <app-rotulo-valor-energetico
+        (outputValorEnergetico)="alterarValorEnergetico($event)"
         [ftp]="ftp"
         [nutrientesValorPorcao]="nutrientesValorPorcao"
         [mostrarListaValorEnergetico]="true"

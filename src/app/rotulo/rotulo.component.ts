@@ -23,10 +23,17 @@ export class RotuloComponent implements OnInit {
   @ViewChild(RotuloValorEnergeticoComponent) componentRotuloValorEnergetico;
 
   ftp: Ftp;
+  todosAtributos: Array<Atributo>;
+  
   gramasPorPorcao?: number;
+  
   ingredienteValorPorcao: any;
   nutrientesValorPorcao: any;
-  todosAtributos: Array<Atributo>;
+  valorEnergeticoPorcao: any;
+
+  vd = [
+    { },
+  ];
 
   @Input()
   permitirInputValorPorcao: boolean = true;
@@ -84,6 +91,11 @@ export class RotuloComponent implements OnInit {
   alterarNutrienteValor(nutrValor: any) {
     this.nutrientesValorPorcao = nutrValor;
     // console.log(this.nutrientesValorPorcao)
+  }
+
+  alterarValorEnergetico(enValor: any) {
+    this.valorEnergeticoPorcao = enValor;
+    console.log(this.nutrientesValorPorcao)
   }
 
   resetarGramasPorPorcao() {
