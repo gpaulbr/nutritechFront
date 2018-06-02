@@ -1,30 +1,38 @@
 <nav *ngIf="estaLogado()"  class="navbar navbar-default">
-    <div class="container-fluid">
-    <div class="row menu">
-    <div class="col-xl-4 dropdown menu1">
-            <button class="dropbtn">Cadastro</button>
-            <div class="dropdown-content">
-            <a alt="Ingredientes" [routerLink]="['/ingrediente']">Ingredientes</a>
-            <a alt="Grupos" [routerLink]="['/grupo']">Grupos</a>
-            <a alt="Atributos" [routerLink]="['/atributo']">Atributos</a>
-            <a alt="Usuários" [routerLink]="['/usuario']">Usuários</a>
-            <a alt="Ficha Técnica de Produto" [routerLink]="['/ftp-cadastro']">Ficha Técnica de Produto </a>
+    <div class="container-fluid">   
+        <div >
+        <a [routerLink]="['/ftp-listagem']"><img id="logo" *ngIf= "normal" src="assets/logo.png"/></a>
+        </div>
+        <div>
+        <a [routerLink]="['/ftp-listagem']"><img id="logoMobile" *ngIf="mobile" src="assets/logo_mobile.png"/></a>
+        </div>
+    <div class="dropdown menu">
+            <button class="dropbtn ">Cadastro</button>
+            <div class="dropdown-content menu2">
+                <a  alt="Ingredientes" [routerLink]="['/cadastroIngrediente']">Ingredientes</a>
+                <a *ngIf="admin" alt="Grupos" [routerLink]="['/grupo']">Grupos</a>
+                <a *ngIf="admin" alt="Atributos" [routerLink]="['/atributo']">Atributos</a>
+                <a *ngIf="admin || professor" alt="Usuários" [routerLink]="['/usuario']">Usuários</a>
+                <a alt="Ficha Técnica de Produto" [routerLink]="['/ftp-cadastro']">Ficha Técnica de Produto </a>
             </div>
-    </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn ">Consulta</button>
+            <div class="dropdown-content menu2" >
+                <a alt="Consulta de Ingredientes" [routerLink]="['/ingrediente-listagem']">Ingredientes</a>
+                <a alt="Consulta de Grupos" [routerLink]="['/grupo-listagem']">Grupos</a>
+                <a alt="Consulta de Atributos" [routerLink]="['/atributo-listagem']">Atributos</a>
+                <a alt="Ficha Técnica de Produto" [routerLink]="['/ftp-listagem']">Ficha Técnica de Produto </a>        
+                <a *ngIf="admin" alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
+            </div>
+        </div>
+            <div class="dropdown" id="">
+                <button class="dropbtn circle "><p id="usernickname"> {{ nickname }} </p></button>
+                <div class="dropdown-content" id="sair-content">
+                    <a alt="Sair" (click)="logout()" [routerLink]="['']" >Sair</a>
+                </div>
+            </div>
 
-    <div class="col-xl-4 dropdown menu2">
-            <button class="dropbtn">Consulta</button>
-            <div class="dropdown-content">
-            <a alt="Consulta de Ingredientes" [routerLink]="['/ingrediente-listagem']">Ingredientes</a>
-            <a alt="Consulta de Grupos" [routerLink]="['/grupo-listagem']">Grupos</a>
-            <a alt="Consulta de Atributos" [routerLink]="['/atributo-listagem']">Atributos</a>
-            <a alt="Ficha Técnica de Produto" [routerLink]="['/ftp-listagem']">Ficha Técnica de Produto </a>        
-            <a *ngIf="admin" alt="Consulta de Usuários" [routerLink]="['/usuario-listagem']">Usuários</a>
-            </div>
-    </div>
-    </div>
-<div class="row" (click)="logout()" [routerLink]="['']">
-    <p class="col-md-6 nomeUsu">{{usuarioLogado.nome}}</p> <!-- mais pra frente, colocar só o nick --> 
 </div>
-</div>
+
 </nav>
