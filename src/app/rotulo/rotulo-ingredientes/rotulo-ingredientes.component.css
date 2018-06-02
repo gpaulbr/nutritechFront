@@ -1,35 +1,18 @@
-hr {
-	border-width: 3px;
-	margin-top: 10px;
-}
-
-label {
-	margin-top: 5px;
-}
-
-.delete {
-	display: inline-block;
-	float: right;
-}
-
-.btn-addIngrediente {
-  width: 100%;
-  margin-top: 2.5em;
-}
-
-form {
-	padding: 5%;
-	padding-top: 1%;
-	padding-bottom: 2%;
-	width: 80%;
-}
-
 table {
-	width: 100%;
-	margin: 10px 0px;
+	width: 70%;
+	margin:0 auto;
 	overflow: auto;
 	max-width: 100%;
 	white-space: nowrap;
+}
+th{
+	font-size:0.8em;
+	white-space: nowrap;
+}
+
+h4{
+	margin-left: 40%;
+	margin-top:1%;
 }
 
 th, tr {
@@ -49,17 +32,19 @@ tr:first-child{
 @media only screen and (max-width: 600px) {
 	table {
 		display: block;
+		width: 100%;
+		margin-left: 2%;
+	}
+}
+
+@media only screen and (max-width: 321px) {
+	h4{
+		margin-left: 7%!important;
 	}
 }
 
 @media only screen and (max-width: 768px) {
-	.imagem {
-		width: auto;
-		margin: 10%;
-		height: 100%;
-	}
-
-	button {
-		margin-top: 5px;
+	h4{
+		margin-left: 16%;
 	}
 }

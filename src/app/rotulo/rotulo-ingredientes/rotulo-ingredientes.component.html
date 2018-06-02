@@ -1,10 +1,10 @@
 <div *ngIf="this.ftp !== undefined">
   <br>
-  <h3>Ingredientes da Receita</h3>
+  <h4>Ingredientes da Receita</h4>
   <table *ngIf="mostrarListaIngredientes">
     <tr> <!-- Cabeçalho -->
       <th> <!-- Item -->
-        Receita para {{this.ftp.rendimento}} porções<br>da receita {{this.ftp.nome}}
+        Receita para {{this.ftp.rendimento}} porções da receita {{this.ftp.nome}}
       </th>
       <th>
         Receita para uma porção ({{pesoTotalPorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g)

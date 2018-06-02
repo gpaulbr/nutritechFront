@@ -1,22 +1,22 @@
 <div  *ngIf="this.ftp !== undefined">
   <div *ngIf="mostrarListasIngredientesAtributos">
-    <h3>Atributos dos Ingredientes da Receita</h3>
+    <h4>Atributos dos Ingredientes da Receita</h4>
     <ng-container *ngFor="let atr of atributos(); let i = index">
-      <h4>Tabela do(s) {{atr.nome}}</h4>
-      <table>
+      <h5 *ngIf="atr.nome">Tabela de {{atr.nome}}</h5>
+      <table *ngIf="atr.nome">
         <!-- Cabeçalho -->
         <tr>
           <th>
             Ingrediente
           </th>
-          <th> 
-            {{atr.nome}}<br>em 100g {{atr.unidade}} de produto.
+          <th *ngIf="atr.nome"> 
+            {{atr.nome}} em 100g {{atr.unidade}} de produto.
           </th>
           <th>
-            Quantidade do<br>ingrediente na receita.
+            Quantidade do ingrediente na receita.
           </th>
-          <th>
-            {{atr.nome}} na<br>receita para uma porção.
+          <th *ngIf="atr.nome"> 
+            {{atr.nome}} na receita para uma porção.
           </th>
         </tr>
         <!-- Corpo -->
