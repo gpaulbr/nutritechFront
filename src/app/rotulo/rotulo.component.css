@@ -16,8 +16,8 @@
     width: 50%;
   }
   
-  /* Sim ou Não */
-  .control-radio{
+  #inputGramas{
+    margin-right: 1%;
   }
   
   /* Confirgurações do Label unidade, multilicador, etc*/ 
@@ -29,6 +29,10 @@
   .form-control{
     width: 100%;
   }
+
+  #formGramas{
+    margin-left:33%;
+  }
   
   /* Limpar e Confirmar */
   .but-t{
@@ -37,6 +41,10 @@
     
   }
   
+  #labelGramas{
+    margin-right: -4%;
+    margin-top: 0.5%;
+  }
   
   
   /**** @media inicia aqui ****/
