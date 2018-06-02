@@ -3,9 +3,9 @@
     <div class="divisor content">
       <h2>Rótulo Nutricional</h2>
       <div *ngIf="permitirInputValorPorcao" class="row" id="formGramas">
-        <label class="col-md-2" id="labelGramas"> Porção (g): </label>
-        <input class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" [(ngModel)]="gramasPorPorcao" type="number" min="1" [value]="gramasPorPorcao" (change)="componentePorcaoIngrediente.alterar()">
-        <button class="btn btn-danger" type="number" (click)="resetarGramasPorPorcao()">Resetar</button>
+        <label id="labelGramas" > Porção (g): </label>
+        <input [(ngModel)]="gramasPorPorcao" type="number" class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" min="1" [value]="gramasPorPorcao" (change)="componentRotuloIngrediente.alterar()">
+        <button type="number" class="btn btn-danger" (click)="resetarGramasPorPorcao()">Resetar</button>
       </div>
       <br>
       <app-rotulo-ingredientes
