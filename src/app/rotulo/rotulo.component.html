@@ -2,10 +2,10 @@
   <fieldset>	
     <div class="divisor content">
       <h2>Rótulo Nutricional</h2>
-      <div *ngIf="permitirInputValorPorcao">
-        <label> Porção (g): </label>
-        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao">
-        <button type="number" (click)="resetarGramasPorPorcao()">Resetar</button>
+      <div *ngIf="permitirInputValorPorcao" class="row" id="formGramas">
+        <label id="labelGramas"> Porção (g): </label>
+        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" min="1">
+        <button type="number" class="btn btn-danger" (click)="resetarGramasPorPorcao()">Resetar</button>
       </div>
       <br>
       <app-rotulo-ingredientes

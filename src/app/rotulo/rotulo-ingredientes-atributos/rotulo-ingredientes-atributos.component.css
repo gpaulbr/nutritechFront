@@ -19,6 +19,10 @@ h5{
 	margin-top:1%;
 }
 
+button #btReset{
+	margin-right:-10%;
+}
+
 th, tr {
 	border: 1px solid black;
 	padding: 2px;

@@ -2,7 +2,10 @@
     content:"*";
     color:red;
   }
-  
+  .container {
+    min-width: 0%!important;
+    min-height: 0%!important;
+  }
   h2 {
    padding: 1px;
    padding-bottom:1em;
@@ -16,8 +19,8 @@
     width: 50%;
   }
   
-  /* Sim ou Não */
-  .control-radio{
+  #inputGramas{
+    margin-right: 1%;
   }
   
   /* Confirgurações do Label unidade, multilicador, etc*/ 
@@ -29,6 +32,10 @@
   .form-control{
     width: 100%;
   }
+
+  #formGramas{
+    margin-left:34%;
+  }
   
   /* Limpar e Confirmar */
   .but-t{
@@ -37,6 +44,10 @@
     
   }
   
+  #labelGramas{
+    margin-right: 1%;
+    margin-top: 0.5%;
+  }
   
   
   /**** @media inicia aqui ****/
@@ -72,6 +83,17 @@
     .but-t{  
      margin-left: 27%;
     }
+    #formGramas{
+      margin-left:1%;
+    }
+    .btn-danger{
+      margin-left:2%;
+      margin-top:0%;
+    }
+
+    #labelGramas{
+      margin-left: 3%;
+    }
   }
   
   /*IPHONE 6 PLUS*/
@@ -96,6 +118,19 @@
     .input-md{   
       margin-left:2%;
     }
+
+    #formGramas{
+      margin-left:1%;
+    }
+    .btn-danger{
+      margin-left:2%;
+      margin-top:2%;
+    }
+
+    #labelGramas{
+      margin-left: 3%;
+    }
+
     }
     
     /*IPHONE 6*/
