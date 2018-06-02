@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="panel-body">
-                        <div>
+                        <div *ngIf="grupoEmLista">
                             <div id="buscar" class="row"> 
                               <p class="pBuscar col-md-1">Buscar: </p>
                                <input
@@ -49,6 +49,9 @@
         </ngx-datatable>
 
                    </div>
+                <div id="aviso-cad" *ngIf="!grupoEmLista">
+                    <p> Nenhuma grupo de receita cadastrado</p>
+                </div>
                     </div>      
                 </div>
             </div>
