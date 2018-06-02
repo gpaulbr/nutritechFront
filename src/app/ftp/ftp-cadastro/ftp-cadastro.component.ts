@@ -359,9 +359,11 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   limparDadosInvalidos(ftp: Ftp) {
-    ftp.criadores.forEach(c => {
-      delete c['valid'];
-    });
+    if(ftp.criadores) {
+      ftp.criadores.forEach(c => {
+        delete c['valid'];
+      });
+    }
     delete ftp.professor['valid'];
 
     if (ftp.nota != undefined) {

@@ -16,7 +16,7 @@ import { AtributoService } from '../atributo/atributo.service';
   templateUrl: './rotulo.component.html',
   styleUrls: ['./rotulo.component.css']
 })
-export class RotuloComponent implements OnInit {
+export class RotuloComponent {
 
   @ViewChild(RotuloIngredientesComponent) componentRotuloIngrediente;
   @ViewChild(RotuloIngredientesAtributosComponent) componentRotuloIngredienteAtributos;
@@ -72,8 +72,7 @@ export class RotuloComponent implements OnInit {
               if (a.pesoG > b.pesoG) return -1;
             })
             this.resetarGramasPorPorcao();
-            // this.emitirValores();
-                });
+          });
       }
   }
 
@@ -99,11 +98,10 @@ export class RotuloComponent implements OnInit {
   }
 
   resetarGramasPorPorcao() {
-    this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
+    if(!this.gramasPorPorcao) { 
+      this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
+    }
     this.emitirValores();
-  }
-
-  ngOnInit() {
   }
 
 }
