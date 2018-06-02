@@ -1,3 +1,7 @@
+.campo-obrigatorio:after {
+  content:"*";
+  color:red;
+  }
 
 .erro{
   font-size:0.7em;

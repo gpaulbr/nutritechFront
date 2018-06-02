@@ -13,7 +13,7 @@ table,.fixed-header  {
 
 div #buscar{
     display: inline;
-    padding-left: 10%;
+    padding-left: 1%;
 }
 
 .pBuscar{
@@ -38,6 +38,7 @@ div #buscar{
     align-self: center!important;
     text-justify: newspaper!important;
     text-align: center!important;
+    max-width: 100%;
 }
 
 :host /deep/ .ngx-datatable.material .datatable-header span{
@@ -52,6 +53,7 @@ div #buscar{
     text-justify: newspaper;
     text-align: center;
     height: 30px!important;
+    max-width: 100%;
 }
 :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
     color: white !important;
@@ -68,32 +70,6 @@ div .panel-body{
     overflow-x:auto;
     height: 100%;
 }
-
-tr{
-    font-size: 15px;
-    width: 80%;
-}
-th{
-    font-size: 15px;
-}
-
-thead {
-    background-color: #207C7B;
-    color: white;
-}
-
-th, tr {
-    border: 1px none white;
-    padding: 2px;
-    align-self: center;
-    text-align: center;
-    font-weight: normal;
-}
-
-table{
-	background-color:rgba(255,255,255,0.7);
-}
-
 div {   
     display: flex;
     flex-direction: column;
@@ -111,12 +87,12 @@ h2 {
     }
 }*/
 @media only screen and (max-height: 568px),(max-width: 320) {
-        table,.fixed-header  {
-            width: 100%!important;
-        }
         div #buscar{
             display: inline;
             padding-left: 2%;
+        }
+        :host /deep/ .ngx-datatable.material .datatable-header{
+            min-width: 130%!important;
         }
 }
 @media only screen and (max-width: 768px) {
@@ -147,17 +123,11 @@ h2 {
         width: 91%;
     }
 
-    thead {
-        font-size: 3.5vw;
-    }
-
     :host /deep/ .ngx-datatable.material .datatable-header{/*para modificar o ngx-datatable */
         font-size: 3.5vw; 
     }
     :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
         padding-left: 0px;
-        /*margin-right: 3.1%;*/
-        width: 100%!important;
     }
 
     table,.fixed-header  {

@@ -16,6 +16,7 @@ export class GrupoListagemComponent implements OnInit {
 
   grupos: Grupo[];
   rows = [];
+  grupoEmLista:boolean = false;
   admin: boolean;
   columns = [];
   @ViewChild(DatatableComponent) table: DatatableComponent;
@@ -68,8 +69,12 @@ export class GrupoListagemComponent implements OnInit {
         response['Grupos'].forEach(p => {
           lista.push(p)
         })
-
-        this.rows = lista;
+        if(lista.length!=0){
+          this.rows = lista;
+          this.grupoEmLista = true;//para exibir mensagem se não tiver nda cadastrado
+        }
+        else
+          this.grupoEmLista = false;
       });
   }
 

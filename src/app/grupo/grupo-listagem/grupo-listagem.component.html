@@ -7,11 +7,11 @@
             <div class="row justify-content-center">
                 <div class="panel panel-default panel-container">
                     <div class="panel-heading ">
-                        <h2 class="titulo_lista">Listagem de Grupos de Receitas</h2  >
+                        <h2 class="titulo_lista">Lista de Grupos de Receitas</h2  >
                     </div>
 
                     <div class="panel-body">
-                        <div>
+                        <div *ngIf="grupoEmLista">
                             <div id="buscar" class="row"> 
                               <p class="pBuscar col-md-1">Buscar: </p>
                                <input
@@ -29,9 +29,9 @@
                          [scrollbarH]="false"
                          [rows]='rows'>
 
-            <ngx-datatable-column name="{{columns[0].name}}" prop="id" [maxWidth]="80"></ngx-datatable-column>
-            <ngx-datatable-column name="{{columns[1].name}}" class="first-title-detail label-wrap-detail" [maxWidth]="400" prop="nome"></ngx-datatable-column>
-            <ngx-datatable-column name="{{columns[2].name}}" prop="custo" [maxWidth]="150"></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[0].name}}" prop="id" [minWidth]="80"></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[1].name}}" class="first-title-detail label-wrap-detail" [minWidth]="100" prop="nome"></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[2].name}}" prop="custo" [minWidth]="80"></ngx-datatable-column>
             <ngx-datatable-column *ngIf="admin"
                 name="{{columns[3].name}}"
                 [sortable]="false"
@@ -40,8 +40,8 @@
                 [draggable]="false"
                 [resizeable]="false">
                 <ng-template *ngIf="admin" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                    <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)">edit</i>
-                    <i class="material-icons" style="cursor: pointer;" (click)="deletarGrupo(rowIndex)">delete</i>
+                    <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)" title="Editar">edit</i>
+                    <i class="material-icons" style="cursor: pointer;" (click)="deletarGrupo(rowIndex)" title="Excluir">delete</i>
                 </ng-template>
 
             </ngx-datatable-column>
@@ -49,6 +49,9 @@
         </ngx-datatable>
 
                    </div>
+                <div id="aviso-cad" *ngIf="!grupoEmLista">
+                    <p> Nenhuma grupo de receita cadastrado</p>
+                </div>
                     </div>      
                 </div>
             </div>
