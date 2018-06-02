@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ViewChildren } from '@angular/core';
 import { RotuloIngredientesComponent } from './rotulo-ingredientes/rotulo-ingredientes.component';
 import { FtpService } from '../ftp/ftp.service';
 import { IngredienteService } from '../ingrediente/ingrediente.service';
@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Ftp } from '../ftp/ftp';
 import { Ingrediente } from '../ingrediente/ingrediente';
 import { RotuloIngredientesAtributosComponent } from './rotulo-ingredientes-atributos/rotulo-ingredientes-atributos.component';
+import { RotuloValorEnergeticoComponent } from './rotulo-valor-energetico/rotulo-valor-energetico.component';
 
 @Component({
   selector: 'app-rotulo',
@@ -17,10 +18,12 @@ export class RotuloComponent implements OnInit {
 
   @ViewChild(RotuloIngredientesComponent) componentRotuloIngrediente;
   @ViewChild(RotuloIngredientesAtributosComponent) componentRotuloIngredienteAtributos;
+  @ViewChild(RotuloValorEnergeticoComponent) componentRotuloValorEnergetico;
 
   ftp: Ftp;
   gramasPorPorcao?: number;
   ingredienteValorPorcao: any;
+  nutrientesValorPorcao: any;
 
   @Input()
   permitirInputValorPorcao: boolean = true;
@@ -54,13 +57,19 @@ export class RotuloComponent implements OnInit {
       }
   }
 
-  dataUpdate() {
-    
+  emitirValores() {
+    this.componentRotuloIngrediente.salvar();
+    this.componentRotuloIngredienteAtributos.salvar();
+    this.componentRotuloValorEnergetico.salvar();
+    console.log('emitido');
   }
 
   alterarIngredienteValor(ingValor: any) {
     this.ingredienteValorPorcao = ingValor;
-    this.componentRotuloIngredienteAtributos.ingredienteValorPorcao = this.ingredienteValorPorcao;    
+  }
+
+  alterarNutrienteValor(nutrValor: any) {
+    this.nutrientesValorPorcao = nutrValor;
   }
 
   resetarGramasPorPorcao() {

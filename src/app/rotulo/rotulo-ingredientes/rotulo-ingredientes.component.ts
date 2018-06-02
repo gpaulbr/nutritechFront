@@ -56,16 +56,12 @@ export class RotuloIngredientesComponent implements OnInit {
             if (a.pesoG < b.pesoG) return 1;
             if (a.pesoG > b.pesoG) return -1;
           })
-          this.alterar();
+          this.salvar();
         });
     }
   }
 
   ngOnInit() {
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if (usuarioLogado == null) {  // só libera após login
-      return;
-    }
   }
 
   /*
@@ -118,13 +114,13 @@ export class RotuloIngredientesComponent implements OnInit {
     return soma;
   }
 
-  alterar() {
+  salvar() {
     let output = new Array<any>();
     this.ingredientes().forEach(item => {
       let novo: any = {ingrediente: item.ingrediente, valor: this.pesoIngredientePorPorcao(item, this.gramasPorPorcao) };
       output.push(novo);
     });
-    //console.log(output);
+    console.log(output);
     this.outputIngredienteValorPorcao.emit(output);
   }
 }

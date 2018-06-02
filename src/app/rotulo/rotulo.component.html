@@ -4,7 +4,7 @@
       <h2>Rótulo Nutricional</h2>
       <div *ngIf="permitirInputValorPorcao" class="row" id="formGramas">
         <label id="labelGramas"> Porção (g): </label>
-        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" min="1">
+        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" (change)="emitirValores()" class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" min="1">
         <button type="number" class="btn btn-danger" (click)="resetarGramasPorPorcao()">Resetar</button>
       </div>
       <br>
@@ -21,6 +21,9 @@
         [ingredienteValorPorcao]="ingredienteValorPorcao"
         [qntdeEmGramas]="100">  
       </app-rotulo-ingredientes-atributos>
+      <app-rotulo-valor-energetico>
+        
+      </app-rotulo-valor-energetico>
     </div>
   </fieldset>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Ftp } from '../../ftp/ftp';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +9,7 @@ import { ReceitaIngrediente } from '../../ftp/ftp-receita-ingrediente';
 import { IngredienteAtributo } from '../../ingrediente/ingrediente-atributo';
 import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteAtributoDto } from '../../ingrediente/ingrediente-atributo-dto';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-rotulo-ingredientes-atributos',
@@ -35,6 +36,9 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
   @Input()
   qntdeEmGramas: number;
 
+  @Output()
+  outputNutrientesValorPorcao = new EventEmitter<any>(); // Se descobrir como faz sem o any, me avisa leonardo.marcelino@outlook.com
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -56,7 +60,8 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
             }
             if (a.pesoG < b.pesoG) return 1;
             if (a.pesoG > b.pesoG) return -1;
-          })
+          });
+          this.salvar();
         });
     }
 
@@ -121,7 +126,30 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
     return receitaIngrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso);
   }
 
-  valorParaUmaPorcao(atributo: Atributo, receitaIngrediente: ReceitaIngrediente): number {
+  valorNutricional(atributo: Atributo, receitaIngrediente: ReceitaIngrediente): number {
     return Number(this.ingredienteAtributo(receitaIngrediente.ingrediente, atributo).valor) * this.pesoIngredientePorPorcao(receitaIngrediente, this.gramasPorPorcao) / this.qntdeEmGramas
+  }
+
+  getList(): any  {
+    let output = new Array<{atributo: Atributo, valor: number}>();
+    this.todosAtributos.forEach(atributo => {
+      let novo: {atributo: Atributo, valor: number}
+      let soma: number = 0;
+      this.ingredientes().forEach(receitaIngrediente => {
+        let valorNutricional = this.valorNutricional(atributo, receitaIngrediente);
+        soma += valorNutricional;
+      });
+      novo = {atributo: atributo, valor: soma }
+      output.push(novo);
+    });
+    return output;
+    //console.log(output);
+    //this.outputNutrientesValorPorcao.emit(output);
+  }
+
+  salvar() {
+    let lista = this.getList();
+    this.outputNutrientesValorPorcao.emit(lista);
+    console.log(lista);
   }
 }
