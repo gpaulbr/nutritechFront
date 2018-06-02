@@ -80,6 +80,17 @@
     .but-t{  
      margin-left: 27%;
     }
+    #formGramas{
+      margin-left:1%;
+    }
+    .btn-danger{
+      margin-left:2%;
+      margin-top:0%;
+    }
+
+    #labelGramas{
+      margin-left: 3%;
+    }
   }
   
   /*IPHONE 6 PLUS*/
@@ -104,6 +115,19 @@
     .input-md{   
       margin-left:2%;
     }
+
+    #formGramas{
+      margin-left:1%;
+    }
+    .btn-danger{
+      margin-left:2%;
+      margin-top:2%;
+    }
+
+    #labelGramas{
+      margin-left: 3%;
+    }
+
     }
     
     /*IPHONE 6*/
