@@ -4,7 +4,7 @@
       <h2>Rótulo Nutricional</h2>
       <div *ngIf="permitirInputValorPorcao">
         <label> Porção (g): </label>
-        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" (change)="componentePorcaoIngrediente.alterar()">
+        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" (change)="componentRotuloIngrediente.alterar()">
         <button type="number" (click)="resetarGramasPorPorcao()">Resetar</button>
       </div>
       <br>
