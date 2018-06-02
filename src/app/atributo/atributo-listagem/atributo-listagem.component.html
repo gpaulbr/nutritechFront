@@ -20,16 +20,17 @@
                   [columnMode]="'force'"
                   [headerHeight]="50"
                   [rowHeight]="'auto'"
+                  [scrollbarH]="true"
                   [rows]='rows'>
                  
                  
             <!-- COLUNAS da tabela -->
-        <ngx-datatable-column name="Id" [width]="5"></ngx-datatable-column>
-        <ngx-datatable-column name="Nome" [width]="10"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e porque precisava definir um width diferente para algumas colunas -->
-        <ngx-datatable-column name="Unidade" [width]="10"></ngx-datatable-column>
-        <ngx-datatable-column name="Multiplicador" [width]="10" prop="multiplicador"> </ngx-datatable-column>
-        <ngx-datatable-column name="Obrigatório" [width]="10" prop="obrigatorio"></ngx-datatable-column>>
-        <ngx-datatable-column *ngIf="admin" name="Ações" [width]="10">
+        <ngx-datatable-column name="Id" [minWidth]="5"></ngx-datatable-column>
+        <ngx-datatable-column name="Nome" [minWidth]="10"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e porque precisava definir um width diferente para algumas colunas -->
+        <ngx-datatable-column name="Unidade" [minWidth]="10"></ngx-datatable-column>
+        <ngx-datatable-column name="Multiplicador" [minWidth]="10" prop="multiplicador"> </ngx-datatable-column>
+        <ngx-datatable-column name="Obrigatório" [minWidth]="10" prop="obrigatorio"></ngx-datatable-column>>
+        <ngx-datatable-column *ngIf="admin" name="Ações" [minWidth]="10">
         <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template> 
             <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)" title="Editar">edit</i>
             <i class="material-icons" style="cursor: pointer;" (click)="deletarAtributo(rowIndex)" title="Excluir">delete</i>
