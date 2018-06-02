@@ -1,0 +1,50 @@
+<div class="container" *ngIf="this.ftp !== undefined">
+  <fieldset>	
+    <div class="divisor content">
+      <h2>Rótulo Nutricional</h2>
+      <div *ngIf="permitirInputValorPorcao" class="row" id="formGramas">
+        <label id="labelGramas"> Porção (g): </label>
+        <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" (change)="emitirValores()" class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" min="1">
+        <button type="number" class="btn btn-danger" (click)="resetarGramasPorPorcao()">Resetar</button>
+      </div>
+      <br>
+
+      <app-rotulo-info-nutricional
+        [ftp]="ftp"
+        [mostrarInfoNutricional]="true"
+        [gramasPorPorcao]="gramasPorPorcao"
+        [numeroCasasDecimais]="2"
+        [valorEnergeticoPorcao]="valorEnergeticoPorcao">
+      </app-rotulo-info-nutricional>
+      
+      <app-rotulo-ingredientes
+        (outputIngredienteValorPorcao)="alterarIngredienteValor($event)"
+        [gramasPorPorcao]="gramasPorPorcao"
+        [numeroCasasDecimais]="2" 
+        [mostrarListaIngredientes]="true">
+      </app-rotulo-ingredientes>
+      
+      <app-rotulo-ingredientes-atributos
+        (outputNutrientesValorPorcao)="alterarNutrienteValor($event)"
+        [ftp]="ftp"
+        [todosAtributos]="todosAtributos"
+        [mostrarListasIngredientesAtributos]="true"
+        [gramasPorPorcao]="gramasPorPorcao"
+        [numeroCasasDecimais]="2"
+        [ingredienteValorPorcao]="ingredienteValorPorcao"
+        [qntdeEmGramas]="100"
+        [aplicarMultiplicador]="false">  
+      </app-rotulo-ingredientes-atributos>
+
+      <app-rotulo-valor-energetico
+        (outputValorEnergetico)="alterarValorEnergetico($event)"
+        [ftp]="ftp"
+        [nutrientesValorPorcao]="nutrientesValorPorcao"
+        [mostrarListaValorEnergetico]="true"
+        [gramasPorPorcao]="gramasPorPorcao"
+        [numeroCasasDecimais]="2">
+      </app-rotulo-valor-energetico>
+
+    </div>
+  </fieldset>
+</div>

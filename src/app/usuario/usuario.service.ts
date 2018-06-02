@@ -26,4 +26,8 @@ export class UsuarioService {
   buscarAlunos(): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(this.url + "/alunos")
   }
+
+  buscarUsuario(index: Number): Observable<Usuario> {
+    return this.http.get<Usuario>(this.url + '/' + index);
+  } 
 }

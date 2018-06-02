@@ -2,39 +2,55 @@
 
     <div class="panel panel-default panel-container">
         <div class="panel-heading ">
-            <h2 class="titulo_lista" *ngIf="this.usuarioLogado.tipo=='PROFESSOR' || this.usuarioLogado.tipo=='ADMIN'">Lista de Receitas</h2>
-            <h2 class="titulo_lista" *ngIf="this.usuarioLogado.tipo=='USUARIO'">Minhas Receitas</h2>
+            <h2 class="titulo_lista" *ngIf="usuarioEhAdmin() || usuarioEhProfessor()">Lista de Receitas</h2>
+            <h2 class="titulo_lista" *ngIf="usuarioEhAluno()">Minhas Receitas</h2>
         </div>
         <div class="panel-body">
-                <div id="buscar" class="row" *ngIf="receitaEmLista">
-                        <p class="pBuscar col-md-1">Buscar: </p>
-                         <input
-                         type='text' class="inputBuscar col-md-4"
-                         (keyup)='updateFilter($event)'
-                         />
-                </div>
+            <div id="buscar" class="row" *ngIf="receitaEmLista">
+                <p class="pBuscar col-md-1">Buscar: </p>
+                <input type='text' class="inputBuscar col-md-4" (keyup)='updateFilter($event)' />
+            </div>
 
-        <!-- configurações ngx-datatable -->
-        <ngx-datatable *ngIf="receitaEmLista"
-            #table
-            class="material"
-                       [columns]="columns"
-                       [columnMode]="'force'"
-                       [headerHeight]="50"
-                       [footerHeight]="50"
-                       [rowHeight]="'auto'"
-                       [limit]="10"
-                       [rows]='rows'
+            <!-- configurações ngx-datatable -->
+            <ngx-datatable *ngIf="receitaEmLista" #table class="material"
+            [columns]="columns" 
+            [columnMode]="'force'" 
+            [headerHeight]="50" 
+            [footerHeight]="0" 
+            [rowHeight]="'auto'"
+            [rows]='rows' 
+            [scrollbarH]="true"
+            >
+                <!-- COLUNAS da tabela -->
 
-            [scrollbarH]="true">
-            <!-- COLUNAS da tabela -->
-        <ngx-datatable-column name="Nome" [width]="10"></ngx-datatable-column><!--ficou no html por conta do scroll horizontal e pq precisava definir um width diferente para algumas colunas -->
-        <ngx-datatable-column name="Rendimento" [width]="10"></ngx-datatable-column>
-        <ngx-datatable-column name="Criadores" [width]="10" prop="criador"> </ngx-datatable-column>
-        <ngx-datatable-column name="Grupo de Receita" [width]="10" prop="grupoReceita.nome"></ngx-datatable-column>>
-        <ngx-datatable-column name="Tipo" [width]="5"></ngx-datatable-column>
-        <ngx-datatable-column name="Status" [width]="5"></ngx-datatable-column>
-        </ngx-datatable>
+                <ngx-datatable-column *ngIf="columns[0] != undefined" name="{{columns[0].name}}" prop="{{columns[0].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[1] != undefined" name="{{columns[1].name}}" prop="{{columns[1].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[2] != undefined" name="{{columns[2].name}}" prop="{{columns[2].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[3] != undefined" name="{{columns[3].name}}" prop="{{columns[3].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[4] != undefined" name="{{columns[4].name}}" prop="{{columns[4].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[5] != undefined" name="{{columns[5].name}}" prop="{{columns[5].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[6] != undefined" name="{{columns[6].name}}" prop="{{columns[6].prop}}"></ngx-datatable-column>
+                <ngx-datatable-column *ngIf="columns[7] != undefined" name="{{columns[7].name}}" prop="{{columns[7].prop}}">
+                    <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                        <p *ngIf="receitaAtiva(rowIndex)">Ativo</p>
+                        <p *ngIf="!receitaAtiva(rowIndex)">Inativo</p>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column 
+                        name="Ações"
+                        [sortable]="false"
+                        [canAutoResize]="false"
+                        [draggable]="false"
+                        [resizeable]="false">            
+                    <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="alterarReceita(rowIndex)" title="Editar">edit</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarRotulo(rowIndex)" title="Rótulo">grid_on</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarPDF(rowIndex)" title="PDF">picture_as_pdf</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="receitaAtiva(rowIndex)" title="Excluir" (click)="verificarAntesDeExcluir(rowIndex)">delete</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="!receitaAtiva(rowIndex)"(click)="ativarReceita(rowIndex)" title="Ativar" >autorenew</i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
 
             <div id="aviso-cad" *ngIf="!receitaEmLista">
                 <p> Nenhuma Receita Cadastrada</p>
@@ -42,4 +58,4 @@
         </div>
 
     </div>
-  </div>
+</div>

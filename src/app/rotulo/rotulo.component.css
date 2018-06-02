@@ -1,0 +1,187 @@
+.campo-obrigatorio:after {
+    content:"*";
+    color:red;
+  }
+  .container {
+    min-width: 0%!important;
+    min-height: 0%!important;
+  }
+  h2 {
+   padding: 1px;
+   padding-bottom:1em;
+   text-align:center;
+   background-repeat:no-repeat;
+   background-position:20% 5%;
+   background-size:1.2em;
+  }
+  
+  form{
+    width: 50%;
+  }
+  
+  #inputGramas{
+    margin-right: 1%;
+  }
+  
+  /* Confirgurações do Label unidade, multilicador, etc*/ 
+  .control-label{
+    margin-left:22%;
+  }
+  
+  /* input */
+  .form-control{
+    width: 100%;
+  }
+
+  #formGramas{
+    margin-left:34%;
+  }
+  
+  /* Limpar e Confirmar */
+  .but-t{
+    margin-left: 38%;
+    margin-right: auto;
+    
+  }
+  
+  #labelGramas{
+    margin-right: 1%;
+    margin-top: 0.5%;
+  }
+  
+  
+  /**** @media inicia aqui ****/
+  
+  @media only screen and (max-width: 1032px) {
+    h2{
+     padding: 1%; 
+     font-size:1.5em;
+     margin-left: -1%;
+    }
+    /* form maior */
+    form{
+     width: 100%;
+     margin-left:-2%;
+    }
+    
+    /* input do nome */
+    .form-control{ 
+     width: 95%; 
+     margin-left:2%;
+    }
+  
+    .control-label{
+      margin-left: 2%;
+    }
+  
+    /* Sim ou Não */
+    .control-radio{
+      margin-left: 2%; 
+     }
+  
+    /*Limpar e Confirmar*/
+    .but-t{  
+     margin-left: 27%;
+    }
+    #formGramas{
+      margin-left:1%;
+    }
+    .btn-danger{
+      margin-left:2%;
+      margin-top:0%;
+    }
+
+    #labelGramas{
+      margin-left: 3%;
+    }
+  }
+  
+  /*IPHONE 6 PLUS*/
+  @media only screen and (max-width: 500px) {
+    h2{
+      font-size:1.5em;
+      margin-left: 5%;
+      background-size:1.2%;
+    }
+    
+    form{
+      width: 100%;
+      margin-left:-2%;
+    }
+    .control-label{
+      margin-left: 2%;
+    }
+    /* Sim ou Não */
+    .control-radio{
+      margin-left: 2%; 
+     }
+    .input-md{   
+      margin-left:2%;
+    }
+
+    #formGramas{
+      margin-left:1%;
+    }
+    .btn-danger{
+      margin-left:2%;
+      margin-top:2%;
+    }
+
+    #labelGramas{
+      margin-left: 3%;
+    }
+
+    }
+    
+    /*IPHONE 6*/
+    @media only screen and (max-width: 375px) {
+      h2{
+        font-size:1.5em;
+        margin-left: 5%;
+        background-size:1.2%;
+      }
+      
+      form{
+        width: 100%;
+        margin-left:-2%;
+      }
+      .control-label{
+        margin-left: 2%;
+      }
+    /* Sim ou Não */
+    .control-radio{
+      margin-left: 2%; 
+     }
+      
+      .input-md{   
+        margin-left:2%;
+      }
+    }
+    /*IPHONE 5*/
+    @media only screen and (max-width: 330px) {
+    
+      h2{
+        font-size:1.5em;
+        margin-left: 5%;
+        background-size:1.2%;
+      }
+      
+      form{
+        width: 100%;
+        margin-left:-2%;
+      }
+  
+      .control-label{
+        margin-left: 2%;
+      }
+    /* Sim ou Não */
+   .control-radio{
+    margin-left: 2%; 
+   }
+      
+      .input-md{   
+        margin-left:2%;
+      }
+      
+    }
+  

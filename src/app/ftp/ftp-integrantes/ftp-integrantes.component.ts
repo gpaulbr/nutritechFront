@@ -21,6 +21,8 @@ export class FtpIntegrantesComponent implements OnInit {
   salvarIntegrantes = new EventEmitter<Array<Usuario>>();
   @Input()
   obrigatorio: boolean
+  @Input()
+  podeAlterar: boolean
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -38,29 +40,33 @@ export class FtpIntegrantesComponent implements OnInit {
         this.alunosDisponiveis = response['Usuarios'];
         this.alunosDisponiveis.forEach(item => {
           delete item.senha
-          delete item["valid"];
+          delete item['valid'];
         });
-        console.log(this.alunosDisponiveis);
+        // console.log(this.alunosDisponiveis);
       }
     )
   }
 
   adicionarIntegrante() {
-    if(this.usuario != null && !this.integrantes.includes(this.usuario)) {
+    if(this.usuario != null && !this.estaIncluido(this.usuario)) {
       this.integrantes.push(this.usuario);
-      console.log("Adicionado: " + this.usuario + " à lista: " + this.integrantes);
+      // console.log('Adicionado: ' + this.usuario + ' à lista: ' + this.integrantes);
       this.usuario = null;
       this.salvar();
     }
   }
 
-  removerIntegrantePorIndex(index : number) {
-    this.integrantes.splice(index, 1)
-    this.salvar();
+  estaIncluido(usuario: Usuario) {
+    let incluido = false;
+    this.integrantes.forEach(u => {
+      if (u.id == usuario.id) {
+        incluido = true;
+      }
+    });
+    return incluido;
   }
 
-  removerIntegrantePorUser(user : Usuario) {
-    var index = this.integrantes.indexOf(user)
+  removerIntegrantePorIndex(index : number) {
     this.integrantes.splice(index, 1)
     this.salvar();
   }

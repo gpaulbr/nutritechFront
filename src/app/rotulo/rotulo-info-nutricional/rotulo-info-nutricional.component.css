@@ -1,0 +1,72 @@
+table {
+	width: 70%;
+	margin:0 auto;
+	overflow: auto;
+	max-width: 100%;
+	white-space: nowrap;
+}
+th{
+	font-size:0.8em;
+	white-space: normal;
+}
+
+h3 {
+	text-align: center;
+	margin-top:1%;
+}
+
+h4{
+	margin-left: 35%;
+	margin-top:1%;
+}
+h5{
+	text-align: center;
+	margin-top:1%;
+}
+h6{
+	text-align: center;
+	margin-top:1%;
+}
+
+hr {
+    border-width: 3px;
+    margin-top: 10px;
+}
+
+button #btReset{
+	margin-right:-10%;
+}
+
+th, tr {
+	border: 1px solid black;
+	padding: 2px;
+}
+
+tr:nth-child(odd){
+	background:linear-gradient(0deg,rgba(255,255,255,0.4),rgba(255,255,255,0.4));
+}
+
+tr:first-child{
+	background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+	color: lightgray;
+}
+
+@media only screen and (max-width: 600px) {
+	table {
+		display: block;
+		width: 100%;
+		margin-left: 2%;
+	}
+}
+
+@media only screen and (max-width: 321px) {
+	h4{
+		margin-left: 7%!important;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	h4{
+		margin-left: 16%;
+	}
+}
