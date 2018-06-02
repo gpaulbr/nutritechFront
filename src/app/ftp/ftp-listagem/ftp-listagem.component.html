@@ -43,6 +43,7 @@
                         [draggable]="false"
                         [resizeable]="false">            
                     <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="alterarReceita(rowIndex)" title="Rótulo">edit</i>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarRotulo(rowIndex)" title="Rótulo">grid_on</i>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarPDF(rowIndex)" title="PDF">picture_as_pdf</i>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="receitaAtiva(rowIndex)" title="Excluir" (click)="verificarAntesDeExcluir(rowIndex)">delete</i>

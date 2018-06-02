@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Ftp } from '../../ftp/ftp';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,6 @@ import { ReceitaIngrediente } from '../../ftp/ftp-receita-ingrediente';
 import { IngredienteAtributo } from '../../ingrediente/ingrediente-atributo';
 import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteAtributoDto } from '../../ingrediente/ingrediente-atributo-dto';
-import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-rotulo-ingredientes-atributos',
@@ -64,14 +63,15 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
           this.salvar();
         });
     }
-
-    this.atributeService.buscarAtributos().subscribe(response => {
-      this.todosAtributos = Array.from(response['Atributos']) as Array<Atributo>;
-      this.todosAtributos.sort((a, b) => {
-        if (a.id < b.id) return -1;
-        if (a.id > b.id) return 1;
+    if (this.todosAtributos === undefined) {
+      this.atributeService.buscarAtributos().subscribe(response => {
+        this.todosAtributos = Array.from(response['Atributos']) as Array<Atributo>;
+        this.todosAtributos.sort((a, b) => {
+          if (a.id < b.id) return -1;
+          if (a.id > b.id) return 1;
+        });
       });
-    });
+    }
   }
 
   ngOnInit() {
@@ -126,8 +126,8 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
     return receitaIngrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso);
   }
 
-  valorNutricional(atributo: Atributo, receitaIngrediente: ReceitaIngrediente): number {
-    return Number(this.ingredienteAtributo(receitaIngrediente.ingrediente, atributo).valor) * this.pesoIngredientePorPorcao(receitaIngrediente, this.gramasPorPorcao) / this.qntdeEmGramas
+  valorNutricional(atributo: Atributo, receitaIngrediente: ReceitaIngrediente, aplicarMultiplicador: Boolean): number {
+    return (aplicarMultiplicador ? atributo.multiplicador : 1) * Number(this.ingredienteAtributo(receitaIngrediente.ingrediente, atributo).valor) * this.pesoIngredientePorPorcao(receitaIngrediente, this.gramasPorPorcao) / this.qntdeEmGramas
   }
 
   getList(): any  {
@@ -136,7 +136,7 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
       let novo: {atributo: Atributo, valor: number}
       let soma: number = 0;
       this.ingredientes().forEach(receitaIngrediente => {
-        let valorNutricional = this.valorNutricional(atributo, receitaIngrediente);
+        let valorNutricional = this.valorNutricional(atributo, receitaIngrediente, true);
         soma += valorNutricional;
       });
       novo = {atributo: atributo, valor: soma }

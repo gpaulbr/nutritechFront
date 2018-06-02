@@ -61,7 +61,6 @@ export class RotuloComponent implements OnInit {
     this.componentRotuloIngrediente.salvar();
     this.componentRotuloIngredienteAtributos.salvar();
     this.componentRotuloValorEnergetico.salvar();
-    console.log('emitido');
   }
 
   alterarIngredienteValor(ingValor: any) {

@@ -153,7 +153,7 @@ export class FtpListagemComponent implements OnInit {
       this.table.offset = 0;
     }
 
-  redicionarAlterar(index: Number) {
+  alterarReceita(index: Number) {
     this.router.navigate(['./ftp-cadastro/' + String(this.receitas[index as number].id)]);
   }
 

@@ -15,14 +15,15 @@
         [mostrarListaIngredientes]="true">
       </app-rotulo-ingredientes>
       <app-rotulo-ingredientes-atributos
+        (outputNutrientesValorPorcao)="alterarNutrienteValor($event)"
         [mostrarListasIngredientesAtributos]="true"
         [gramasPorPorcao]="gramasPorPorcao"
         [numeroCasasDecimais]="2"
         [ingredienteValorPorcao]="ingredienteValorPorcao"
         [qntdeEmGramas]="100">  
       </app-rotulo-ingredientes-atributos>
-      <app-rotulo-valor-energetico>
-        
+      <app-rotulo-valor-energetico
+        [nutrientesValorPorcao]="nutrientesValorPorcao">
       </app-rotulo-valor-energetico>
     </div>
   </fieldset>

@@ -10,7 +10,7 @@ export class RotuloValorEnergeticoComponent implements OnInit {
   @Input()
   nutrientesValorPorcao: any
 
-  constructor() { 
+  constructor() {
     this.salvar();
   }
 
@@ -19,6 +19,7 @@ export class RotuloValorEnergeticoComponent implements OnInit {
 
   salvar() {
     console.log('output');
+    console.log(this.nutrientesValorPorcao);
   }
 
 }
