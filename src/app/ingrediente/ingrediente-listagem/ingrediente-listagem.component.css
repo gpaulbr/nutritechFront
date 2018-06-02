@@ -2,8 +2,9 @@ table,.fixed-header { /*comentei pq só o fundo da tabela estava funcionando, ma
 	width: 100%;
 	margin: 0px;
 	overflow: auto;
-	max-width: 100%;
-    white-space: nowrap;
+    max-width: 100%;
+    min-width: 100px;
+    white-space: normal;
     background-color: #ffffff9c!important;
 }
 
@@ -17,7 +18,6 @@ div #buscar{
     font-weight: normal!important;
 }
 .inputBuscar{
-    width: 15em;
     height: 1.5em;
     float: left;
     border: 1px solid #207C7B;
@@ -44,7 +44,7 @@ div #buscar{
     align-self: center;
     text-justify: newspaper;
     text-align: center;
-    height: 30px!important;
+    min-height: 30px!important;
 }
 :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
     color: white !important;
