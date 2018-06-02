@@ -1,0 +1,32 @@
+<div *ngIf="this.ftp !== undefined">
+  <br>
+  <h3>Valor da Porção por Ingrediente</h3>
+  <table *ngIf="mostrarListaIngredientes">
+    <tr> <!-- Cabeçalho -->
+      <th> <!-- Item -->
+        Receita para {{this.ftp.rendimento}} porções da receita {{this.ftp.nome}}
+      </th>
+      <th>
+        Receita para uma porção ({{pesoTotalPorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g)
+      </th>
+    </tr>
+    <ng-container *ngFor="let item of ingredientes(); let i = index">
+      <tr>
+        <th>
+          {{item.pesoG}}g de {{item.ingrediente.nome}}
+        </th>
+        <th>
+          {{pesoIngredientePorPorcao(item, gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g
+        </th>
+      </tr>
+    </ng-container>
+    <tr>
+      <th>
+        <b>Peso Total: {{ftp.peso}}</b>
+      </th>
+      <th>
+        <b>Peso Total: {{totalIngredientePorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}</b>
+      </th>
+    </tr>
+  </table>
+</div>

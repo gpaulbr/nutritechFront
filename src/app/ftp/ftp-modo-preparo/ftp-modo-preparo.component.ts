@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { viewParentEl } from '@angular/core/src/view/util';
 
 @Component({
   selector: 'app-ftp-modo-preparo',
@@ -11,11 +12,13 @@ export class FtpModoPreparoComponent implements OnInit {
 
   novoPasso: String = '';
   passos = new Array<String>();
-  
+
   @Output()
   salvarPassos = new EventEmitter<Array<String>>();
   @Input()
   obrigatorio: boolean
+  @Input()
+  podeAlterar: boolean
 
   ngOnInit() {
   }

@@ -24,14 +24,13 @@ export class FtpImageFileUploadComponent implements OnInit {
   salvarImagem = new EventEmitter<Imagem>();
   @Input()
   obrigatorio: boolean;
+  @Input()
+  podeAlterar: boolean;
 
   ngOnInit() {
   }
 
   onFileChanged(event) {
-    //debugger
-    this.previewImg(event);
-
     let img;
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -44,12 +43,19 @@ export class FtpImageFileUploadComponent implements OnInit {
 
       this.imagem = new Imagem();
       this.imagem.ext = tokens4[1];
-      this.imagem.base64 = btoa(tokens[1]); // converte para blob // para desconverter usar alob
-      //console.log('Image changed');
-      //console.log(this.imagem);
+      this.imagem.base64 = btoa(tokens[1]); // converte para blob // para desconverter usar atob
+
+      this.imgFromBase64(this.imagem.ext, this.imagem.base64);
       this.salvar();
     };
 
+  }
+
+  imgFromBase64(ext: String, base64: String) {
+    document.getElementById('preview')
+      .setAttribute(
+        'src', 'data:image/' + ext + ';base64,' + atob(base64 as string)
+      );
   }
 
   previewImg(event) {

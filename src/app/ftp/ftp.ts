@@ -1,8 +1,9 @@
-import { Usuario } from "../usuario/usuario";
-import { GrupoReceita } from "../ingrediente/grupo-receita";
-import { FtpTipo } from "./ftp-tipo.enum";
-import { ReceitaIngrediente } from "./ftp-receita-ingrediente";
-import { Imagem } from "./imagem";
+import { Usuario } from '../usuario/usuario';
+import { GrupoReceita } from '../ingrediente/grupo-receita';
+import { FtpTipo } from './ftp-tipo.enum';
+import { ReceitaIngrediente } from './ftp-receita-ingrediente';
+import { Imagem } from './imagem';
+import { Nota } from './nota';
 
 export class Ftp {
 
@@ -22,4 +23,6 @@ export class Ftp {
     public professor: Usuario;
     public datahora: Date;
     public grupoReceita: GrupoReceita;
+
+    public nota: Nota;
 }

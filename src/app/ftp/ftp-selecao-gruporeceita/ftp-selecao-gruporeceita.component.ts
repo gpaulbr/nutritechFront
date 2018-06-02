@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {GrupoService} from '../../grupo/grupo.service';
 import {GrupoReceita} from '../../ingrediente/grupo-receita';
+import {FtpService} from '../ftp.service';
 
 @Component({
   selector: 'app-ftp-selecao-gruporeceita',
@@ -10,16 +11,17 @@ import {GrupoReceita} from '../../ingrediente/grupo-receita';
 })
 export class FtpSelecaoGruporeceitaComponent implements OnInit {
 
-
   grupoReceita: GrupoReceita = null;
   gruposDisponiveis: GrupoReceita[];
 
-  constructor(private router: Router, private grupoService: GrupoService) { }
+  constructor(private router: Router, private grupoService: GrupoService) {  }
 
   @Output()
   salvarGrupoReceita = new EventEmitter<GrupoReceita>();
   @Input()
   obrigatorio: boolean
+  @Input()
+  podeAlterar: boolean
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -27,7 +29,6 @@ export class FtpSelecaoGruporeceitaComponent implements OnInit {
       this.router.navigate(['./']);
       return;
     }
-
     this.loadDB();
   }
 
@@ -38,7 +39,6 @@ export class FtpSelecaoGruporeceitaComponent implements OnInit {
         this.gruposDisponiveis.forEach(item => {
           delete item['active'];
         });
-        // console.log(this.gruposDisponiveis);
       }
     );
   }

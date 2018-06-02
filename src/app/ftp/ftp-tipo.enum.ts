@@ -1,5 +1,5 @@
 export enum FtpTipo {
-    PUBLICO,
-    PRIVADO,
-    NULL
+    PUBLICO = 'PUBLICO',
+    PRIVADO = 'PRIVADO',
+    NULL = 'null'
 }

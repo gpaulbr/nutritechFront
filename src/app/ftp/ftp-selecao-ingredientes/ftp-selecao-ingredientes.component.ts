@@ -3,6 +3,7 @@ import { Ingrediente } from '../../ingrediente/ingrediente';
 import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 import {Router} from '@angular/router';
+import {Usuario} from '../../usuario/usuario';
 
 @Component({
   selector: 'app-ftp-selecao-ingredientes',
@@ -15,18 +16,23 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   custoKg: number;
   fatorCorrecao: number;
   pesoG: number;
-  receitaIngredientes = new Array<ReceitaIngrediente>();
-
+  receitaIngredientes: Array<ReceitaIngrediente>;
   ingredientesDisponiveis: Ingrediente[];
 
-  constructor(private router: Router, private ingredienteService: IngredienteService) { }
+  constructor(private router: Router, private ingredienteService: IngredienteService) {
+    this.receitaIngredientes = new Array<ReceitaIngrediente>();
+   }
 
   @Output()
   salvarCusto = new EventEmitter<String>();
   @Output()
   salvarIngredientes = new EventEmitter<Array<ReceitaIngrediente>>();
+  @Output()
+  salvarPeso = new EventEmitter<Number>();
   @Input()
-  obrigatorio: boolean
+  obrigatorio: boolean;
+  @Input()
+  podeAlterar: boolean;
 
   ngOnInit() {
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -56,27 +62,45 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
 
   adicionarIngrediente() {
     // console.log (this.receitaIngredientes)
-    let novo: ReceitaIngrediente = new ReceitaIngrediente()
-    delete this.ingrediente.criador['valid']
+    let novo: ReceitaIngrediente = new ReceitaIngrediente();
+    delete this.ingrediente.criador['valid'];
     novo.ingrediente = this.ingrediente;
     novo.custoKg = this.custoKg;
     novo.pesoG = this.pesoG;
     novo.fatorCorrecao = this.fatorCorrecao;
 
-    if (this.ingrediente != null && !this.receitaIngredientes.includes(novo)) {
+    if (this.ingrediente != null && !this.estaIncluido(novo.ingrediente)) {
       this.receitaIngredientes.push(novo);
       // console.log('Adicionado: ' + this.ingrediente + ' à lista: ' + this.receitaIngredientes);
       this.ingrediente = null;
+      this.custoKg = 0;
+      this.fatorCorrecao = 100;
+      this.pesoG = 0;
       this.salvar();
     } else {
-      // console.log('Nada selecionado')
     }
-    // console.log (this.receitaIngredientes)
-
   }
 
-  removerIngredientePorIndex(index : number) {
-    this.receitaIngredientes.splice(index, 1)
+  podeIncluirIngrediente() {
+    if (this.ingrediente != null && this.custoKg > 0 && this.fatorCorrecao >= 0 && this.fatorCorrecao <= 100 && this.pesoG > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  estaIncluido(ingrediente: Ingrediente) {
+    let incluido = false;
+    this.receitaIngredientes.forEach(ri => {
+      if (ri.ingrediente.nome === ingrediente.nome) {
+        incluido = true;
+      }
+    });
+    return incluido;
+  }
+
+  removerIngredientePorIndex(index: number) {
+    this.receitaIngredientes.splice(index, 1);
     this.salvar();
   }
 
@@ -85,16 +109,25 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   }
 
   getCustoTotal(): String {
-    let custoTotal = 0;
+    let total = 0;
     for (const item of this.receitaIngredientes) {
-      custoTotal = custoTotal + Number(item.getCustoTotal());
+      total = total + Number(item.getCustoTotal());
     }
-    return String(custoTotal.toFixed(2));
+    return String(total.toFixed(2));
+  }
+
+  getPesoTotal(): Number {
+    let total = 0;
+    for (const item of this.receitaIngredientes) {
+      total = total + Number(item.pesoG);
+    }
+    return Number(total.toFixed(2));
   }
 
   salvar () {
     this.salvarIngredientes.emit(this.receitaIngredientes);
     this.salvarCusto.emit(this.getCustoTotal());
+    this.salvarPeso.emit(this.getPesoTotal());
   }
 
 }
