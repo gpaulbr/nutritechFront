@@ -59,14 +59,19 @@ tr:first-child {
 }
 
 @media only screen and (max-width: 768px) {
-    .imagem {
-        width: auto;
-        margin: 10%;
-        height: 100%;
-    }
-    button {
-        margin-top: 5px;
-    }
+	.imagem {
+		width: auto;
+		margin: 10%;
+		height: 100%;
+	}
+
+	button {
+		margin-top: 5px;
+	}
+
+	h2 {
+		font-size: 1.5em!important;
+	}
 }
 
 @media only screen and (min-width: 768px) {
