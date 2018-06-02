@@ -8,6 +8,8 @@ import { Ftp } from '../ftp/ftp';
 import { Ingrediente } from '../ingrediente/ingrediente';
 import { RotuloIngredientesAtributosComponent } from './rotulo-ingredientes-atributos/rotulo-ingredientes-atributos.component';
 import { RotuloValorEnergeticoComponent } from './rotulo-valor-energetico/rotulo-valor-energetico.component';
+import { Atributo } from '../atributo/atributo';
+import { AtributoService } from '../atributo/atributo.service';
 
 @Component({
   selector: 'app-rotulo',
@@ -24,6 +26,7 @@ export class RotuloComponent implements OnInit {
   gramasPorPorcao?: number;
   ingredienteValorPorcao: any;
   nutrientesValorPorcao: any;
+  todosAtributos: Array<Atributo>;
 
   @Input()
   permitirInputValorPorcao: boolean = true;
@@ -31,6 +34,7 @@ export class RotuloComponent implements OnInit {
 
   constructor(
     private ftpService: FtpService,
+    private atributeService: AtributoService,
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService) {    
@@ -38,6 +42,16 @@ export class RotuloComponent implements OnInit {
       let receita;
       this.route.params.subscribe(params => receita = params);
   
+      if (this.todosAtributos === undefined) {
+        this.atributeService.buscarAtributos().subscribe(response => {
+          this.todosAtributos = Array.from(response['Atributos']) as Array<Atributo>;
+          this.todosAtributos.sort((a, b) => {
+            if (a.id < b.id) return -1;
+            if (a.id > b.id) return 1;
+          });
+        });
+      }
+
       if (receita.id !== undefined) {
         this.ftpService.obterFTP(receita.id)
           .subscribe(res => {
@@ -51,9 +65,8 @@ export class RotuloComponent implements OnInit {
               if (a.pesoG > b.pesoG) return -1;
             })
             this.resetarGramasPorPorcao();
+            // this.emitirValores();
                 });
-      } else {
-        this.toastr.error('Redirecionando', 'Não foi possível carregar uma receita.');
       }
   }
 
@@ -65,17 +78,17 @@ export class RotuloComponent implements OnInit {
 
   alterarIngredienteValor(ingValor: any) {
     this.ingredienteValorPorcao = ingValor;
+    // console.log(this.ingredienteValorPorcao)
   }
 
   alterarNutrienteValor(nutrValor: any) {
     this.nutrientesValorPorcao = nutrValor;
+    // console.log(this.nutrientesValorPorcao)
   }
 
   resetarGramasPorPorcao() {
     this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
-    if (this.ftp !== undefined && this.componentRotuloIngrediente !== undefined) {
-      this.componentRotuloIngrediente.gramasPorPorcao = this.gramasPorPorcao;
-    }
+    this.emitirValores();
   }
 
   ngOnInit() {

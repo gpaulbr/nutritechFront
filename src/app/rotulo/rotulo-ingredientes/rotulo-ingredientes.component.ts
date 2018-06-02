@@ -16,6 +16,7 @@ import { IngredienteService } from '../../ingrediente/ingrediente.service';
 })
 export class RotuloIngredientesComponent implements OnInit {
 
+  @Input()
   ftp: Ftp;
 
   @Input()
@@ -34,34 +35,10 @@ export class RotuloIngredientesComponent implements OnInit {
   // Temporariamente isto está aqui
   msgValoresDiarios: String = "(*)% Valores Diários de referência com base em uma dieta de 2.000 kcal ou 8400 kJ. Seus valoers diários podem ser maiores ou menores dependendo de suas necessidades energéticas."
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private toastr: ToastrService,
-    private ftpService: FtpService,
-    private atributeService: AtributoService,
-  ) {
-    let receita;
-    this.route.params.subscribe(params => receita = params);
-
-    if (receita.id !== undefined && this.ftp === undefined) {
-      this.ftpService.obterFTP(receita.id)
-        .subscribe(res => {
-          this.ftp = res;
-          this.ftp.receitaIngrediente.sort((a, b) => {
-            if (a.pesoG == b.pesoG) {
-              if (a.ingrediente.nome.toLowerCase() < b.ingrediente.nome.toLowerCase()) return -1;
-              if (a.ingrediente.nome.toLowerCase() > b.ingrediente.nome.toLowerCase()) return 1;
-            }
-            if (a.pesoG < b.pesoG) return 1;
-            if (a.pesoG > b.pesoG) return -1;
-          })
-          this.salvar();
-        });
-    }
-  }
+  constructor() { }
 
   ngOnInit() {
+    this.salvar();
   }
 
   /*

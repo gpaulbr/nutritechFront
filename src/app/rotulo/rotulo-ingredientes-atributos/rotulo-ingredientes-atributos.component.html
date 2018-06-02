@@ -1,6 +1,6 @@
 <div  *ngIf="this.ftp !== undefined">
   <div *ngIf="mostrarListasIngredientesAtributos">
-    <h4>Atributos dos Ingredientes da Receita</h4>
+    <h3>Valores Nutricionais por Atributo</h3>
     <ng-container *ngFor="let atr of atributos(); let i = index">
       <h5 *ngIf="atr.nome">Tabela de {{atr.nome}}</h5>
       <table *ngIf="atr.nome">
@@ -37,7 +37,7 @@
               {{pesoIngredientePorPorcao(ing, gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g
             </th>
             <th>
-              {{valorNutricional(atr, ing).toFixed(numeroCasasDecimais).replace(".", ",")}}{{atr.unidade}}
+              {{valorNutricional(atr, ing, aplicarMultiplicador).toFixed(numeroCasasDecimais).replace(".", ",")}}{{atr.unidade}}
             </th>
           </tr>
         </ng-container>

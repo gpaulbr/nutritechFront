@@ -1,3 +1,46 @@
-<p>
-  rotulo-valor-energetico works!
-</p>
+<div *ngIf="this.ftp !== undefined && nutrientesValorPorcao !== undefined">
+    <br>
+    <h3>Valores Energéticos</h3>
+    <table *ngIf="mostrarListaValorEnergetico">
+      <tr> <!-- Cabeçalho -->
+        <th> <!-- Item -->
+          Nutrientes
+        </th>
+        <th>
+          Porção de {{ftp.nome}} ({{gramasPorPorcao}})
+        </th>
+        <th>
+          Fator de Conversão (kcal/g)
+        </th>
+        <th>
+          Kcal por porção
+        </th>
+      </tr>
+      <ng-container *ngFor="let item of nutrientesValorPorcao; let i = index">
+        <tr>
+          <th>
+            {{item.atributo.nome}}
+          </th>
+          <th>
+            {{item.valor.toFixed(numeroCasasDecimais).replace(".", ",")}}
+          </th>
+          <th>
+            {{item.atributo.multiplicador}}
+          </th>
+          <th>
+            {{(item.valor * item.atributo.multiplicador).toFixed(numeroCasasDecimais).replace(".", ",")}}
+          </th>
+        </tr>
+      </ng-container>
+      <tr>
+        <th>
+          <b>TOTAL:</b>
+        </th>
+        <th></th>
+        <th></th>
+        <th>
+          <b>{{somatorioTotal()}}</b>
+        </th>
+      </tr>
+    </table>
+  </div>

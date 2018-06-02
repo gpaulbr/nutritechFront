@@ -17,7 +17,10 @@ import { IngredienteAtributoDto } from '../../ingrediente/ingrediente-atributo-d
 })
 export class RotuloIngredientesAtributosComponent implements OnInit {
 
+  @Input()
   ftp: Ftp;
+
+  @Input()
   todosAtributos: Array<Atributo>;
 
   @Input()
@@ -35,46 +38,16 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
   @Input()
   qntdeEmGramas: number;
 
+  @Input()
+  aplicarMultiplicador: boolean;
+
   @Output()
   outputNutrientesValorPorcao = new EventEmitter<any>(); // Se descobrir como faz sem o any, me avisa leonardo.marcelino@outlook.com
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private toastr: ToastrService,
-    private ftpService: FtpService,
-    private atributeService: AtributoService,
-  ) {
-    let receita;
-    this.route.params.subscribe(params => receita = params);
-
-    if (receita.id !== undefined && this.ftp === undefined) {
-      this.ftpService.obterFTP(receita.id)
-        .subscribe(res => {
-          this.ftp = res;
-          this.ftp.receitaIngrediente.sort((a, b) => {
-            if (a.pesoG == b.pesoG) {
-              if (a.ingrediente.nome.toLowerCase() < b.ingrediente.nome.toLowerCase()) return -1;
-              if (a.ingrediente.nome.toLowerCase() > b.ingrediente.nome.toLowerCase()) return 1;
-            }
-            if (a.pesoG < b.pesoG) return 1;
-            if (a.pesoG > b.pesoG) return -1;
-          });
-          this.salvar();
-        });
-    }
-    if (this.todosAtributos === undefined) {
-      this.atributeService.buscarAtributos().subscribe(response => {
-        this.todosAtributos = Array.from(response['Atributos']) as Array<Atributo>;
-        this.todosAtributos.sort((a, b) => {
-          if (a.id < b.id) return -1;
-          if (a.id > b.id) return 1;
-        });
-      });
-    }
-  }
+  constructor() { }
 
   ngOnInit() {
+    this.salvar();
   }
 
   /*
@@ -136,7 +109,7 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
       let novo: {atributo: Atributo, valor: number}
       let soma: number = 0;
       this.ingredientes().forEach(receitaIngrediente => {
-        let valorNutricional = this.valorNutricional(atributo, receitaIngrediente, true);
+        let valorNutricional = this.valorNutricional(atributo, receitaIngrediente, this.aplicarMultiplicador);
         soma += valorNutricional;
       });
       novo = {atributo: atributo, valor: soma }

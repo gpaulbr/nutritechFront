@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Ftp } from '../../ftp/ftp';
 
 @Component({
   selector: 'app-rotulo-valor-energetico',
@@ -8,13 +9,36 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RotuloValorEnergeticoComponent implements OnInit {
 
   @Input()
-  nutrientesValorPorcao: any
+  ftp: Ftp
 
-  constructor() {
+  @Input()
+  nutrientesValorPorcao: any;
+
+  @Input()
+  numeroCasasDecimais: number;
+
+  @Input()
+  gramasPorPorcao: number;
+
+  @Input()
+  mostrarListaValorEnergetico: Boolean
+
+  
+
+  constructor() { }
+
+  ngOnInit() {
     this.salvar();
   }
 
-  ngOnInit() {
+  somatorioTotal(): number {
+    let soma: number = 0;
+    
+    this.nutrientesValorPorcao.forEach(item => {
+      soma += item.valor * item.atributo.multiplicador;
+    });
+
+    return soma;
   }
 
   salvar() {
