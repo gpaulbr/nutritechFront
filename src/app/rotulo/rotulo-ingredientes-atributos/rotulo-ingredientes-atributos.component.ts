@@ -19,6 +19,14 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
 
   ftp: Ftp;
   todosAtributos: Array<Atributo>;
+
+  @Input()
+  gramasPorPorcao?: number;
+
+  @Input()
+  numeroCasasDecimais: number;
+
+  @Input()
   ingredienteValorPorcao: any;
 
   @Input()
@@ -109,21 +117,11 @@ export class RotuloIngredientesAtributosComponent implements OnInit {
     return resultado;
   }
 
-  getIngredienteValorPorcao(ingrediente: Ingrediente): number {
-    let result = -1;
-    console.log("testests")
-    console.log(this.ingredienteValorPorcao);
-    this.ingredienteValorPorcao.forEach(item => {
-      console.log(item.ingrediente.id + ' vs ' + ingrediente.id)
-      if (item.ingrediente.id === ingrediente.id) {
-        console.log('found: ' + item.valor)
-        result = item.valor;
-      }
-    });
-    return result;
+  pesoIngredientePorPorcao(receitaIngrediente: ReceitaIngrediente, gramasPorPorcao?: number) {
+    return receitaIngrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso);
   }
 
-  getAtributoNaReceitaParaUmaPorcao(ingrediente: Ingrediente, atributo: Atributo): number {
-    return Number(this.ingredienteAtributo(ingrediente, atributo).valor) * this.getIngredienteValorPorcao(ingrediente) / this.qntdeEmGramas;
+  valorParaUmaPorcao(atributo: Atributo, receitaIngrediente: ReceitaIngrediente): number {
+    return Number(this.ingredienteAtributo(receitaIngrediente.ingrediente, atributo).valor) * this.pesoIngredientePorPorcao(receitaIngrediente, this.gramasPorPorcao) / this.qntdeEmGramas
   }
 }

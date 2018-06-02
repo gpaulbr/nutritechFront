@@ -107,8 +107,6 @@ export class RotuloIngredientesComponent implements OnInit {
   }
 
   pesoIngredientePorPorcao(ingrediente: ReceitaIngrediente, gramasPorPorcao?: number) {
-    //console.log(this.ftp.peso);
-    //console.log(ingrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso))
     return ingrediente.pesoG * gramasPorPorcao / Number(this.ftp.peso);
   }
 

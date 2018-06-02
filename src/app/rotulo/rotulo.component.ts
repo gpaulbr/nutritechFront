@@ -54,10 +54,13 @@ export class RotuloComponent implements OnInit {
       }
   }
 
+  dataUpdate() {
+    
+  }
+
   alterarIngredienteValor(ingValor: any) {
     this.ingredienteValorPorcao = ingValor;
     this.componentRotuloIngredienteAtributos.ingredienteValorPorcao = this.ingredienteValorPorcao;    
-    console.log(this.ingredienteValorPorcao);
   }
 
   resetarGramasPorPorcao() {

@@ -10,7 +10,7 @@
             Ingrediente
           </th>
           <th *ngIf="atr.nome"> 
-            {{atr.nome}} em 100g {{atr.unidade}} de produto.
+            {{atr.nome}} do produto.
           </th>
           <th>
             Quantidade do ingrediente na receita.
@@ -34,10 +34,10 @@
               </ng-container>
             </th>
             <th>
-              {{getIngredienteValorPorcao(ing.ingrediente)}}g
+              {{pesoIngredientePorPorcao(ing, gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g
             </th>
             <th>
-              {{getAtributoNaReceitaParaUmaPorcao(ing.ingrediente, atr)}}g
+              {{valorParaUmaPorcao(atr, ing).toFixed(numeroCasasDecimais).replace(".", ",")}}g
             </th>
           </tr>
         </ng-container>
