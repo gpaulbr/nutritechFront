@@ -20,6 +20,7 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
 
 export class IngredienteListagemComponent implements OnInit {
   ingredientes: Ingrediente[];
+  ingredienteEmLista:boolean = false;
   usuarioLogado: UsuarioLogadoDto;
   teste:string;
   rows = [];
@@ -87,7 +88,14 @@ export class IngredienteListagemComponent implements OnInit {
             lista.push(p)
           } 
         })
-        this.rows = lista
+
+        if(lista.length!=0){
+          this.rows = lista;
+          this.ingredienteEmLista = true;//para exibir mensagem se não tiver nda cadastrado
+        }
+        else
+          this.ingredienteEmLista = false;
+
       });
   }
 
