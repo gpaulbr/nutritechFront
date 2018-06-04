@@ -9,7 +9,7 @@
       <tr> <!-- Cabeçalho -->
         <th>
           <h5>INFORMAÇÕES NUTRICIONAIS</h5>
-          <h6>Porção de {{gramasPorPorcao}}g</h6>
+          <h6>Porção de {{gramasPorPorcao.toFixed(numeroCasasDecimais).replace(".", ",")}}g</h6>
         </th>
       </tr>
     </table>
@@ -49,8 +49,6 @@
     </table>
   </div>
   
-  <br> 
   <hr>
-  <br>
 
 </div>

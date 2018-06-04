@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class FtpIntegrantesComponent implements OnInit {
 
+  usuarioLogado: Usuario;
+
   usuario: Usuario = null;
   integrantes = new Array<Usuario>();
 
@@ -25,8 +27,8 @@ export class FtpIntegrantesComponent implements OnInit {
   podeAlterar: boolean
 
   ngOnInit() {
-    var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if(usuarioLogado == null) {
+    this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (this.usuarioLogado == null) {
       this.router.navigate(['./']);
       return;
     }
@@ -39,16 +41,20 @@ export class FtpIntegrantesComponent implements OnInit {
       response => {
         this.alunosDisponiveis = response['Usuarios'];
         this.alunosDisponiveis.forEach(item => {
-          delete item.senha
+          delete item.senha;
           delete item['valid'];
+          // if (item.id === this.usuarioLogado.id) { // automaticamente adiciona usuario, mas tem que checar se id da receita é nulo.
+          //   this.usuario = item;
+          //   this.adicionarIntegrante();
+          // }
         });
         // console.log(this.alunosDisponiveis);
       }
-    )
+    );
   }
 
   adicionarIntegrante() {
-    if(this.usuario != null && !this.estaIncluido(this.usuario)) {
+    if (this.usuario != null && !this.estaIncluido(this.usuario)) {
       this.integrantes.push(this.usuario);
       // console.log('Adicionado: ' + this.usuario + ' à lista: ' + this.integrantes);
       this.usuario = null;

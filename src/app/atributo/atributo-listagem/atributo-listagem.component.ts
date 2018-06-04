@@ -92,7 +92,7 @@ export class AtributoListagemComponent implements OnInit {
         } else
           this.atributoEmLista = false;
       });
-    console.log(this.atributos);
+    //console.log(this.atributos);
   }
 
   updateFilter(event) {

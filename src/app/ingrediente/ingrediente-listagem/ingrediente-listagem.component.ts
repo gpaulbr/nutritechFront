@@ -45,7 +45,7 @@ export class IngredienteListagemComponent implements OnInit {
       this.router.navigate(['./']);
     }
     this.atualizarGrade();
-    console.log("Usuário logado:" + this.usuarioLogado.tipo);//OK TIRAR
+    //console.log("Usuário logado:" + this.usuarioLogado.tipo);//OK TIRAR
   }
 
   updateFilter(event) {
