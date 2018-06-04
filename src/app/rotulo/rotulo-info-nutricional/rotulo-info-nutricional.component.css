@@ -10,6 +10,8 @@ th{
 	white-space: normal;
 }
 
+
+
 h3 {
 	text-align: center;
 	margin-top:1%;
@@ -56,6 +58,10 @@ tr:first-child{
 		display: block;
 		width: 100%;
 		margin-left: 2%;
+	}
+	#esse{
+		width:400px!important;
+		max-width: none!important;
 	}
 }
 

@@ -24,9 +24,9 @@ export class RotuloComponent {
 
   ftp: Ftp;
   todosAtributos: Array<Atributo>;
-  
-  gramasPorPorcao?: number;
-  
+
+  gramasPorPorcao: number = 0;
+
   ingredienteValorPorcao: any;
   nutrientesValorPorcao: any;
   valorEnergeticoPorcao: any;
@@ -37,7 +37,7 @@ export class RotuloComponent {
 
   @Input()
   permitirInputValorPorcao: boolean = true;
-  
+
 
   constructor(
     private ftpService: FtpService,
@@ -45,10 +45,10 @@ export class RotuloComponent {
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService) {    
-      
+
       let receita;
       this.route.params.subscribe(params => receita = params);
-  
+
       if (this.todosAtributos === undefined) {
         this.atributeService.buscarAtributos().subscribe(response => {
           this.todosAtributos = Array.from(response['Atributos']) as Array<Atributo>;
@@ -71,12 +71,15 @@ export class RotuloComponent {
               if (a.pesoG < b.pesoG) return 1;
               if (a.pesoG > b.pesoG) return -1;
             })
-            this.resetarGramasPorPorcao();
+            this.resetar();
           });
       }
   }
 
   emitirValores() {
+    if (this.gramasPorPorcao == null) {
+      this.gramasPorPorcao = 0;
+    }
     this.componentRotuloIngrediente.salvar();
     this.componentRotuloIngredienteAtributos.salvar();
     this.componentRotuloValorEnergetico.salvar();
@@ -94,13 +97,15 @@ export class RotuloComponent {
 
   alterarValorEnergetico(enValor: any) {
     this.valorEnergeticoPorcao = enValor;
-    console.log(this.nutrientesValorPorcao)
+    console.log(this.nutrientesValorPorcao);
   }
 
-  resetarGramasPorPorcao() {
-    if(!this.gramasPorPorcao) { 
-      this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
-    }
+  confirmar() {
+    this.emitirValores();
+  }
+
+  resetar() {
+    this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
     this.emitirValores();
   }
 

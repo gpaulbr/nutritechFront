@@ -7,7 +7,7 @@
     <!-- <h3>Informações Nutricionais</h3> -->
     <table>
       <tr> <!-- Cabeçalho -->
-        <th>
+        <th id="esse">
           <h5>INFORMAÇÕES NUTRICIONAIS</h5>
           <h6>Porção de {{gramasPorPorcao.toFixed(numeroCasasDecimais).replace(".", ",")}}g</h6>
         </th>
@@ -34,19 +34,18 @@
             {{item.valor.toFixed(numeroCasasDecimais).replace(".", ",")}}
           </th>
           <th>
+            {{calculoVDPerc(item.valor, item.atributo).toFixed(numeroCasasDecimais).replace(".", ",")}}%
           </th>
         </tr>
       </ng-container>
-      <tr>
-        <th>
-          <b>TOTAL:</b>
-        </th>
-        <th></th>
-        <th>
-          <b>temp0,00g</b>
-        </th>
-      </tr>
     </table>
+    <table>
+        <tr> <!-- Cabeçalho -->
+          <th>
+            <label>(*)% Valores Diários de referência com base em uma dieta de 2.000 kcal ou 8400 kJ. Seus valores diários podem ser maiores ou menores dependendo de suas necessidades energéticas.</label>
+          </th>
+        </tr>
+      </table>
   </div>
   
   <hr>
