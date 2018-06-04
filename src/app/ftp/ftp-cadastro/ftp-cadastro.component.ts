@@ -308,7 +308,8 @@ export class FTPCadastroComponent implements OnInit {
    */
 
    valorNota(): Number {
-    const nota = this.ftpForm.get('nota').value;
+    const nota = this.ftpForm.value.nota;
+    console.log(nota);
      if (nota === undefined || nota === null) {
        return null;
      }
