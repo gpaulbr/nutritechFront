@@ -22,7 +22,7 @@ export class IngredienteListagemComponent implements OnInit {
   ingredientes: Ingrediente[];
   ingredienteEmLista:boolean = false;
   usuarioLogado: UsuarioLogadoDto;
-  teste:string;
+  
   rows = [];
   columns = [
     { name: 'Nome' },

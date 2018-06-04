@@ -16,6 +16,7 @@ import { RotuloComponent } from './rotulo/rotulo.component';
 
 const routes: Routes = [
   { path: 'usuario', component: UsuarioManutencaoComponent },
+  { path: 'usuario/:id', component: UsuarioManutencaoComponent },
   { path: 'grupo', component: GrupoManutencaoComponent },
   { path: 'atributo', component: AtributoManutencaoComponent},
   { path: 'atributo/:id', component: AtributoManutencaoComponent},

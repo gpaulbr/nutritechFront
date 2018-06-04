@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { RadioButton, RadioButtonElemento } from '../../shared/entities/radio-button';
 import { UsuarioService } from '../usuario.service';
 import { Http, Response } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioLogadoDto } from '../usuario-logado-dto';
 import { ToastrService } from 'ngx-toastr';
 
@@ -16,12 +16,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UsuarioManutencaoComponent implements OnInit {
 
-  usuario: Usuario = new Usuario();
   usuarioLogado: UsuarioLogadoDto;
   senhaConfirmacao: string = '';
   usuarioForm: FormGroup;
   mensagemErroSenha = "As senhas digitadas estão diferentes";
   senhaValida = true;
+  idUsuario: string;
   public mascaraCPF = [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/];
 
   tiposUsuarios = [{
@@ -49,7 +49,8 @@ export class UsuarioManutencaoComponent implements OnInit {
     private usuarioService: UsuarioService,
     private router: Router,
     private toastr: ToastrService,
-    fb: FormBuilder) { 
+    fb: FormBuilder,
+    private route: ActivatedRoute) { 
       this.usuarioForm = fb.group({
         nome: [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
         email: [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(50)])],
@@ -59,12 +60,37 @@ export class UsuarioManutencaoComponent implements OnInit {
         tipo: [2, Validators.required],
         status: [true, Validators.required]
       });
+      this.route.params.subscribe( params => this.idUsuario = params.id);
+      if(this.idUsuario) {
+        this.usuarioForm.controls.senha.setValidators(null);
+        this.usuarioService.obterUsuario(this.idUsuario).subscribe( resp => {
+          this.usuarioForm.patchValue(resp)
+          if (resp.tipo === "PROFESSOR") {
+            this.definirTipoUsuario(1);
+            this.tiposUsuarios[0].selecionado = false;
+            this.tiposUsuarios[1].selecionado = true;
+          }
+          if (!resp.status) {
+            this.definirTipoStatus(false);
+            this.tiposStatus[0].selecionado = false;
+            this.tiposStatus[0].selecionado = true;
+          }
+        });
+      }
     }
 
   ngOnInit() {
     console.log(JSON.parse(localStorage.getItem('usuarioLogado')));
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     console.log(this.usuarioLogado)
+  }
+
+  salvarUsuario(){
+    if(this.idUsuario) {
+      this.atualizarUsuario()
+    } else {
+      this.cadastrarUsuario();
+    }
   }
 
   cadastrarUsuario(){
@@ -83,6 +109,26 @@ export class UsuarioManutencaoComponent implements OnInit {
       error => {
         this.toastr.error(error.error);
       });
+  }
+
+  atualizarUsuario() {
+    let usuario = this.usuarioForm.value;
+    usuario.id = +this.idUsuario;
+    this.usuarioService.atualizarUsuario(usuario).subscribe(
+      response => {
+        this.toastr.success('Usuário atualizado com sucesso');
+        if(this.usuarioLogado!=null){
+          if(this.usuarioLogado.tipo=="ADMIN"){
+            this.router.navigate(['./usuario-listagem']);
+          }
+        } else {
+        this.router.navigate(['./']); 
+        }
+      },
+      error => {
+        this.toastr.error(error.error);
+      }
+    );
   }
 
   definirTipoUsuario(valor: number){
