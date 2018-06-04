@@ -18,7 +18,7 @@
                                 <label>Nota:</label>
                             </div>
                             <div class="col-md-6">
-                                <input [value]="ftpForm.get('nota').value.nota" type="number" class="form-control" min="0" max="10" step="0.1" (change)="alterarNota($event.target.value)">
+                                <input [disabled]='!podeAlterarNota()' [value]="valorNota()" type="number" class="form-control" min="0" max="10" step="0.1" (change)="alterarNota($event.target.value)">
                                 <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nota'].valid && this.ftpForm.controls['nota'].dirty"></app-mensagem-erro>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                     <label class="campo-obrigatorio">Produto:</label>
                                 </div>
                                 <div class="col-md-7 col-lg-6 col-xl-5">
-                                    <input formControlName="nome" type="text" class="form-control" placeholder="Nome do Produto">
+                                    <input [disabled]='!campoPodeSerAlterado()' formControlName="nome" type="text" class="form-control" placeholder="Nome do Produto" >
                                     <app-mensagem-erro [contemErro]="!this.ftpForm.controls['nome'].valid && this.ftpForm.controls['nome'].dirty"></app-mensagem-erro>
                                 </div>
                             </div>

@@ -105,7 +105,8 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   }
 
   criarNovoIngrediente() {
-    console.log('Não implementado');
+    console.log('Temporariamente apenas redireciona.');
+    this.router.navigate(['./ingrediente']);
   }
 
   getCustoTotal(): String {

@@ -125,6 +125,10 @@ export class FTPCadastroComponent implements OnInit {
 
           this.ftpForm.controls['peso'].setValue(res.peso);
           console.log(this.ftpForm.value);
+
+          if (!this.campoPodeSerAlterado()) {
+            this.desabilitarCampos();
+          }
         });
     }
   }
@@ -141,7 +145,7 @@ export class FTPCadastroComponent implements OnInit {
    * Manipulação dos Dados do Formulário
    */
 
-  alterarPassos(passos: Array<String>){
+  alterarPassos(passos: Array<String>) {
     this.ftpForm.controls.passos.setValue(passos);
   }
 
@@ -165,7 +169,7 @@ export class FTPCadastroComponent implements OnInit {
     this.ftpForm.controls.imagem.setValue(imagem);
   }
 
-  alterarDificuldade(dificuldade: number){
+  alterarDificuldade(dificuldade: number) {
     this.ftpForm.controls.dificuldade.setValue(dificuldade);
   }
 
@@ -267,24 +271,24 @@ export class FTPCadastroComponent implements OnInit {
   }
 
   campoPodeSerAlterado(): Boolean {
-    let notaPublicada = this.receitaFoiAvaliada();
-    let ehAdmin = this.UsuarioEhAdmin();
-    let ehProfDisciplina = this.UsuarioEhProfessorDisciplina();
-    let ehDonoDaReceita = this.UsuarioEhDonoDaReceita();
-
-    return (ehAdmin || ehProfDisciplina || (ehDonoDaReceita && !notaPublicada)); // é mais complicado que isso, mas temporariamente fica assim
+    const receitaPublicada = this.receitaEstaPublicada();
+    const notaPublicada = this.receitaFoiAvaliada();
+    const ehAdmin = this.UsuarioEhAdmin();
+    const ehProfDisciplina = this.UsuarioEhProfessorDisciplina();
+    const ehDonoDaReceita = this.UsuarioEhDonoDaReceita();
+    // é mais complicado que isso, mas temporariamente fica assim
+    return (ehAdmin || ehProfDisciplina || (ehDonoDaReceita && !receitaPublicada) || this.ftpForm.value.id == null);
   }
 
   podeAlterarNota(): Boolean {
-    console.log('Nota é ' + this.ftpForm.value.nota); 
-    let ehAdmin = this.UsuarioEhAdmin();
-    let ehProfDisciplina = this.UsuarioEhProfessorDisciplina();
-
+    const ehAdmin = this.UsuarioEhAdmin();
+    const ehProfDisciplina = this.UsuarioEhProfessorDisciplina();
+    const ehAluno = this.UsuarioEhAluno();
     return (ehAdmin || ehProfDisciplina); // é mais complicado que isso, mas temporariamente fica assim
   }
 
   receitaEstaPublicada(): Boolean {
-    return (this.ftpForm.value.publicada == true);
+    return (this.ftpForm.value.publicada === true);
   }
 
   receitaFoiAvaliada(): Boolean {
@@ -303,21 +307,37 @@ export class FTPCadastroComponent implements OnInit {
    * Controle de Estado dos Campos do Formulário
    */
 
+   valorNota(): Number {
+    const nota = this.ftpForm.get('nota').value;
+     if (nota === undefined || nota === null) {
+       return null;
+     }
+
+     return nota.nota;
+   }
+
    desabilitarCampos() {
-    this.ftpForm.controls['nome'].disable;
-    this.ftpForm.controls['publicada'].disable;
-    this.ftpForm.controls['passos'].disable;
-    this.ftpForm.controls['rendimento'].disable;
-    this.ftpForm.controls['tempo'].disable;
-    this.ftpForm.controls['peso'].disable;
-    this.ftpForm.controls['imagem'].disable;
-    this.ftpForm.controls['tipo'].disable;
-    this.ftpForm.controls['criadores'].disable;
-    this.ftpForm.controls['receitaIngrediente'].disable;
-    this.ftpForm.controls['grupoReceita'].disable;
-    this.ftpForm.controls['professor'].disable;
-    this.ftpForm.controls['datahora'].disable;
-    this.ftpForm.controls['dificuldade'].disable;
+    this.ftpForm.controls['nome'].disable({onlySelf: true});
+    this.ftpForm.controls['publicada'].disable({onlySelf: true});
+    this.ftpForm.controls['rendimento'].disable({onlySelf: true});
+    this.ftpForm.controls['tempo'].disable({onlySelf: true});
+    this.ftpForm.controls['peso'].disable({onlySelf: true});
+    this.ftpForm.controls['tipo'].disable({onlySelf: true});
+    this.ftpForm.controls['datahora'].disable({onlySelf: true});
+    // this.ftpForm.controls['nome'].disable();
+    // this.ftpForm.controls['publicada'].disable();
+    // this.ftpForm.controls['passos'].disable();
+    // this.ftpForm.controls['rendimento'].disable();
+    // this.ftpForm.controls['tempo'].disable();
+    // this.ftpForm.controls['peso'].disable();
+    // this.ftpForm.controls['imagem'].disable();
+    // this.ftpForm.controls['tipo'].disable();
+    // this.ftpForm.controls['criadores'].disable();
+    // this.ftpForm.controls['receitaIngrediente'].disable();
+    // this.ftpForm.controls['grupoReceita'].disable();
+    // this.ftpForm.controls['professor'].disable();
+    // this.ftpForm.controls['datahora'].disable();
+    // this.ftpForm.controls['dificuldade'].disable();
    }
 
   dirtyAll() { // não encontrei forma de iterar sobre controls.

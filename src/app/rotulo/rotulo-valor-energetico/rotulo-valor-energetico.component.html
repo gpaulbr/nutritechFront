@@ -7,7 +7,7 @@
           Nutrientes
         </th>
         <th>
-          Porção de {{ftp.nome}} ({{gramasPorPorcao}})
+          Porção de {{ftp.nome}} ({{gramasPorPorcao.toFixed(numeroCasasDecimais).replace(".", ",")}}g)
         </th>
         <th>
           Fator de Conversão (kcal/g)
@@ -39,7 +39,7 @@
         <th></th>
         <th></th>
         <th>
-          <b>{{somatorioTotal()}}</b>
+          <b>{{somatorioTotal().toFixed(numeroCasasDecimais).replace(".", ",")}}</b>
         </th>
       </tr>
     </table>

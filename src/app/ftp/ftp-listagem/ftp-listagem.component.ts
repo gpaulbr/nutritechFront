@@ -23,12 +23,12 @@ export class FtpListagemComponent implements OnInit {
   rows = [];
   columns = [
     { name: 'Nome' },
-    { name: 'Nota', prop: 'nota.nota' },
+    { name: 'Nota', prop: 'notaTxt' },
     { name: 'Rendimento' },
-    { name: 'Criadores', prop: 'criador' },
+    { name: 'Criadores', prop: 'criadoresTxt' },
     { name: 'Grupo de Receita', prop: 'grupoReceita.nome' },
-    { name: 'Tipo' },
-    { name: 'Publicada' },
+    { name: 'Tipo', prop: 'tipoTxt'},
+    { name: 'Publicada', prop: 'publicadaTxt' },
     { name: 'Status', prop: 'status' },
   ];
 
@@ -48,7 +48,7 @@ export class FtpListagemComponent implements OnInit {
       this.router.navigate(['./']);
     }
 
-    this.ftpServices.buscarFTP().subscribe(receitas => {
+    this.ftpServices.buscarAtivas().subscribe(receitas => {
          this.receitas = receitas['Receitas']; // acesso o que o método buscarReceita
          const lista: Ftp [] = [];
          receitas['Receitas'].forEach(p => {
@@ -56,7 +56,7 @@ export class FtpListagemComponent implements OnInit {
           p['criadores'].forEach(u => {
             stringCriadores += u.nome + '<br>'; // concatena cada nome de criador de receita
           });
-          p['criador'] = stringCriadores;
+          p['criadoresTxt'] = stringCriadores;
           // if(p["status"]){ // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
           //   p["status"] = 'Ativa';
           // }else if(!p["status"])// para ficar mais familar para o usuário troco 'false' por 'Inativa' para a exibição
@@ -65,17 +65,20 @@ export class FtpListagemComponent implements OnInit {
           // }
 
           if (p['publicada']) { // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
-            p['publicada'] = 'Publicada';
+            p['publicadaTxt'] = 'Publicada';
           } else if (!p['publicada']) {// para ficar mais familar para o usuário troco 'false' por 'Inativa' para a exibição
-            p['publicada'] = 'Não Publicada';
+            p['publicadaTxt'] = 'Não Publicada';
           }
 
           if (p['tipo'] === 'PUBLICO') {
-            p['tipo'] = 'PÚBLICO'; // inclui o acento para exibir para o usuário
+            p['tipoTxt'] = 'PÚBLICO'; // inclui o acento para exibir para o usuário
+          } else {
+            p['tipoTxt'] = 'PRIVADO'; // inclui o acento para exibir para o usuário
           }
           if (p['nota'] == null) {
-            p['nota'] = new Nota(-1, null);
-            p['nota']['nota'] = 'Não Avaliada';
+            p['notaTxt'] = 'Não Avaliada';
+          } else {
+            p['notaTxt'] = p['nota']['nota'];
           }
 
           /* Comentado pq não tenho certeza se isso foi denifido nessa sprint if(this.usuarioLogado.tipo!='ADMIN' &&
@@ -95,6 +98,14 @@ export class FtpListagemComponent implements OnInit {
           this.receitaEmLista = false;
         }
     });
+    }
+
+    podeDeletar(index: number): Boolean {
+      if (this.receitas[index].nota != null && this.usuarioEhAluno()) {
+        return false;
+      }
+
+      return true;
     }
 
     receitaAtiva(index: number) {
@@ -151,7 +162,7 @@ export class FtpListagemComponent implements OnInit {
 
       // Whenever the filter changes, always go back to the first page
       this.table.offset = 0;
-    }
+    } 
 
   alterarReceita(index: Number) {
     this.router.navigate(['./ftp-cadastro/' + String(this.receitas[index as number].id)]);
@@ -167,6 +178,11 @@ export class FtpListagemComponent implements OnInit {
   }
 
   verificarAntesDeExcluir(index: number) {
+    // if (this.receitas[index].nota === && this.usuarioEhAluno()) {
+    //   this.toastr.error('Não é possível excluir a receita.', 'Nota já públicada');
+    //   return;
+    // }
+
     const msg = 'Clique aqui para confirmar';
     const mm = this.toastr.show(msg, null, {
       closeButton: true,

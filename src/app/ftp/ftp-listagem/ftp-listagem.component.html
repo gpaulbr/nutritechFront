@@ -46,7 +46,7 @@
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="alterarReceita(rowIndex)" title="Editar">edit</i>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarRotulo(rowIndex)" title="Rótulo">grid_on</i>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarPDF(rowIndex)" title="PDF">picture_as_pdf</i>
-                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="receitaAtiva(rowIndex)" title="Excluir" (click)="verificarAntesDeExcluir(rowIndex)">delete</i>
+                        <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="receitaAtiva(rowIndex) && podeDeletar(rowIndex)" title="Excluir" (click)="verificarAntesDeExcluir(rowIndex)">delete</i>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" *ngIf="!receitaAtiva(rowIndex)"(click)="ativarReceita(rowIndex)" title="Ativar" >autorenew</i>
                     </ng-template>
                 </ngx-datatable-column>
