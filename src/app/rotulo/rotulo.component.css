@@ -91,6 +91,11 @@
       margin-top:0%;
     }
 
+    .btn-success{
+      margin-left:2%;
+      margin-top:0%;
+    }
+
     #labelGramas{
       margin-left: 3%;
     }
@@ -123,6 +128,10 @@
       margin-left:1%;
     }
     .btn-danger{
+      margin-left:2%;
+      margin-top:2%;
+    }
+    .btn-success{
       margin-left:2%;
       margin-top:2%;
     }
