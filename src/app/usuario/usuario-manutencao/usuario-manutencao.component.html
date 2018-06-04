@@ -1,6 +1,6 @@
 <div class="container">
 	<fieldset>	
-	<form [formGroup]="usuarioForm" class="form-horizontal form-container content" (ngSubmit)="cadastrarUsuario()" id="formulario">
+	<form [formGroup]="usuarioForm" class="form-horizontal form-container content" (ngSubmit)="salvarUsuario()" id="formulario">
 		<h2>Cadastro de Usuário</h2>
 		<div class="divisor">
 			<span></span>
@@ -41,36 +41,29 @@
 		</div>
 
 		<!-- Password input-->
-		<div class="row form-group">
-			<label class="col-md-3 control-label campo-obrigatorio" for="senha">Senha</label>
-			<div class="col-md-4">
-				<input formControlName="senha" [formControl]="usuarioForm.controls['senha']"
-				type="password" placeholder="" class="form-control input-md" required>
-				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['senha'].valid && this.usuarioForm.controls['senha'].dirty"
+		<div *ngIf="!idUsuario">
+			<div class="row form-group">
+				<label class="col-md-3 control-label campo-obrigatorio" for="senha">Senha</label>
+				<div class="col-md-4">
+					<input formControlName="senha" [formControl]="usuarioForm.controls['senha']"
+					type="password" placeholder="" class="form-control input-md" [required]="!idUsuario">
+					<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['senha'].valid && this.usuarioForm.controls['senha'].dirty"
 					[mensagem]="'Senha muito curta'"></app-mensagem-erro>
+				</div>
 			</div>
-		</div>
-
-		<!-- Password input-->
-		<div class="row form-group">
-			<label class="col-md-3 control-label campo-obrigatorio" for="confirmarsenha">Confirmar Senha</label>
-			<div class="col-md-4">
-				<input [ngModelOptions]="{standalone: true}" 
-				[(ngModel)]="senhaConfirmacao" (ngModelChange)="validarSenha()" type="password" placeholder="" class="form-control input-md" required>
-				<app-mensagem-erro class="erro" [contemErro]="!senhaValida"
+			
+			<!-- Password input-->
+			<div class="row form-group">
+				<label class="col-md-3 control-label campo-obrigatorio" for="confirmarsenha">Confirmar Senha</label>
+				<div class="col-md-4">
+					<input [ngModelOptions]="{standalone: true}" 
+					[(ngModel)]="senhaConfirmacao" (ngModelChange)="validarSenha()" type="password" placeholder="" class="form-control input-md" [required]="!idUsuario">
+					<app-mensagem-erro class="erro" [contemErro]="!senhaValida"
 					[mensagem]="mensagemErroSenha"></app-mensagem-erro>
+				</div>
 			</div>
 		</div>
-
-<!--HTML DE CPF BASEADO NO ANTIGO PROJETO-->
-		<!--<div class="row form-group">
-			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
-			<div class="col-md-4">
-				<input id="cpf" name="cpf" [textMask]="{mask: mascaraCPF}" [formControl]="usuarioForm.controls['cpf']" type="text" placeholder="" class="form-control input-md">
-				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['cpf'].valid && this.usuarioForm.controls['cpf'].dirty"></app-mensagem-erro>
-			</div>
-		</div>-->
-
+			
 		<div class="form-group row">
 			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
