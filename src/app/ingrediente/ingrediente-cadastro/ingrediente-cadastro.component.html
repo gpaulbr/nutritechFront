@@ -55,7 +55,7 @@
 <div id="atribForm" *ngFor="let ingAtributo of ingAtributos">  <!-- referencia o atributo que vem do angular -->
 
 		<div class="row form-group">
-		<label id="nomeAtrib" class="col-md-4 control-label campo-obrigatorio">{{ ingAtributo.atributo.nome }}</label>
+				<label id="nomeAtrib" class="col-md-4 control-label" [ngClass]="{'campo-obrigatorio': ingAtributo.atributo.obrigatorio }">{{ ingAtributo.atributo.nome }}</label>
 		<div class="col-md-4">
 		<input id="input-atributo" [value]="ingAtributo.valor" maxlength="10" OnlyNumber="true" type="text" (change)="setarValor(ingAtributo.atributo.nome, $event.target.value)"
 		placeholder="{{ ingAtributo.atributo.unidade }}" class="form-control input-md atr" required>
