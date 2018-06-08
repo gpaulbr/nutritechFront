@@ -20,9 +20,7 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
 
 export class IngredienteListagemComponent implements OnInit {
   ingredientes: Ingrediente[];
-  ingredienteEmLista:boolean = false;
   usuarioLogado: UsuarioLogadoDto;
-  
   rows = [];
   columns = [
     { name: 'Nome' },
@@ -45,7 +43,6 @@ export class IngredienteListagemComponent implements OnInit {
       this.router.navigate(['./']);
     }
     this.atualizarGrade();
-    //console.log("Usuário logado:" + this.usuarioLogado.tipo);//OK TIRAR
   }
 
   updateFilter(event) {
@@ -88,14 +85,7 @@ export class IngredienteListagemComponent implements OnInit {
             lista.push(p)
           } 
         })
-
-        if(lista.length!=0){
-          this.rows = lista;
-          this.ingredienteEmLista = true;//para exibir mensagem se não tiver nda cadastrado
-        }
-        else
-          this.ingredienteEmLista = false;
-
+        this.rows = lista
       });
   }
 
@@ -119,6 +109,10 @@ export class IngredienteListagemComponent implements OnInit {
         }
       );
     }
+  }
+
+  listaVazia(): boolean {
+    return this.rows.length === 0;
   }
 
 }
