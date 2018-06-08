@@ -40,7 +40,7 @@
             [resizeable]="false">
             <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
               <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)" title="Editar">edit</i>
-              <i class="material-icons" style="cursor: pointer;" (click)="excluirIngrediente(rowIndex)" title="Excluir">delete</i>
+              <i class="material-icons" style="cursor: pointer;" (click)="excluir(rowIndex)" title="Excluir">delete</i>
             </ng-template>
           </ngx-datatable-column>
           </ngx-datatable>

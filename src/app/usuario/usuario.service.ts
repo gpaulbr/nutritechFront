@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Usuario } from './usuario';
 import { Observable } from 'rxjs/Observable';
 import { NUTRITECH_API } from '../app.api'
+import { ServiceBase } from '../shared/interfaces/service-base';
 
 @Injectable()
-export class UsuarioService {
+export class UsuarioService implements ServiceBase{
 
-  private url = NUTRITECH_API + "/usuarios";
+  url = NUTRITECH_API + "/usuarios";
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +20,7 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.url}/${id}`);
   }
 
-  buscarUsuarios(): Observable<Usuario[]>{
+  buscar(): Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.url);
   }
 
@@ -39,7 +40,7 @@ export class UsuarioService {
     return this.http.put<Usuario>(`${this.url}/update`, usuario);
   }
 
-  excluirUsuario(id: string): Observable<Usuario> {
+  excluir(id: string): Observable<Usuario> {
     return this.http.delete<Usuario>(`${this.url}/${id}`)
   }
 }

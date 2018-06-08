@@ -50,7 +50,6 @@ import { RotuloIngredientesAtributosComponent } from './rotulo/rotulo-ingredient
 import { RotuloValorEnergeticoComponent } from './rotulo/rotulo-valor-energetico/rotulo-valor-energetico.component';
 import { RotuloInfoNutricionalComponent } from './rotulo/rotulo-info-nutricional/rotulo-info-nutricional.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
