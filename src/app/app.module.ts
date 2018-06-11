@@ -49,6 +49,7 @@ import { RotuloIngredientesComponent } from './rotulo/rotulo-ingredientes/rotulo
 import { RotuloIngredientesAtributosComponent } from './rotulo/rotulo-ingredientes-atributos/rotulo-ingredientes-atributos.component';
 import { RotuloValorEnergeticoComponent } from './rotulo/rotulo-valor-energetico/rotulo-valor-energetico.component';
 import { RotuloInfoNutricionalComponent } from './rotulo/rotulo-info-nutricional/rotulo-info-nutricional.component';
+import { StatusPipe } from './shared/pipes/status-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { RotuloInfoNutricionalComponent } from './rotulo/rotulo-info-nutricional
     RotuloIngredientesAtributosComponent,
     RotuloValorEnergeticoComponent,
     RotuloInfoNutricionalComponent,
+    StatusPipe
   ],
   imports: [
     BrowserModule,

@@ -30,7 +30,11 @@
             <ngx-datatable-column name="{{columns[2].name}}"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[3].name}}"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[4].name}}"></ngx-datatable-column>
-            <ngx-datatable-column name="{{columns[5].name}}"></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[5].name}}">
+                <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                    {{ rows[rowIndex].status | status }}
+                </ng-template>
+            </ngx-datatable-column>
           <ngx-datatable-column
             name="{{columns[6].name}}"
             [width]="100"

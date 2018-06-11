@@ -5,6 +5,7 @@ import { UsuarioService } from '../usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { ListagemBaseComponent } from '../../shared/components/listagem-base/listagem-base.component';
 import { utf8Encode } from '@angular/compiler/src/util';
+import { StatusPipe } from '../../shared/pipes/status-pipe.pipe';
 
 @Component({
   selector: 'app-usuario-listagem',
@@ -29,6 +30,11 @@ export class UsuarioListagemComponent extends ListagemBaseComponent implements O
     toastr: ToastrService) {
       super(routerUsuario, 'usuario', 'Usuarios', usuarioService, toastr);
       this.atualizarGrade();
+      let statusPipe = new StatusPipe();
+      debugger;
+      for(let usuario of this.rows) {
+        usuario.status = statusPipe.transform(usuario.status);
+      }
     }
 
 
