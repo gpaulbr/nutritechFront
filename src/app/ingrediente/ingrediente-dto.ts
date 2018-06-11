@@ -8,4 +8,5 @@ export class IngredienteDto {
     public status: boolean;
     public idCriador: number;
     public atributos: IngredienteAtributoDto[];
+    public alergenico: string;
 }

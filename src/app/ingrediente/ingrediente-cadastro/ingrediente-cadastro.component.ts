@@ -29,6 +29,8 @@ export class IngredienteCadastroComponent implements OnInit {
   usuarioLogado: UsuarioLogadoDto;
   criador: UsuarioLogadoDto;
   idParam: string;
+  alergDisponiveis:string[];
+  alergia:string;
 
   tiposIngredientes = [{
     valor: TipoIngrediente.PRIVADO,
@@ -50,10 +52,12 @@ export class IngredienteCadastroComponent implements OnInit {
   ) {
     this.ingAtributos = [];
     this.fb = new FormBuilder();
+    this.alergDisponiveis= ["Não possui","Lactose","Amendoim","Glúten"];
     this.ingredienteForm = this.fb.group({
       nome: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       tipo: [TipoIngrediente.PRIVADO, Validators.required]
+    
     });
 
     this.buscarAtributos()
@@ -193,6 +197,7 @@ export class IngredienteCadastroComponent implements OnInit {
     ingrediente.criador = new Usuario();
     ingrediente.criador.definirUsuario(this.criador);
     ingrediente.ingredienteAtributo = this.ingAtributos;
+    ingrediente.alergenico = "lactose";
     return ingrediente;
   }
 
