@@ -41,6 +41,7 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
         ordem: [null, Validators.compose([Validators.required, Validators.maxLength(50)])],
         multiplicador: [null, Validators.compose([Validators.required,Validators.min(1)])],
         unidade: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
+        valorDiario: [null],
         obrigatorio: [true, Validators.compose([Validators.required])],
         id: [null]
       });
@@ -56,27 +57,16 @@ import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
           this.atributoForm.controls['ordem'].setValue(response.ordem);
           this.atributoForm.controls['multiplicador'].setValue(response.multiplicador),
           this.atributoForm.controls['unidade'].setValue(response.unidade),
-          this.atributoForm.controls['obrigatorio'].setValue(response.obrigatorio);        
+          this.atributoForm.controls['obrigatorio'].setValue(response.obrigatorio);   
+          this.atributoForm.controls['valorDiario'].setValue(response.valorDiario);     
         });
       }
     }
 
     limpar(){
       this.atributoForm;    
-      this.atributoForm.controls.nome.setValue('')
-      this.atributoForm.controls.nome.markAsPristine();
-
-      this.atributoForm.controls.ordem.setValue('')
-      this.atributoForm.controls.ordem.markAsPristine();
-
-      this.atributoForm.controls.multiplicador.setValue('')
-      this.atributoForm.controls.multiplicador.markAsPristine();
-
-      this.atributoForm.controls.unidade.setValue('')
-      this.atributoForm.controls.unidade.markAsPristine();
-
-      this.atributoForm.controls.obrigatorio.setValue(true)   
-      
+      this.atributoForm.setValue(null)
+      this.atributoForm.markAsPristine();
     }   
 
   ngOnInit() {
