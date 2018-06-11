@@ -6,4 +6,5 @@ export class Atributo {
     public ordem: number;
     public status: boolean = true;
     public unidade: string;
+    public valorDiario: number;
 }
