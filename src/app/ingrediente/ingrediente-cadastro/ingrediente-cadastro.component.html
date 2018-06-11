@@ -20,7 +20,6 @@
 </div>
 <!---->
 
-
 <!-- Origem -->
 <div class="row form-group">
 	<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Origem</label>
@@ -31,6 +30,22 @@
 		this.ingredienteForm.controls['origem'].dirty"></app-mensagem-erro>
 	</div>
 </div>
+
+<!-- Alergênicos -->
+<div class="row form-group">
+	<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Alergênicos</label>
+	<div class="col-md-4">
+	<select [(ngModel)]="alergia" class="form-control input-md">
+			<option [ngValue]="null" disabled selected hidden>Selecione</option>
+			<option *ngFor="let item of alergDisponiveis" [ngValue]="item">
+				{{item.nome}}
+			</option>
+
+			
+	</select>
+	</div>
+</div>
+<!---->
 
 <!-- Tipo  que na verdade é domínio -->
 <div *ngIf="verificarSeUsuarioEhAdmin()" class="row form-group">

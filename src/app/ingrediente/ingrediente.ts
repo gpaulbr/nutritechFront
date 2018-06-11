@@ -12,6 +12,7 @@ export class Ingrediente {
     public status: boolean;
     public criador: Usuario;
     public ingredienteAtributo: IngredienteAtributoDto[]
+    public alergenico: string;
 
     definirIngrediente(ingrediente: IngredienteDto) {
         this.nome = ingrediente.nome;
