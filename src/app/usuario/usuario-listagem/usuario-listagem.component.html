@@ -1,22 +1,15 @@
 <div class="container"> 
-    <fieldset>  
-        <div class="alert alert-success" role="alert"
-            style="display: none; width: 25%; margin-left: 37%; text-align: center;">
+    <div class="panel panel-default panel-container">
+        <div class="panel-heading ">
+            <h2 class="titulo_lista">Lista de Usuários</h2>
         </div>
-        <div class="row justify-content-center">
-            <div class="panel panel-default panel-container">
-                <div class="panel-heading ">
-                    <h2 class="titulo_lista">Lista de Usuários</h2>
-                </div>
         <div class="panel-body">  
         <div>
-               <div id="buscar" class="row"> 
-                 <p class="pBuscar col-md-1">Buscar: </p>
-                  <input
-                  type='text' class="inputBuscar col-md-4" (keyup)="updateFilter($event)"
-                  />  
-                </div>
-
+            <div id="buscar" class="row"> 
+             <p class="pBuscar col-md-1">Buscar: </p>
+              <input
+              type='text' class="inputBuscar col-md-4" (keyup)="updateFilter($event)"                  />  
+            </div>
             <ngx-datatable *ngIf="rows.length > 0"
             #table
             class="material"
@@ -48,5 +41,9 @@
             </ng-template>
           </ngx-datatable-column>
           </ngx-datatable>
-  </div>
-</div>
+        </div>
+    </div>
+    <div id="aviso-cad" *ngIf="listaVazia()">
+    <p> Nenhum Usuário Encontrado</p>
+    </div>
+</div>  

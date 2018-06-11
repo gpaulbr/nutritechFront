@@ -31,7 +31,6 @@ export class UsuarioListagemComponent extends ListagemBaseComponent implements O
       super(routerUsuario, 'usuario', 'Usuarios', usuarioService, toastr);
       this.atualizarGrade();
       let statusPipe = new StatusPipe();
-      debugger;
       for(let usuario of this.rows) {
         usuario.status = statusPipe.transform(usuario.status);
       }

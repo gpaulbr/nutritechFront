@@ -58,4 +58,8 @@ export abstract class ListagemBaseComponent implements OnInit {
     );
   }
 
+  listaVazia(): boolean {
+    return this.rows.length === 0;
+  }
+
 }
