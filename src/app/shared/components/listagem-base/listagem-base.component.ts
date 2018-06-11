@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioLogadoDto } from '../../../usuario/usuario-logado-dto';
 import { ServiceBase } from '../../interfaces/service-base';
 import { ToastrService } from 'ngx-toastr';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 export abstract class ListagemBaseComponent implements OnInit {
 
@@ -11,14 +12,16 @@ export abstract class ListagemBaseComponent implements OnInit {
   nomeObjeto: string;
   nomeObjetoService: string
   rows = [];
+  objects = [];
   service: ServiceBase;
+  @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(
     private router: Router,
     nomeObjeto: string,
     nomeObjetoService: string,
     service: ServiceBase,
-    private toastr: ToastrService
+    private toastr: ToastrService,
   ) {
     this.nomeObjeto = nomeObjeto;
     this.service = service;
@@ -37,6 +40,7 @@ export abstract class ListagemBaseComponent implements OnInit {
     this.service.buscar().subscribe(
       response => { 
         this.rows = response[this.nomeObjetoService];
+        this.objects = this.rows;
       });
   }
 

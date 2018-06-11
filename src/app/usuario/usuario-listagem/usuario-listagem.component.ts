@@ -4,6 +4,7 @@ import { Usuario } from '../usuario';
 import { UsuarioService } from '../usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { ListagemBaseComponent } from '../../shared/components/listagem-base/listagem-base.component';
+import { utf8Encode } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-usuario-listagem',
@@ -12,8 +13,6 @@ import { ListagemBaseComponent } from '../../shared/components/listagem-base/lis
 })
 export class UsuarioListagemComponent extends ListagemBaseComponent implements OnInit {
 
-  usuarios: Usuario[]
-  // rows = [];
   columns = [
     { name: 'Nome' },
     { name: 'Email' },
@@ -38,24 +37,33 @@ export class UsuarioListagemComponent extends ListagemBaseComponent implements O
 
     if(usuarioLogado == null) {  
       this.routerUsuario.navigate(['./']);
-    }else if(usuarioLogado.nome!="Admin"){
-      console.log (usuarioLogado);//tirar depois
+    } else if(usuarioLogado.nome!="Admin"){
       this.routerUsuario.navigate(['./ftp-listagem']);
     }
   }
 
-  // excluirIngrediente(index: number) {
-  //     let idUsuario = this.usuarios[index].id;
-  //     this.usuarioService.excluir(`${idUsuario}`).subscribe(
-  //       response => {
-  //         this.toastr.success(response['message']);
-  //         // this.atualizarGrade();
-  //       },
-  //       error => {
-  //         console.log(error);
-  //         this.toastr.error(error.error);
-  //       }
-  //     );
-  // }
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+    // filtra por todos os campos da tabela
+    const temp = this.objects.filter(function(u) {
+      if(u.nome.toLowerCase().indexOf(val) !== -1 || !val)
+            return u.nome.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(u.email.toLowerCase().indexOf(val) !== -1 || !val)
+            return u.email.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(u.cpf.toLowerCase().indexOf(val) !== -1 || !val)
+            return u.cpf.toLowerCase().indexOf(val) !== -1 || !val;
+      else if(u.matricula.toString().toLowerCase().indexOf(val) !== -1 || !val)
+            return u.matricula.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      else if(u.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val)
+            return u.tipo.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      else if(u.status.toString().toLowerCase().indexOf(val) !== -1 || !val)
+            return u.status.toString().toLowerCase().indexOf(val) !== -1 || !val;
+      // fim do filtro
+      "ERRO"
+    });
+      this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
 
 }
