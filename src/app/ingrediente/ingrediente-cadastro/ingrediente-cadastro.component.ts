@@ -29,6 +29,8 @@ export class IngredienteCadastroComponent implements OnInit {
   usuarioLogado: UsuarioLogadoDto;
   criador: UsuarioLogadoDto;
   idParam: string;
+  alergDisponiveis:string[];
+  alergia:string;
 
   alergDisponiveis = [
     {id: 1, name: "Não possui"},
@@ -64,6 +66,7 @@ export class IngredienteCadastroComponent implements OnInit {
   ) {
     this.ingAtributos = [];
     this.fb = new FormBuilder();
+    this.alergDisponiveis= ["Não possui","Lactose","Amendoim","Glúten"];
     this.ingredienteForm = this.fb.group({
       nome: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
