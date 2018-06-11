@@ -6,7 +6,7 @@ import { NUTRITECH_API } from '../app.api'
 import { ServiceBase } from '../shared/interfaces/service-base';
 
 @Injectable()
-export class UsuarioService implements ServiceBase{
+export class UsuarioService implements ServiceBase {
 
   url = NUTRITECH_API + "/usuarios";
 
