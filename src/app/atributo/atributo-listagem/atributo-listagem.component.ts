@@ -26,6 +26,7 @@ export class AtributoListagemComponent implements OnInit {
     { name: 'Nome' },
     { name: 'Unidade' },
     { name: 'Multiplicador' },
+    { name: 'ValorDiario' },
     { name: 'Obrigatório' }
   ];
 
@@ -76,6 +77,7 @@ export class AtributoListagemComponent implements OnInit {
     this.atributoService.buscarAtributos().subscribe(
       atributos => {
         this.atributos = atributos['Atributos'];
+        debugger;
         var listaA: Atributo[] = [];
         atributos['Atributos'].forEach(p => {
           if (p["obrigatorio"]) { // Troca o boolean em caso de true para a string Sim (Na coluna Obrigatório irá aparecer a string)
@@ -86,11 +88,7 @@ export class AtributoListagemComponent implements OnInit {
           }
           listaA.push(p); //inlcui na lista        
         })
-        if (listaA.length != 0) {
           this.rows = listaA;
-          this.atributoEmLista = true; //Para poder exibir mensagem que não tem nenhum atributo cadastrado
-        } else
-          this.atributoEmLista = false;
       });
     //console.log(this.atributos);
   }

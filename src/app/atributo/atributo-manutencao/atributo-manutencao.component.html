@@ -49,6 +49,14 @@
 			</div>
 
 			<div class="row form-group">
+					<label class="col-md-3 control-label" for="valorDiario">Valor Diário</label>
+					<div class="col-md-4">
+						<input formControlName="valorDiario" class="form-control input-md"
+							placeholder="g" type="text">
+					</div>
+				</div>
+
+			<div class="row form-group">
 				<label class="col-md-3 control-label campo-obrigatorio">Obrigatório</label>
 			<div id="rabioObr" class="col-md-4">
 				<app-radio-button [opcoes]="obrigatorio" [nome]="'obrigatorio'" (emissaoValor)="definirObrigatorio($event)" class="control-radio"></app-radio-button>
