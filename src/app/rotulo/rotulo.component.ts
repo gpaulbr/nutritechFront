@@ -65,6 +65,7 @@ export class RotuloComponent {
         this.ftpService.obterFTP(receita.id)
           .subscribe(res => {
             this.ftp = res;
+            debugger;
             this.ftp.receitaIngrediente.sort((a, b) => {
               if (a.pesoG == b.pesoG) {
                 if (a.ingrediente.nome.toLowerCase() < b.ingrediente.nome.toLowerCase()) return -1;
