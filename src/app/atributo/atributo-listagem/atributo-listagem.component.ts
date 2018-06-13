@@ -74,10 +74,9 @@ export class AtributoListagemComponent implements OnInit {
   }
 
   buscarAtributos() {
-    this.atributoService.buscarAtributos().subscribe(
+    this.atributoService.buscar().subscribe(
       atributos => {
         this.atributos = atributos['Atributos'];
-        debugger;
         var listaA: Atributo[] = [];
         atributos['Atributos'].forEach(p => {
           if (p["obrigatorio"]) { // Troca o boolean em caso de true para a string Sim (Na coluna Obrigatório irá aparecer a string)
@@ -126,9 +125,9 @@ export class AtributoListagemComponent implements OnInit {
 
   deletarAtributo(index: any) {
     console.log("id" + this.atributos[index].id);
-    this.atributoService.excluirAtributo(this.atributos[index].id)
+    this.atributoService.excluir(`${this.atributos[index].id}`)
       .subscribe(resp => {
-        this.toastr.success(resp.message)
+        this.toastr.success(resp['message']);
         this.buscarAtributos()
       }, e => {
         this.toastr.error(e.error.message)

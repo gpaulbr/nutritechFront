@@ -51,7 +51,7 @@ export class RotuloComponent {
       this.route.params.subscribe(params => receita = params);
 
       if (this.todosAtributos === undefined) {
-        this.atributeService.buscarAtributos().subscribe(response => {
+        this.atributeService.buscar().subscribe(response => {
           this.todosAtributos = Array.from(response['Atributos']) as Array<Atributo>;
           this.todosAtributos.sort((a, b) => {
             if (a.id < b.id) return -1;
@@ -64,6 +64,7 @@ export class RotuloComponent {
         this.ftpService.obterFTP(receita.id)
           .subscribe(res => {
             this.ftp = res;
+            debugger;
             this.ftp.receitaIngrediente.sort((a, b) => {
               if (a.pesoG == b.pesoG) {
                 if (a.ingrediente.nome.toLowerCase() < b.ingrediente.nome.toLowerCase()) return -1;
@@ -101,12 +102,9 @@ export class RotuloComponent {
     console.log(this.nutrientesValorPorcao);
   }
 
-  confirmar() {
-    this.emitirValores();
-  }
-
   resetar() {
-    this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
+    // this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
+    this.gramasPorPorcao = this.ftp.grupoReceita.custo;
     this.emitirValores();
   }
 
