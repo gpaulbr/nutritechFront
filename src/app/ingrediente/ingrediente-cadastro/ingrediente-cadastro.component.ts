@@ -29,8 +29,13 @@ export class IngredienteCadastroComponent implements OnInit {
   usuarioLogado: UsuarioLogadoDto;
   criador: UsuarioLogadoDto;
   idParam: string;
-  alergDisponiveis:string[];
-  alergia:string;
+
+  alergDisponiveis = [
+    {id: 1, name: "Não possui"},
+    {id: 2, name: "Lactose"},
+    {id: 3, name: "Glúten"},
+    {id: 4, name: "Amendoim"}
+  ];
 
   tiposIngredientes = [{
     valor: TipoIngrediente.PRIVADO,
@@ -52,12 +57,11 @@ export class IngredienteCadastroComponent implements OnInit {
   ) {
     this.ingAtributos = [];
     this.fb = new FormBuilder();
-    this.alergDisponiveis= ["Não possui","Lactose","Amendoim","Glúten"];
     this.ingredienteForm = this.fb.group({
       nome: this.fb.control('', [Validators.required, Validators.minLength(3)]),
       origem: this.fb.control('', [Validators.required, Validators.minLength(3)]),
-      tipo: [TipoIngrediente.PRIVADO, Validators.required]
-    
+      tipo: [TipoIngrediente.PRIVADO, Validators.required],
+      alergenico: [this.alergDisponiveis[0].name,Validators.required]
     });
 
     this.buscarAtributos()
@@ -89,6 +93,8 @@ export class IngredienteCadastroComponent implements OnInit {
         this.ingredienteForm.controls['nome'].setValue(res.nome);
         this.ingredienteForm.controls['origem'].setValue(res.origem);
         this.ingredienteForm.controls['tipo'].setValue(res.tipo);
+        this.ingredienteForm.controls['alergenico'].setValue(res.alergenico);
+   
         for(let ingredienteAtributo of res.ingredienteAtributo) {
           this.ingAtributos.filter(a => a.atributo.id === ingredienteAtributo.atributo.id)[0].valor = ingredienteAtributo.valor;
         }
@@ -96,14 +102,21 @@ export class IngredienteCadastroComponent implements OnInit {
   }
 
   limpar() {
+    console.log(this.ingredienteForm.value)
     console.log('limpando');
     this.ingAtributos = [];
     this.ingredienteForm.controls.nome.setValue('')
     this.ingredienteForm.controls.nome.markAsPristine();
     this.ingredienteForm.controls.origem.setValue('')
     this.ingredienteForm.controls.origem.markAsPristine();
-    this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO)
-
+    this.ingredienteForm.controls.tipo.setValue(TipoIngrediente.PRIVADO);
+    //this.ingredienteForm.controls.alergenico.setValue("Não possui")
+   // this.ingredienteForm.controls.alergenico.setValue("Lactose");
+    //console.log(this.ingredienteForm.controls.alergenico.get);
+    this.ingredienteForm.controls.alergenico.setValue(this.alergDisponiveis[0].name);
+    
+    console.log(this.ingredienteForm.controls.alergenico.setValue(this.alergDisponiveis[0].name));
+    //this.ingredienteForm.controls['alergenico'].setValue("Lactose");
     this.ingAtributos.forEach(a => a.valor = "");
 
     const atrs = document.getElementsByClassName("atr");
@@ -111,12 +124,11 @@ export class IngredienteCadastroComponent implements OnInit {
       atrs[i]['value'] = 0;
     }
     this.buscarAtributos();
-    //window.location.reload();
+    window.location.reload();
   }
 
-
-
   ngOnInit() {
+    
     this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if(this.usuarioLogado == null) {
       this.router.navigate(['./']);
@@ -193,12 +205,12 @@ export class IngredienteCadastroComponent implements OnInit {
     ingrediente.nome = this.ingredienteForm.get('nome').value;
     ingrediente.origem = this.ingredienteForm.get('origem').value;
     ingrediente.tipo = this.ingredienteForm.get('tipo').value;
+    ingrediente.alergenico= this.ingredienteForm.get('alergenico').value;
+    console.log( ingrediente.alergenico );
+    console.log(this.ingredienteForm.value);
     ingrediente.status = true;
     ingrediente.criador = new Usuario();
     ingrediente.criador.definirUsuario(this.criador);
     ingrediente.ingredienteAtributo = this.ingAtributos;
-    ingrediente.alergenico = "lactose";
-    return ingrediente;
-  }
-
+    return ingrediente;  }
 }
