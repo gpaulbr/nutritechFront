@@ -29,7 +29,7 @@
                          [scrollbarH]="false"
                          [rows]='rows'>
 
-            <ngx-datatable-column name="{{columns[0].name}}" prop="id" [minWidth]="80"></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[0].name}}" prop="id" [maxWidth]="150"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[1].name}}" class="first-title-detail label-wrap-detail" [minWidth]="100" prop="nome"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[2].name}}" prop="custo" [minWidth]="80"></ngx-datatable-column>
             <ngx-datatable-column *ngIf="admin"

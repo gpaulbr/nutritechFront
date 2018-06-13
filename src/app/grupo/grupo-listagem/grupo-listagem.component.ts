@@ -41,7 +41,7 @@ export class GrupoListagemComponent implements OnInit {
 
     if (this.admin) {//se for admin, exibe com as ações
       this.columns = [
-        { prop: 'id', name: 'ID' },
+        { prop: 'id', name: 'Id' },
         { name: 'Nome' },
         { prop: 'custo', name: "Valor/Porção (g)" },
         { name: "Ações" }
@@ -49,7 +49,7 @@ export class GrupoListagemComponent implements OnInit {
       ];
     } else {//se for prof ou usuário exibe sem as ações
       this.columns = [
-        { prop: 'id', name: 'ID' },
+        { prop: 'id', name: 'Id' },
         { name: 'Nome' },
         { prop: 'custo', name: "Valor/Porção (g)" }
         //ícones de ação vão no html
