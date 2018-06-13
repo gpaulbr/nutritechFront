@@ -9,6 +9,9 @@
       <th>
         Receita para uma porção ({{pesoTotalPorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g)
       </th>
+      <th>
+        Peso líquido de cada ingrediente
+      </th>
     </tr>
     <ng-container *ngFor="let item of ingredientes(); let i = index">
       <tr>
@@ -18,6 +21,9 @@
         <th>
           {{pesoIngredientePorPorcao(item, gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}g
         </th>
+        <th>
+          {{ calcularPesoLiquido(item) }}g
+        </th>
       </tr>
     </ng-container>
     <tr>
@@ -26,6 +32,9 @@
       </th>
       <th>
         <b>Peso Total: {{totalIngredientePorPorcao(gramasPorPorcao).toFixed(numeroCasasDecimais).replace(".", ",")}}</b>
+      </th>
+      <th>
+        <b>Peso Total: {{ totalPesoLiquido() }}</b>
       </th>
     </tr>
   </table>
