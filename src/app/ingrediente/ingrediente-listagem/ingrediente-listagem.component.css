@@ -70,9 +70,6 @@ th, tr {
     font-weight: normal;
 }
 
-.nome-grupo {
-    text-align: left;
-}
 
 div {   
     display: flex;
@@ -136,4 +133,3 @@ h2 {
                 min-width: 960px;        
             }
         }
-        
