@@ -50,7 +50,7 @@ form{
   /* form maior */
   form{
    width: 100%;
-   margin-left:-2%;
+   margin-left:-1%;
   }
   
   /* input do nome */
@@ -146,6 +146,10 @@ form{
     
     .input-md{   
       margin-left:2%;
+    }
+    
+    .but-t{  /*Limpar e Confirmar*/
+      margin-left: 23%;
     }
     
   }
