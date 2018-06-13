@@ -35,14 +35,9 @@
 <div class="row form-group">
 	<label id="labrl-comum" class="col-md-3 control-label campo-obrigatorio">Alergênicos</label>
 	<div class="col-md-4">
-	<select [(ngModel)]="alergia" class="form-control input-md">
-			<option [ngValue]="null" disabled selected hidden>Selecione</option>
-			<option *ngFor="let item of alergDisponiveis" [ngValue]="item">
-				{{item.nome}}
-			</option>
-
-			
-	</select>
+		<select formControlName="alergenico" id="alergenico" class="form-control input-md">
+			<option *ngFor="let a of alergDisponiveis" [value]="a.name">{{a.name}}</option>
+		</select>
 	</div>
 </div>
 <!---->
