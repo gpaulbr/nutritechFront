@@ -99,22 +99,4 @@ export class AtributoListagemComponent extends ListagemBaseComponent implements 
     // Independente se o filtro muda ou não, sempre irá voltar para a primeira página
     this.table.offset = 0;
   }
-<<<<<<< HEAD
-=======
-
-  redirecionarParaCadastro(index: number) {
-    this.router.navigate([`./atributo/${this.atributos[index].id}`]);
-  }
-
-  deletarAtributo(index: any) {
-    console.log("id" + this.atributos[index].id);
-    this.atributoService.excluir(`${this.atributos[index].id}`)
-      .subscribe(resp => {
-        this.toastr.success(resp['message']);
-        this.buscarAtributos()
-      }, e => {
-        this.toastr.error(e.error.message)
-      })
-  }
->>>>>>> alterações em rótulo de ingredientes
 }
