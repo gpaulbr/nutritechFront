@@ -30,4 +30,8 @@ export class LoginService {
   estaLogado(): boolean {
     return this.usuarioLogado !== undefined
   }
+  esqueceuSenha(id: any){     
+    console.log(id);
+    return this.http.post<any>(this.url + "/redefinir/", id);
+  } 
 }
