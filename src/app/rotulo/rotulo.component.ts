@@ -102,7 +102,6 @@ export class RotuloComponent {
   }
 
   resetar() {
-<<<<<<< HEAD
     this.gramasPorPorcao = this.ftp.grupoReceita.custo;
     this.emitirValores();
   }
@@ -126,11 +125,6 @@ export class RotuloComponent {
 
   getMostrarMaisInfo(): boolean {
     return this.mostrarMaisInfo;
-=======
-    // this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
-    this.gramasPorPorcao = this.ftp.grupoReceita.custo;
-    this.emitirValores();
->>>>>>> alterações em rótulo de ingredientes
   }
 
 }
