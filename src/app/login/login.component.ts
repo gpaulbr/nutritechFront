@@ -44,5 +44,8 @@ export class LoginComponent implements OnInit {
         this.toastr.error(error.error);
       });;
   }
-
+  redefinir(){
+    console.log(this.loginForm.get('email').value);
+    this.loginService.esqueceuSenha(this.loginForm.get('email').value);
+  }
 }
