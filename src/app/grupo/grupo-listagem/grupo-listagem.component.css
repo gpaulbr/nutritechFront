@@ -12,7 +12,7 @@ table,.fixed-header  {
 }
 
 div #buscar{
-    display: inline;
+    margin-left:2%;
     padding-left: 1%;
 }
 
@@ -86,61 +86,101 @@ h2 {
         margin-right: -10px!important;
     }
 }*/
-@media only screen and (max-height: 568px),(max-width: 320) {
-        div #buscar{
-            display: inline;
-            padding-left: 2%;
-        }
-        :host /deep/ .ngx-datatable.material .datatable-header{
-            min-width: 130%!important;
-        }
-}
-@media only screen and (max-width: 768px) {
-    .inputBuscar{
-        margin-left: 4%;
-    }
-    
-    #buscar{
-        margin-bottom: 2%;
-        padding-left: 5%;
-    }
+@media only screen and (max-height: 568px),(max-width: 320) { /* Iphone 5 media*/
+    /*div #buscar{
+        width: 60%;
+    }*/
 
-    h2 {
-        float: left;
-        margin-left:-13%;
-    }
-
-    div #buscar{
-        display: inline;
-        padding-left: 2%;
-    }
-}
-@media only screen and (max-width: 573px) {
-    table,.fixed-header{
-        font-size: 3vw;
-    }
-    .inputBuscar{
-        width: 91%;
-    }
-
-    :host /deep/ .ngx-datatable.material .datatable-header{/*para modificar o ngx-datatable */
-        font-size: 3.5vw; 
-    }
-    :host /deep/ .ngx-datatable.material .datatable-header .datatable-header-cell {
-        padding-left: 0px;
+     .inputBuscar{
+         width: 80%;
+      margin-top: -21%;
+      margin-left: 5%;
     }
 
     table,.fixed-header  {
-        width: 100%!important;
+        margin: 5%;
+        overflow: auto;
+        max-width: 90%;
+        height:90%;
     }
 
+        :host /deep/ .ngx-datatable.material .datatable-header{
+            min-width: 100%!important;
+        }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) { /*Ipad media*/
     div #buscar{
-        display: inline;
-        padding-left: 2%;
+        margin-left: 2%;
+        width: 60%;
     }
+
+     .inputBuscar{
+      margin-top: 1%;
+      left: 12%;
+    }
+
+    table,.fixed-header  {
+        margin: 5%;
+        overflow: auto;
+        max-width: 90%;
+        height:90%;
+    }
+
+        :host /deep/ .ngx-datatable.material .datatable-header{
+            min-width: 100%!important;
+        }
+}
+@media only screen and (max-width: 680px) {
+    div #buscar{
+        width: 60%;
+    }
+
+     .inputBuscar{
+         width:80%;
+      margin-top: -19%;
+      left: 38%;
+    }
+
+    table,.fixed-header  {
+        margin: 5%;
+        overflow: auto;
+        max-width: 90%;
+        height:90%;
+    }
+
+        :host /deep/ .ngx-datatable.material .datatable-header{
+            min-width: 100%!important;
+        }
+}
+
+@media only screen and (min-width : 375px) and (max-width : 812px) { /* Iphone X media*/
+    
+
+     .inputBuscar{
+      width:70%;
+      margin-top: -18%;
+      left: 36%;
+    }
+
+    table,.fixed-header  {
+        margin: 5%;
+        overflow: auto;
+        max-width: 90%;
+        height:90%;
+    }
+
+        :host /deep/ .ngx-datatable.material .datatable-header{
+            min-width: 100%!important;
+        }
+
 }
 
 @media only screen and (min-width: 942px) {
+    div #buscar{
+        display:inline;
+    }    
+
     .container {
         max-width: 960px;
         min-width: 960px;        
