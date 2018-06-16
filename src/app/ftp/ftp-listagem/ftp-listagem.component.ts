@@ -8,6 +8,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Nota } from '../nota';
+import * as jsPDF from 'jspdf';
 
 
 @Component({
@@ -174,7 +175,15 @@ export class FtpListagemComponent implements OnInit {
 
   gerarPDF(index: Number) {
     // this.router.navigate(['./pdf/' + String(this.receitas[index as number].id)]);
-    this.toastr.warning('Ainda não implementado.');
+    // this.toastr.warning('Ainda não implementado.');
+
+    // Documentação: https://rawgit.com/MrRio/jsPDF/master/docs/
+
+    var doc = new jsPDF({
+    })
+
+    doc.text('Hello world!', 1, 1);
+    doc.save('a4.pdf')
   }
 
   verificarAntesDeExcluir(index: number) {
