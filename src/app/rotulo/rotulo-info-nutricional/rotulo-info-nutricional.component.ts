@@ -33,4 +33,8 @@ export class RotuloInfoNutricionalComponent implements OnInit {
     const vd = atributo.valorDiario;
     return vd === 0 ? 0 : valor / vd * 100;
   }
+
+  definirTextoAlergenico() {
+    return `Contém os alergênicos ${this.ftp.receitaIngrediente.map(ri => ri.ingrediente.alergenico).join(', ')}`;
+  }
 }

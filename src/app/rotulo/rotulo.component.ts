@@ -102,5 +102,4 @@ export class RotuloComponent {
     this.gramasPorPorcao = this.ftp.grupoReceita.custo;
     this.emitirValores();
   }
-
 }
