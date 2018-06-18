@@ -64,7 +64,6 @@ export class RotuloComponent {
         this.ftpService.obterFTP(receita.id)
           .subscribe(res => {
             this.ftp = res;
-            debugger;
             this.ftp.receitaIngrediente.sort((a, b) => {
               if (a.pesoG == b.pesoG) {
                 if (a.ingrediente.nome.toLowerCase() < b.ingrediente.nome.toLowerCase()) return -1;
@@ -89,12 +88,10 @@ export class RotuloComponent {
 
   alterarIngredienteValor(ingValor: any) {
     this.ingredienteValorPorcao = ingValor;
-    // console.log(this.ingredienteValorPorcao)
   }
 
   alterarNutrienteValor(nutrValor: any) {
     this.nutrientesValorPorcao = nutrValor;
-    // console.log(this.nutrientesValorPorcao)
   }
 
   alterarValorEnergetico(enValor: any) {
@@ -103,7 +100,6 @@ export class RotuloComponent {
   }
 
   resetar() {
-    // this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
     this.gramasPorPorcao = this.ftp.grupoReceita.custo;
     this.emitirValores();
   }
