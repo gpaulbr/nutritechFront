@@ -24,11 +24,22 @@
             <p class="form_p">Esqueceu a senha?
                 <a (click)="redefinir()">Clique aqui!</a>        
             </p>
-
             <p class="form_p">É aluno e não é cadastrado?
                 <a [routerLink]="['/usuario']">Clique aqui!</a>
             </p>
         </div>
+        <div id="esqueceusenha">
+            <p>Insira o email para redefinir sua senha:</p>
+        </div>
     </div>
-
+    <script>
+        $(document).ready(function(){
+            $("#esqueceusenha").click(function(){
+                $("esqueceusenha").hide();
+            });
+            $("#esqueceusenha").click(function(){
+                $("p").show();
+            });
+        });
+        </script>
 </div>
