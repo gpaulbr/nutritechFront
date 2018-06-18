@@ -105,10 +105,6 @@ export class RotuloComponent {
     this.emitirValores();
   }
 
-  getMostrarMaisInfo(): boolean {
-    return this.mostrarMaisInfo;
-  }
-
   geraPDF(index: Number){
 
     var pdf = new jsPDF('p', 'pt','a4');
@@ -124,4 +120,9 @@ export class RotuloComponent {
         pdf.save('Rotulo.pdf');
       });
    }
+
+  getMostrarMaisInfo(): boolean {
+    return this.mostrarMaisInfo;
+  }
+
 }
