@@ -29,6 +29,18 @@
 
             
         </div>
+        <div id="esqueceusenha">
+            <p>Insira o email para redefinir sua senha:</p>
+        </div>
     </div>
-    
+    <script>
+        $(document).ready(function(){
+            $("#esqueceusenha").click(function(){
+                $("esqueceusenha").hide();
+            });
+            $("#esqueceusenha").click(function(){
+                $("p").show();
+            });
+        });
+        </script>
 </div>
