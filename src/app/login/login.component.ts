@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (usuarioLogado){
+      this.router.navigate(['ftp-listagem']);
+    }
   }
 
   logar(){
