@@ -74,7 +74,7 @@ export class IngredienteCadastroComponent implements OnInit {
 
   buscarAtributos() {
     this.ingAtributos = [];
-     this.atributosService.buscarAtributos()
+     this.atributosService.buscar()
       .subscribe(a => {
         a['Atributos'].forEach(e => {
           let ingAtributosBuscados = new IngredienteAtributoDto();

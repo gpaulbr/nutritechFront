@@ -50,7 +50,7 @@ export class RotuloComponent {
       this.route.params.subscribe(params => receita = params);
 
       if (this.todosAtributos === undefined) {
-        this.atributeService.buscarAtributos().subscribe(response => {
+        this.atributeService.buscar().subscribe(response => {
           this.todosAtributos = Array.from(response['Atributos']) as Array<Atributo>;
           this.todosAtributos.sort((a, b) => {
             if (a.id < b.id) return -1;
@@ -87,12 +87,10 @@ export class RotuloComponent {
 
   alterarIngredienteValor(ingValor: any) {
     this.ingredienteValorPorcao = ingValor;
-    // console.log(this.ingredienteValorPorcao)
   }
 
   alterarNutrienteValor(nutrValor: any) {
     this.nutrientesValorPorcao = nutrValor;
-    // console.log(this.nutrientesValorPorcao)
   }
 
   alterarValorEnergetico(enValor: any) {
@@ -100,13 +98,8 @@ export class RotuloComponent {
     console.log(this.nutrientesValorPorcao);
   }
 
-  confirmar() {
-    this.emitirValores();
-  }
-
   resetar() {
-    this.gramasPorPorcao = this.gramasPorPorcao = Number(this.ftp.peso) / Number(this.ftp.rendimento) as number;
+    this.gramasPorPorcao = this.ftp.grupoReceita.custo;
     this.emitirValores();
   }
-
 }

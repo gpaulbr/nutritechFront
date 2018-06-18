@@ -5,10 +5,10 @@ import { Usuario } from "../usuario/usuario";
 export class GrupoReceita {
     
     public nome: string;
-    public valor: number;
+    public custo: number;
 
-    constructor(nome: string, valor: number) {
+    constructor(nome: string, custo: number) {
         this.nome = nome;
-        this.valor = valor
+        this.custo = custo
     }
 }

@@ -100,4 +100,17 @@ export class RotuloIngredientesComponent implements OnInit {
     console.log(output);
     this.outputIngredienteValorPorcao.emit(output);
   }
+
+  totalPesoLiquido() {
+    let ingredientes = this.ingredientes();
+    let somatorio = 0;
+    for(let ingrediente of ingredientes) {
+      somatorio += this.calcularPesoLiquido(ingrediente);
+    }
+    return somatorio;
+  }
+
+  calcularPesoLiquido(ingrediente: ReceitaIngrediente): number {
+    return ingrediente.pesoG * (ingrediente.fatorCorrecao/100);
+  }
 }
