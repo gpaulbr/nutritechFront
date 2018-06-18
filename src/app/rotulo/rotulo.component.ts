@@ -24,6 +24,7 @@ export class RotuloComponent {
 
   ftp: Ftp;
   todosAtributos: Array<Atributo>;
+  mostrarMaisInfo: boolean;
 
   gramasPorPorcao: number = 0;
 
@@ -44,7 +45,7 @@ export class RotuloComponent {
     private atributeService: AtributoService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService) {    
+    private toastr: ToastrService) {
 
       let receita;
       this.route.params.subscribe(params => receita = params);
@@ -101,5 +102,9 @@ export class RotuloComponent {
   resetar() {
     this.gramasPorPorcao = this.ftp.grupoReceita.custo;
     this.emitirValores();
+  }
+
+  getMostrarMaisInfo(): boolean {
+    return this.mostrarMaisInfo;
   }
 }

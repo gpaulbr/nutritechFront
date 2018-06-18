@@ -16,7 +16,10 @@
         [numeroCasasDecimais]="2"
         [valorEnergeticoPorcao]="valorEnergeticoPorcao">
       </app-rotulo-info-nutricional>
-      
+
+      <button class="btn btn-success" *ngIf="!getMostrarMaisInfo()" (click)="mostrarMaisInfo = true;">Mais Informações</button>
+      <button class="btn btn-danger" *ngIf="getMostrarMaisInfo()" (click)="mostrarMaisInfo = false;">Esconder Informações</button>
+      <div [hidden]="!getMostrarMaisInfo()">
       <app-rotulo-ingredientes
         (outputIngredienteValorPorcao)="alterarIngredienteValor($event)"
         [ftp]="ftp"
@@ -45,7 +48,7 @@
         [gramasPorPorcao]="gramasPorPorcao"
         [numeroCasasDecimais]="2">
       </app-rotulo-valor-energetico>
-
+    </div>
     </div>
   </fieldset>
 </div>

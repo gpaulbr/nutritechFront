@@ -7,7 +7,7 @@ import { Atributo } from '../../atributo/atributo';
   templateUrl: './rotulo-info-nutricional.component.html',
   styleUrls: ['./rotulo-info-nutricional.component.css']
 })
-export class RotuloInfoNutricionalComponent implements OnInit {
+export class RotuloInfoNutricionalComponent {
 
   @Input()
   ftp: Ftp;
@@ -25,9 +25,6 @@ export class RotuloInfoNutricionalComponent implements OnInit {
   valorEnergeticoPorcao: any;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   calculoVDPerc(valor: number, atributo: Atributo): number {
     const vd = atributo.valorDiario;
