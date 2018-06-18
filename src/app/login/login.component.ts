@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       error => {
         console.log(error)
         this.toastr.error(error.error);
-      });;
+      });
   }
   redefinir(){
     console.log(this.loginForm.get('email').value);
