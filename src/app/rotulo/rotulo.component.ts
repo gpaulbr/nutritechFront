@@ -25,6 +25,7 @@ export class RotuloComponent {
 
   ftp: Ftp;
   todosAtributos: Array<Atributo>;
+  mostrarMaisInfo: boolean;
 
   gramasPorPorcao: number = 0;
 
@@ -45,7 +46,7 @@ export class RotuloComponent {
     private atributeService: AtributoService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService) {    
+    private toastr: ToastrService) {
 
       let receita;
       this.route.params.subscribe(params => receita = params);
@@ -104,6 +105,7 @@ export class RotuloComponent {
     this.emitirValores();
   }
 
+
   geraPDF(index: Number){
 
     var pdf = new jsPDF('p', 'pt','a4');
@@ -119,4 +121,9 @@ export class RotuloComponent {
         pdf.save('Rotulo.pdf');
       });
    }
+
+  getMostrarMaisInfo(): boolean {
+    return this.mostrarMaisInfo;
+  }
+
 }
