@@ -124,7 +124,6 @@ export class IngredienteCadastroComponent implements OnInit {
       atrs[i]['value'] = 0;
     }
     this.buscarAtributos();
-    window.location.reload();
   }
 
   ngOnInit() {
