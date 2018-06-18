@@ -108,6 +108,7 @@ export class RotuloComponent {
   getMostrarMaisInfo(): boolean {
     return this.mostrarMaisInfo;
   }
+
   geraPDF(index: Number){
 
     var pdf = new jsPDF('p', 'pt','a4');
