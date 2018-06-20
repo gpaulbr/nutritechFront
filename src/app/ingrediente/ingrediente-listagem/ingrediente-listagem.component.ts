@@ -43,8 +43,27 @@ export class IngredienteListagemComponent extends ListagemBaseComponent implemen
     if(this.usuarioLogado == null) {
       this.routerIngrediente.navigate(['./']);
     }
-    this.atualizarGrade();
+    this.atualizarGradeIngrediente();
   }
+
+  atualizarGradeIngrediente() {
+    this.ingredienteService.buscar().subscribe(
+      response => { 
+        this.objects = response['Ingredientes'];
+        let lista = []
+
+        debugger;
+        response['Ingredientes'].forEach(p => {
+          if(this.usuarioLogado.tipo === "ADMIN" 
+          || p.tipo === "COMUM"
+          || p.criador.id === this.usuarioLogado.id) {
+            lista.push(p)
+          }
+        });
+        this.rows = lista
+      });
+  }
+
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
