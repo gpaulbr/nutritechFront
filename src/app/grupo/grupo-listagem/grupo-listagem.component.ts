@@ -6,37 +6,33 @@ import { Response } from '@angular/http/src/static_response';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
+import { ListagemBaseComponent } from '../../shared/components/listagem-base/listagem-base.component';
 
 @Component({
   selector: 'app-grupo-listagem',
   templateUrl: './grupo-listagem.component.html',
   styleUrls: ['./grupo-listagem.component.css']
 })
-export class GrupoListagemComponent implements OnInit {
+export class GrupoListagemComponent extends ListagemBaseComponent implements OnInit {
 
-  grupos: Grupo[];
-  rows = [];
-  grupoEmLista:boolean = false;
+  
   admin: boolean;
   columns = [];
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
   constructor(
     private grupoService: GrupoService,
-    private router: Router,
-    private toastr: ToastrService) {
+    private routerGrupo: Router,
+    toastr: ToastrService) {
+      super(routerGrupo, 'grupo', 'Grupos', grupoService, toastr);
   }
 
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if (usuarioLogado == null) {
-      this.router.navigate(['./']);
+      this.routerGrupo.navigate(['./']);
     } else {
-      if (usuarioLogado.tipo == "ADMIN") {
-        this.admin = true;
-      } else {
-        this.admin = false;
-      }
+        this.admin = usuarioLogado.tipo === "ADMIN";
     }
 
     if (this.admin) {//se for admin, exibe com as ações
@@ -56,33 +52,14 @@ export class GrupoListagemComponent implements OnInit {
       ];
     }
 
-    this.listGrupos()
-  }
-
-  listGrupos(){
-    this.grupoService.buscarGrupos().subscribe(
-      response => {
-        this.grupos = response['Grupos'];
-
-        let lista = []
-
-        response['Grupos'].forEach(p => {
-          lista.push(p)
-        })
-        if(lista.length!=0){
-          this.rows = lista;
-          this.grupoEmLista = true;//para exibir mensagem se não tiver nda cadastrado
-        }
-        else
-          this.grupoEmLista = false;
-      });
+    this.atualizarGrade();
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filtra por todos os campos da tabela
-    const temp = this.grupos.filter(function (d) {
+    const temp = this.objects.filter(function (d) {
       if (d.nome.toLowerCase().indexOf(val) !== -1 || !val)
         return d.nome.toLowerCase().indexOf(val) !== -1 || !val;
       else if (d.id.toString().indexOf(val) !== -1 || !val)
@@ -97,24 +74,5 @@ export class GrupoListagemComponent implements OnInit {
 
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
-  }
-
-  redirecionarParaCadastro(index: number) {
-    console.log("teste: "
-      + this.grupos[index].id);
-    this.router.navigate([`./grupo/${this.grupos[index].id}`]);
-  }
-
-  deletarGrupo(index: any) {
-    console.log(this.grupos[index])
-
-    this.grupoService.excluirGrupo(this.grupos[index].id)
-      .subscribe(resp => {
-        this.toastr.success(resp.message);
-        this.listGrupos()
-      }, e => {
-        this.toastr.error(e.error.message);
-      })
-      // window.location.reload();/* só pra atualizar após deletar precisamos */
   }
 }
