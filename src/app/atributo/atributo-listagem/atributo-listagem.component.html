@@ -12,7 +12,7 @@
                         (keyup)='updateFilter($event)'
                         />  
                       </div>
-      
+            <div *ngIf="!listaVazia()">
                   <ngx-datatable
                   #table
                   class="material"
@@ -38,9 +38,10 @@
             </ng-template>
         </ngx-datatable-column>
         </ngx-datatable>
-        <!-- <div id="aviso-cad" *ngIf="!atributoEmLista">
+        </div>
+        <div id="aviso-cad" *ngIf="listaVazia()">
             <p> Nenhum Atributo Cadastrado</p>
-        </div> -->
+        </div>
     </div>
 </div>
 </div>
