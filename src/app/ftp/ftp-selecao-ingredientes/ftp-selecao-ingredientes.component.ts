@@ -4,6 +4,7 @@ import { IngredienteService } from '../../ingrediente/ingrediente.service';
 import { ReceitaIngrediente } from '../ftp-receita-ingrediente';
 import {Router} from '@angular/router';
 import {Usuario} from '../../usuario/usuario';
+import { UsuarioLogadoDto } from '../../usuario/usuario-logado-dto';
 
 @Component({
   selector: 'app-ftp-selecao-ingredientes',
@@ -18,6 +19,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   pesoG: number;
   receitaIngredientes: Array<ReceitaIngrediente>;
   ingredientesDisponiveis: Ingrediente[];
+  usuarioLogado: UsuarioLogadoDto;
 
   constructor(private router: Router, private ingredienteService: IngredienteService) {
     this.receitaIngredientes = new Array<ReceitaIngrediente>();
@@ -35,8 +37,8 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   podeAlterar: boolean;
 
   ngOnInit() {
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if (usuarioLogado == null) {
+    this.usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (this.usuarioLogado == null) {
       this.router.navigate(['./']);
       return;
     }
@@ -50,14 +52,18 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
 
   loadDB() {
     this.ingredienteService.buscar().subscribe(
-      response => {
-        this.ingredientesDisponiveis = Array.from(response['Ingredientes']);
-        this.ingredientesDisponiveis.forEach(item => {
-       // delete item['Ingrediente'].criador.senha;
+      response => { 
+        let lista = []
+
+        response['Ingredientes'].forEach(p => {
+          if(this.usuarioLogado.tipo === "ADMIN" 
+          || p.tipo === "COMUM"
+          || p.criador.id === this.usuarioLogado.id) {
+            lista.push(p)
+          }
         });
-        // console.log(this.ingredientesDisponiveis);
-      }
-    );
+        this.ingredientesDisponiveis = lista;
+      });
   }
 
   adicionarIngrediente() {
