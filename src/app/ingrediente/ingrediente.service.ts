@@ -4,29 +4,32 @@ import { Ingrediente } from './ingrediente';
 import { Observable } from 'rxjs/Observable';
 import { NUTRITECH_API } from '../app.api'
 import { IngredienteDto } from './ingrediente-dto';
+import { ServiceBase } from '../shared/interfaces/service-base';
 
 @Injectable()
-export class IngredienteService {
+export class IngredienteService implements ServiceBase {
+
+  url = NUTRITECH_API + "/ingredientes";
 
   constructor(private http: HttpClient) { }
 
   cadastrarIngrediente(ingrediente: Ingrediente): Observable<IngredienteDto>{
-    return this.http.post<IngredienteDto>(NUTRITECH_API + '/ingredientes', ingrediente);
+    return this.http.post<IngredienteDto>(this.url, ingrediente);
   }
 
   atualizarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente>{
-    return this.http.put<Ingrediente>(NUTRITECH_API + '/ingredientes/update', ingrediente);
+    return this.http.put<Ingrediente>(this.url, ingrediente);
   }
 
-  buscarIngredientes(): Observable<Ingrediente[]>{
-    return this.http.get<Ingrediente[]>(NUTRITECH_API + '/ingredientes');
+  buscar(): Observable<Ingrediente[]>{
+    return this.http.get<Ingrediente[]>(this.url);
   }
 
   obterIngrediente(id: string): Observable<Ingrediente>{
-    return this.http.get<Ingrediente>(`${NUTRITECH_API}/ingredientes/${id}/`);
+    return this.http.get<Ingrediente>(`${this.url}/${id}/`);
   }
 
-  excluirIngrediente(id: string): Observable<Ingrediente>{
-    return this.http.delete<Ingrediente>(`${NUTRITECH_API}/ingredientes/${id}`)
+  excluir(id: string): Observable<Ingrediente>{
+    return this.http.delete<Ingrediente>(`${this.url}/${id}`)
   }
 }

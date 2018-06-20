@@ -49,7 +49,7 @@ export class FtpSelecaoIngredientesComponent implements OnInit {
   }
 
   loadDB() {
-    this.ingredienteService.buscarIngredientes().subscribe(
+    this.ingredienteService.buscar().subscribe(
       response => {
         this.ingredientesDisponiveis = Array.from(response['Ingredientes']);
         this.ingredientesDisponiveis.forEach(item => {
