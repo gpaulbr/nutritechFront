@@ -21,7 +21,6 @@ import { ListagemBaseComponent } from '../../shared/components/listagem-base/lis
 
 export class IngredienteListagemComponent extends ListagemBaseComponent implements OnInit {
   
-  rows = [];
   columns = [
     { name: 'Nome' },
     { name: 'Origem' },
