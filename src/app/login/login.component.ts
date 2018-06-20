@@ -64,4 +64,7 @@ export class LoginComponent implements OnInit {
       this.toastr.error('Erro ao enviar email de recuperação', 'Este email existe?');
     });
   }
+  ggg(){
+    $("#modal-mensagem").modal();
+  }
 }
