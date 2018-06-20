@@ -52,4 +52,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.get('email').value);
     this.loginService.esqueceuSenha(this.loginForm.get('email').value);
   }
+  ggg(){
+    $("#modal-mensagem").modal();
+  }
 }
