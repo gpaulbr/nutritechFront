@@ -33,7 +33,7 @@ export class FtpSelecaoGruporeceitaComponent implements OnInit {
   }
 
   loadDB() {
-    this.grupoService.buscarGrupos().subscribe(
+    this.grupoService.buscar().subscribe(
       response => {
         this.gruposDisponiveis = Array.from(response['Grupos']);
         this.gruposDisponiveis.forEach(item => {
@@ -45,6 +45,5 @@ export class FtpSelecaoGruporeceitaComponent implements OnInit {
 
   salvar () {
     this.salvarGrupoReceita.emit(this.grupoReceita);
-    // console.log(this.grupoReceita);
   }
 }
