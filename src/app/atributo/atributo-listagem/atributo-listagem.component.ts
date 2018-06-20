@@ -26,6 +26,7 @@ export class AtributoListagemComponent implements OnInit {
     { name: 'Nome' },
     { name: 'Unidade' },
     { name: 'Multiplicador' },
+    { name: 'ValorDiario' },
     { name: 'Obrigatório' }
   ];
 
@@ -73,7 +74,7 @@ export class AtributoListagemComponent implements OnInit {
   }
 
   buscarAtributos() {
-    this.atributoService.buscarAtributos().subscribe(
+    this.atributoService.buscar().subscribe(
       atributos => {
         this.atributos = atributos['Atributos'];
         var listaA: Atributo[] = [];
@@ -86,11 +87,7 @@ export class AtributoListagemComponent implements OnInit {
           }
           listaA.push(p); //inlcui na lista        
         })
-        if (listaA.length != 0) {
           this.rows = listaA;
-          this.atributoEmLista = true; //Para poder exibir mensagem que não tem nenhum atributo cadastrado
-        } else
-          this.atributoEmLista = false;
       });
     //console.log(this.atributos);
   }
@@ -128,9 +125,9 @@ export class AtributoListagemComponent implements OnInit {
 
   deletarAtributo(index: any) {
     console.log("id" + this.atributos[index].id);
-    this.atributoService.excluirAtributo(this.atributos[index].id)
+    this.atributoService.excluir(`${this.atributos[index].id}`)
       .subscribe(resp => {
-        this.toastr.success(resp.message)
+        this.toastr.success(resp['message']);
         this.buscarAtributos()
       }, e => {
         this.toastr.error(e.error.message)

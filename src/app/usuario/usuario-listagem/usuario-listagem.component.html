@@ -1,23 +1,16 @@
 <div class="container"> 
-    <fieldset>  
-        <div class="alert alert-success" role="alert"
-            style="display: none; width: 25%; margin-left: 37%; text-align: center;">
+    <div class="panel panel-default panel-container">
+        <div class="panel-heading ">
+            <h2 class="titulo_lista">Lista de Usuários</h2>
         </div>
-        <div class="row justify-content-center">
-            <div class="panel panel-default panel-container">
-                <div class="panel-heading ">
-                    <h2 class="titulo_lista">Listagem de Usuários</h2  >
-                </div>
         <div class="panel-body">  
-        <div *ngIf="rows.length > 0">
-               <div id="buscar" class="row"> 
-                 <p class="pBuscar col-md-1">Buscar: </p>
-                  <input
-                  type='text' class="inputBuscar col-md-4"
-                  />  
-                </div>
-
-            <ngx-datatable
+        <div>
+            <div id="buscar" class="row"> 
+             <p class="pBuscar col-md-1">Buscar: </p>
+              <input
+              type='text' class="inputBuscar col-md-4" (keyup)="updateFilter($event)"                  />  
+            </div>
+            <ngx-datatable *ngIf="rows.length > 0"
             #table
             class="material"
             [columnMode]="'force'"
@@ -30,7 +23,11 @@
             <ngx-datatable-column name="{{columns[2].name}}"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[3].name}}"></ngx-datatable-column>
             <ngx-datatable-column name="{{columns[4].name}}"></ngx-datatable-column>
-            <ngx-datatable-column name="{{columns[5].name}}"></ngx-datatable-column>
+            <ngx-datatable-column name="{{columns[5].name}}">
+                <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                    {{ rows[rowIndex].status | status }}
+                </ng-template>
+            </ngx-datatable-column>
           <ngx-datatable-column
             name="{{columns[6].name}}"
             [width]="100"
@@ -40,9 +37,13 @@
             [resizeable]="false">
             <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
               <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)" title="Editar">edit</i>
-              <i class="material-icons" style="cursor: pointer;" (click)="excluirIngrediente(rowIndex)" title="Excluir">delete</i>
+              <i class="material-icons" style="cursor: pointer;" (click)="excluir(rowIndex)" title="Excluir">delete</i>
             </ng-template>
           </ngx-datatable-column>
           </ngx-datatable>
-  </div>
-</div>
+        </div>
+    </div>
+    <div id="aviso-cad" *ngIf="listaVazia()">
+    <p> Nenhum Usuário Encontrado</p>
+    </div>
+</div>  

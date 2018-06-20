@@ -5,7 +5,6 @@
       <div *ngIf="permitirInputValorPorcao" class="row" id="formGramas">
         <label id="labelGramas"> Porção (g): </label>
         <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" (ngModelChange)="emitirValores()" class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" min="1">
-        <button type="number" class="btn btn-success" (click)="confirmar()">Confirmar</button>
         <button type="number" class="btn btn-danger" (click)="resetar()">Resetar</button>        
       </div>
       <br>
@@ -17,7 +16,10 @@
         [numeroCasasDecimais]="2"
         [valorEnergeticoPorcao]="valorEnergeticoPorcao">
       </app-rotulo-info-nutricional>
-      
+
+      <button class="btn btn-success" *ngIf="!getMostrarMaisInfo()" (click)="mostrarMaisInfo = true;">Mais Informações</button>
+      <button class="btn btn-danger" *ngIf="getMostrarMaisInfo()" (click)="mostrarMaisInfo = false;">Esconder Informações</button>
+      <div [hidden]="!getMostrarMaisInfo()">
       <app-rotulo-ingredientes
         (outputIngredienteValorPorcao)="alterarIngredienteValor($event)"
         [ftp]="ftp"
@@ -46,7 +48,7 @@
         [gramasPorPorcao]="gramasPorPorcao"
         [numeroCasasDecimais]="2">
       </app-rotulo-valor-energetico>
-
+    </div>
     </div>
   </fieldset>
 </div>

@@ -42,6 +42,8 @@ max-width: 80%;
 float: right;
 margin-right: 30%;
 margin-left:auto;
+font-size:1em;
+font-weight: normal;
 }
 
 #nomeAtrib{
