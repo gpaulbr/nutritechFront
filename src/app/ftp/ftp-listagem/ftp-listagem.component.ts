@@ -8,7 +8,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Nota } from '../nota';
-import * as jsPDF from 'jspdf';
+declare var jsPDF: any;
 
 
 @Component({
@@ -194,14 +194,14 @@ export class FtpListagemComponent implements OnInit {
     this.rows[index].passos = passos;
     //console.log(this.rows[index].passos);
     
-    // const columns = ["ID", "Name", "Country"];
-    // const rows = [
-    //     [1, "Shaw", "Tanzania"],
-    //     [2, "Nelson", "Kazakhstan"],
-    //     [3, "Garcia", "Madagascar"]
-    // ];
+    const columns = ["ID", "Name", "Country"];
+    const rows = [
+        [1, "Shaw", "Tanzania"],
+        [2, "Nelson", "Kazakhstan"],
+        [3, "Garcia", "Madagascar"]
+    ]
 
-    //  doc.autoTable(columns, rows);
+    doc.autoTable(columns, rows);
     doc.text("Preparação: " + this.rows[index].nome, 10, 10);
     doc.text("Integrantes: " + this.rows[index]["criadoresTxt"].replace("<br>",","), 10, 20);
     doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 30);
