@@ -1,3 +1,4 @@
+<script src="js/jspdf.js"></script>
 <div class="container" *ngIf="this.ftp !== undefined">
   <fieldset>	
     <div class="divisor content">
@@ -6,6 +7,7 @@
         <label id="labelGramas"> Porção (g): </label>
         <input [(ngModel)]="gramasPorPorcao" type="number" [value]="gramasPorPorcao" (ngModelChange)="emitirValores()" class="col-md-3 form-control input-md ng-pristine ng-invalid ng-touched" id="inputGramas" min="1">
         <button type="number" class="btn btn-danger" (click)="resetar()">Resetar</button>        
+        <button type="number" class="btn btn-link" (click)="geraPDF()" >Download PDF</button>
       </div>
       <br>
 

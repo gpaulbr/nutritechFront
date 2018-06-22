@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input, ViewChildren } from '@angular/core';
 import { RotuloIngredientesComponent } from './rotulo-ingredientes/rotulo-ingredientes.component';
+import * as jsPDF from 'jspdf';
 import { FtpService } from '../ftp/ftp.service';
 import { IngredienteService } from '../ingrediente/ingrediente.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -107,4 +108,11 @@ export class RotuloComponent {
   getMostrarMaisInfo(): boolean {
     return this.mostrarMaisInfo;
   }
+  geraPDF(index: Number){
+
+    var pdf = new jsPDF('p', 'pt', 'a5');
+        pdf.addHTML(document.getElementById("numero"), function() {
+        pdf.save('Rotulo.pdf');
+      });
+   }
 }
