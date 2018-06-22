@@ -176,21 +176,20 @@ export class FtpListagemComponent implements OnInit {
   }
 
   gerarPDF(index: number) {
-    // this.router.navigate(['./pdf/' + String(this.receitas[index as number].id)]);
-    // this.toastr.warning('Ainda não implementado.');
-
     // Documentação: https://rawgit.com/MrRio/jsPDF/master/docs/
     
     const doc = new jsPDF({});
     let passos: String = '';
     let indice: number = 1;
     let aux: String = " ";//uso para separar os passos no pdf
+
     this.rows[index].passos.forEach(u => {
       passos += indice + ". " + u + aux; // concatena cada nome de criador de receita
       console.log(passos);
       indice++;
       aux = "<br>"//caso tenha mais de um passo
     });
+
     this.rows[index].passos = passos;
     //console.log(this.rows[index].passos);
     
@@ -207,7 +206,10 @@ export class FtpListagemComponent implements OnInit {
     doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 30);
     doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 40);
     doc.text("Passos: " + this.rows[index].passos.replace("<br>", " "), 10, 50);//colocar em tabela depois
-    
+    doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 60);
+    doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 70);
+    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 80);
+    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 90);
     doc.save('a4.pdf');
 
    /* { name: 'Nome' },FOI
