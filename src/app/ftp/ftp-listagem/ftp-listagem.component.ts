@@ -92,12 +92,14 @@ export class FtpListagemComponent implements OnInit {
           } */
           lista.push(p); // inlcui na lista
             });
+
         if (lista.length !== 0) {
           this.rows = lista;
-          this.receitaEmLista = true; // para exibir mensagem se não tiver nda cadastrado
+          this.receitaEmLista = true; // para exibir mensagem se não tiver nada cadastrado
         } else {
           this.receitaEmLista = false;
         }
+
     });
     }
 
@@ -173,17 +175,49 @@ export class FtpListagemComponent implements OnInit {
     this.router.navigate(['./rotulo/' + String(this.receitas[index as number].id)]);
   }
 
-  gerarPDF(index: Number) {
+  gerarPDF(index: number) {
     // this.router.navigate(['./pdf/' + String(this.receitas[index as number].id)]);
     // this.toastr.warning('Ainda não implementado.');
 
     // Documentação: https://rawgit.com/MrRio/jsPDF/master/docs/
+    
+    const doc = new jsPDF({});
+    let passos: String = '';
+    let indice: number = 1;
+    let aux: String = " ";//uso para separar os passos no pdf
+    this.rows[index].passos.forEach(u => {
+      passos += indice + ". " + u + aux; // concatena cada nome de criador de receita
+      console.log(passos);
+      indice++;
+      aux = "<br>"//caso tenha mais de um passo
+    });
+    this.rows[index].passos = passos;
+    //console.log(this.rows[index].passos);
+    
+    // const columns = ["ID", "Name", "Country"];
+    // const rows = [
+    //     [1, "Shaw", "Tanzania"],
+    //     [2, "Nelson", "Kazakhstan"],
+    //     [3, "Garcia", "Madagascar"]
+    // ];
 
-    var doc = new jsPDF({
-    })
+    //  doc.autoTable(columns, rows);
+    doc.text("Preparação: " + this.rows[index].nome, 10, 10);
+    doc.text("Integrantes: " + this.rows[index]["criadoresTxt"].replace("<br>",","), 10, 20);
+    doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 30);
+    doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 40);
+    doc.text("Passos: " + this.rows[index].passos.replace("<br>", " "), 10, 50);//colocar em tabela depois
+    
+    doc.save('a4.pdf');
 
-    doc.text('Hello world!', 1, 1);
-    doc.save('a4.pdf')
+   /* { name: 'Nome' },FOI
+    { name: 'Nota', prop: 'notaTxt' },NÃO VAI
+    { name: 'Rendimento' },
+    { name: 'Criadores', prop: 'criadoresTxt' },FOI
+    { name: 'Grupo de Receita', prop: 'grupoReceita.nome' },
+    { name: 'Tipo', prop: 'tipoTxt'},
+    { name: 'Publicada', prop: 'publicadaTxt' },
+    { name: 'Status', prop: 'status' }*/
   }
 
   verificarAntesDeExcluir(index: number) {
