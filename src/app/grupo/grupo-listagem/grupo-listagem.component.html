@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="panel-body">
-                        <div *ngIf="grupoEmLista">
+                        <div>
                             <div id="buscar" class="row"> 
                               <p class="pBuscar col-md-1">Buscar: </p>
                                <input
@@ -19,7 +19,7 @@
                                (keyup)='updateFilter($event)'
                                />  
                              </div>
-             
+        <div *ngIf="!listaVazia()">
         <ngx-datatable
                          #table
                          class="material"
@@ -41,19 +41,20 @@
                 [resizeable]="false">
                 <ng-template *ngIf="admin" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                     <i class="material-icons" style="cursor: pointer;" (click)="redirecionarParaCadastro(rowIndex)" title="Editar">edit</i>
-                    <i class="material-icons" style="cursor: pointer;" (click)="deletarGrupo(rowIndex)" title="Excluir">delete</i>
+                    <i class="material-icons" style="cursor: pointer;" (click)="excluir(rowIndex)" title="Excluir">delete</i>
                 </ng-template>
 
             </ngx-datatable-column>
               
         </ngx-datatable>
+    </div>
 
                    </div>
-                <div id="aviso-cad" *ngIf="!grupoEmLista">
+                <div id="aviso-cad" *ngIf="listaVazia()">
                     <p> Nenhuma grupo de receita cadastrado</p>
                 </div>
-                    </div>      
-                </div>
-            </div>
-        </fieldset>
+            </div>      
         </div>
+    </div>
+</fieldset>
+</div>

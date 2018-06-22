@@ -27,6 +27,10 @@ export class LoginComponent implements OnInit {
     }
 
   ngOnInit() {
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (usuarioLogado){
+      this.router.navigate(['ftp-listagem']);
+    }
   }
 
   logar(){
@@ -42,7 +46,10 @@ export class LoginComponent implements OnInit {
       error => {
         console.log(error)
         this.toastr.error(error.error);
-      });;
+      });
   }
-
+  redefinir(){
+    console.log(this.loginForm.get('email').value);
+    this.loginService.esqueceuSenha(this.loginForm.get('email').value);
+  }
 }
