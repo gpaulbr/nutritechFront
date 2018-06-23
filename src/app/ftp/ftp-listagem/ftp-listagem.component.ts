@@ -192,7 +192,7 @@ export class FtpListagemComponent implements OnInit {
                               peso:null,
                               passos:null
                             }];
-                                   
+    let objTeste= [];          
     let stringTeste: String = '';
     let indice: number = 1;//para exibir número ao lado do passo no pdf
     let aux: String = " ";//cancatena aux nas strings acima, depois quebro por ele para exibir no pdf
@@ -221,21 +221,31 @@ export class FtpListagemComponent implements OnInit {
   
 
  // arrayIngredientes = receitaIngNome.split(",");
-   console.log(objIngredientes);//pq está gerando os espaços
+   console.log("obj" + objIngredientes['nome']);//pq está gerando os espaços
   // console.log("fator de c:"+ receitaIngFc);//pq está gerando os espaços
     
     const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita)"];
-    let i;
-    for(i=0;i<objIngredientes['nome'].length;i++){
-      stringTeste += `["${objIngredientes['nome'][i]}","${objIngredientes['fc'][i]}","${objIngredientes['ck'][i]}","${objIngredientes['peso'][i]}"],`
-    console.log("aqui: " + stringTeste);
-    }
+     let i;
+    // for(i=0;i<objIngredientes['nome'].length;i++){
+    //   stringTeste += `["${objIngredientes['nome'][i]}","${objIngredientes['fc'][i]}","${objIngredientes['ck'][i]}","${objIngredientes['peso'][i]}"],`
+    // //console.log("aqui: " + stringTeste);
+    // }
+    // stringTeste = (stringTeste.substring(0,stringTeste.length-1)); //tira a última vírgula
+    // stringTeste = "[".concat(stringTeste.concat("]"));
+
+    // console.log("testeeeee:" + stringTeste);
+
     
     //objIngredientes.map(item,index);
-    const rowsPDF = [stringTeste];
-    console.log("esse" + rowsPDF);
+    const rowsPDF = []; //stringTeste;
+      rowsPDF.push(objIngredientes['nome']);
+      rowsPDF.push(objIngredientes['fc']);
+      rowsPDF.push(objIngredientes['ck']);
+      rowsPDF.push(objIngredientes['peso']);
+    
+    console.log(rowsPDF);
     doc.setFontSize(12);//do PDF
-    doc.autoTable(columnsPDF, rowsPDF, {
+    doc.autoTable(columnsPDF,rowsPDF, {
       styles: {
         fillColor: [32, 124, 123],
         fontSize: 10,
@@ -249,6 +259,7 @@ export class FtpListagemComponent implements OnInit {
         doc.text("FICHA TÉCNICA DE PREPARO", 75, 10);
       }
   });
+
     doc.text("Preparação: " + this.rows[index].nome, 10, 40);
     doc.text("Integrantes: " + this.rows[index]["criadoresTxt"].replace("<br>",","), 10, 50);
     doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 60);
