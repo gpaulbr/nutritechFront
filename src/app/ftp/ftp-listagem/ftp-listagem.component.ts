@@ -267,8 +267,16 @@ export class FtpListagemComponent implements OnInit {
       }
   });
     let criadoresPdf: String;
-    criadoresPdf = this.rows[index]["criadoresTxt"].replace("<br>",",");//parar exibir com vírgula quando tiver mais de um
-    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))
+    let j=1;
+    while(j<=this.rows[index]["criadoresTxt"].length){    
+      this.rows[index]["criadoresTxt"] = this.rows[index]["criadoresTxt"].replace("<br>",", ");
+      criadoresPdf = this.rows[index]["criadoresTxt"];//parar exibir com vírgula quando tiver mais de um
+      console.log("cri" + criadoresPdf);
+      j++;
+    }     
+    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))//tira o último espaço
+    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))//tira o último vírgula
+
     doc.text("Preparação: " + this.rows[index].nome, 10, 40);
     doc.text("Integrantes: " + criadoresPdf, 10, 50);
     doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 60);
