@@ -205,13 +205,19 @@ export class FtpListagemComponent implements OnInit {
     });
 
     aux = "";
+
+    const rowsPDF = []; //stringTeste;
     this.rows[index].passos = passos;
+
+    
     this.rows[index].receitaIngrediente.forEach(u => {
-      receitaIngNome += aux + u.ingrediente.nome; // concatena cada nome de receita com ',' para depois quebrar
-      receitaIngFc += aux + (u.fatorCorrecao).toString(); 
-      receitaIngCk += aux + (u.custoKg).toString();
-      receitaIngPeso += aux + (u.pesoG).toString();
+      receitaIngNome = u.ingrediente.nome; // concatena cada nome de receita com ',' para depois quebrar
+      receitaIngFc = (u.fatorCorrecao).toString(); 
+      receitaIngCk = (u.custoKg).toString();
+      receitaIngPeso = (u.pesoG).toString();
       aux = ","//caso tenha mais de um passo
+      var objIngredientes1 = [receitaIngNome,receitaIngFc,receitaIngCk,receitaIngPeso]
+      rowsPDF.push(objIngredientes1);
       });
 
       objIngredientes['nome'] = receitaIngNome.split(",");
@@ -237,11 +243,11 @@ export class FtpListagemComponent implements OnInit {
 
     
     //objIngredientes.map(item,index);
-    const rowsPDF = []; //stringTeste;
-      rowsPDF.push(objIngredientes['nome']);
-      rowsPDF.push(objIngredientes['fc']);
-      rowsPDF.push(objIngredientes['ck']);
-      rowsPDF.push(objIngredientes['peso']);
+    // const rowsPDF = []; //stringTeste;
+    //   rowsPDF.push(objIngredientes['nome']);
+    //   rowsPDF.push(objIngredientes['fc']);
+    //   rowsPDF.push(objIngredientes['ck']);
+    //   rowsPDF.push(objIngredientes['peso']);
     
     console.log(rowsPDF);
     doc.setFontSize(12);//do PDF
