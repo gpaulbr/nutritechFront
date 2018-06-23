@@ -237,7 +237,6 @@ export class FtpListagemComponent implements OnInit {
     // stringTeste = "[".concat(stringTeste.concat("]"));
 
     // console.log("testeeeee:" + stringTeste);
-
     doc.setFontSize(12);//do PDF
 
     doc.autoTable(columnsPDF,rowsPDF, {
