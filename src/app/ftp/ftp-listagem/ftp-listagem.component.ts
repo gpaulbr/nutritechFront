@@ -8,6 +8,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Nota } from '../nota';
+import { AUTO_STYLE } from '@angular/animations';
 declare var jsPDF: any;
 
 
@@ -178,53 +179,88 @@ export class FtpListagemComponent implements OnInit {
   gerarPDF(index: number) {
     // Documentação: https://rawgit.com/MrRio/jsPDF/master/docs/
     
-    const doc = new jsPDF({});
-    let passos: String = '';
-    let receitaIngNome: String = ' ';
-    let arrayIngredientes: String [];
-    let indice: number = 1;
-    let aux: String = " ";//uso para separar os passos no pdf
+    const doc = new jsPDF({});//criando o documento de pdf
+    let passos: String = '';//passos da recita pro pdf
+    let receitaIngNome: String = ' ';//nome da receita pro pdf
+    let receitaIngFc: String = ''; //fator de correção
+    let receitaIngCk: String = ''; //custo por kg
+    let receitaIngPeso: String = ''; //custo por kg
+    var objIngredientes = [{//vai salvar as variáveis acima no objeto objIngredientes
+                              nome:null,
+                              fc:null,
+                              ck:null,
+                              peso:null,
+                              passos:null
+                            }];
+                                   
+    let stringTeste: String = '';
+    let indice: number = 1;//para exibir número ao lado do passo no pdf
+    let aux: String = " ";//cancatena aux nas strings acima, depois quebro por ele para exibir no pdf
 
-    this.rows[index].passos.forEach(u => {
+    this.rows[index]['passos'].forEach(u => {
       passos += indice + ". " + u + aux; // concatena cada nome de criador de receita
       //console.log(passos);
       indice++;
       aux = "<br>"//caso tenha mais de um passo
     });
 
-    indice = 0;
+    aux = "";
     this.rows[index].passos = passos;
-    
     this.rows[index].receitaIngrediente.forEach(u => {
-      receitaIngNome += u.ingrediente.nome + aux; // concatena cada nome de criador de receita
-      //console.log(receitaIngNome);
-      indice++;
-      aux = "<br>"//caso tenha mais de um passo
-    });
+      receitaIngNome += aux + u.ingrediente.nome; // concatena cada nome de receita com ',' para depois quebrar
+      receitaIngFc += aux + (u.fatorCorrecao).toString(); 
+      receitaIngCk += aux + (u.custoKg).toString();
+      receitaIngPeso += aux + (u.pesoG).toString();
+      aux = ","//caso tenha mais de um passo
+      });
+
+      objIngredientes['nome'] = receitaIngNome.split(",");
+      objIngredientes['fc'] = receitaIngFc.split(",");
+      objIngredientes['ck'] = receitaIngCk.split(",");
+      objIngredientes['peso'] = receitaIngPeso.split(",");
   
 
-  arrayIngredientes = receitaIngNome.split("<br>");
-   console.log(arrayIngredientes);//pq está gerando os espaços
+ // arrayIngredientes = receitaIngNome.split(",");
+   console.log(objIngredientes);//pq está gerando os espaços
+  // console.log("fator de c:"+ receitaIngFc);//pq está gerando os espaços
     
-    const columns = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita)"];
-    arrayIngredientes.forEach(u => {
-      //salvar nomes, valores da tabela em uma string ou array (não sei), para imprimir em const rows (abaixo)
-    });
-    const rows = [
-        [arrayIngredientes, "Shaw", "Tanzania"],
-    ]
-
-    doc.autoTable(columns, rows);
-    doc.text("Preparação: " + this.rows[index].nome, 10, 10);
-    doc.text("Integrantes: " + this.rows[index]["criadoresTxt"].replace("<br>",","), 10, 20);
-    doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 30);
-    doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 40);
-    doc.text("Passos: " + this.rows[index].passos.replace("<br>", " "), 10, 50);//colocar em tabela depois
-    doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 60);
-    doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 70);
-    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 80);
-    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 90);
-    doc.save('a4.pdf');
+    const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita)"];
+    let i;
+    for(i=0;i<objIngredientes['nome'].length;i++){
+      stringTeste += `["${objIngredientes['nome'][i]}","${objIngredientes['fc'][i]}","${objIngredientes['ck'][i]}","${objIngredientes['peso'][i]}"],`
+    console.log("aqui: " + stringTeste);
+    }
+    
+    //objIngredientes.map(item,index);
+    const rowsPDF = [stringTeste];
+    console.log("esse" + rowsPDF);
+    doc.setFontSize(12);//do PDF
+    doc.autoTable(columnsPDF, rowsPDF, {
+      styles: {
+        fillColor: [32, 124, 123],
+        fontSize: 10,
+        font: "helvetica",
+      },
+      columnStyles: {
+        id: {fillColor: 255}
+      },
+      margin: {top: 130},
+      addPageContent: function(data) {
+        doc.text("FICHA TÉCNICA DE PREPARO", 75, 10);
+      }
+  });
+    doc.text("Preparação: " + this.rows[index].nome, 10, 40);
+    doc.text("Integrantes: " + this.rows[index]["criadoresTxt"].replace("<br>",","), 10, 50);
+    doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 60);
+    doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 70);
+    doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 80);
+    doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 90);
+    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 100);
+    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 110);
+    
+    doc.text("Passos: " + this.rows[index].passos.replace("<br>", " "), 10, i*15);//colocar em tabela depois
+    
+    doc.save('a4.pdf');//salvando o pdf com as infos acima inseridas
 
    /* { name: 'Nome' },FOI
     { name: 'Nota', prop: 'notaTxt' },NÃO VAI
@@ -234,7 +270,7 @@ export class FtpListagemComponent implements OnInit {
     { name: 'Tipo', prop: 'tipoTxt'},
     { name: 'Publicada', prop: 'publicadaTxt' },
     { name: 'Status', prop: 'status' }*/
-  }
+  } 
 
   verificarAntesDeExcluir(index: number) {
     // if (this.receitas[index].nota === && this.usuarioEhAluno()) {
