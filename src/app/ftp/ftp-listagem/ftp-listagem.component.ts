@@ -180,24 +180,38 @@ export class FtpListagemComponent implements OnInit {
     
     const doc = new jsPDF({});
     let passos: String = '';
+    let receitaIngNome: String = ' ';
+    let arrayIngredientes: String [];
     let indice: number = 1;
     let aux: String = " ";//uso para separar os passos no pdf
 
     this.rows[index].passos.forEach(u => {
       passos += indice + ". " + u + aux; // concatena cada nome de criador de receita
-      console.log(passos);
+      //console.log(passos);
       indice++;
       aux = "<br>"//caso tenha mais de um passo
     });
 
+    indice = 0;
     this.rows[index].passos = passos;
-    //console.log(this.rows[index].passos);
     
-    const columns = ["ID", "Name", "Country"];
+    this.rows[index].receitaIngrediente.forEach(u => {
+      receitaIngNome += u.ingrediente.nome + aux; // concatena cada nome de criador de receita
+      //console.log(receitaIngNome);
+      indice++;
+      aux = "<br>"//caso tenha mais de um passo
+    });
+  
+
+  arrayIngredientes = receitaIngNome.split("<br>");
+   console.log(arrayIngredientes);//pq está gerando os espaços
+    
+    const columns = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita)"];
+    arrayIngredientes.forEach(u => {
+      //salvar nomes, valores da tabela em uma string ou array (não sei), para imprimir em const rows (abaixo)
+    });
     const rows = [
-        [1, "Shaw", "Tanzania"],
-        [2, "Nelson", "Kazakhstan"],
-        [3, "Garcia", "Madagascar"]
+        [arrayIngredientes, "Shaw", "Tanzania"],
     ]
 
     doc.autoTable(columns, rows);
