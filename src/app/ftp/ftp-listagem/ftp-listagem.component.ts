@@ -9,6 +9,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Nota } from '../nota';
 import { AUTO_STYLE } from '@angular/animations';
+import { ColdObservable } from 'rxjs/testing/ColdObservable';
 declare var jsPDF: any;
 
 
@@ -185,52 +186,56 @@ export class FtpListagemComponent implements OnInit {
     let receitaIngFc: String = ''; //fator de correção
     let receitaIngCk: String = ''; //custo por kg
     let receitaIngPeso: String = ''; //custo por kg
-    var objIngredientes = [{//vai salvar as variáveis acima no objeto objIngredientes
-                              nome:null,
-                              fc:null,
-                              ck:null,
-                              peso:null,
-                              passos:null
-                            }];
     let objTeste= [];          
     let stringTeste: String = '';
     let indice: number = 1;//para exibir número ao lado do passo no pdf
-    let aux: String = " ";//cancatena aux nas strings acima, depois quebro por ele para exibir no pdf
+    let cont = 1;//para contar num de ingredientes na tabela
+    const rowsPDFPassos = []; //para tabela de passos no PDF;
 
-    this.rows[index]['passos'].forEach(u => {
-      passos += indice + ". " + u + aux; // concatena cada nome de criador de receita
-      //console.log(passos);
-      indice++;
-      aux = "<br>"//caso tenha mais de um passo
-    });
+      const rowsPDF = [];
+      this.rows[index].receitaIngrediente.forEach(u => {
+        receitaIngNome = u.ingrediente.nome; // concatena cada nome de receita com ',' para depois quebrar
+        receitaIngFc = (u.fatorCorrecao).toString(); 
+        receitaIngCk = (u.custoKg).toString();
+        receitaIngPeso = (u.pesoG).toString();
+        var objIngredientes1 = [receitaIngNome,receitaIngPeso,receitaIngFc,receitaIngCk];
 
-    aux = "";
-
-    const rowsPDF = []; //stringTeste;
-    this.rows[index].passos = passos;
-
-    
-    this.rows[index].receitaIngrediente.forEach(u => {
-      receitaIngNome = u.ingrediente.nome; // concatena cada nome de receita com ',' para depois quebrar
-      receitaIngFc = (u.fatorCorrecao).toString(); 
-      receitaIngCk = (u.custoKg).toString();
-      receitaIngPeso = (u.pesoG).toString();
-      aux = ","//caso tenha mais de um passo
-      var objIngredientes1 = [receitaIngNome,receitaIngFc,receitaIngCk,receitaIngPeso]
-      rowsPDF.push(objIngredientes1);
+        rowsPDF.push(objIngredientes1);
+        cont++;
       });
 
-      objIngredientes['nome'] = receitaIngNome.split(",");
-      objIngredientes['fc'] = receitaIngFc.split(",");
-      objIngredientes['ck'] = receitaIngCk.split(",");
-      objIngredientes['peso'] = receitaIngPeso.split(",");
+      this.rows[index]['passos'].forEach(u => {
+        var passos = [indice,u]; // concatena cada nome de criador de receita
+        rowsPDFPassos.push(passos);
+        indice++;
+      });
   
+      
+      const columnsPDFPassos = ["Sequência","Ação"]
+      doc.autoTable(columnsPDFPassos,rowsPDFPassos, {
+        styles: {
+          fillColor: [32, 124, 123],
+          fontSize: 12,
+          textColor: 15,
+          font: "helvetica",
+          halign: 'left'
+        },
+        columnStyles: {
+          id:{fillColor: [32, 124, 123]},
+        },
+        margin: {top: 145+(cont*10)},
+        addPageContent: function(data) {
+          doc.setTextColor(11, 91, 90);
+          doc.setFontSize(13);
+          doc.text("Técnicas de preparo", 85, 140+(cont*10));
+        }
+    });
+ 
 
  // arrayIngredientes = receitaIngNome.split(",");
-   console.log("obj" + objIngredientes['nome']);//pq está gerando os espaços
   // console.log("fator de c:"+ receitaIngFc);//pq está gerando os espaços
     
-    const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita)"];
+    const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita) (R$)"];
      let i;
     // for(i=0;i<objIngredientes['nome'].length;i++){
     //   stringTeste += `["${objIngredientes['nome'][i]}","${objIngredientes['fc'][i]}","${objIngredientes['ck'][i]}","${objIngredientes['peso'][i]}"],`
@@ -241,42 +246,38 @@ export class FtpListagemComponent implements OnInit {
 
     // console.log("testeeeee:" + stringTeste);
 
-    
-    //objIngredientes.map(item,index);
-    // const rowsPDF = []; //stringTeste;
-    //   rowsPDF.push(objIngredientes['nome']);
-    //   rowsPDF.push(objIngredientes['fc']);
-    //   rowsPDF.push(objIngredientes['ck']);
-    //   rowsPDF.push(objIngredientes['peso']);
-    
-    console.log(rowsPDF);
     doc.setFontSize(12);//do PDF
+
     doc.autoTable(columnsPDF,rowsPDF, {
       styles: {
         fillColor: [32, 124, 123],
-        fontSize: 10,
+        fontSize: 12,
+        textColor: 15,
         font: "helvetica",
+        halign: 'center'
       },
       columnStyles: {
-        id: {fillColor: 255}
+        id:{fillColor: [32, 124, 123]}
       },
       margin: {top: 130},
       addPageContent: function(data) {
+        doc.setTextColor(11, 91, 90);
+        doc.setFontSize(15);
         doc.text("FICHA TÉCNICA DE PREPARO", 75, 10);
       }
   });
-
+    let criadoresPdf: String;
+    criadoresPdf = this.rows[index]["criadoresTxt"].replace("<br>",",");//parar exibir com vírgula quando tiver mais de um
+    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))
     doc.text("Preparação: " + this.rows[index].nome, 10, 40);
-    doc.text("Integrantes: " + this.rows[index]["criadoresTxt"].replace("<br>",","), 10, 50);
+    doc.text("Integrantes: " + criadoresPdf, 10, 50);
     doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 60);
     doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 70);
     doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 80);
     doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 90);
     doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 100);
     doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 110);
-    
-    doc.text("Passos: " + this.rows[index].passos.replace("<br>", " "), 10, i*15);//colocar em tabela depois
-    
+   
     doc.save('a4.pdf');//salvando o pdf com as infos acima inseridas
 
    /* { name: 'Nome' },FOI
