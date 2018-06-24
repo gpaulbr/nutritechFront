@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Nota } from '../nota';
 import { AUTO_STYLE } from '@angular/animations';
 import { ColdObservable } from 'rxjs/testing/ColdObservable';
-declare var jsPDF: any;
+declare var jsPDF: any;//para gerar o PDF
 
 
 @Component({
@@ -67,9 +67,9 @@ export class FtpListagemComponent implements OnInit {
           //   p["status"] = 'Inativa';
           // }
 
-          if (p['publicada']) { // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
+          if (p['publicada']) { // para ficar mais familiar para o usuário troco 'true' por 'Ativa', para a exibição
             p['publicadaTxt'] = 'Publicada';
-          } else if (!p['publicada']) {// para ficar mais familar para o usuário troco 'false' por 'Inativa' para a exibição
+          } else if (!p['publicada']) {// para ficar mais familiar para o usuário troco 'false' por 'Inativa' para a exibição
             p['publicadaTxt'] = 'Não Publicada';
           }
 
@@ -177,16 +177,13 @@ export class FtpListagemComponent implements OnInit {
     this.router.navigate(['./rotulo/' + String(this.receitas[index as number].id)]);
   }
 
-  gerarPDF(index: number) {
-    // Documentação: https://rawgit.com/MrRio/jsPDF/master/docs/
-    
+  gerarPDF(index: number) { 
     const doc = new jsPDF({});//criando o documento de pdf
     let passos: String = '';//passos da recita pro pdf
     let receitaIngNome: String = ' ';//nome da receita pro pdf
     let receitaIngFc: String = ''; //fator de correção
     let receitaIngCk: String = ''; //custo por kg
-    let receitaIngPeso: String = ''; //custo por kg
-    let objTeste= [];          
+    let receitaIngPeso: String = ''; //custo por kg      
     let stringTeste: String = '';
     let indice: number = 1;//para exibir número ao lado do passo no pdf
     let cont = 1;//para contar num de ingredientes na tabela
@@ -205,12 +202,11 @@ export class FtpListagemComponent implements OnInit {
       });
 
       this.rows[index]['passos'].forEach(u => {
-        var passos = [indice,u]; // concatena cada nome de criador de receita
+        var passos = [indice,u]; // passos e sequência
         rowsPDFPassos.push(passos);
         indice++;
       });
-  
-      
+     
       const columnsPDFPassos = ["Sequência","Ação"]
       doc.autoTable(columnsPDFPassos,rowsPDFPassos, {
         styles: {
@@ -230,10 +226,6 @@ export class FtpListagemComponent implements OnInit {
           doc.text("Técnicas de preparo", 85, 140+(cont*10));
         }
     });
- 
-
- // arrayIngredientes = receitaIngNome.split(",");
-  // console.log("fator de c:"+ receitaIngFc);//pq está gerando os espaços
     
     const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita) (R$)"];
      let i;
@@ -275,18 +267,18 @@ export class FtpListagemComponent implements OnInit {
       j++;
     }     
     criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))//tira o último espaço
-    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))//tira o último vírgula
+    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))//tira a última vírgula
 
-    doc.text("Preparação: " + this.rows[index].nome, 10, 40);
-    doc.text("Integrantes: " + criadoresPdf, 10, 50);
-    doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 60);
-    doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 70);
-    doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 80);
-    doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 90);
-    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 100);
-    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 110);
+    doc.text("Preparação: " + this.rows[index].nome, 10, 30);
+    doc.text("Integrantes: " + criadoresPdf, 10, 40);
+    doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 50);
+    doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 60);
+    doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 70);
+    doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 80);
+    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 90);
+    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 100);
    
-    doc.save('a4.pdf');//salvando o pdf com as infos acima inseridas
+    doc.save(this.rows[index].nome+'.pdf');//salvando o pdf com as infos acima inseridas
 
    /* { name: 'Nome' },FOI
     { name: 'Nota', prop: 'notaTxt' },NÃO VAI
