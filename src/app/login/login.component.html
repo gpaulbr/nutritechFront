@@ -25,7 +25,7 @@
 
             <p class="form_p" *ngIf="!displayEsqueceuSenha" (click)="displayEsqueceuSenha = !displayEsqueceuSenha">Esqueci minha senha</p>
             <p class="form_p" *ngIf="displayEsqueceuSenha" (click)="displayEsqueceuSenha = !displayEsqueceuSenha">Desejo me logar</p>
-            <p class="form_p">É aluno e não é cadastrado?            </p>
+            <p class="form_p" (click)="criarConta()">É aluno e não é cadastrado?</p>
 
             
         </div>
