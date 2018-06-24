@@ -22,11 +22,18 @@
             </form>
             <hr>
             <p class="form_p">Esqueceu a senha?
-                <a (click)="redefinir()">Clique aqui!</a>        
+                    <button onclick="redefinir()">Clique aqui!</button>
+
+                    <div id="myDIV">
+                      This is my DIV element.
+                    </div>
+                <!-- <a (click)="redefinir()">Clique aqui!</a>         -->
             </p>
             <p class="form_p">É aluno e não é cadastrado?
-                <a [routerLink]="['/usuario']">Clique aqui!</a>
+                <!-- <a [routerLink]="['/usuario']">Clique aqui!</a> -->
             </p>
+
+            
         </div>
     </div>
 
