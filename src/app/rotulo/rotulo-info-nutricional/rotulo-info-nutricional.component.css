@@ -10,7 +10,9 @@ th{
 	white-space: normal;
 }
 
-
+#geraPDF{
+    background-color: white; 
+  }
 
 h3 {
 	text-align: center;
@@ -51,7 +53,7 @@ tr:nth-child(odd){
 tr:first-child{
 	background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.5));
 	color: lightgray;
-}
+} 
 
 @media only screen and (max-width: 600px) {
 	table {

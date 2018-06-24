@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, Input, ViewChildren } from '@angular/core';
 import { RotuloIngredientesComponent } from './rotulo-ingredientes/rotulo-ingredientes.component';
+import * as jsPDF from 'jspdf';
 import { FtpService } from '../ftp/ftp.service';
 import { IngredienteService } from '../ingrediente/ingrediente.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -104,7 +105,25 @@ export class RotuloComponent {
     this.emitirValores();
   }
 
+
+  geraPDF(index: Number){
+
+    var pdf = new jsPDF('p', 'pt','a4');
+    var options = {
+      format: 'PNG',
+      pagesplit: true, 
+    }
+        pdf.addHTML(document.getElementById("numero"),0,50,options, function (){
+          pdf.setFontSize(30);
+          pdf.text("Rótulo Nutricional",186,34);
+          pdf.setFont("helvetica");
+          pdf.setFontType("bold");
+        pdf.save('Rotulo.pdf');
+      });
+   }
+
   getMostrarMaisInfo(): boolean {
     return this.mostrarMaisInfo;
   }
+
 }
