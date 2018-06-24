@@ -178,7 +178,7 @@ export class FtpListagemComponent implements OnInit {
   }
 
   gerarPDF(index: number) { 
-    const doc = new jsPDF('p', 'pt');//criando o documento de pdf
+    const doc = new jsPDF();//criando o documento de pdf
     let passos: String = '';//passos da recita pro pdf
     let receitaIngNome: String = ' ';//nome da receita pro pdf
     let receitaIngFc: String = ''; //fator de correção
