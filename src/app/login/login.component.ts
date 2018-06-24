@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   fb: FormBuilder;
+  displayEsqueceuSenha: boolean = true;
 
   constructor(private loginService: LoginService,
     private router: Router,
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
       });
   }
   redefinir(){
-    console.log(this.loginForm.get('email').value);
-    this.loginService.esqueceuSenha(this.loginForm.get('email').value);
+    console.log(this.loginForm.value.email)
+    this.loginService.esqueceuSenha(this.loginForm.value.email);
   }
 }
