@@ -112,8 +112,16 @@ export class RotuloComponent {
 
   geraPDF(index: Number){
 
-    var pdf = new jsPDF('p', 'pt', 'a5');
-        pdf.addHTML(document.getElementById("numero"), function() {
+    var pdf = new jsPDF('p', 'pt','a4');
+    var options = {
+      format: 'PNG',
+      pagesplit: true, 
+    }
+        pdf.addHTML(document.getElementById("numero"),0,50,options, function (){
+          pdf.setFontSize(30);
+          pdf.text("Rótulo Nutricional",186,34);
+          pdf.setFont("helvetica");
+          pdf.setFontType("bold");
         pdf.save('Rotulo.pdf');
       });
    }
