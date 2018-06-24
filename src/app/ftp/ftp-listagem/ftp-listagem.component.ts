@@ -8,6 +8,9 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { ToastrService } from 'ngx-toastr';
 import { Nota } from '../nota';
+import { AUTO_STYLE } from '@angular/animations';
+import { ColdObservable } from 'rxjs/testing/ColdObservable';
+declare var jsPDF: any;//para gerar o PDF
 
 
 @Component({
@@ -64,9 +67,9 @@ export class FtpListagemComponent implements OnInit {
           //   p["status"] = 'Inativa';
           // }
 
-          if (p['publicada']) { // para ficar mais familar para o usuário troco 'true' por 'Ativa', para a exibição
+          if (p['publicada']) { // para ficar mais familiar para o usuário troco 'true' por 'Ativa', para a exibição
             p['publicadaTxt'] = 'Publicada';
-          } else if (!p['publicada']) {// para ficar mais familar para o usuário troco 'false' por 'Inativa' para a exibição
+          } else if (!p['publicada']) {// para ficar mais familiar para o usuário troco 'false' por 'Inativa' para a exibição
             p['publicadaTxt'] = 'Não Publicada';
           }
 
@@ -91,12 +94,14 @@ export class FtpListagemComponent implements OnInit {
           } */
           lista.push(p); // inlcui na lista
             });
+
         if (lista.length !== 0) {
           this.rows = lista;
-          this.receitaEmLista = true; // para exibir mensagem se não tiver nda cadastrado
+          this.receitaEmLista = true; // para exibir mensagem se não tiver nada cadastrado
         } else {
           this.receitaEmLista = false;
         }
+
     });
     }
 
@@ -172,10 +177,118 @@ export class FtpListagemComponent implements OnInit {
     this.router.navigate(['./rotulo/' + String(this.receitas[index as number].id)]);
   }
 
-  gerarPDF(index: Number) {
-    // this.router.navigate(['./pdf/' + String(this.receitas[index as number].id)]);
-    this.toastr.warning('Ainda não implementado.');
-  }
+  gerarPDF(index: number) { 
+    const doc = new jsPDF({});//criando o documento de pdf
+    let passos: String = '';//passos da recita pro pdf
+    let receitaIngNome: String = ' ';//nome da receita pro pdf
+    let receitaIngFc: String = ''; //fator de correção
+    let receitaIngCk: String = ''; //custo por kg
+    let receitaIngPeso: String = ''; //custo por kg      
+    let stringTeste: String = '';
+    let indice: number = 1;//para exibir número ao lado do passo no pdf
+    let cont = 1;//para contar num de ingredientes na tabela
+    const rowsPDFPassos = []; //para tabela de passos no PDF;
+
+      const rowsPDF = [];
+      this.rows[index].receitaIngrediente.forEach(u => {
+        receitaIngNome = u.ingrediente.nome; // concatena cada nome de receita com ',' para depois quebrar
+        receitaIngFc = (u.fatorCorrecao).toString(); 
+        receitaIngCk = (u.custoKg).toString();
+        receitaIngPeso = (u.pesoG).toString();
+        var objIngredientes1 = [receitaIngNome,receitaIngPeso,receitaIngFc,receitaIngCk];
+
+        rowsPDF.push(objIngredientes1);
+        cont++;
+      });
+
+      this.rows[index]['passos'].forEach(u => {
+        var passos = [indice,u]; // passos e sequência
+        rowsPDFPassos.push(passos);
+        indice++;
+      });
+     
+      const columnsPDFPassos = ["Sequência","Ação"]
+      doc.autoTable(columnsPDFPassos,rowsPDFPassos, {
+        styles: {
+          fillColor: [32, 124, 123],
+          fontSize: 12,
+          textColor: 15,
+          font: "helvetica",
+          halign: 'left'
+        },
+        columnStyles: {
+          id:{fillColor: [32, 124, 123]},
+        },
+        margin: {top: 145+(cont*10)},
+        addPageContent: function(data) {
+          doc.setTextColor(11, 91, 90);
+          doc.setFontSize(13);
+          doc.text("Técnicas de preparo", 85, 140+(cont*10));
+        }
+    });
+    
+    const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita) (R$)"];
+     let i;
+    // for(i=0;i<objIngredientes['nome'].length;i++){
+    //   stringTeste += `["${objIngredientes['nome'][i]}","${objIngredientes['fc'][i]}","${objIngredientes['ck'][i]}","${objIngredientes['peso'][i]}"],`
+    // //console.log("aqui: " + stringTeste);
+    // }
+    // stringTeste = (stringTeste.substring(0,stringTeste.length-1)); //tira a última vírgula
+    // stringTeste = "[".concat(stringTeste.concat("]"));
+
+    // console.log("testeeeee:" + stringTeste);
+
+    doc.setFontSize(12);//do PDF
+
+    doc.autoTable(columnsPDF,rowsPDF, {
+      styles: {
+        fillColor: [32, 124, 123],
+        fontSize: 12,
+        textColor: 15,
+        font: "helvetica",
+        halign: 'center'
+      },
+      columnStyles: {
+        id:{fillColor: [32, 124, 123]}
+      },
+      margin: {top: 130},
+      addPageContent: function(data) {
+        doc.setTextColor(11, 91, 90);
+        doc.setFontSize(15);
+        doc.text("FICHA TÉCNICA DE PREPARO", 75, 10);
+      }
+  });
+    let criadoresPdf: String;
+    let j=1;
+    while(j<=this.rows[index]["criadoresTxt"].length){    
+      this.rows[index]["criadoresTxt"] = this.rows[index]["criadoresTxt"].replace("<br>",", ");
+      criadoresPdf = this.rows[index]["criadoresTxt"];//parar exibir com vírgula quando tiver mais de um
+      console.log("cri" + criadoresPdf);
+      j++;
+    }     
+    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))//tira o último espaço
+    criadoresPdf = (criadoresPdf.substring(0,criadoresPdf.length-1))//tira a última vírgula
+
+    doc.text("Preparação: " + this.rows[index].nome, 10, 30);
+    doc.text("Integrantes: " + criadoresPdf, 10, 40);
+    doc.text("Professor: " + this.rows[index]["professor"].nome, 10, 50);
+    doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 60);
+    doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 70);
+    doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 80);
+    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 90);
+    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 100);
+   
+    doc.save(this.rows[index].nome+'.pdf');//salvando o pdf com as infos acima inseridas
+
+   /* { name: 'Nome' },FOI
+    { name: 'Nota', prop: 'notaTxt' },NÃO VAI
+    { name: 'Rendimento' },
+    { name: 'Criadores', prop: 'criadoresTxt' },FOI
+    { name: 'Grupo de Receita', prop: 'grupoReceita.nome' },
+    { name: 'Tipo', prop: 'tipoTxt'},
+    { name: 'Publicada', prop: 'publicadaTxt' },
+    { name: 'Status', prop: 'status' }*/
+  } 
 
   verificarAntesDeExcluir(index: number) {
     // if (this.receitas[index].nota === && this.usuarioEhAluno()) {
