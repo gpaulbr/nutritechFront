@@ -32,6 +32,12 @@ export class RotuloInfoNutricionalComponent {
   }
 
   definirTextoAlergenico() {
-    return `Contém os alergênicos ${this.ftp.receitaIngrediente.map(ri => ri.ingrediente.alergenico).join(', ')}`;
+    let alergenicos = this.ftp.receitaIngrediente
+      .filter(ri => ri.ingrediente.alergenico !== 'Não possui')
+      .map(ri => ri.ingrediente.alergenico);
+    if (alergenicos.length !== 0) {
+      return `Contém os alergênicos ${alergenicos.join(', ')}`;
+    }
+    return 'Não contém alergêncios';
   }
 }
