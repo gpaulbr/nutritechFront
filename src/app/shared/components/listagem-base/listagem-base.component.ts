@@ -39,7 +39,6 @@ export abstract class ListagemBaseComponent implements OnInit {
   atualizarGrade() {
     this.service.buscar().subscribe(
       response => { 
-        debugger;
         this.rows = response[this.nomeObjetoService];
         this.objects = this.rows;
       });
