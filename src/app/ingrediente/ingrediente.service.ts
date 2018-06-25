@@ -18,7 +18,7 @@ export class IngredienteService implements ServiceBase {
   }
 
   atualizarIngrediente(ingrediente: Ingrediente): Observable<Ingrediente>{
-    return this.http.put<Ingrediente>(this.url, ingrediente);
+    return this.http.put<Ingrediente>(`${this.url}/update`, ingrediente);
   }
 
   buscar(): Observable<Ingrediente[]>{
