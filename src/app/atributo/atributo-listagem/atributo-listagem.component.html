@@ -31,7 +31,7 @@
         <ngx-datatable-column name="Valor Diário" [minWidth]="10" prop="valorDiario"> </ngx-datatable-column>
         <ngx-datatable-column name="Obrigatório" [minWidth]="10">
             <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                {{ rows[rowIndex].status | status }}
+                {{ rows[rowIndex].obrigatorio | boolean }}
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column *ngIf="admin" name="Ações" [minWidth]="10">
