@@ -50,6 +50,7 @@ import { RotuloIngredientesAtributosComponent } from './rotulo/rotulo-ingredient
 import { RotuloValorEnergeticoComponent } from './rotulo/rotulo-valor-energetico/rotulo-valor-energetico.component';
 import { RotuloInfoNutricionalComponent } from './rotulo/rotulo-info-nutricional/rotulo-info-nutricional.component';
 import { StatusPipe } from './shared/pipes/status-pipe.pipe';
+import { BooleanPipe } from './shared/pipes/boolean-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { StatusPipe } from './shared/pipes/status-pipe.pipe';
     RotuloIngredientesAtributosComponent,
     RotuloValorEnergeticoComponent,
     RotuloInfoNutricionalComponent,
-    StatusPipe
+    StatusPipe,
+    BooleanPipe
   ],
   imports: [
     BrowserModule,
