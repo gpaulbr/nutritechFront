@@ -52,7 +52,6 @@ export class IngredienteListagemComponent extends ListagemBaseComponent implemen
         this.objects = response['Ingredientes'];
         let lista = []
 
-        debugger;
         response['Ingredientes'].forEach(p => {
           if(this.usuarioLogado.tipo === "ADMIN" 
           || p.tipo === "COMUM"

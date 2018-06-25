@@ -6,7 +6,7 @@
         <div>
             <div class="row no-gutters" *ngIf="podeAlterar">
                 <div class="col">
-                    <select [(ngModel)]="alergia" class="form-control">
+                    <select [(ngModel)]="usuario" class="form-control">
                         <option [ngValue]="null" disabled selected hidden>Selecione um Integrante</option>
                         <option *ngFor="let item of alunosDisponiveis" [ngValue]="item">
                             {{item.nome}}

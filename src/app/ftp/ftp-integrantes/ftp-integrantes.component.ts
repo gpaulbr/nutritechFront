@@ -54,6 +54,7 @@ export class FtpIntegrantesComponent implements OnInit {
   }
 
   adicionarIntegrante() {
+    debugger;
     if (this.usuario != null && !this.estaIncluido(this.usuario)) {
       this.integrantes.push(this.usuario);
       // console.log('Adicionado: ' + this.usuario + ' à lista: ' + this.integrantes);
