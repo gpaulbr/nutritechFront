@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   fb: FormBuilder;
+  displayEsqueceuSenha: boolean = false;
 
   constructor(private loginService: LoginService,
     private router: Router,
@@ -48,8 +49,19 @@ export class LoginComponent implements OnInit {
         this.toastr.error(error.error);
       });
   }
+
+  criarConta() {
+    this.router.navigate(['./usuario']);
+  }
+
   redefinir(){
-    console.log(this.loginForm.get('email').value);
-    this.loginService.esqueceuSenha(this.loginForm.get('email').value);
+    console.log(this.loginForm.value.email)
+    this.loginService.esqueceuSenha(this.loginForm.value.email).subscribe(response => {
+      this.toastr.success('Email enviado com sucesso');
+      console.log(response);
+    }, erro => {
+      console.log(erro);
+      this.toastr.error('Erro ao enviar email de recuperação', 'Este email existe?');
+    });
   }
 }

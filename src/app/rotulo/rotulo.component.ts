@@ -105,7 +105,6 @@ export class RotuloComponent {
     this.emitirValores();
   }
 
-
   geraPDF(index: Number){
 
     var pdf = new jsPDF('p', 'pt','a4');
