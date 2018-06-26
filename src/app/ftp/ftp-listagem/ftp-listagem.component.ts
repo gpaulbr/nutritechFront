@@ -199,9 +199,9 @@ export class FtpListagemComponent implements OnInit {
         receitaIngFc = (u.fatorCorrecao).toString(); 
         receitaIngCk = (u.custoKg).toFixed(2).toString();
         receitaIngPeso = (u.pesoG).toString();
-        receitaIngCustoTot = (u.getCustoTotal()).toString();//novo
+        receitaIngCustoTot = ((u.custoKg/ 1000)*u.pesoG).toString();//novo
         rendAux = parseFloat(this.rows[index]['rendimento']);
-        receitaIngCustoPorcao = (u.getCustoTotal()/rendAux).toFixed(2).toString();//novo
+        receitaIngCustoPorcao = ((u.custoKg/ 1000)*u.pesoG/rendAux).toFixed(2).toString();//novo
         var objIngredientes1 = [receitaIngNome,receitaIngPeso,receitaIngFc,receitaIngCk];
 
         rowsPDF.push(objIngredientes1);
@@ -215,6 +215,7 @@ export class FtpListagemComponent implements OnInit {
       });
      
       const columnsPDFPasssos = ["Sequência","Ação"]
+      if((cont+indice)<12){
       doc.autoTable(columnsPDFPasssos,rowsPDFPassos, {
         styles: {
           fillColor: [255, 255, 255],
@@ -223,22 +224,43 @@ export class FtpListagemComponent implements OnInit {
           font: "helvetica",
           halign: 'left'
         },
-        margin: {top: 165+(cont*10)},
+        margin: {
+          top: 165+(cont*10)},
         addPageContent: function(data) {
           doc.setTextColor(11, 91, 90);
           doc.setFontSize(13);
-          doc.text("Técnicas de preparo", 85, 160+(cont*10));
+          
+            doc.text("Técnicas de preparo", 85, 160+(cont*10));
         }
     });
-
+  }else{
+    doc.autoTable(columnsPDFPasssos,rowsPDFPassos, {
+      styles: {
+        fillColor: [255, 255, 255],
+        fontSize: 12,
+        textColor: 15,
+        font: "helvetica",
+        halign: 'left'
+      },
+      margin: {
+        top: cont*10},
+      addPageContent: function(data) {
+        doc.setTextColor(11, 91, 90);
+        doc.setFontSize(13);
+        doc.text("Técnicas de preparo", 85, 10);
+        doc.addPage(); 
+      }
+  });
+  }
+    doc.setFontSize(12);//do PDF
     //aqui
-    doc.text("Custo Total: " + receitaIngCustoTot, 10, 145);
-    doc.text("Custo por porção: " + receitaIngCustoPorcao, 10, 155);
+    doc.text("Custo Total: R$" + receitaIngCustoTot, 90,140+(cont*10));
+    doc.text("Custo por porção: R$" + receitaIngCustoPorcao, 90,145+(cont*10));
     
-    const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita) (R$)"];
+    const columnsPDF = ["Alimentos", "Peso(g)", "FC", "Valor parcial (R$)"];
      let i;
 
-    doc.setFontSize(12);//do PDF
+    
 
     doc.autoTable(columnsPDF,rowsPDF, {
       styles: {
@@ -272,9 +294,9 @@ export class FtpListagemComponent implements OnInit {
     doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 60);
     doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 70);
     doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 80);
-    doc.text("Peso Total: " + this.rows[index]['peso']);
-    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 90);
-    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 100);
+    doc.text("Peso Total: " + this.rows[index]['peso'] + " g",10,90);
+    doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 100);
+    doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 110);
    
     doc.save(this.rows[index].nome+'.pdf');//salvando o pdf com as infos acima inseridas
 
