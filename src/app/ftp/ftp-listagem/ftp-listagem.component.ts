@@ -183,8 +183,12 @@ export class FtpListagemComponent implements OnInit {
     let receitaIngNome: String = ' ';//nome da receita pro pdf
     let receitaIngFc: String = ''; //fator de correção
     let receitaIngCk: String = ''; //custo por kg
-    let receitaIngPeso: String = ''; //custo por kg      
+    let receitaIngPeso: String = ''; //peso por kg     
+    let receitaIngCustoTot: String = ''; //custo total
+    let receitaIngCustoPorcao: String = ''; //custo por porção
+    let receitaPesoTotal: String = ''; //peso total
     let stringTeste: String = '';
+    let rendAux;
     let indice: number = 1;//para exibir número ao lado do passo no pdf
     let cont = 1;//para contar num de ingredientes na tabela
     const rowsPDFPassos = []; //para tabela de passos no PDF;
@@ -193,8 +197,11 @@ export class FtpListagemComponent implements OnInit {
       this.rows[index].receitaIngrediente.forEach(u => {
         receitaIngNome = u.ingrediente.nome; // concatena cada nome de receita com ',' para depois quebrar
         receitaIngFc = (u.fatorCorrecao).toString(); 
-        receitaIngCk = (u.custoKg).toString();
+        receitaIngCk = (u.custoKg).toFixed(2).toString();
         receitaIngPeso = (u.pesoG).toString();
+        receitaIngCustoTot = (u.getCustoTotal()).toString();//novo
+        rendAux = parseFloat(this.rows[index]['rendimento']);
+        receitaIngCustoPorcao = (u.getCustoTotal()/rendAux).toFixed(2).toString();//novo
         var objIngredientes1 = [receitaIngNome,receitaIngPeso,receitaIngFc,receitaIngCk];
 
         rowsPDF.push(objIngredientes1);
@@ -207,48 +214,39 @@ export class FtpListagemComponent implements OnInit {
         indice++;
       });
      
-      const columnsPDFPassos = ["Sequência","Ação"]
-      doc.autoTable(columnsPDFPassos,rowsPDFPassos, {
+      const columnsPDFPasssos = ["Sequência","Ação"]
+      doc.autoTable(columnsPDFPasssos,rowsPDFPassos, {
         styles: {
-          fillColor: [32, 124, 123],
+          fillColor: [255, 255, 255],
           fontSize: 12,
           textColor: 15,
           font: "helvetica",
           halign: 'left'
         },
-        columnStyles: {
-          id:{fillColor: [32, 124, 123]},
-        },
-        margin: {top: 145+(cont*10)},
+        margin: {top: 165+(cont*10)},
         addPageContent: function(data) {
           doc.setTextColor(11, 91, 90);
           doc.setFontSize(13);
-          doc.text("Técnicas de preparo", 85, 140+(cont*10));
+          doc.text("Técnicas de preparo", 85, 160+(cont*10));
         }
     });
+
+    //aqui
+    doc.text("Custo Total: " + receitaIngCustoTot, 10, 145);
+    doc.text("Custo por porção: " + receitaIngCustoPorcao, 10, 155);
     
     const columnsPDF = ["Alimentos", "Peso (g)", "FC", "Valor parcial (quantidade usada na receita) (R$)"];
      let i;
-    // for(i=0;i<objIngredientes['nome'].length;i++){
-    //   stringTeste += `["${objIngredientes['nome'][i]}","${objIngredientes['fc'][i]}","${objIngredientes['ck'][i]}","${objIngredientes['peso'][i]}"],`
-    // //console.log("aqui: " + stringTeste);
-    // }
-    // stringTeste = (stringTeste.substring(0,stringTeste.length-1)); //tira a última vírgula
-    // stringTeste = "[".concat(stringTeste.concat("]"));
 
-    // console.log("testeeeee:" + stringTeste);
     doc.setFontSize(12);//do PDF
 
     doc.autoTable(columnsPDF,rowsPDF, {
       styles: {
-        fillColor: [32, 124, 123],
+        fillColor: [255, 255, 255],
         fontSize: 12,
         textColor: 15,
         font: "helvetica",
         halign: 'center'
-      },
-      columnStyles: {
-        id:{fillColor: [32, 124, 123]}
       },
       margin: {top: 130},
       addPageContent: function(data) {
@@ -274,6 +272,7 @@ export class FtpListagemComponent implements OnInit {
     doc.text("Grupo de alimentos: " + this.rows[index].grupoReceita.nome, 10, 60);
     doc.text("Tempo de preparo: " + this.rows[index]['tempo'], 10, 70);
     doc.text("Número de porções: " + this.rows[index]['rendimento'], 10, 80);
+    doc.text("Peso Total: " + this.rows[index]['peso']);
     doc.text("Peso por porção: " + (this.rows[index]['peso']/this.rows[index]['rendimento']) + " g", 10, 90);
     doc.text("Dificuldade: " + (this.rows[index]['dificuldade']) + "/5", 10, 100);
    

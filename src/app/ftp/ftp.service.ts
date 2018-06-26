@@ -24,7 +24,7 @@ export class FtpService {
   }
 
   buscarAtivas(): Observable<Ftp[]>{
-    return this.http.get<Ftp[]>(this.url+ '/ativas');
+    return this.http.get<Ftp[]>(this.url);//+ '/ativas'
   }
 
   obterFTP(id: string): Observable<Ftp>{
