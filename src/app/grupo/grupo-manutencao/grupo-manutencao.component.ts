@@ -81,6 +81,7 @@ export class GrupoManutencaoComponent implements OnInit {
   }
 
   cadastrar () {
+    
     this.grupoService.salvarGrupo(this.grupoForm.value).subscribe(
       response => {
         this.toastr.success('Grupo cadastrado com sucesso');
