@@ -1,7 +1,7 @@
 <div class="container">
-	<fieldset>	
+	<fieldset>
 	<form [formGroup]="usuarioForm" class="form-horizontal form-container content" (ngSubmit)="salvarUsuario()" id="formulario">
-		<h2>Cadastro de Usuário</h2>
+    <h2>Cadastro de Usuário</h2>
 		<div class="divisor">
 			<span></span>
 		</div>
@@ -22,7 +22,7 @@
 		<div class="row form-group">
 			<label class="col-md-3 control-label campo-obrigatorio" for="email">E-mail</label>
 			<div class="col-md-4">
-				<input id="email" nome="email" [formControl]="usuarioForm.controls['email']" class="form-control" 
+				<input id="email" nome="email" [formControl]="usuarioForm.controls['email']" class="form-control"
 				[email]="true" placeholder="email@ufcspa.edu.br" pattern="[a-z0-9._%+-]+@ufcspa.edu.br" type="email">
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['email'].valid && this.usuarioForm.controls['email'].dirty"></app-mensagem-erro>
 			</div>
@@ -33,8 +33,8 @@
 			<label class="col-md-3 control-label campo-obrigatorio" for="matricula">Matrícula</label>
 			<div class="col-md-4">
 				<input formControlName="matricula" [formControl]="usuarioForm.controls['matricula']"
-				type="text" placeholder="" class="form-control input-md" 
-				onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;" 
+				type="text" placeholder="" class="form-control input-md"
+				onkeypress="if (!isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;"
 				maxlength="11" required>
 				<app-mensagem-erro class="erro" [contemErro]="!this.usuarioForm.controls['matricula'].valid && this.usuarioForm.controls['matricula'].dirty"></app-mensagem-erro>
 			</div>
@@ -51,19 +51,19 @@
 					[mensagem]="'Senha muito curta'"></app-mensagem-erro>
 				</div>
 			</div>
-			
+
 			<!-- Password input-->
 			<div class="row form-group">
 				<label class="col-md-3 control-label campo-obrigatorio" for="confirmarsenha">Confirmar Senha</label>
 				<div class="col-md-4">
-					<input [ngModelOptions]="{standalone: true}" 
+					<input [ngModelOptions]="{standalone: true}"
 					[(ngModel)]="senhaConfirmacao" (ngModelChange)="validarSenha()" type="password" placeholder="" class="form-control input-md" [required]="!idUsuario">
 					<app-mensagem-erro class="erro" [contemErro]="!senhaValida"
 					[mensagem]="mensagemErroSenha"></app-mensagem-erro>
 				</div>
 			</div>
 		</div>
-			
+
 		<div class="form-group row">
 			<label class="col-md-3 control-label campo-obrigatorio" for="cpf">CPF</label>
 			<div class="col-md-4">
@@ -90,7 +90,12 @@
 
 		<div class="row form-group">
 			<label class="col-xl-3 control-label" for="confirmar"></label>
-			<div class="col-xl-4 buttonUsu">
+			<div class="col-xl-6 buttonUsu">
+          <a class="btn btn-secondary" href="/" *ngIf="!verificarSeUsuarioEhAdmin()">
+            <!-- <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"> -->
+              Voltar
+            <!-- </span> -->
+          </a>
 				<button type="reset" id="reset" name="reset" class="btn btn-danger">Limpar</button>
 				<button type="submit" id="confirmar" name="confirmar" class="btn btn-success" [disabled]="!usuarioForm.valid">Confirmar</button>
 			</div>
