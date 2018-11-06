@@ -48,7 +48,7 @@ export class FtpListagemComponent implements OnInit {
       this.router.navigate(['./']);
     }
 
-    this.ftpServices.buscarAtivas().subscribe(receitas => {
+    this.ftpServices.buscarFTP().subscribe(receitas => {
          this.receitas = receitas['Receitas']; // acesso o que o método buscarReceita
          const lista: Ftp [] = [];
          receitas['Receitas'].forEach(p => {
@@ -162,7 +162,7 @@ export class FtpListagemComponent implements OnInit {
 
       // Whenever the filter changes, always go back to the first page
       this.table.offset = 0;
-    } 
+    }
 
   alterarReceita(index: Number) {
     this.router.navigate(['./ftp-cadastro/' + String(this.receitas[index as number].id)]);
@@ -192,7 +192,17 @@ export class FtpListagemComponent implements OnInit {
   }
 
   ativarReceita(index: number) {
-    this.toastr.warning('Não implementado');
+    const ftp = this.receitas[index];
+    this.ftpServices.reativarFTP(ftp).subscribe(
+      response => {
+        this.toastr.success(response['message']);
+          this.receitas[index].status = true;
+      },
+      error => {
+        console.log(error);
+          this.toastr.error(error.error);
+      }
+    );
   }
 
   excluirFtp(index: number) {

@@ -19,6 +19,11 @@ export class FtpService {
     return this.http.put<Ftp>(this.url + '/update', ftp);
   }
 
+  reativarFTP(ftp: Ftp): Observable<Ftp> {
+    return this.http.put<Ftp>(this.url + `/activate/${ftp.id}`, { });
+  }
+
+
   buscarFTP(): Observable<Ftp[]>{
     return this.http.get<Ftp[]>(this.url);
   }
