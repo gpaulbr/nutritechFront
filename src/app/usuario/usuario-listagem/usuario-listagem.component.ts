@@ -22,7 +22,7 @@ export class UsuarioListagemComponent implements OnInit {
     { name: 'Status' },
     { name: "Ações"}
   ];
-  
+
   constructor(private router: Router,
     private usuarioService: UsuarioService,
     private toastr: ToastrService) { }
@@ -31,7 +31,7 @@ export class UsuarioListagemComponent implements OnInit {
   ngOnInit() {
     var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
-    if(usuarioLogado == null) {  
+    if(usuarioLogado == null) {
       this.router.navigate(['./']);
     }else if(usuarioLogado.nome!="Admin"){
       console.log (usuarioLogado);//tirar depois
@@ -49,10 +49,13 @@ export class UsuarioListagemComponent implements OnInit {
 
   atualizarGrade() {
     this.usuarioService.buscarUsuarios().subscribe(
-      response => { 
+      response => {
         this.usuarios = response['Usuarios'];
         console.log(this.usuarios)
         this.usuarios.forEach(p => {
+            if(p.cpf.length === 11) {
+              p.cpf = p.cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
+            }
             this.rows.push(p)
         });
       });
