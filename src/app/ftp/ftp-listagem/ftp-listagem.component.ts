@@ -51,7 +51,11 @@ export class FtpListagemComponent implements OnInit {
     this.ftpServices.buscarFTP().subscribe(receitas => {
          this.receitas = receitas['Receitas']; // acesso o que o método buscarReceita
          const lista: Ftp [] = [];
-         receitas['Receitas'].forEach(p => {
+         debugger;
+         if (this.usuarioEhAluno()) {
+           this.receitas = receitas['Receitas'].filter(x => x.criadores.some(y => y.id === this.usuarioLogado.id));
+         }
+         this.receitas.forEach(p => {
           let stringCriadores: String = ''; // cria uma string vazia para concaternamos os nomes
           p['criadores'].forEach(u => {
             stringCriadores += u.nome + '<br>'; // concatena cada nome de criador de receita
@@ -104,7 +108,10 @@ export class FtpListagemComponent implements OnInit {
       if (this.receitas[index].nota != null && this.usuarioEhAluno()) {
         return false;
       }
-
+      if (this.usuarioEhProfessor()
+        && this.receitas[index].professor.id !== this.usuarioLogado.id) {
+          return false
+        }
       return true;
     }
 

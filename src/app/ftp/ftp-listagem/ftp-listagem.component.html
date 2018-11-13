@@ -13,12 +13,12 @@
 
             <!-- configurações ngx-datatable -->
             <ngx-datatable *ngIf="receitaEmLista" #table class="material"
-            [columns]="columns" 
-            [columnMode]="'force'" 
-            [headerHeight]="50" 
-            [footerHeight]="0" 
+            [columns]="columns"
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="0"
             [rowHeight]="'auto'"
-            [rows]='rows' 
+            [rows]='rows'
             [scrollbarH]="true"
             >
                 <!-- COLUNAS da tabela -->
@@ -36,12 +36,12 @@
                         <p *ngIf="!receitaAtiva(rowIndex)">Inativo</p>
                     </ng-template>
                 </ngx-datatable-column>
-                <ngx-datatable-column 
+                <ngx-datatable-column
                         name="Ações"
                         [sortable]="false"
                         [canAutoResize]="false"
                         [draggable]="false"
-                        [resizeable]="false">            
+                        [resizeable]="false">
                     <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="alterarReceita(rowIndex)" title="Editar">edit</i>
                         <i class="material-icons" onmouseover="" style="cursor: pointer;" (click)="gerarRotulo(rowIndex)" title="Rótulo">grid_on</i>
